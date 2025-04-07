@@ -1,0 +1,25 @@
+---
+# Copyright (c) The Kowabunga Project
+# Apache License, Version 2.0 (see LICENSE or https://www.apache.org/licenses/LICENSE-2.0.txt)
+# SPDX-License-Identifier: Apache-2.0
+
+{%- import "src/oas.macros.yml.j2" as oas with context %}
+
+components:
+  schemas:
+{{ oas.SchemaBaseResource(resources.agent, ['name', 'type']) }}
+{{ oas.StringProperty('type', 'The Kowabunga agent type', values=['Kiwi', 'Kaktus']) }}
+
+  parameters:
+{{ oas.PathParamID(resources.agent) }}
+
+paths:
+  /agent:
+{{ oas.LC(resources.agent, [resources.agent.tag]) }}
+
+  /agent/{{ '{' + resources.agent.paramId + '}' }}:
+{{ oas.RUD(resources.agent, [resources.agent.tag], [resources.agent.paramSchema]) }}
+
+  /agent/{{ '{' + resources.agent.paramId + '}' }}/token:
+{{ oas.Parameters([resources.agent.paramSchema, 'OptionalQueryExpire', 'OptionalQueryExpirationDate']) }}
+{{ oas.Patch('Set' + resources.agent.schema + resources.token.schema, resources.agent.desc, 'setting of API token (will replace any existing one)', [resources.agent.tag, resources.token.tag], resources.token.schema) }}

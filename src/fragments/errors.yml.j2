@@ -1,0 +1,17 @@
+---
+# Copyright (c) The Kowabunga Project
+# Apache License, Version 2.0 (see LICENSE or https://www.apache.org/licenses/LICENSE-2.0.txt)
+# SPDX-License-Identifier: Apache-2.0
+
+{%- import "src/oas.macros.yml.j2" as oas with context %}
+
+components:
+  schemas:
+{% for key, err in errors.items() %}
+{{ oas.ErrorSchema(err) }}
+{% endfor %}
+
+  responses:
+{% for key, err in errors.items() %}
+{{ oas.ErrorResponse(err) }}
+{% endfor %}

@@ -1,0 +1,28 @@
+---
+# Copyright (c) The Kowabunga Project
+# Apache License, Version 2.0 (see LICENSE or https://www.apache.org/licenses/LICENSE-2.0.txt)
+# SPDX-License-Identifier: Apache-2.0
+
+{%- import "src/oas.macros.yml.j2" as oas with context %}
+
+components:
+  schemas:
+{{ oas.SchemaBaseResource(resources.zone, ['name']) }}
+
+  parameters:
+{{ oas.PathParamID(resources.zone) }}
+
+paths:
+  /zone:
+{{ oas.List(resources.zone, [resources.zone.tag]) }}
+
+  /zone/{{ '{' + resources.zone.paramId + '}' }}:
+{{ oas.RUD(resources.zone, [resources.zone.tag], [resources.zone.paramSchema]) }}
+
+  /zone/{{ '{' + resources.zone.paramId + '}' }}/kaktus:
+{{ oas.Parameters([resources.zone.paramSchema]) }}
+{{ oas.Create('Create' + resources.kaktus.schema, resources.kaktus.schema, resources.kaktus.desc, [resources.zone.tag, resources.kaktus.tag]) }}
+
+  /zone/{{ '{' + resources.zone.paramId + '}' }}/kaktuses:
+{{ oas.Parameters([resources.zone.paramSchema]) }}
+{{ oas.GetAll('List' + resources.zone.schema + resources.kaktus.schema + 'es', resources.kaktus.desc, [resources.zone.tag, resources.kaktus.tag], True) }}

@@ -1,0 +1,19 @@
+---
+# Copyright (c) The Kowabunga Project
+# Apache License, Version 2.0 (see LICENSE or https://www.apache.org/licenses/LICENSE-2.0.txt)
+# SPDX-License-Identifier: Apache-2.0
+
+{%- import "src/oas.macros.yml.j2" as oas with context %}
+
+components:
+  schemas:
+{{ oas.SchemaBaseResource(resources.record, ['name', 'addresses']) }}
+{{ oas.StringProperty('domain', 'The DNS record associated domain (inherited from associated project)') }}
+{{ oas.StringArrayProperty('addresses', 'A list of IPv4 addresses to be associated to the record') }}
+
+  parameters:
+{{ oas.PathParamID(resources.record) }}
+
+paths:
+  /record/{{ '{' + resources.record.paramId + '}' }}:
+{{ oas.RUD(resources.record, [resources.record.tag], [resources.record.paramSchema]) }}
