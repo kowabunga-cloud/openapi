@@ -1,4 +1,4 @@
-# Documentation for Kowabunga API documentation
+# Documentation for Kowabunga API
 
 <a name="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
