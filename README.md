@@ -19,7 +19,7 @@ This is official API for Kowabunga.
 | Project            | Release Badge                                                                                       |
 |--------------------|-----------------------------------------------------------------------------------------------------|
 | **Kowabunga**           | [![Kowabunga Release](https://img.shields.io/github/v/release/kowabunga-cloud/kowabunga)](https://github.com/kowabunga-cloud/kowabunga/releases) |
-| **Kowabunga API**       | [![Kowabunga API](https://img.shields.io/github/v/release/kowabunga-cloud/openapi)](https://github.com/kowabunga-cloud/openapi/tags) |
+| **Kowabunga API**       | [![Kowabunga API](https://img.shields.io/github/v/tag/kowabunga-cloud/openapi)](https://github.com/kowabunga-cloud/openapi/tags) |
 
 # API Schema
 
