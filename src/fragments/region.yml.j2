@@ -70,4 +70,4 @@ paths:
 
   /region/{{ '{' + resources.region.paramId }}}/records:
 {{ oas.Parameters([resources.region.paramSchema]) }}
-{{ oas.GetAll('List' + resources.region.schema + resources.region.schema + 's', resources.region.desc, [resources.region.tag, resources.record.tag], True) }}
+{{ oas.GetAll('List' + resources.region.schema + resources.record.schema + 's', resources.record.desc, [resources.region.tag, resources.record.tag], True) }}

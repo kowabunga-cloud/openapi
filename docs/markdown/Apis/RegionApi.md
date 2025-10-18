@@ -20,8 +20,8 @@ All URIs are relative to */api/v1*
 | [**listProjectRegionKonveys**](RegionApi.md#listProjectRegionKonveys) | **GET** /project/{projectId}/region/{regionId}/konveys |  |
 | [**listProjectRegionKylos**](RegionApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylo |  |
 | [**listProjectRegionVolumes**](RegionApi.md#listProjectRegionVolumes) | **GET** /project/{projectId}/region/{regionId}/volumes |  |
+| [**listRegionDnsRecords**](RegionApi.md#listRegionDnsRecords) | **GET** /region/{regionId}/records |  |
 | [**listRegionKiwis**](RegionApi.md#listRegionKiwis) | **GET** /region/{regionId}/kiwis |  |
-| [**listRegionRegions**](RegionApi.md#listRegionRegions) | **GET** /region/{regionId}/records |  |
 | [**listRegionStorageNFSs**](RegionApi.md#listRegionStorageNFSs) | **GET** /region/{regionId}/nfs |  |
 | [**listRegionStoragePools**](RegionApi.md#listRegionStoragePools) | **GET** /region/{regionId}/pools |  |
 | [**listRegionVNets**](RegionApi.md#listRegionVNets) | **GET** /region/{regionId}/vnets |  |
@@ -488,13 +488,13 @@ null (empty response body)
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-<a name="listRegionKiwis"></a>
-# **listRegionKiwis**
-> List listRegionKiwis(regionId)
+<a name="listRegionDnsRecords"></a>
+# **listRegionDnsRecords**
+> List listRegionDnsRecords(regionId)
 
 
 
-    Returns the IDs of Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. objects.
+    Returns the IDs of DNS record objects.
 
 ### Parameters
 
@@ -515,13 +515,13 @@ null (empty response body)
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-<a name="listRegionRegions"></a>
-# **listRegionRegions**
-> List listRegionRegions(regionId)
+<a name="listRegionKiwis"></a>
+# **listRegionKiwis**
+> List listRegionKiwis(regionId)
 
 
 
-    Returns the IDs of region objects.
+    Returns the IDs of Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. objects.
 
 ### Parameters
 

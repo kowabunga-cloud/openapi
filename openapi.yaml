@@ -2875,8 +2875,8 @@ paths:
       - record
   /region/{regionId}/records:
     get:
-      description: Returns the IDs of region objects.
-      operationId: ListRegionRegions
+      description: Returns the IDs of DNS record objects.
+      operationId: ListRegionDnsRecords
       parameters:
       - $ref: '#/components/parameters/RegionID'
       responses:
@@ -2885,7 +2885,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ObjectIds'
-          description: Returns an array of region IDs.
+          description: Returns an array of DNS record IDs.
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":

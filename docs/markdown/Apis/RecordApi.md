@@ -8,7 +8,7 @@ All URIs are relative to */api/v1*
 | [**createRegionDnsRecord**](RecordApi.md#createRegionDnsRecord) | **POST** /region/{regionId}/record |  |
 | [**deleteDnsRecord**](RecordApi.md#deleteDnsRecord) | **DELETE** /record/{recordId} |  |
 | [**listProjectDnsRecords**](RecordApi.md#listProjectDnsRecords) | **GET** /project/{projectId}/records |  |
-| [**listRegionRegions**](RecordApi.md#listRegionRegions) | **GET** /region/{regionId}/records |  |
+| [**listRegionDnsRecords**](RecordApi.md#listRegionDnsRecords) | **GET** /region/{regionId}/records |  |
 | [**readDnsRecord**](RecordApi.md#readDnsRecord) | **GET** /record/{recordId} |  |
 | [**updateDnsRecord**](RecordApi.md#updateDnsRecord) | **PUT** /record/{recordId} |  |
 
@@ -123,13 +123,13 @@ null (empty response body)
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-<a name="listRegionRegions"></a>
-# **listRegionRegions**
-> List listRegionRegions(regionId)
+<a name="listRegionDnsRecords"></a>
+# **listRegionDnsRecords**
+> List listRegionDnsRecords(regionId)
 
 
 
-    Returns the IDs of region objects.
+    Returns the IDs of DNS record objects.
 
 ### Parameters
 
