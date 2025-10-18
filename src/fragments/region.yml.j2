@@ -63,3 +63,11 @@ paths:
   /region/{{ '{' + resources.region.paramId + '}' }}/nfs/{{ '{' + resources.nfs.paramId + '}' }}/default:
 {{ oas.Parameters([resources.region.paramSchema, resources.nfs.paramSchema]) }}
 {{ oas.Patch('Set' + resources.region.schema + 'Default' + resources.nfs.schema, resources.region.desc, 'setting of default ' + resources.nfs.desc, [resources.region.tag, resources.nfs.tag]) }}
+
+  /region/{{ '{' + resources.region.paramId + '}' }}/record:
+{{ oas.Parameters([resources.region.paramSchema]) }}
+{{ oas.Create('Create' + resources.region.schema + resources.record.schema, resources.record.schema, resources.record.desc, [resources.region.tag, resources.record.tag]) }}
+
+  /region/{{ '{' + resources.region.paramId }}}/records:
+{{ oas.Parameters([resources.region.paramSchema]) }}
+{{ oas.GetAll('List' + resources.region.schema + resources.region.schema + 's', resources.region.desc, [resources.region.tag, resources.record.tag], True) }}

@@ -137,8 +137,10 @@ All URIs are relative to */api/v1*
 *ProjectApi* | [**readProjectUsage**](Apis/ProjectApi.md#readprojectusage) | **GET** /project/{projectId}/usage | Returns a global project resource quotas/usage (0 for unlimited). |
 *ProjectApi* | [**updateProject**](Apis/ProjectApi.md#updateproject) | **PUT** /project/{projectId} | Updates a project configuration. |
 | *RecordApi* | [**createProjectDnsRecord**](Apis/RecordApi.md#createprojectdnsrecord) | **POST** /project/{projectId}/record | Creates a new DNS record. |
+*RecordApi* | [**createRegionDnsRecord**](Apis/RecordApi.md#createregiondnsrecord) | **POST** /region/{regionId}/record | Creates a new DNS record. |
 *RecordApi* | [**deleteDnsRecord**](Apis/RecordApi.md#deletednsrecord) | **DELETE** /record/{recordId} | Deletes an existing DNS record. |
 *RecordApi* | [**listProjectDnsRecords**](Apis/RecordApi.md#listprojectdnsrecords) | **GET** /project/{projectId}/records | Returns the IDs of DNS record objects. |
+*RecordApi* | [**listRegionRegions**](Apis/RecordApi.md#listregionregions) | **GET** /region/{regionId}/records | Returns the IDs of region objects. |
 *RecordApi* | [**readDnsRecord**](Apis/RecordApi.md#readdnsrecord) | **GET** /record/{recordId} | Returns a DNS record. |
 *RecordApi* | [**updateDnsRecord**](Apis/RecordApi.md#updatednsrecord) | **PUT** /record/{recordId} | Updates a DNS record configuration. |
 | *RegionApi* | [**createKiwi**](Apis/RegionApi.md#createkiwi) | **POST** /region/{regionId}/kiwi | Creates a new Kiwi (Kowabunga Inner Wan Interface) provides edge-network services.. |
@@ -147,6 +149,7 @@ All URIs are relative to */api/v1*
 *RegionApi* | [**createProjectRegionKylo**](Apis/RegionApi.md#createprojectregionkylo) | **POST** /project/{projectId}/region/{regionId}/kylo | Creates a new Kylo. |
 *RegionApi* | [**createProjectRegionVolume**](Apis/RegionApi.md#createprojectregionvolume) | **POST** /project/{projectId}/region/{regionId}/volume | Creates a new storage volume. |
 *RegionApi* | [**createRegion**](Apis/RegionApi.md#createregion) | **POST** /region | Creates a new region. |
+*RegionApi* | [**createRegionDnsRecord**](Apis/RegionApi.md#createregiondnsrecord) | **POST** /region/{regionId}/record | Creates a new DNS record. |
 *RegionApi* | [**createStorageNFS**](Apis/RegionApi.md#createstoragenfs) | **POST** /region/{regionId}/nfs | Creates a new NFS storage. |
 *RegionApi* | [**createStoragePool**](Apis/RegionApi.md#createstoragepool) | **POST** /region/{regionId}/pool | Creates a new storage pool. |
 *RegionApi* | [**createVNet**](Apis/RegionApi.md#createvnet) | **POST** /region/{regionId}/vnet | Creates a new virtual network. |
@@ -157,6 +160,7 @@ All URIs are relative to */api/v1*
 *RegionApi* | [**listProjectRegionKylos**](Apis/RegionApi.md#listprojectregionkylos) | **GET** /project/{projectId}/region/{regionId}/kylo | Returns the IDs of Kylo objects. |
 *RegionApi* | [**listProjectRegionVolumes**](Apis/RegionApi.md#listprojectregionvolumes) | **GET** /project/{projectId}/region/{regionId}/volumes | Returns the IDs of storage volume objects. |
 *RegionApi* | [**listRegionKiwis**](Apis/RegionApi.md#listregionkiwis) | **GET** /region/{regionId}/kiwis | Returns the IDs of Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. objects. |
+*RegionApi* | [**listRegionRegions**](Apis/RegionApi.md#listregionregions) | **GET** /region/{regionId}/records | Returns the IDs of region objects. |
 *RegionApi* | [**listRegionStorageNFSs**](Apis/RegionApi.md#listregionstoragenfss) | **GET** /region/{regionId}/nfs | Returns the IDs of NFS storage objects. |
 *RegionApi* | [**listRegionStoragePools**](Apis/RegionApi.md#listregionstoragepools) | **GET** /region/{regionId}/pools | Returns the IDs of storage pool objects. |
 *RegionApi* | [**listRegionVNets**](Apis/RegionApi.md#listregionvnets) | **GET** /region/{regionId}/vnets | Returns the IDs of virtual network objects. |

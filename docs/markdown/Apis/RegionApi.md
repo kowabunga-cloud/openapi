@@ -10,6 +10,7 @@ All URIs are relative to */api/v1*
 | [**createProjectRegionKylo**](RegionApi.md#createProjectRegionKylo) | **POST** /project/{projectId}/region/{regionId}/kylo |  |
 | [**createProjectRegionVolume**](RegionApi.md#createProjectRegionVolume) | **POST** /project/{projectId}/region/{regionId}/volume |  |
 | [**createRegion**](RegionApi.md#createRegion) | **POST** /region |  |
+| [**createRegionDnsRecord**](RegionApi.md#createRegionDnsRecord) | **POST** /region/{regionId}/record |  |
 | [**createStorageNFS**](RegionApi.md#createStorageNFS) | **POST** /region/{regionId}/nfs |  |
 | [**createStoragePool**](RegionApi.md#createStoragePool) | **POST** /region/{regionId}/pool |  |
 | [**createVNet**](RegionApi.md#createVNet) | **POST** /region/{regionId}/vnet |  |
@@ -20,6 +21,7 @@ All URIs are relative to */api/v1*
 | [**listProjectRegionKylos**](RegionApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylo |  |
 | [**listProjectRegionVolumes**](RegionApi.md#listProjectRegionVolumes) | **GET** /project/{projectId}/region/{regionId}/volumes |  |
 | [**listRegionKiwis**](RegionApi.md#listRegionKiwis) | **GET** /region/{regionId}/kiwis |  |
+| [**listRegionRegions**](RegionApi.md#listRegionRegions) | **GET** /region/{regionId}/records |  |
 | [**listRegionStorageNFSs**](RegionApi.md#listRegionStorageNFSs) | **GET** /region/{regionId}/nfs |  |
 | [**listRegionStoragePools**](RegionApi.md#listRegionStoragePools) | **GET** /region/{regionId}/pools |  |
 | [**listRegionVNets**](RegionApi.md#listRegionVNets) | **GET** /region/{regionId}/vnets |  |
@@ -195,6 +197,34 @@ All URIs are relative to */api/v1*
 ### Return type
 
 [**Region**](../Models/Region.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="createRegionDnsRecord"></a>
+# **createRegionDnsRecord**
+> DnsRecord createRegionDnsRecord(regionId, DnsRecord)
+
+
+
+    Creates a new DNS record.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **regionId** | **String**| The ID of the region. | [default to null] |
+| **DnsRecord** | [**DnsRecord**](../Models/DnsRecord.md)| DnsRecord payload. | |
+
+### Return type
+
+[**DnsRecord**](../Models/DnsRecord.md)
 
 ### Authorization
 
@@ -465,6 +495,33 @@ null (empty response body)
 
 
     Returns the IDs of Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. objects.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **regionId** | **String**| The ID of the region. | [default to null] |
+
+### Return type
+
+**List**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="listRegionRegions"></a>
+# **listRegionRegions**
+> List listRegionRegions(regionId)
+
+
+
+    Returns the IDs of region objects.
 
 ### Parameters
 

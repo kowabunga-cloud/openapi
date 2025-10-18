@@ -5,8 +5,10 @@ All URIs are relative to */api/v1*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**createProjectDnsRecord**](RecordApi.md#createProjectDnsRecord) | **POST** /project/{projectId}/record |  |
+| [**createRegionDnsRecord**](RecordApi.md#createRegionDnsRecord) | **POST** /region/{regionId}/record |  |
 | [**deleteDnsRecord**](RecordApi.md#deleteDnsRecord) | **DELETE** /record/{recordId} |  |
 | [**listProjectDnsRecords**](RecordApi.md#listProjectDnsRecords) | **GET** /project/{projectId}/records |  |
+| [**listRegionRegions**](RecordApi.md#listRegionRegions) | **GET** /region/{regionId}/records |  |
 | [**readDnsRecord**](RecordApi.md#readDnsRecord) | **GET** /record/{recordId} |  |
 | [**updateDnsRecord**](RecordApi.md#updateDnsRecord) | **PUT** /record/{recordId} |  |
 
@@ -24,6 +26,34 @@ All URIs are relative to */api/v1*
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | **String**| The ID of the project. | [default to null] |
+| **DnsRecord** | [**DnsRecord**](../Models/DnsRecord.md)| DnsRecord payload. | |
+
+### Return type
+
+[**DnsRecord**](../Models/DnsRecord.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="createRegionDnsRecord"></a>
+# **createRegionDnsRecord**
+> DnsRecord createRegionDnsRecord(regionId, DnsRecord)
+
+
+
+    Creates a new DNS record.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **regionId** | **String**| The ID of the region. | [default to null] |
 | **DnsRecord** | [**DnsRecord**](../Models/DnsRecord.md)| DnsRecord payload. | |
 
 ### Return type
@@ -79,6 +109,33 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | **String**| The ID of the project. | [default to null] |
+
+### Return type
+
+**List**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="listRegionRegions"></a>
+# **listRegionRegions**
+> List listRegionRegions(regionId)
+
+
+
+    Returns the IDs of region objects.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **regionId** | **String**| The ID of the region. | [default to null] |
 
 ### Return type
 

@@ -1323,8 +1323,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to forward public traffic to.",
-      "default" : "tcp",
-      "enum" : [ "tcp", "udp" ]
+      "enum" : [ "tcp", "udp" ],
+      "default" : "tcp"
     },
     "ports" : {
       "type" : "string",
@@ -1345,8 +1345,8 @@ ul.nav-tabs {
     "egress_policy" : {
       "type" : "string",
       "description" : "The default public traffic egress policy.",
-      "default" : "accept",
-      "enum" : [ "accept", "drop" ]
+      "enum" : [ "accept", "drop" ],
+      "default" : "accept"
     },
     "egress" : {
       "type" : "array",
@@ -1369,8 +1369,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to accept/drop public traffic to.",
-      "default" : "tcp",
-      "enum" : [ "tcp", "udp" ]
+      "enum" : [ "tcp", "udp" ],
+      "default" : "tcp"
     },
     "ports" : {
       "type" : "string",
@@ -1390,8 +1390,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to accept public traffic from.",
-      "default" : "tcp",
-      "enum" : [ "tcp", "udp" ]
+      "enum" : [ "tcp", "udp" ],
+      "default" : "tcp"
     },
     "ports" : {
       "type" : "string",
@@ -1434,8 +1434,8 @@ ul.nav-tabs {
     "dpd_timeout_action" : {
       "type" : "string",
       "description" : "The Kawaii IPsec connection Dead Peer Detection Action (clear,restart or trap).",
-      "default" : "restart",
-      "enum" : [ "clear", "restart", "start" ]
+      "enum" : [ "clear", "restart", "start" ],
+      "default" : "restart"
     },
     "dpd_timeout" : {
       "type" : "string",
@@ -1445,8 +1445,8 @@ ul.nav-tabs {
     "start_action" : {
       "type" : "string",
       "description" : "The Kawaii IPsec connection start action (none, start, trap).",
-      "default" : "start",
-      "enum" : [ "none", "start", "trap" ]
+      "enum" : [ "none", "start", "trap" ],
+      "default" : "start"
     },
     "rekey_time" : {
       "type" : "string",
@@ -1552,8 +1552,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to forward public traffic to.",
-      "default" : "tcp",
-      "enum" : [ "tcp", "udp" ]
+      "enum" : [ "tcp", "udp" ],
+      "default" : "tcp"
     },
     "ports" : {
       "type" : "string",
@@ -1586,8 +1586,8 @@ ul.nav-tabs {
     "policy" : {
       "type" : "string",
       "description" : "The default VPC traffic forwarding policy.",
-      "default" : "drop",
-      "enum" : [ "accept", "drop" ]
+      "enum" : [ "accept", "drop" ],
+      "default" : "drop"
     },
     "ingress" : {
       "type" : "array",
@@ -1748,8 +1748,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to be exposed.",
-      "default" : "tcp",
-      "enum" : [ "tcp", "udp" ]
+      "enum" : [ "tcp", "udp" ],
+      "default" : "tcp"
     },
     "backends" : {
       "$ref" : "#/components/schemas/KonveyBackends"
@@ -1775,8 +1775,8 @@ ul.nav-tabs {
     "access" : {
       "type" : "string",
       "description" : "The Kylo volume access type.",
-      "default" : "RW",
-      "enum" : [ "RO", "RW" ]
+      "enum" : [ "RO", "RW" ],
+      "default" : "RW"
     },
     "protocols" : {
       "type" : "array",
@@ -2096,8 +2096,8 @@ ul.nav-tabs {
     "application" : {
       "type" : "string",
       "description" : "Optional application service type.",
-      "default" : "user",
-      "enum" : [ "ceph", "user" ]
+      "enum" : [ "ceph", "user" ],
+      "default" : "user"
     }
   },
   "description" : "A network subnet."
@@ -2145,8 +2145,8 @@ ul.nav-tabs {
     "os" : {
       "type" : "string",
       "description" : "Type of operating system if OS kind (useful to determine cloud-init parameters for instance).",
-      "default" : "linux",
-      "enum" : [ "linux", "windows" ]
+      "enum" : [ "linux", "windows" ],
+      "default" : "linux"
     },
     "source" : {
       "type" : "string",
@@ -2716,11 +2716,17 @@ ul.nav-tabs {
                     <li data-group="Record" data-name="createProjectDnsRecord" class="">
                       <a href="#api-Record-createProjectDnsRecord">createProjectDnsRecord</a>
                     </li>
+                    <li data-group="Record" data-name="createRegionDnsRecord" class="">
+                      <a href="#api-Record-createRegionDnsRecord">createRegionDnsRecord</a>
+                    </li>
                     <li data-group="Record" data-name="deleteDnsRecord" class="">
                       <a href="#api-Record-deleteDnsRecord">deleteDnsRecord</a>
                     </li>
                     <li data-group="Record" data-name="listProjectDnsRecords" class="">
                       <a href="#api-Record-listProjectDnsRecords">listProjectDnsRecords</a>
+                    </li>
+                    <li data-group="Record" data-name="listRegionRegions" class="">
+                      <a href="#api-Record-listRegionRegions">listRegionRegions</a>
                     </li>
                     <li data-group="Record" data-name="readDnsRecord" class="">
                       <a href="#api-Record-readDnsRecord">readDnsRecord</a>
@@ -2746,6 +2752,9 @@ ul.nav-tabs {
                     </li>
                     <li data-group="Region" data-name="createRegion" class="">
                       <a href="#api-Region-createRegion">createRegion</a>
+                    </li>
+                    <li data-group="Region" data-name="createRegionDnsRecord" class="">
+                      <a href="#api-Region-createRegionDnsRecord">createRegionDnsRecord</a>
                     </li>
                     <li data-group="Region" data-name="createStorageNFS" class="">
                       <a href="#api-Region-createStorageNFS">createStorageNFS</a>
@@ -2776,6 +2785,9 @@ ul.nav-tabs {
                     </li>
                     <li data-group="Region" data-name="listRegionKiwis" class="">
                       <a href="#api-Region-listRegionKiwis">listRegionKiwis</a>
+                    </li>
+                    <li data-group="Region" data-name="listRegionRegions" class="">
+                      <a href="#api-Region-listRegionRegions">listRegionRegions</a>
                     </li>
                     <li data-group="Region" data-name="listRegionStorageNFSs" class="">
                       <a href="#api-Region-listRegionStorageNFSs">listRegionStorageNFSs</a>
@@ -105759,6 +105771,1034 @@ $(document).ready(function() {
                         </article>
                       </div>
                       <hr>
+                    <div id="api-Record-createRegionDnsRecord">
+                      <article id="api-Record-createRegionDnsRecord-0" data-group="User" data-name="createRegionDnsRecord" data-version="0">
+                        <div class="pull-left">
+                          <h1>createRegionDnsRecord</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Creates a new DNS record.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/region/{regionId}/record</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Record-createRegionDnsRecord-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Record-createRegionDnsRecord-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Record-createRegionDnsRecord-0-dart">Dart</a></li>
+                          <li class=""><a href="#examples-Record-createRegionDnsRecord-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Record-createRegionDnsRecord-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Record-createRegionDnsRecord-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Record-createRegionDnsRecord-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Record-createRegionDnsRecord-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Record-createRegionDnsRecord-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Record-createRegionDnsRecord-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Record-createRegionDnsRecord-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Record-createRegionDnsRecord-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Record-createRegionDnsRecord-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Record-createRegionDnsRecord-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST \
+-H "X-API-Key: [[apiKey]]" \
+ -H "Authorization: Bearer [[accessToken]]" \
+ -H "Accept: application/json" \
+ -H "Content-Type: application/json" \
+ "/api/v1/region/{regionId}/record" \
+ -d '{
+  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ],
+  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;name&quot; : &quot;name&quot;,
+  &quot;description&quot; : &quot;description&quot;,
+  &quot;id&quot; : &quot;id&quot;
+}'
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Record-createRegionDnsRecord-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.RecordApi;
+
+import java.io.File;
+import java.util.*;
+
+public class RecordApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure API key authorization: ApiKeyAuth
+        ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
+        ApiKeyAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //ApiKeyAuth.setApiKeyPrefix("Token");
+
+        // Configure Bearer (JWT) access token for authorization: BearerAuth
+        HttpBearerAuth BearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("BearerAuth");
+        BearerAuth.setBearerToken("BEARER TOKEN");
+
+        // Create an instance of the API class
+        RecordApi apiInstance = new RecordApi();
+        String regionId = regionId_example; // String | The ID of the region.
+        DnsRecord dnsRecord = ; // DnsRecord | 
+
+        try {
+            DnsRecord result = apiInstance.createRegionDnsRecord(regionId, dnsRecord);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling RecordApi#createRegionDnsRecord");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Record-createRegionDnsRecord-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+final String regionId = new String(); // String | The ID of the region.
+final DnsRecord dnsRecord = new DnsRecord(); // DnsRecord | 
+
+try {
+    final result = await api_instance.createRegionDnsRecord(regionId, dnsRecord);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->createRegionDnsRecord: $e\n');
+}
+
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Record-createRegionDnsRecord-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.RecordApi;
+
+public class RecordApiExample {
+    public static void main(String[] args) {
+        RecordApi apiInstance = new RecordApi();
+        String regionId = regionId_example; // String | The ID of the region.
+        DnsRecord dnsRecord = ; // DnsRecord | 
+
+        try {
+            DnsRecord result = apiInstance.createRegionDnsRecord(regionId, dnsRecord);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling RecordApi#createRegionDnsRecord");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Record-createRegionDnsRecord-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Record-createRegionDnsRecord-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: ApiKeyAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-Key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-Key"];
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+[apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
+
+// Create an instance of the API class
+RecordApi *apiInstance = [[RecordApi alloc] init];
+String *regionId = regionId_example; // The ID of the region. (default to null)
+DnsRecord *dnsRecord = ; // 
+
+[apiInstance createRegionDnsRecordWith:regionId
+    dnsRecord:dnsRecord
+              completionHandler: ^(DnsRecord output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Record-createRegionDnsRecord-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var KowabungaApi = require('kowabunga_api');
+var defaultClient = KowabungaApi.ApiClient.instance;
+
+// Configure API key authorization: ApiKeyAuth
+var ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix['X-API-Key'] = "Token";
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+var BearerAuth = defaultClient.authentications['BearerAuth'];
+BearerAuth.accessToken = "YOUR ACCESS TOKEN";
+
+// Create an instance of the API class
+var api = new KowabungaApi.RecordApi()
+var regionId = regionId_example; // {String} The ID of the region.
+var dnsRecord = ; // {DnsRecord} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.createRegionDnsRecord(regionId, dnsRecord, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Record-createRegionDnsRecord-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Record-createRegionDnsRecord-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using kowabunga.Api;
+using kowabunga.Client;
+using kowabunga.Model;
+
+namespace Example
+{
+    public class createRegionDnsRecordExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: ApiKeyAuth
+            Configuration.Default.ApiKey.Add("X-API-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("X-API-Key", "Bearer");
+            // Configure Bearer (JWT) access token for authorization: BearerAuth
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // Create an instance of the API class
+            var apiInstance = new RecordApi();
+            var regionId = regionId_example;  // String | The ID of the region. (default to null)
+            var dnsRecord = new DnsRecord(); // DnsRecord | 
+
+            try {
+                DnsRecord result = apiInstance.createRegionDnsRecord(regionId, dnsRecord);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling RecordApi.createRegionDnsRecord: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Record-createRegionDnsRecord-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: ApiKeyAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setAccessToken('', 'YOUR_ACCESS_TOKEN');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\RecordApi();
+$regionId = regionId_example; // String | The ID of the region.
+$dnsRecord = ; // DnsRecord | 
+
+try {
+    $result = $api_instance->createRegionDnsRecord($regionId, $dnsRecord);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling RecordApi->createRegionDnsRecord: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Record-createRegionDnsRecord-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::RecordApi;
+
+# Configure API key authorization: ApiKeyAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-Key'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-Key'} = "Bearer";
+
+# Configure Bearer (JWT) access token for authorization: BearerAuth
+$WWW::OPenAPIClient::Configuration::access_token = 'YOUR_ACCESS_TOKEN';
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::RecordApi->new();
+my $regionId = regionId_example; # String | The ID of the region.
+my $dnsRecord = WWW::OPenAPIClient::Object::DnsRecord->new(); # DnsRecord | 
+
+eval {
+    my $result = $api_instance->createRegionDnsRecord(regionId => $regionId, dnsRecord => $dnsRecord);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling RecordApi->createRegionDnsRecord: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Record-createRegionDnsRecord-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: ApiKeyAuth
+openapi_client.configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['X-API-Key'] = 'Bearer'
+
+# Configure Bearer (JWT) access token for authorization: BearerAuth
+openapi_client.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Create an instance of the API class
+api_instance = openapi_client.RecordApi()
+regionId = regionId_example # String | The ID of the region. (default to null)
+dnsRecord =  # DnsRecord | 
+
+try:
+    api_response = api_instance.create_region_dns_record(regionId, dnsRecord)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RecordApi->createRegionDnsRecord: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Record-createRegionDnsRecord-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate RecordApi;
+
+pub fn main() {
+    let regionId = regionId_example; // String
+    let dnsRecord = ; // DnsRecord
+
+    let mut context = RecordApi::Context::default();
+    let result = client.createRegionDnsRecord(regionId, dnsRecord, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">regionId*</td>
+<td>
+
+
+    <div id="d2e199_createRegionDnsRecord_regionId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The ID of the region.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">dnsRecord <span style="color:red;">*</span></td>
+<td>
+<p class="marked">DnsRecord payload.</p>
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "description" : "DnsRecord payload.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/DnsRecord"
+      }
+    }
+  },
+  "required" : true
+};
+
+  var schema = findNode('schema',schemaWrapper).schema;
+  if (!schema) {
+    schema = schemaWrapper.schema;
+  }
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else if (schema.items != null && schema.items.$ref != null) {
+    schema.items = defsParser.$refs.get(schema.items.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_createRegionDnsRecord_dnsRecord');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_createRegionDnsRecord_dnsRecord"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Record-createRegionDnsRecord-title-201"></h3>
+                            <p id="examples-Record-createRegionDnsRecord-description-201" class="marked"></p>
+                            <script>
+                              var responseRecord201_description = `Returns the newly created DNS record object.`;
+                              var responseRecord201_description_break = responseRecord201_description.indexOf('\n');
+                              if (responseRecord201_description_break == -1) {
+                                $("#examples-Record-createRegionDnsRecord-title-201").text("Status: 201 - " + responseRecord201_description);
+                              } else {
+                                $("#examples-Record-createRegionDnsRecord-title-201").text("Status: 201 - " + responseRecord201_description.substring(0, responseRecord201_description_break));
+                                $("#examples-Record-createRegionDnsRecord-description-201").html(responseRecord201_description.substring(responseRecord201_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Record-createRegionDnsRecord-201" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Record-createRegionDnsRecord-201-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Record-createRegionDnsRecord-201-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Record-createRegionDnsRecord-201-schema">
+                                <div id="responses-Record-createRegionDnsRecord-schema-201" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Returns the newly created DNS record object.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/DnsRecord"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Record-createRegionDnsRecord-201-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Record-createRegionDnsRecord-schema-201');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Record-createRegionDnsRecord-201-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Record-createRegionDnsRecord-title-400"></h3>
+                            <p id="examples-Record-createRegionDnsRecord-description-400" class="marked"></p>
+                            <script>
+                              var responseRecord400_description = `BadRequest error: Bad request (wrong input parameters).`;
+                              var responseRecord400_description_break = responseRecord400_description.indexOf('\n');
+                              if (responseRecord400_description_break == -1) {
+                                $("#examples-Record-createRegionDnsRecord-title-400").text("Status: 400 - " + responseRecord400_description);
+                              } else {
+                                $("#examples-Record-createRegionDnsRecord-title-400").text("Status: 400 - " + responseRecord400_description.substring(0, responseRecord400_description_break));
+                                $("#examples-Record-createRegionDnsRecord-description-400").html(responseRecord400_description.substring(responseRecord400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Record-createRegionDnsRecord-400" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Record-createRegionDnsRecord-400-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Record-createRegionDnsRecord-400-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Record-createRegionDnsRecord-400-schema">
+                                <div id="responses-Record-createRegionDnsRecord-schema-400" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "BadRequest error: Bad request (wrong input parameters).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorBadRequest"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Record-createRegionDnsRecord-400-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Record-createRegionDnsRecord-schema-400');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Record-createRegionDnsRecord-400-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Record-createRegionDnsRecord-title-401"></h3>
+                            <p id="examples-Record-createRegionDnsRecord-description-401" class="marked"></p>
+                            <script>
+                              var responseRecord401_description = `Unauthorized error: Unauthorized resource access (wrong auth/credentials).`;
+                              var responseRecord401_description_break = responseRecord401_description.indexOf('\n');
+                              if (responseRecord401_description_break == -1) {
+                                $("#examples-Record-createRegionDnsRecord-title-401").text("Status: 401 - " + responseRecord401_description);
+                              } else {
+                                $("#examples-Record-createRegionDnsRecord-title-401").text("Status: 401 - " + responseRecord401_description.substring(0, responseRecord401_description_break));
+                                $("#examples-Record-createRegionDnsRecord-description-401").html(responseRecord401_description.substring(responseRecord401_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Record-createRegionDnsRecord-401" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Record-createRegionDnsRecord-401-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Record-createRegionDnsRecord-401-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Record-createRegionDnsRecord-401-schema">
+                                <div id="responses-Record-createRegionDnsRecord-schema-401" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Unauthorized error: Unauthorized resource access (wrong auth/credentials).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorUnauthorized"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Record-createRegionDnsRecord-401-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Record-createRegionDnsRecord-schema-401');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Record-createRegionDnsRecord-401-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Record-createRegionDnsRecord-title-403"></h3>
+                            <p id="examples-Record-createRegionDnsRecord-description-403" class="marked"></p>
+                            <script>
+                              var responseRecord403_description = `Forbidden error: Forbidden resource access (restricted access control).`;
+                              var responseRecord403_description_break = responseRecord403_description.indexOf('\n');
+                              if (responseRecord403_description_break == -1) {
+                                $("#examples-Record-createRegionDnsRecord-title-403").text("Status: 403 - " + responseRecord403_description);
+                              } else {
+                                $("#examples-Record-createRegionDnsRecord-title-403").text("Status: 403 - " + responseRecord403_description.substring(0, responseRecord403_description_break));
+                                $("#examples-Record-createRegionDnsRecord-description-403").html(responseRecord403_description.substring(responseRecord403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Record-createRegionDnsRecord-403" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Record-createRegionDnsRecord-403-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Record-createRegionDnsRecord-403-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Record-createRegionDnsRecord-403-schema">
+                                <div id="responses-Record-createRegionDnsRecord-schema-403" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Forbidden error: Forbidden resource access (restricted access control).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorForbidden"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Record-createRegionDnsRecord-403-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Record-createRegionDnsRecord-schema-403');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Record-createRegionDnsRecord-403-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Record-createRegionDnsRecord-title-404"></h3>
+                            <p id="examples-Record-createRegionDnsRecord-description-404" class="marked"></p>
+                            <script>
+                              var responseRecord404_description = `NotFound error: Specified resource does not exist.`;
+                              var responseRecord404_description_break = responseRecord404_description.indexOf('\n');
+                              if (responseRecord404_description_break == -1) {
+                                $("#examples-Record-createRegionDnsRecord-title-404").text("Status: 404 - " + responseRecord404_description);
+                              } else {
+                                $("#examples-Record-createRegionDnsRecord-title-404").text("Status: 404 - " + responseRecord404_description.substring(0, responseRecord404_description_break));
+                                $("#examples-Record-createRegionDnsRecord-description-404").html(responseRecord404_description.substring(responseRecord404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Record-createRegionDnsRecord-404" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Record-createRegionDnsRecord-404-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Record-createRegionDnsRecord-404-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Record-createRegionDnsRecord-404-schema">
+                                <div id="responses-Record-createRegionDnsRecord-schema-404" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "NotFound error: Specified resource does not exist.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorNotFound"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Record-createRegionDnsRecord-404-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Record-createRegionDnsRecord-schema-404');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Record-createRegionDnsRecord-404-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Record-createRegionDnsRecord-title-409"></h3>
+                            <p id="examples-Record-createRegionDnsRecord-description-409" class="marked"></p>
+                            <script>
+                              var responseRecord409_description = `Conflict error: A similar resource already exists or resource is still being referenced somewhere.`;
+                              var responseRecord409_description_break = responseRecord409_description.indexOf('\n');
+                              if (responseRecord409_description_break == -1) {
+                                $("#examples-Record-createRegionDnsRecord-title-409").text("Status: 409 - " + responseRecord409_description);
+                              } else {
+                                $("#examples-Record-createRegionDnsRecord-title-409").text("Status: 409 - " + responseRecord409_description.substring(0, responseRecord409_description_break));
+                                $("#examples-Record-createRegionDnsRecord-description-409").html(responseRecord409_description.substring(responseRecord409_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Record-createRegionDnsRecord-409" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Record-createRegionDnsRecord-409-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Record-createRegionDnsRecord-409-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Record-createRegionDnsRecord-409-schema">
+                                <div id="responses-Record-createRegionDnsRecord-schema-409" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Conflict error: A similar resource already exists or resource is still being referenced somewhere.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorConflict"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Record-createRegionDnsRecord-409-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Record-createRegionDnsRecord-schema-409');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Record-createRegionDnsRecord-409-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Record-createRegionDnsRecord-title-422"></h3>
+                            <p id="examples-Record-createRegionDnsRecord-description-422" class="marked"></p>
+                            <script>
+                              var responseRecord422_description = `UnprocessableEntity error: Server can't process request.`;
+                              var responseRecord422_description_break = responseRecord422_description.indexOf('\n');
+                              if (responseRecord422_description_break == -1) {
+                                $("#examples-Record-createRegionDnsRecord-title-422").text("Status: 422 - " + responseRecord422_description);
+                              } else {
+                                $("#examples-Record-createRegionDnsRecord-title-422").text("Status: 422 - " + responseRecord422_description.substring(0, responseRecord422_description_break));
+                                $("#examples-Record-createRegionDnsRecord-description-422").html(responseRecord422_description.substring(responseRecord422_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Record-createRegionDnsRecord-422" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Record-createRegionDnsRecord-422-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Record-createRegionDnsRecord-422-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Record-createRegionDnsRecord-422-schema">
+                                <div id="responses-Record-createRegionDnsRecord-schema-422" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "UnprocessableEntity error: Server can't process request.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorUnprocessableEntity"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Record-createRegionDnsRecord-422-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Record-createRegionDnsRecord-schema-422');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Record-createRegionDnsRecord-422-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Record-createRegionDnsRecord-title-507"></h3>
+                            <p id="examples-Record-createRegionDnsRecord-description-507" class="marked"></p>
+                            <script>
+                              var responseRecord507_description = `InsufficientResource error: Server can't allocate resources (logical quotas or physical limits hit).`;
+                              var responseRecord507_description_break = responseRecord507_description.indexOf('\n');
+                              if (responseRecord507_description_break == -1) {
+                                $("#examples-Record-createRegionDnsRecord-title-507").text("Status: 507 - " + responseRecord507_description);
+                              } else {
+                                $("#examples-Record-createRegionDnsRecord-title-507").text("Status: 507 - " + responseRecord507_description.substring(0, responseRecord507_description_break));
+                                $("#examples-Record-createRegionDnsRecord-description-507").html(responseRecord507_description.substring(responseRecord507_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Record-createRegionDnsRecord-507" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Record-createRegionDnsRecord-507-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Record-createRegionDnsRecord-507-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Record-createRegionDnsRecord-507-schema">
+                                <div id="responses-Record-createRegionDnsRecord-schema-507" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "InsufficientResource error: Server can't allocate resources (logical quotas or physical limits hit).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorInsufficientResource"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Record-createRegionDnsRecord-507-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Record-createRegionDnsRecord-schema-507');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Record-createRegionDnsRecord-507-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
                     <div id="api-Record-deleteDnsRecord">
                       <article id="api-Record-deleteDnsRecord-0" data-group="User" data-name="deleteDnsRecord" data-version="0">
                         <div class="pull-left">
@@ -107197,6 +108237,662 @@ The ID of the project.
                                   </script>
                                 </div>
                                 <input id='responses-Record-listProjectDnsRecords-404-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Record-listRegionRegions">
+                      <article id="api-Record-listRegionRegions-0" data-group="User" data-name="listRegionRegions" data-version="0">
+                        <div class="pull-left">
+                          <h1>listRegionRegions</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Returns the IDs of region objects.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/region/{regionId}/records</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Record-listRegionRegions-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Record-listRegionRegions-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Record-listRegionRegions-0-dart">Dart</a></li>
+                          <li class=""><a href="#examples-Record-listRegionRegions-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Record-listRegionRegions-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Record-listRegionRegions-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Record-listRegionRegions-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Record-listRegionRegions-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Record-listRegionRegions-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Record-listRegionRegions-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Record-listRegionRegions-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Record-listRegionRegions-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Record-listRegionRegions-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Record-listRegionRegions-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET \
+-H "X-API-Key: [[apiKey]]" \
+ -H "Authorization: Bearer [[accessToken]]" \
+ -H "Accept: application/json" \
+ "/api/v1/region/{regionId}/records"
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Record-listRegionRegions-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.RecordApi;
+
+import java.io.File;
+import java.util.*;
+
+public class RecordApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure API key authorization: ApiKeyAuth
+        ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
+        ApiKeyAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //ApiKeyAuth.setApiKeyPrefix("Token");
+
+        // Configure Bearer (JWT) access token for authorization: BearerAuth
+        HttpBearerAuth BearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("BearerAuth");
+        BearerAuth.setBearerToken("BEARER TOKEN");
+
+        // Create an instance of the API class
+        RecordApi apiInstance = new RecordApi();
+        String regionId = regionId_example; // String | The ID of the region.
+
+        try {
+            array['String'] result = apiInstance.listRegionRegions(regionId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling RecordApi#listRegionRegions");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Record-listRegionRegions-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+final String regionId = new String(); // String | The ID of the region.
+
+try {
+    final result = await api_instance.listRegionRegions(regionId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listRegionRegions: $e\n');
+}
+
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Record-listRegionRegions-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.RecordApi;
+
+public class RecordApiExample {
+    public static void main(String[] args) {
+        RecordApi apiInstance = new RecordApi();
+        String regionId = regionId_example; // String | The ID of the region.
+
+        try {
+            array['String'] result = apiInstance.listRegionRegions(regionId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling RecordApi#listRegionRegions");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Record-listRegionRegions-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Record-listRegionRegions-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: ApiKeyAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-Key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-Key"];
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+[apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
+
+// Create an instance of the API class
+RecordApi *apiInstance = [[RecordApi alloc] init];
+String *regionId = regionId_example; // The ID of the region. (default to null)
+
+[apiInstance listRegionRegionsWith:regionId
+              completionHandler: ^(array['String'] output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Record-listRegionRegions-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var KowabungaApi = require('kowabunga_api');
+var defaultClient = KowabungaApi.ApiClient.instance;
+
+// Configure API key authorization: ApiKeyAuth
+var ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix['X-API-Key'] = "Token";
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+var BearerAuth = defaultClient.authentications['BearerAuth'];
+BearerAuth.accessToken = "YOUR ACCESS TOKEN";
+
+// Create an instance of the API class
+var api = new KowabungaApi.RecordApi()
+var regionId = regionId_example; // {String} The ID of the region.
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.listRegionRegions(regionId, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Record-listRegionRegions-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Record-listRegionRegions-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using kowabunga.Api;
+using kowabunga.Client;
+using kowabunga.Model;
+
+namespace Example
+{
+    public class listRegionRegionsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: ApiKeyAuth
+            Configuration.Default.ApiKey.Add("X-API-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("X-API-Key", "Bearer");
+            // Configure Bearer (JWT) access token for authorization: BearerAuth
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // Create an instance of the API class
+            var apiInstance = new RecordApi();
+            var regionId = regionId_example;  // String | The ID of the region. (default to null)
+
+            try {
+                array['String'] result = apiInstance.listRegionRegions(regionId);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling RecordApi.listRegionRegions: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Record-listRegionRegions-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: ApiKeyAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setAccessToken('', 'YOUR_ACCESS_TOKEN');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\RecordApi();
+$regionId = regionId_example; // String | The ID of the region.
+
+try {
+    $result = $api_instance->listRegionRegions($regionId);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling RecordApi->listRegionRegions: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Record-listRegionRegions-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::RecordApi;
+
+# Configure API key authorization: ApiKeyAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-Key'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-Key'} = "Bearer";
+
+# Configure Bearer (JWT) access token for authorization: BearerAuth
+$WWW::OPenAPIClient::Configuration::access_token = 'YOUR_ACCESS_TOKEN';
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::RecordApi->new();
+my $regionId = regionId_example; # String | The ID of the region.
+
+eval {
+    my $result = $api_instance->listRegionRegions(regionId => $regionId);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling RecordApi->listRegionRegions: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Record-listRegionRegions-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: ApiKeyAuth
+openapi_client.configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['X-API-Key'] = 'Bearer'
+
+# Configure Bearer (JWT) access token for authorization: BearerAuth
+openapi_client.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Create an instance of the API class
+api_instance = openapi_client.RecordApi()
+regionId = regionId_example # String | The ID of the region. (default to null)
+
+try:
+    api_response = api_instance.list_region_regions(regionId)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RecordApi->listRegionRegions: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Record-listRegionRegions-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate RecordApi;
+
+pub fn main() {
+    let regionId = regionId_example; // String
+
+    let mut context = RecordApi::Context::default();
+    let result = client.listRegionRegions(regionId, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">regionId*</td>
+<td>
+
+
+    <div id="d2e199_listRegionRegions_regionId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The ID of the region.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Record-listRegionRegions-title-200"></h3>
+                            <p id="examples-Record-listRegionRegions-description-200" class="marked"></p>
+                            <script>
+                              var responseRecord200_description = `Returns an array of region IDs.`;
+                              var responseRecord200_description_break = responseRecord200_description.indexOf('\n');
+                              if (responseRecord200_description_break == -1) {
+                                $("#examples-Record-listRegionRegions-title-200").text("Status: 200 - " + responseRecord200_description);
+                              } else {
+                                $("#examples-Record-listRegionRegions-title-200").text("Status: 200 - " + responseRecord200_description.substring(0, responseRecord200_description_break));
+                                $("#examples-Record-listRegionRegions-description-200").html(responseRecord200_description.substring(responseRecord200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Record-listRegionRegions-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Record-listRegionRegions-200-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Record-listRegionRegions-200-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Record-listRegionRegions-200-schema">
+                                <div id="responses-Record-listRegionRegions-schema-200" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Returns an array of region IDs.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ObjectIds"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Record-listRegionRegions-200-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Record-listRegionRegions-schema-200');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Record-listRegionRegions-200-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Record-listRegionRegions-title-401"></h3>
+                            <p id="examples-Record-listRegionRegions-description-401" class="marked"></p>
+                            <script>
+                              var responseRecord401_description = `Unauthorized error: Unauthorized resource access (wrong auth/credentials).`;
+                              var responseRecord401_description_break = responseRecord401_description.indexOf('\n');
+                              if (responseRecord401_description_break == -1) {
+                                $("#examples-Record-listRegionRegions-title-401").text("Status: 401 - " + responseRecord401_description);
+                              } else {
+                                $("#examples-Record-listRegionRegions-title-401").text("Status: 401 - " + responseRecord401_description.substring(0, responseRecord401_description_break));
+                                $("#examples-Record-listRegionRegions-description-401").html(responseRecord401_description.substring(responseRecord401_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Record-listRegionRegions-401" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Record-listRegionRegions-401-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Record-listRegionRegions-401-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Record-listRegionRegions-401-schema">
+                                <div id="responses-Record-listRegionRegions-schema-401" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Unauthorized error: Unauthorized resource access (wrong auth/credentials).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorUnauthorized"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Record-listRegionRegions-401-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Record-listRegionRegions-schema-401');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Record-listRegionRegions-401-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Record-listRegionRegions-title-403"></h3>
+                            <p id="examples-Record-listRegionRegions-description-403" class="marked"></p>
+                            <script>
+                              var responseRecord403_description = `Forbidden error: Forbidden resource access (restricted access control).`;
+                              var responseRecord403_description_break = responseRecord403_description.indexOf('\n');
+                              if (responseRecord403_description_break == -1) {
+                                $("#examples-Record-listRegionRegions-title-403").text("Status: 403 - " + responseRecord403_description);
+                              } else {
+                                $("#examples-Record-listRegionRegions-title-403").text("Status: 403 - " + responseRecord403_description.substring(0, responseRecord403_description_break));
+                                $("#examples-Record-listRegionRegions-description-403").html(responseRecord403_description.substring(responseRecord403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Record-listRegionRegions-403" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Record-listRegionRegions-403-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Record-listRegionRegions-403-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Record-listRegionRegions-403-schema">
+                                <div id="responses-Record-listRegionRegions-schema-403" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Forbidden error: Forbidden resource access (restricted access control).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorForbidden"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Record-listRegionRegions-403-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Record-listRegionRegions-schema-403');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Record-listRegionRegions-403-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Record-listRegionRegions-title-404"></h3>
+                            <p id="examples-Record-listRegionRegions-description-404" class="marked"></p>
+                            <script>
+                              var responseRecord404_description = `NotFound error: Specified resource does not exist.`;
+                              var responseRecord404_description_break = responseRecord404_description.indexOf('\n');
+                              if (responseRecord404_description_break == -1) {
+                                $("#examples-Record-listRegionRegions-title-404").text("Status: 404 - " + responseRecord404_description);
+                              } else {
+                                $("#examples-Record-listRegionRegions-title-404").text("Status: 404 - " + responseRecord404_description.substring(0, responseRecord404_description_break));
+                                $("#examples-Record-listRegionRegions-description-404").html(responseRecord404_description.substring(responseRecord404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Record-listRegionRegions-404" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Record-listRegionRegions-404-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Record-listRegionRegions-404-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Record-listRegionRegions-404-schema">
+                                <div id="responses-Record-listRegionRegions-schema-404" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "NotFound error: Specified resource does not exist.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorNotFound"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Record-listRegionRegions-404-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Record-listRegionRegions-schema-404');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Record-listRegionRegions-404-schema-data' type='hidden' value=''></input>
                               </div>
                             </div>
                         </article>
@@ -115371,6 +117067,1034 @@ $(document).ready(function() {
                                   </script>
                                 </div>
                                 <input id='responses-Region-createRegion-507-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Region-createRegionDnsRecord">
+                      <article id="api-Region-createRegionDnsRecord-0" data-group="User" data-name="createRegionDnsRecord" data-version="0">
+                        <div class="pull-left">
+                          <h1>createRegionDnsRecord</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Creates a new DNS record.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/region/{regionId}/record</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Region-createRegionDnsRecord-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Region-createRegionDnsRecord-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Region-createRegionDnsRecord-0-dart">Dart</a></li>
+                          <li class=""><a href="#examples-Region-createRegionDnsRecord-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Region-createRegionDnsRecord-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Region-createRegionDnsRecord-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Region-createRegionDnsRecord-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Region-createRegionDnsRecord-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Region-createRegionDnsRecord-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Region-createRegionDnsRecord-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Region-createRegionDnsRecord-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Region-createRegionDnsRecord-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Region-createRegionDnsRecord-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Region-createRegionDnsRecord-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST \
+-H "X-API-Key: [[apiKey]]" \
+ -H "Authorization: Bearer [[accessToken]]" \
+ -H "Accept: application/json" \
+ -H "Content-Type: application/json" \
+ "/api/v1/region/{regionId}/record" \
+ -d '{
+  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ],
+  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;name&quot; : &quot;name&quot;,
+  &quot;description&quot; : &quot;description&quot;,
+  &quot;id&quot; : &quot;id&quot;
+}'
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Region-createRegionDnsRecord-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.RegionApi;
+
+import java.io.File;
+import java.util.*;
+
+public class RegionApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure API key authorization: ApiKeyAuth
+        ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
+        ApiKeyAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //ApiKeyAuth.setApiKeyPrefix("Token");
+
+        // Configure Bearer (JWT) access token for authorization: BearerAuth
+        HttpBearerAuth BearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("BearerAuth");
+        BearerAuth.setBearerToken("BEARER TOKEN");
+
+        // Create an instance of the API class
+        RegionApi apiInstance = new RegionApi();
+        String regionId = regionId_example; // String | The ID of the region.
+        DnsRecord dnsRecord = ; // DnsRecord | 
+
+        try {
+            DnsRecord result = apiInstance.createRegionDnsRecord(regionId, dnsRecord);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling RegionApi#createRegionDnsRecord");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Region-createRegionDnsRecord-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+final String regionId = new String(); // String | The ID of the region.
+final DnsRecord dnsRecord = new DnsRecord(); // DnsRecord | 
+
+try {
+    final result = await api_instance.createRegionDnsRecord(regionId, dnsRecord);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->createRegionDnsRecord: $e\n');
+}
+
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Region-createRegionDnsRecord-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.RegionApi;
+
+public class RegionApiExample {
+    public static void main(String[] args) {
+        RegionApi apiInstance = new RegionApi();
+        String regionId = regionId_example; // String | The ID of the region.
+        DnsRecord dnsRecord = ; // DnsRecord | 
+
+        try {
+            DnsRecord result = apiInstance.createRegionDnsRecord(regionId, dnsRecord);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling RegionApi#createRegionDnsRecord");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Region-createRegionDnsRecord-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Region-createRegionDnsRecord-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: ApiKeyAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-Key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-Key"];
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+[apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
+
+// Create an instance of the API class
+RegionApi *apiInstance = [[RegionApi alloc] init];
+String *regionId = regionId_example; // The ID of the region. (default to null)
+DnsRecord *dnsRecord = ; // 
+
+[apiInstance createRegionDnsRecordWith:regionId
+    dnsRecord:dnsRecord
+              completionHandler: ^(DnsRecord output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Region-createRegionDnsRecord-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var KowabungaApi = require('kowabunga_api');
+var defaultClient = KowabungaApi.ApiClient.instance;
+
+// Configure API key authorization: ApiKeyAuth
+var ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix['X-API-Key'] = "Token";
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+var BearerAuth = defaultClient.authentications['BearerAuth'];
+BearerAuth.accessToken = "YOUR ACCESS TOKEN";
+
+// Create an instance of the API class
+var api = new KowabungaApi.RegionApi()
+var regionId = regionId_example; // {String} The ID of the region.
+var dnsRecord = ; // {DnsRecord} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.createRegionDnsRecord(regionId, dnsRecord, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Region-createRegionDnsRecord-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Region-createRegionDnsRecord-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using kowabunga.Api;
+using kowabunga.Client;
+using kowabunga.Model;
+
+namespace Example
+{
+    public class createRegionDnsRecordExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: ApiKeyAuth
+            Configuration.Default.ApiKey.Add("X-API-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("X-API-Key", "Bearer");
+            // Configure Bearer (JWT) access token for authorization: BearerAuth
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // Create an instance of the API class
+            var apiInstance = new RegionApi();
+            var regionId = regionId_example;  // String | The ID of the region. (default to null)
+            var dnsRecord = new DnsRecord(); // DnsRecord | 
+
+            try {
+                DnsRecord result = apiInstance.createRegionDnsRecord(regionId, dnsRecord);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling RegionApi.createRegionDnsRecord: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Region-createRegionDnsRecord-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: ApiKeyAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setAccessToken('', 'YOUR_ACCESS_TOKEN');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\RegionApi();
+$regionId = regionId_example; // String | The ID of the region.
+$dnsRecord = ; // DnsRecord | 
+
+try {
+    $result = $api_instance->createRegionDnsRecord($regionId, $dnsRecord);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling RegionApi->createRegionDnsRecord: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Region-createRegionDnsRecord-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::RegionApi;
+
+# Configure API key authorization: ApiKeyAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-Key'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-Key'} = "Bearer";
+
+# Configure Bearer (JWT) access token for authorization: BearerAuth
+$WWW::OPenAPIClient::Configuration::access_token = 'YOUR_ACCESS_TOKEN';
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::RegionApi->new();
+my $regionId = regionId_example; # String | The ID of the region.
+my $dnsRecord = WWW::OPenAPIClient::Object::DnsRecord->new(); # DnsRecord | 
+
+eval {
+    my $result = $api_instance->createRegionDnsRecord(regionId => $regionId, dnsRecord => $dnsRecord);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling RegionApi->createRegionDnsRecord: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Region-createRegionDnsRecord-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: ApiKeyAuth
+openapi_client.configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['X-API-Key'] = 'Bearer'
+
+# Configure Bearer (JWT) access token for authorization: BearerAuth
+openapi_client.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Create an instance of the API class
+api_instance = openapi_client.RegionApi()
+regionId = regionId_example # String | The ID of the region. (default to null)
+dnsRecord =  # DnsRecord | 
+
+try:
+    api_response = api_instance.create_region_dns_record(regionId, dnsRecord)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RegionApi->createRegionDnsRecord: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Region-createRegionDnsRecord-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate RegionApi;
+
+pub fn main() {
+    let regionId = regionId_example; // String
+    let dnsRecord = ; // DnsRecord
+
+    let mut context = RegionApi::Context::default();
+    let result = client.createRegionDnsRecord(regionId, dnsRecord, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">regionId*</td>
+<td>
+
+
+    <div id="d2e199_createRegionDnsRecord_regionId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The ID of the region.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">dnsRecord <span style="color:red;">*</span></td>
+<td>
+<p class="marked">DnsRecord payload.</p>
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "description" : "DnsRecord payload.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/DnsRecord"
+      }
+    }
+  },
+  "required" : true
+};
+
+  var schema = findNode('schema',schemaWrapper).schema;
+  if (!schema) {
+    schema = schemaWrapper.schema;
+  }
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else if (schema.items != null && schema.items.$ref != null) {
+    schema.items = defsParser.$refs.get(schema.items.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_createRegionDnsRecord_dnsRecord');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_createRegionDnsRecord_dnsRecord"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Region-createRegionDnsRecord-title-201"></h3>
+                            <p id="examples-Region-createRegionDnsRecord-description-201" class="marked"></p>
+                            <script>
+                              var responseRegion201_description = `Returns the newly created DNS record object.`;
+                              var responseRegion201_description_break = responseRegion201_description.indexOf('\n');
+                              if (responseRegion201_description_break == -1) {
+                                $("#examples-Region-createRegionDnsRecord-title-201").text("Status: 201 - " + responseRegion201_description);
+                              } else {
+                                $("#examples-Region-createRegionDnsRecord-title-201").text("Status: 201 - " + responseRegion201_description.substring(0, responseRegion201_description_break));
+                                $("#examples-Region-createRegionDnsRecord-description-201").html(responseRegion201_description.substring(responseRegion201_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Region-createRegionDnsRecord-201" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Region-createRegionDnsRecord-201-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Region-createRegionDnsRecord-201-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Region-createRegionDnsRecord-201-schema">
+                                <div id="responses-Region-createRegionDnsRecord-schema-201" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Returns the newly created DNS record object.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/DnsRecord"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Region-createRegionDnsRecord-201-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Region-createRegionDnsRecord-schema-201');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Region-createRegionDnsRecord-201-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Region-createRegionDnsRecord-title-400"></h3>
+                            <p id="examples-Region-createRegionDnsRecord-description-400" class="marked"></p>
+                            <script>
+                              var responseRegion400_description = `BadRequest error: Bad request (wrong input parameters).`;
+                              var responseRegion400_description_break = responseRegion400_description.indexOf('\n');
+                              if (responseRegion400_description_break == -1) {
+                                $("#examples-Region-createRegionDnsRecord-title-400").text("Status: 400 - " + responseRegion400_description);
+                              } else {
+                                $("#examples-Region-createRegionDnsRecord-title-400").text("Status: 400 - " + responseRegion400_description.substring(0, responseRegion400_description_break));
+                                $("#examples-Region-createRegionDnsRecord-description-400").html(responseRegion400_description.substring(responseRegion400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Region-createRegionDnsRecord-400" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Region-createRegionDnsRecord-400-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Region-createRegionDnsRecord-400-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Region-createRegionDnsRecord-400-schema">
+                                <div id="responses-Region-createRegionDnsRecord-schema-400" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "BadRequest error: Bad request (wrong input parameters).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorBadRequest"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Region-createRegionDnsRecord-400-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Region-createRegionDnsRecord-schema-400');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Region-createRegionDnsRecord-400-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Region-createRegionDnsRecord-title-401"></h3>
+                            <p id="examples-Region-createRegionDnsRecord-description-401" class="marked"></p>
+                            <script>
+                              var responseRegion401_description = `Unauthorized error: Unauthorized resource access (wrong auth/credentials).`;
+                              var responseRegion401_description_break = responseRegion401_description.indexOf('\n');
+                              if (responseRegion401_description_break == -1) {
+                                $("#examples-Region-createRegionDnsRecord-title-401").text("Status: 401 - " + responseRegion401_description);
+                              } else {
+                                $("#examples-Region-createRegionDnsRecord-title-401").text("Status: 401 - " + responseRegion401_description.substring(0, responseRegion401_description_break));
+                                $("#examples-Region-createRegionDnsRecord-description-401").html(responseRegion401_description.substring(responseRegion401_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Region-createRegionDnsRecord-401" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Region-createRegionDnsRecord-401-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Region-createRegionDnsRecord-401-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Region-createRegionDnsRecord-401-schema">
+                                <div id="responses-Region-createRegionDnsRecord-schema-401" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Unauthorized error: Unauthorized resource access (wrong auth/credentials).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorUnauthorized"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Region-createRegionDnsRecord-401-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Region-createRegionDnsRecord-schema-401');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Region-createRegionDnsRecord-401-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Region-createRegionDnsRecord-title-403"></h3>
+                            <p id="examples-Region-createRegionDnsRecord-description-403" class="marked"></p>
+                            <script>
+                              var responseRegion403_description = `Forbidden error: Forbidden resource access (restricted access control).`;
+                              var responseRegion403_description_break = responseRegion403_description.indexOf('\n');
+                              if (responseRegion403_description_break == -1) {
+                                $("#examples-Region-createRegionDnsRecord-title-403").text("Status: 403 - " + responseRegion403_description);
+                              } else {
+                                $("#examples-Region-createRegionDnsRecord-title-403").text("Status: 403 - " + responseRegion403_description.substring(0, responseRegion403_description_break));
+                                $("#examples-Region-createRegionDnsRecord-description-403").html(responseRegion403_description.substring(responseRegion403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Region-createRegionDnsRecord-403" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Region-createRegionDnsRecord-403-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Region-createRegionDnsRecord-403-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Region-createRegionDnsRecord-403-schema">
+                                <div id="responses-Region-createRegionDnsRecord-schema-403" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Forbidden error: Forbidden resource access (restricted access control).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorForbidden"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Region-createRegionDnsRecord-403-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Region-createRegionDnsRecord-schema-403');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Region-createRegionDnsRecord-403-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Region-createRegionDnsRecord-title-404"></h3>
+                            <p id="examples-Region-createRegionDnsRecord-description-404" class="marked"></p>
+                            <script>
+                              var responseRegion404_description = `NotFound error: Specified resource does not exist.`;
+                              var responseRegion404_description_break = responseRegion404_description.indexOf('\n');
+                              if (responseRegion404_description_break == -1) {
+                                $("#examples-Region-createRegionDnsRecord-title-404").text("Status: 404 - " + responseRegion404_description);
+                              } else {
+                                $("#examples-Region-createRegionDnsRecord-title-404").text("Status: 404 - " + responseRegion404_description.substring(0, responseRegion404_description_break));
+                                $("#examples-Region-createRegionDnsRecord-description-404").html(responseRegion404_description.substring(responseRegion404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Region-createRegionDnsRecord-404" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Region-createRegionDnsRecord-404-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Region-createRegionDnsRecord-404-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Region-createRegionDnsRecord-404-schema">
+                                <div id="responses-Region-createRegionDnsRecord-schema-404" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "NotFound error: Specified resource does not exist.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorNotFound"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Region-createRegionDnsRecord-404-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Region-createRegionDnsRecord-schema-404');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Region-createRegionDnsRecord-404-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Region-createRegionDnsRecord-title-409"></h3>
+                            <p id="examples-Region-createRegionDnsRecord-description-409" class="marked"></p>
+                            <script>
+                              var responseRegion409_description = `Conflict error: A similar resource already exists or resource is still being referenced somewhere.`;
+                              var responseRegion409_description_break = responseRegion409_description.indexOf('\n');
+                              if (responseRegion409_description_break == -1) {
+                                $("#examples-Region-createRegionDnsRecord-title-409").text("Status: 409 - " + responseRegion409_description);
+                              } else {
+                                $("#examples-Region-createRegionDnsRecord-title-409").text("Status: 409 - " + responseRegion409_description.substring(0, responseRegion409_description_break));
+                                $("#examples-Region-createRegionDnsRecord-description-409").html(responseRegion409_description.substring(responseRegion409_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Region-createRegionDnsRecord-409" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Region-createRegionDnsRecord-409-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Region-createRegionDnsRecord-409-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Region-createRegionDnsRecord-409-schema">
+                                <div id="responses-Region-createRegionDnsRecord-schema-409" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Conflict error: A similar resource already exists or resource is still being referenced somewhere.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorConflict"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Region-createRegionDnsRecord-409-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Region-createRegionDnsRecord-schema-409');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Region-createRegionDnsRecord-409-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Region-createRegionDnsRecord-title-422"></h3>
+                            <p id="examples-Region-createRegionDnsRecord-description-422" class="marked"></p>
+                            <script>
+                              var responseRegion422_description = `UnprocessableEntity error: Server can't process request.`;
+                              var responseRegion422_description_break = responseRegion422_description.indexOf('\n');
+                              if (responseRegion422_description_break == -1) {
+                                $("#examples-Region-createRegionDnsRecord-title-422").text("Status: 422 - " + responseRegion422_description);
+                              } else {
+                                $("#examples-Region-createRegionDnsRecord-title-422").text("Status: 422 - " + responseRegion422_description.substring(0, responseRegion422_description_break));
+                                $("#examples-Region-createRegionDnsRecord-description-422").html(responseRegion422_description.substring(responseRegion422_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Region-createRegionDnsRecord-422" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Region-createRegionDnsRecord-422-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Region-createRegionDnsRecord-422-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Region-createRegionDnsRecord-422-schema">
+                                <div id="responses-Region-createRegionDnsRecord-schema-422" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "UnprocessableEntity error: Server can't process request.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorUnprocessableEntity"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Region-createRegionDnsRecord-422-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Region-createRegionDnsRecord-schema-422');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Region-createRegionDnsRecord-422-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Region-createRegionDnsRecord-title-507"></h3>
+                            <p id="examples-Region-createRegionDnsRecord-description-507" class="marked"></p>
+                            <script>
+                              var responseRegion507_description = `InsufficientResource error: Server can't allocate resources (logical quotas or physical limits hit).`;
+                              var responseRegion507_description_break = responseRegion507_description.indexOf('\n');
+                              if (responseRegion507_description_break == -1) {
+                                $("#examples-Region-createRegionDnsRecord-title-507").text("Status: 507 - " + responseRegion507_description);
+                              } else {
+                                $("#examples-Region-createRegionDnsRecord-title-507").text("Status: 507 - " + responseRegion507_description.substring(0, responseRegion507_description_break));
+                                $("#examples-Region-createRegionDnsRecord-description-507").html(responseRegion507_description.substring(responseRegion507_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Region-createRegionDnsRecord-507" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Region-createRegionDnsRecord-507-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Region-createRegionDnsRecord-507-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Region-createRegionDnsRecord-507-schema">
+                                <div id="responses-Region-createRegionDnsRecord-schema-507" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "InsufficientResource error: Server can't allocate resources (logical quotas or physical limits hit).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorInsufficientResource"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Region-createRegionDnsRecord-507-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Region-createRegionDnsRecord-schema-507');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Region-createRegionDnsRecord-507-schema-data' type='hidden' value=''></input>
                               </div>
                             </div>
                         </article>
@@ -123774,6 +126498,662 @@ The ID of the region.
                                   </script>
                                 </div>
                                 <input id='responses-Region-listRegionKiwis-404-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Region-listRegionRegions">
+                      <article id="api-Region-listRegionRegions-0" data-group="User" data-name="listRegionRegions" data-version="0">
+                        <div class="pull-left">
+                          <h1>listRegionRegions</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Returns the IDs of region objects.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/region/{regionId}/records</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Region-listRegionRegions-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Region-listRegionRegions-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Region-listRegionRegions-0-dart">Dart</a></li>
+                          <li class=""><a href="#examples-Region-listRegionRegions-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Region-listRegionRegions-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Region-listRegionRegions-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Region-listRegionRegions-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Region-listRegionRegions-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Region-listRegionRegions-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Region-listRegionRegions-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Region-listRegionRegions-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Region-listRegionRegions-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Region-listRegionRegions-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Region-listRegionRegions-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET \
+-H "X-API-Key: [[apiKey]]" \
+ -H "Authorization: Bearer [[accessToken]]" \
+ -H "Accept: application/json" \
+ "/api/v1/region/{regionId}/records"
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Region-listRegionRegions-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.RegionApi;
+
+import java.io.File;
+import java.util.*;
+
+public class RegionApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure API key authorization: ApiKeyAuth
+        ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
+        ApiKeyAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //ApiKeyAuth.setApiKeyPrefix("Token");
+
+        // Configure Bearer (JWT) access token for authorization: BearerAuth
+        HttpBearerAuth BearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("BearerAuth");
+        BearerAuth.setBearerToken("BEARER TOKEN");
+
+        // Create an instance of the API class
+        RegionApi apiInstance = new RegionApi();
+        String regionId = regionId_example; // String | The ID of the region.
+
+        try {
+            array['String'] result = apiInstance.listRegionRegions(regionId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling RegionApi#listRegionRegions");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Region-listRegionRegions-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+final String regionId = new String(); // String | The ID of the region.
+
+try {
+    final result = await api_instance.listRegionRegions(regionId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listRegionRegions: $e\n');
+}
+
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Region-listRegionRegions-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.RegionApi;
+
+public class RegionApiExample {
+    public static void main(String[] args) {
+        RegionApi apiInstance = new RegionApi();
+        String regionId = regionId_example; // String | The ID of the region.
+
+        try {
+            array['String'] result = apiInstance.listRegionRegions(regionId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling RegionApi#listRegionRegions");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Region-listRegionRegions-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Region-listRegionRegions-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: ApiKeyAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-Key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-Key"];
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+[apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
+
+// Create an instance of the API class
+RegionApi *apiInstance = [[RegionApi alloc] init];
+String *regionId = regionId_example; // The ID of the region. (default to null)
+
+[apiInstance listRegionRegionsWith:regionId
+              completionHandler: ^(array['String'] output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Region-listRegionRegions-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var KowabungaApi = require('kowabunga_api');
+var defaultClient = KowabungaApi.ApiClient.instance;
+
+// Configure API key authorization: ApiKeyAuth
+var ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix['X-API-Key'] = "Token";
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+var BearerAuth = defaultClient.authentications['BearerAuth'];
+BearerAuth.accessToken = "YOUR ACCESS TOKEN";
+
+// Create an instance of the API class
+var api = new KowabungaApi.RegionApi()
+var regionId = regionId_example; // {String} The ID of the region.
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.listRegionRegions(regionId, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Region-listRegionRegions-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Region-listRegionRegions-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using kowabunga.Api;
+using kowabunga.Client;
+using kowabunga.Model;
+
+namespace Example
+{
+    public class listRegionRegionsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: ApiKeyAuth
+            Configuration.Default.ApiKey.Add("X-API-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("X-API-Key", "Bearer");
+            // Configure Bearer (JWT) access token for authorization: BearerAuth
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // Create an instance of the API class
+            var apiInstance = new RegionApi();
+            var regionId = regionId_example;  // String | The ID of the region. (default to null)
+
+            try {
+                array['String'] result = apiInstance.listRegionRegions(regionId);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling RegionApi.listRegionRegions: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Region-listRegionRegions-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: ApiKeyAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setAccessToken('', 'YOUR_ACCESS_TOKEN');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\RegionApi();
+$regionId = regionId_example; // String | The ID of the region.
+
+try {
+    $result = $api_instance->listRegionRegions($regionId);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling RegionApi->listRegionRegions: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Region-listRegionRegions-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::RegionApi;
+
+# Configure API key authorization: ApiKeyAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-Key'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-Key'} = "Bearer";
+
+# Configure Bearer (JWT) access token for authorization: BearerAuth
+$WWW::OPenAPIClient::Configuration::access_token = 'YOUR_ACCESS_TOKEN';
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::RegionApi->new();
+my $regionId = regionId_example; # String | The ID of the region.
+
+eval {
+    my $result = $api_instance->listRegionRegions(regionId => $regionId);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling RegionApi->listRegionRegions: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Region-listRegionRegions-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: ApiKeyAuth
+openapi_client.configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['X-API-Key'] = 'Bearer'
+
+# Configure Bearer (JWT) access token for authorization: BearerAuth
+openapi_client.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Create an instance of the API class
+api_instance = openapi_client.RegionApi()
+regionId = regionId_example # String | The ID of the region. (default to null)
+
+try:
+    api_response = api_instance.list_region_regions(regionId)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RegionApi->listRegionRegions: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Region-listRegionRegions-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate RegionApi;
+
+pub fn main() {
+    let regionId = regionId_example; // String
+
+    let mut context = RegionApi::Context::default();
+    let result = client.listRegionRegions(regionId, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">regionId*</td>
+<td>
+
+
+    <div id="d2e199_listRegionRegions_regionId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The ID of the region.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Region-listRegionRegions-title-200"></h3>
+                            <p id="examples-Region-listRegionRegions-description-200" class="marked"></p>
+                            <script>
+                              var responseRegion200_description = `Returns an array of region IDs.`;
+                              var responseRegion200_description_break = responseRegion200_description.indexOf('\n');
+                              if (responseRegion200_description_break == -1) {
+                                $("#examples-Region-listRegionRegions-title-200").text("Status: 200 - " + responseRegion200_description);
+                              } else {
+                                $("#examples-Region-listRegionRegions-title-200").text("Status: 200 - " + responseRegion200_description.substring(0, responseRegion200_description_break));
+                                $("#examples-Region-listRegionRegions-description-200").html(responseRegion200_description.substring(responseRegion200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Region-listRegionRegions-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Region-listRegionRegions-200-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Region-listRegionRegions-200-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Region-listRegionRegions-200-schema">
+                                <div id="responses-Region-listRegionRegions-schema-200" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Returns an array of region IDs.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ObjectIds"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Region-listRegionRegions-200-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Region-listRegionRegions-schema-200');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Region-listRegionRegions-200-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Region-listRegionRegions-title-401"></h3>
+                            <p id="examples-Region-listRegionRegions-description-401" class="marked"></p>
+                            <script>
+                              var responseRegion401_description = `Unauthorized error: Unauthorized resource access (wrong auth/credentials).`;
+                              var responseRegion401_description_break = responseRegion401_description.indexOf('\n');
+                              if (responseRegion401_description_break == -1) {
+                                $("#examples-Region-listRegionRegions-title-401").text("Status: 401 - " + responseRegion401_description);
+                              } else {
+                                $("#examples-Region-listRegionRegions-title-401").text("Status: 401 - " + responseRegion401_description.substring(0, responseRegion401_description_break));
+                                $("#examples-Region-listRegionRegions-description-401").html(responseRegion401_description.substring(responseRegion401_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Region-listRegionRegions-401" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Region-listRegionRegions-401-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Region-listRegionRegions-401-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Region-listRegionRegions-401-schema">
+                                <div id="responses-Region-listRegionRegions-schema-401" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Unauthorized error: Unauthorized resource access (wrong auth/credentials).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorUnauthorized"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Region-listRegionRegions-401-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Region-listRegionRegions-schema-401');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Region-listRegionRegions-401-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Region-listRegionRegions-title-403"></h3>
+                            <p id="examples-Region-listRegionRegions-description-403" class="marked"></p>
+                            <script>
+                              var responseRegion403_description = `Forbidden error: Forbidden resource access (restricted access control).`;
+                              var responseRegion403_description_break = responseRegion403_description.indexOf('\n');
+                              if (responseRegion403_description_break == -1) {
+                                $("#examples-Region-listRegionRegions-title-403").text("Status: 403 - " + responseRegion403_description);
+                              } else {
+                                $("#examples-Region-listRegionRegions-title-403").text("Status: 403 - " + responseRegion403_description.substring(0, responseRegion403_description_break));
+                                $("#examples-Region-listRegionRegions-description-403").html(responseRegion403_description.substring(responseRegion403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Region-listRegionRegions-403" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Region-listRegionRegions-403-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Region-listRegionRegions-403-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Region-listRegionRegions-403-schema">
+                                <div id="responses-Region-listRegionRegions-schema-403" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Forbidden error: Forbidden resource access (restricted access control).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorForbidden"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Region-listRegionRegions-403-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Region-listRegionRegions-schema-403');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Region-listRegionRegions-403-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Region-listRegionRegions-title-404"></h3>
+                            <p id="examples-Region-listRegionRegions-description-404" class="marked"></p>
+                            <script>
+                              var responseRegion404_description = `NotFound error: Specified resource does not exist.`;
+                              var responseRegion404_description_break = responseRegion404_description.indexOf('\n');
+                              if (responseRegion404_description_break == -1) {
+                                $("#examples-Region-listRegionRegions-title-404").text("Status: 404 - " + responseRegion404_description);
+                              } else {
+                                $("#examples-Region-listRegionRegions-title-404").text("Status: 404 - " + responseRegion404_description.substring(0, responseRegion404_description_break));
+                                $("#examples-Region-listRegionRegions-description-404").html(responseRegion404_description.substring(responseRegion404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Region-listRegionRegions-404" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Region-listRegionRegions-404-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Region-listRegionRegions-404-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Region-listRegionRegions-404-schema">
+                                <div id="responses-Region-listRegionRegions-schema-404" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "NotFound error: Specified resource does not exist.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorNotFound"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Region-listRegionRegions-404-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Region-listRegionRegions-schema-404');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Region-listRegionRegions-404-schema-data' type='hidden' value=''></input>
                               </div>
                             </div>
                         </article>
