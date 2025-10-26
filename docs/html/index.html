@@ -1928,7 +1928,7 @@ ul.nav-tabs {
   "description" : "A global project resource quotas/usage (0 for unlimited)."
 };
     defs["Region"] = {
-  "required" : [ "name" ],
+  "required" : [ "domain", "name" ],
   "properties" : {
     "id" : {
       "type" : "string",
@@ -1941,6 +1941,10 @@ ul.nav-tabs {
     "description" : {
       "type" : "string",
       "description" : "The region description."
+    },
+    "domain" : {
+      "type" : "string",
+      "description" : "Region domain name (e.g. myregion.kowabunga.acme.com)."
     }
   },
   "description" : "A region."
@@ -116128,6 +116132,7 @@ Template to clone the storage volume from (optional, region&#39;s default if uns
  -H "Content-Type: application/json" \
  "/api/v1/region" \
  -d '{
+  &quot;domain&quot; : &quot;domain&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
   &quot;id&quot; : &quot;id&quot;
@@ -132549,6 +132554,7 @@ The ID of the storage pool.
  -H "Content-Type: application/json" \
  "/api/v1/region/{regionId}" \
  -d '{
+  &quot;domain&quot; : &quot;domain&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
   &quot;id&quot; : &quot;id&quot;

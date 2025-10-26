@@ -6215,6 +6215,7 @@ components:
     Region:
       description: A region.
       example:
+        domain: domain
         name: name
         description: description
         id: id
@@ -6228,7 +6229,11 @@ components:
         description:
           description: The region description.
           type: string
+        domain:
+          description: Region domain name (e.g. myregion.kowabunga.acme.com).
+          type: string
       required:
+      - domain
       - name
     StorageNFS:
       description: A NFS storage.
