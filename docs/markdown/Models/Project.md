@@ -12,7 +12,7 @@
 | **bootstrap\_pubkey** | **String** | Default public SSH key, to be associated to bootstrap user. Will use Kowabunga&#39;s default configuration one if unspecified. | [optional] [default to null] |
 | **tags** | **List** | A list of tags to be associated to the project. | [optional] [default to null] |
 | **metadatas** | [**List**](Metadata.md) | A list of metadata to be associated to the project. | [optional] [default to null] |
-| **quotas** | [**ProjectResources**](.md) | The global project resource quotas (0 for unlimited). | [optional] [default to null] |
+| **quotas** | [**ProjectResources**](ProjectResources.md) | The global project resource quotas (0 for unlimited). | [optional] [default to null] |
 | **private\_subnets** | [**List**](RegionSubnet.md) | The assigned project VPC private subnets IDs (read-only). | [optional] [default to null] |
 | **reserved\_vrrp\_ids** | **List** | The list of VRRP IDs used by -as-a-service resources within the project virtual network (read-only). Should your application use VRRP for service redundancy, you should use different IDs to prevent issues.. | [optional] [default to null] |
 | **teams** | **List** | A list of user teams allowed to administrate the project (i.e. capable of managing internal resources). | [default to null] |

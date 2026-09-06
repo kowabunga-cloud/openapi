@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.54.0](https://github.com/kowabunga-cloud/openapi/compare/v0.53.3...v0.54.0) (2026-09-06)
+
+### Features
+
+* automate version bump and spec regeneration during release ([c58a110](https://github.com/kowabunga-cloud/openapi/commit/c58a110cc3ffafd05c107e491aa2aae8b2525e1d))
+
 ## [0.53.3](https://github.com/kowabunga-cloud/openapi/compare/v0.53.2...v0.53.3) (2026-09-06)
 
 ### Chores

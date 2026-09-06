@@ -868,7 +868,8 @@ ul.nav-tabs {
       "description" : "The network adapter list of associated IPv4 addresses.",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     },
     "reserved" : {
       "type" : "boolean",
@@ -1094,7 +1095,8 @@ ul.nav-tabs {
       "description" : "A list of IPv4 addresses to be associated to the record.",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     }
   },
   "description" : "A DNS record."
@@ -1129,14 +1131,16 @@ ul.nav-tabs {
       "description" : "a list of existing network adapters to be connected to the instance.",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     },
     "volumes" : {
       "type" : "array",
       "description" : "volumes list of existing storage volumes (i.e. disks) to be connected to the instance.",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     },
     "uefi" : {
       "type" : "boolean",
@@ -1200,10 +1204,16 @@ ul.nav-tabs {
       "description" : "The Kaktus computing node description."
     },
     "cpu_cost" : {
-      "$ref" : "#/components/schemas/Cost"
+      "description" : "Cost associated to the Kaktus node's CPU resources.",
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Cost"
+      } ]
     },
     "memory_cost" : {
-      "$ref" : "#/components/schemas/Cost"
+      "description" : "Cost associated to the Kaktus node's memory resources.",
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Cost"
+      } ]
     },
     "overcommit_cpu_ratio" : {
       "type" : "integer",
@@ -1222,7 +1232,8 @@ ul.nav-tabs {
       "description" : "a list of existing remote agents managing the Kaktus node.",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     }
   },
   "description" : "A Kaktus (Kowabunga Affordable KVM and Tight Underneath Storage) is an hyper-converged infrastructure (HCI) bare-metal node offering computing and distributed storage capabilites."
@@ -1264,7 +1275,10 @@ ul.nav-tabs {
   "required" : [ "cpu", "memory" ],
   "properties" : {
     "cpu" : {
-      "$ref" : "#/components/schemas/KaktusCPU"
+      "description" : "The Kaktus computing node CPU characteristics.",
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/KaktusCPU"
+      } ]
     },
     "memory" : {
       "type" : "integer",
@@ -1289,31 +1303,40 @@ ul.nav-tabs {
       "description" : "The Kawaii description."
     },
     "netip" : {
-      "$ref" : "#/components/schemas/KawaiiNetIp"
+      "description" : "The Kawaii list of assigned virtual IPs per-zone addresses (read-only).",
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/KawaiiNetIp"
+      } ]
     },
     "firewall" : {
-      "$ref" : "#/components/schemas/KawaiiFirewall"
+      "description" : "The Kawaii firewall settings from/to public Internet).",
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/KawaiiFirewall"
+      } ]
     },
     "dnat" : {
       "type" : "array",
       "description" : "The Kawaii list of NAT forwarding entries. Kawaii will forward public Internet traffic from all public virtual IPs to requested private subnet IP addresses.",
       "items" : {
         "$ref" : "#/components/schemas/KawaiiDNatRule"
-      }
+      },
+      "default" : null
     },
     "vpc_peerings" : {
       "type" : "array",
       "description" : "The Kawaii list of Kowabunga private VPC subnet peering entries.",
       "items" : {
         "$ref" : "#/components/schemas/KawaiiVpcPeering"
-      }
+      },
+      "default" : null
     },
     "ipsec_connections" : {
       "type" : "array",
       "description" : "The Kawaii list of Kowabunga IPsec connections.",
       "items" : {
         "$ref" : "#/components/schemas/KawaiiIpSec"
-      }
+      },
+      "default" : null
     }
   },
   "description" : "A Kawaii (Kowabunga Adapative WAn Intelligent Interface) is a network gateway used for your Internet inbound and outbound traffic."
@@ -1328,8 +1351,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to forward public traffic to.",
-      "enum" : [ "tcp", "udp" ],
-      "default" : "tcp"
+      "default" : "tcp",
+      "enum" : [ "tcp", "udp" ]
     },
     "ports" : {
       "type" : "string",
@@ -1345,20 +1368,22 @@ ul.nav-tabs {
       "description" : "The Kawaii public firewall list of ingress rules. Kawaii default policy is to drop all incoming traffic, including ICMP. Specified ruleset will be explicitly accepted.",
       "items" : {
         "$ref" : "#/components/schemas/KawaiiFirewallIngressRule"
-      }
+      },
+      "default" : null
     },
     "egress_policy" : {
       "type" : "string",
       "description" : "The default public traffic egress policy.",
-      "enum" : [ "accept", "drop" ],
-      "default" : "accept"
+      "default" : "accept",
+      "enum" : [ "accept", "drop" ]
     },
     "egress" : {
       "type" : "array",
       "description" : "The Kawaii public firewall list of egress rules. Kawaii default policy is to accept all outgoing traffic, including ICMP. Specified ruleset will be explicitly dropped if egress_policy is set to accept, and explicitly accepted if egress policy is set to drop..",
       "items" : {
         "$ref" : "#/components/schemas/KawaiiFirewallEgressRule"
-      }
+      },
+      "default" : null
     }
   },
   "description" : "A Kawaii public firewall settings."
@@ -1374,8 +1399,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to accept/drop public traffic to.",
-      "enum" : [ "tcp", "udp" ],
-      "default" : "tcp"
+      "default" : "tcp",
+      "enum" : [ "tcp", "udp" ]
     },
     "ports" : {
       "type" : "string",
@@ -1395,8 +1420,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to accept public traffic from.",
-      "enum" : [ "tcp", "udp" ],
-      "default" : "tcp"
+      "default" : "tcp",
+      "enum" : [ "tcp", "udp" ]
     },
     "ports" : {
       "type" : "string",
@@ -1439,8 +1464,8 @@ ul.nav-tabs {
     "dpd_timeout_action" : {
       "type" : "string",
       "description" : "The Kawaii IPsec connection Dead Peer Detection Action (clear,restart or trap).",
-      "enum" : [ "clear", "restart", "start" ],
-      "default" : "restart"
+      "default" : "restart",
+      "enum" : [ "clear", "restart", "start" ]
     },
     "dpd_timeout" : {
       "type" : "string",
@@ -1450,8 +1475,8 @@ ul.nav-tabs {
     "start_action" : {
       "type" : "string",
       "description" : "The Kawaii IPsec connection start action (none, start, trap).",
-      "enum" : [ "none", "start", "trap" ],
-      "default" : "start"
+      "default" : "start",
+      "enum" : [ "none", "start", "trap" ]
     },
     "rekey_time" : {
       "type" : "string",
@@ -1501,7 +1526,10 @@ ul.nav-tabs {
       "enum" : [ "AES128", "AES256", "CAMELLIA128", "CAMELLIA256" ]
     },
     "firewall" : {
-      "$ref" : "#/components/schemas/KawaiiFirewall"
+      "description" : "The Kawaii IPsec connection firewall settings on the IPsec interface.",
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/KawaiiFirewall"
+      } ]
     }
   },
   "description" : "A Kawaii IPsec connection."
@@ -1514,21 +1542,24 @@ ul.nav-tabs {
       "description" : "The Kawaii global public gateways virtual IP addresses (read-only).",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     },
     "private" : {
       "type" : "array",
       "description" : "The Kawaii global private gateways virtual IP addresses (read-only).",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     },
     "zones" : {
       "type" : "array",
       "description" : "The Kawaii per-zone list of Kowabunga virtual IP addresses.",
       "items" : {
         "$ref" : "#/components/schemas/KawaiiNetIpZone"
-      }
+      },
+      "default" : null
     }
   },
   "description" : "A Kawaii Network IP settings."
@@ -1557,8 +1588,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to forward public traffic to.",
-      "enum" : [ "tcp", "udp" ],
-      "default" : "tcp"
+      "default" : "tcp",
+      "enum" : [ "tcp", "udp" ]
     },
     "ports" : {
       "type" : "string",
@@ -1591,29 +1622,32 @@ ul.nav-tabs {
     "policy" : {
       "type" : "string",
       "description" : "The default VPC traffic forwarding policy.",
-      "enum" : [ "accept", "drop" ],
-      "default" : "drop"
+      "default" : "drop",
+      "enum" : [ "accept", "drop" ]
     },
     "ingress" : {
       "type" : "array",
       "description" : "The firewall list of forwarding ingress rules from VPC peered subnet. ICMP traffic is always accepted. The specified ruleset will be explicitly accepted if drop is the default policy (useless otherwise).",
       "items" : {
         "$ref" : "#/components/schemas/KawaiiVpcForwardRule"
-      }
+      },
+      "default" : null
     },
     "egress" : {
       "type" : "array",
       "description" : "The firewall list of forwarding egress rules to VPC peered subnet. ICMP traffic is always accepted. The specified ruleset will be explicitly accepted if drop is the default policy (useless otherwise).",
       "items" : {
         "$ref" : "#/components/schemas/KawaiiVpcForwardRule"
-      }
+      },
+      "default" : null
     },
     "netip" : {
       "type" : "array",
       "description" : "The per-zone auto-assigned private IPs in peered subnet (read-only).",
       "items" : {
         "$ref" : "#/components/schemas/KawaiiVpcNetIpZone"
-      }
+      },
+      "default" : null
     }
   },
   "description" : "A Kawaii internal VPC subnet peering."
@@ -1638,7 +1672,8 @@ ul.nav-tabs {
       "description" : "a list of existing remote agents managing the network gateway.",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     }
   },
   "description" : "A Kiwi (Kowabunga Inner Wan Interface) provides edge-network services.."
@@ -1720,7 +1755,8 @@ ul.nav-tabs {
       "description" : "The Konvey (Kowabunga Network Load-Balancer) list of load-balanced endpoints.",
       "items" : {
         "$ref" : "#/components/schemas/KonveyEndpoint"
-      }
+      },
+      "default" : null
     }
   },
   "description" : "A Kowabunga Konvey is a layer-4 network load-balancer used to distribute service requests to associated backend instances."
@@ -1733,7 +1769,8 @@ ul.nav-tabs {
       "description" : "The Konvey (Kowabunga Network Load-Balancer) endpoint list of load-balanced backend hosts.",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     },
     "port" : {
       "type" : "integer",
@@ -1758,11 +1795,14 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to be exposed.",
-      "enum" : [ "tcp", "udp" ],
-      "default" : "tcp"
+      "default" : "tcp",
+      "enum" : [ "tcp", "udp" ]
     },
     "backends" : {
-      "$ref" : "#/components/schemas/KonveyBackends"
+      "description" : "The Konvey (Kowabunga Network Load-Balancer) list of load-balanced backends.",
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/KonveyBackends"
+      } ]
     }
   },
   "description" : "A Konvey Endpoint Service settings."
@@ -1785,8 +1825,8 @@ ul.nav-tabs {
     "access" : {
       "type" : "string",
       "description" : "The Kylo volume access type.",
-      "enum" : [ "RO", "RW" ],
-      "default" : "RW"
+      "default" : "RW",
+      "enum" : [ "RO", "RW" ]
     },
     "protocols" : {
       "type" : "array",
@@ -1869,45 +1909,54 @@ ul.nav-tabs {
       "description" : "A list of tags to be associated to the project.",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     },
     "metadatas" : {
       "type" : "array",
       "description" : "A list of metadata to be associated to the project.",
       "items" : {
         "$ref" : "#/components/schemas/Metadata"
-      }
+      },
+      "default" : null
     },
     "quotas" : {
-      "$ref" : "#/components/schemas/ProjectResources"
+      "description" : "The global project resource quotas (0 for unlimited).",
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ProjectResources"
+      } ]
     },
     "private_subnets" : {
       "type" : "array",
       "description" : "The assigned project VPC private subnets IDs (read-only).",
       "items" : {
         "$ref" : "#/components/schemas/RegionSubnet"
-      }
+      },
+      "default" : null
     },
     "reserved_vrrp_ids" : {
       "type" : "array",
       "description" : "The list of VRRP IDs used by -as-a-service resources within the project virtual network (read-only). Should your application use VRRP for service redundancy, you should use different IDs to prevent issues..",
       "items" : {
         "type" : "integer"
-      }
+      },
+      "default" : null
     },
     "teams" : {
       "type" : "array",
       "description" : "A list of user teams allowed to administrate the project (i.e. capable of managing internal resources).",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     },
     "regions" : {
       "type" : "array",
       "description" : "A list of Kowabunga regions the project is managing resources from.",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     }
   },
   "description" : "A Kowabunga project corresponds to a single tenant, isolated set of resources."
@@ -2001,7 +2050,8 @@ ul.nav-tabs {
       "description" : "List of NFS Ganesha API server IP addresses.",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     },
     "port" : {
       "type" : "integer",
@@ -2047,14 +2097,18 @@ ul.nav-tabs {
       "description" : "The libvirt secret UUID for CephX authentication."
     },
     "cost" : {
-      "$ref" : "#/components/schemas/Cost"
+      "description" : "Cost associated to the storage pool.",
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Cost"
+      } ]
     },
     "agents" : {
       "type" : "array",
       "description" : "a list of existing remote agents managing the storage pool.",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     }
   },
   "description" : "A storage pool."
@@ -2091,27 +2145,30 @@ ul.nav-tabs {
       "description" : "The list of extra routes to be access through designated gateway (format is 10.0.0.0/8).",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     },
     "reserved" : {
       "type" : "array",
       "description" : "The network subnet reserved IPv4 ranges (i.e. no IP address can be assigned from there).",
       "items" : {
         "$ref" : "#/components/schemas/IpRange"
-      }
+      },
+      "default" : null
     },
     "gw_pool" : {
       "type" : "array",
       "description" : "The network subnet IPv4 ranges reserved for per-zone local network gateways (range size must be at least equal to region number of zones).",
       "items" : {
         "$ref" : "#/components/schemas/IpRange"
-      }
+      },
+      "default" : null
     },
     "application" : {
       "type" : "string",
       "description" : "Optional application service type.",
-      "enum" : [ "ceph", "user" ],
-      "default" : "user"
+      "default" : "user",
+      "enum" : [ "ceph", "user" ]
     }
   },
   "description" : "A network subnet."
@@ -2136,7 +2193,8 @@ ul.nav-tabs {
       "description" : "List of user IDs that are part of the team.",
       "items" : {
         "type" : "string"
-      }
+      },
+      "default" : null
     }
   },
   "description" : "A Kowabunga users team."
@@ -2159,8 +2217,8 @@ ul.nav-tabs {
     "os" : {
       "type" : "string",
       "description" : "Type of operating system if OS kind (useful to determine cloud-init parameters for instance).",
-      "enum" : [ "linux", "windows" ],
-      "default" : "linux"
+      "default" : "linux",
+      "enum" : [ "linux", "windows" ]
     },
     "source" : {
       "type" : "string",
@@ -3055,7 +3113,7 @@ ul.nav-tabs {
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 0.53.2</div>
+              <div class="app-desc">Version: 0.54.0</div>
             <hr>
             <div id="app-description" class="app-desc">
                 Kvm Orchestrator With A BUNch of Goods Added
@@ -3106,12 +3164,12 @@ ul.nav-tabs {
  -H "Content-Type: application/json" \
  "/api/v1/subnet/{subnetId}/adapter?assignIP=true" \
  -d '{
-  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ],
-  &quot;reserved&quot; : false,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;mac&quot; : &quot;mac&quot;
+  &quot;mac&quot; : &quot;mac&quot;,
+  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ],
+  &quot;reserved&quot; : false
 }'
 </code></pre>
                           </div>
@@ -6813,12 +6871,12 @@ The ID of the network adapter.
  -H "Content-Type: application/json" \
  "/api/v1/adapter/{adapterId}" \
  -d '{
-  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ],
-  &quot;reserved&quot; : false,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;mac&quot; : &quot;mac&quot;
+  &quot;mac&quot; : &quot;mac&quot;,
+  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ],
+  &quot;reserved&quot; : false
 }'
 </code></pre>
                           </div>
@@ -7769,9 +7827,9 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/agent" \
  -d '{
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
   &quot;type&quot; : &quot;Kiwi&quot;
 }'
 </code></pre>
@@ -11543,9 +11601,9 @@ Token&#39;s expiration date (YYYY-MM-DD format).
  -H "Content-Type: application/json" \
  "/api/v1/agent/{agentId}" \
  -d '{
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
   &quot;type&quot; : &quot;Kiwi&quot;
 }'
 </code></pre>
@@ -12497,14 +12555,14 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/zone/{zoneId}/instance" \
  -d '{
-  &quot;memory&quot; : 0,
-  &quot;adapters&quot; : [ &quot;adapters&quot;, &quot;adapters&quot; ],
-  &quot;uefi&quot; : true,
-  &quot;name&quot; : &quot;name&quot;,
-  &quot;volumes&quot; : [ &quot;volumes&quot;, &quot;volumes&quot; ],
-  &quot;description&quot; : &quot;description&quot;,
   &quot;id&quot; : &quot;id&quot;,
-  &quot;vcpus&quot; : 6
+  &quot;name&quot; : &quot;name&quot;,
+  &quot;description&quot; : &quot;description&quot;,
+  &quot;memory&quot; : 0,
+  &quot;vcpus&quot; : 6,
+  &quot;adapters&quot; : [ &quot;adapters&quot;, &quot;adapters&quot; ],
+  &quot;volumes&quot; : [ &quot;volumes&quot;, &quot;volumes&quot; ],
+  &quot;uefi&quot; : true
 }'
 </code></pre>
                           </div>
@@ -23179,14 +23237,14 @@ The ID of the virtual machine instance.
  -H "Content-Type: application/json" \
  "/api/v1/instance/{instanceId}" \
  -d '{
-  &quot;memory&quot; : 0,
-  &quot;adapters&quot; : [ &quot;adapters&quot;, &quot;adapters&quot; ],
-  &quot;uefi&quot; : true,
-  &quot;name&quot; : &quot;name&quot;,
-  &quot;volumes&quot; : [ &quot;volumes&quot;, &quot;volumes&quot; ],
-  &quot;description&quot; : &quot;description&quot;,
   &quot;id&quot; : &quot;id&quot;,
-  &quot;vcpus&quot; : 6
+  &quot;name&quot; : &quot;name&quot;,
+  &quot;description&quot; : &quot;description&quot;,
+  &quot;memory&quot; : 0,
+  &quot;vcpus&quot; : 6,
+  &quot;adapters&quot; : [ &quot;adapters&quot;, &quot;adapters&quot; ],
+  &quot;volumes&quot; : [ &quot;volumes&quot;, &quot;volumes&quot; ],
+  &quot;uefi&quot; : true
 }'
 </code></pre>
                           </div>
@@ -24137,19 +24195,13 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/zone/{zoneId}/kaktus" \
  -d '{
-  &quot;memory_cost&quot; : {
-    &quot;price&quot; : 0.8008282,
-    &quot;currency&quot; : &quot;currency&quot;
-  },
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;overcommit_memory_ratio&quot; : 1,
-  &quot;cpu_cost&quot; : {
-    &quot;price&quot; : 0.8008282,
-    &quot;currency&quot; : &quot;currency&quot;
-  },
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;overcommit_cpu_ratio&quot; : 6,
+  &quot;cpu_cost&quot; : &quot;&quot;,
+  &quot;memory_cost&quot; : &quot;&quot;,
+  &quot;overcommit_cpu_ratio&quot; : 0,
+  &quot;overcommit_memory_ratio&quot; : 6,
   &quot;agents&quot; : [ &quot;agents&quot;, &quot;agents&quot; ]
 }'
 </code></pre>
@@ -29124,19 +29176,13 @@ The ID of the Kaktus computing node.
  -H "Content-Type: application/json" \
  "/api/v1/kaktus/{kaktusId}" \
  -d '{
-  &quot;memory_cost&quot; : {
-    &quot;price&quot; : 0.8008282,
-    &quot;currency&quot; : &quot;currency&quot;
-  },
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;overcommit_memory_ratio&quot; : 1,
-  &quot;cpu_cost&quot; : {
-    &quot;price&quot; : 0.8008282,
-    &quot;currency&quot; : &quot;currency&quot;
-  },
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;overcommit_cpu_ratio&quot; : 6,
+  &quot;cpu_cost&quot; : &quot;&quot;,
+  &quot;memory_cost&quot; : &quot;&quot;,
+  &quot;overcommit_cpu_ratio&quot; : 0,
+  &quot;overcommit_memory_ratio&quot; : 6,
   &quot;agents&quot; : [ &quot;agents&quot;, &quot;agents&quot; ]
 }'
 </code></pre>
@@ -30088,46 +30134,26 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/kawaii/{kawaiiId}/ipsec" \
  -d '{
-  &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
-  &quot;phase1_dh_group_number&quot; : 0,
-  &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
-  &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
-  &quot;ip&quot; : &quot;ip&quot;,
-  &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
-  &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+  &quot;id&quot; : &quot;id&quot;,
+  &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;dpd_timeout&quot; : &quot;240s&quot;,
+  &quot;ip&quot; : &quot;ip&quot;,
+  &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+  &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
+  &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
   &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
+  &quot;dpd_timeout&quot; : &quot;240s&quot;,
   &quot;start_action&quot; : &quot;start&quot;,
   &quot;rekey_time&quot; : &quot;2h&quot;,
-  &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+  &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+  &quot;phase1_dh_group_number&quot; : 0,
+  &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
+  &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
   &quot;phase2_lifetime&quot; : &quot;1h&quot;,
   &quot;phase2_dh_group_number&quot; : 6,
-  &quot;firewall&quot; : {
-    &quot;ingress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ],
-    &quot;egress_policy&quot; : &quot;accept&quot;,
-    &quot;egress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ]
-  },
-  &quot;name&quot; : &quot;name&quot;,
   &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
-  &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
+  &quot;firewall&quot; : &quot;&quot;
 }'
 </code></pre>
                           </div>
@@ -31151,137 +31177,23 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/region/{regionId}/kawaii" \
  -d '{
-  &quot;ipsec_connections&quot; : [ {
-    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
-    &quot;phase1_dh_group_number&quot; : 0,
-    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;ip&quot; : &quot;ip&quot;,
-    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
-    &quot;description&quot; : &quot;description&quot;,
-    &quot;dpd_timeout&quot; : &quot;240s&quot;,
-    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
-    &quot;start_action&quot; : &quot;start&quot;,
-    &quot;rekey_time&quot; : &quot;2h&quot;,
-    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
-    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
-    &quot;phase2_dh_group_number&quot; : 6,
-    &quot;firewall&quot; : {
-      &quot;ingress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ],
-      &quot;egress_policy&quot; : &quot;accept&quot;,
-      &quot;egress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ]
-    },
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
-    &quot;id&quot; : &quot;id&quot;
-  }, {
-    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
-    &quot;phase1_dh_group_number&quot; : 0,
-    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;ip&quot; : &quot;ip&quot;,
-    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
-    &quot;description&quot; : &quot;description&quot;,
-    &quot;dpd_timeout&quot; : &quot;240s&quot;,
-    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
-    &quot;start_action&quot; : &quot;start&quot;,
-    &quot;rekey_time&quot; : &quot;2h&quot;,
-    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
-    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
-    &quot;phase2_dh_group_number&quot; : 6,
-    &quot;firewall&quot; : {
-      &quot;ingress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ],
-      &quot;egress_policy&quot; : &quot;accept&quot;,
-      &quot;egress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ]
-    },
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
-    &quot;id&quot; : &quot;id&quot;
-  } ],
-  &quot;dnat&quot; : [ {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;destination&quot; : &quot;destination&quot;,
-    &quot;ports&quot; : &quot;ports&quot;
-  }, {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;destination&quot; : &quot;destination&quot;,
-    &quot;ports&quot; : &quot;ports&quot;
-  } ],
-  &quot;firewall&quot; : {
-    &quot;ingress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ],
-    &quot;egress_policy&quot; : &quot;accept&quot;,
-    &quot;egress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ]
-  },
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;netip&quot; : {
-    &quot;private&quot; : [ &quot;private&quot;, &quot;private&quot; ],
-    &quot;public&quot; : [ &quot;public&quot;, &quot;public&quot; ],
-    &quot;zones&quot; : [ {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;public&quot; : &quot;public&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    }, {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;public&quot; : &quot;public&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    } ]
-  },
-  &quot;id&quot; : &quot;id&quot;,
+  &quot;netip&quot; : &quot;&quot;,
+  &quot;firewall&quot; : &quot;&quot;,
+  &quot;dnat&quot; : [ {
+    &quot;destination&quot; : &quot;destination&quot;,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;ports&quot; : &quot;ports&quot;
+  }, {
+    &quot;destination&quot; : &quot;destination&quot;,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;ports&quot; : &quot;ports&quot;
+  } ],
   &quot;vpc_peerings&quot; : [ {
     &quot;subnet&quot; : &quot;subnet&quot;,
+    &quot;policy&quot; : &quot;drop&quot;,
     &quot;ingress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
@@ -31289,23 +31201,23 @@ $(document).ready(function() {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     } ],
-    &quot;netip&quot; : [ {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    }, {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    } ],
-    &quot;policy&quot; : &quot;drop&quot;,
     &quot;egress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     }, {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
+    } ],
+    &quot;netip&quot; : [ {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
+    }, {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
     } ]
   }, {
     &quot;subnet&quot; : &quot;subnet&quot;,
+    &quot;policy&quot; : &quot;drop&quot;,
     &quot;ingress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
@@ -31313,21 +31225,63 @@ $(document).ready(function() {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     } ],
-    &quot;netip&quot; : [ {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    }, {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    } ],
-    &quot;policy&quot; : &quot;drop&quot;,
     &quot;egress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     }, {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
+    } ],
+    &quot;netip&quot; : [ {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
+    }, {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
     } ]
+  } ],
+  &quot;ipsec_connections&quot; : [ {
+    &quot;id&quot; : &quot;id&quot;,
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;description&quot; : &quot;description&quot;,
+    &quot;ip&quot; : &quot;ip&quot;,
+    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
+    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
+    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
+    &quot;dpd_timeout&quot; : &quot;240s&quot;,
+    &quot;start_action&quot; : &quot;start&quot;,
+    &quot;rekey_time&quot; : &quot;2h&quot;,
+    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase1_dh_group_number&quot; : 0,
+    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase2_dh_group_number&quot; : 6,
+    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;firewall&quot; : &quot;&quot;
+  }, {
+    &quot;id&quot; : &quot;id&quot;,
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;description&quot; : &quot;description&quot;,
+    &quot;ip&quot; : &quot;ip&quot;,
+    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
+    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
+    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
+    &quot;dpd_timeout&quot; : &quot;240s&quot;,
+    &quot;start_action&quot; : &quot;start&quot;,
+    &quot;rekey_time&quot; : &quot;2h&quot;,
+    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase1_dh_group_number&quot; : 0,
+    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase2_dh_group_number&quot; : 6,
+    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;firewall&quot; : &quot;&quot;
   } ]
 }'
 </code></pre>
@@ -37149,137 +37103,23 @@ The ID of the Kawaii IPsec connection.
  -H "Content-Type: application/json" \
  "/api/v1/kawaii/{kawaiiId}" \
  -d '{
-  &quot;ipsec_connections&quot; : [ {
-    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
-    &quot;phase1_dh_group_number&quot; : 0,
-    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;ip&quot; : &quot;ip&quot;,
-    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
-    &quot;description&quot; : &quot;description&quot;,
-    &quot;dpd_timeout&quot; : &quot;240s&quot;,
-    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
-    &quot;start_action&quot; : &quot;start&quot;,
-    &quot;rekey_time&quot; : &quot;2h&quot;,
-    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
-    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
-    &quot;phase2_dh_group_number&quot; : 6,
-    &quot;firewall&quot; : {
-      &quot;ingress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ],
-      &quot;egress_policy&quot; : &quot;accept&quot;,
-      &quot;egress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ]
-    },
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
-    &quot;id&quot; : &quot;id&quot;
-  }, {
-    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
-    &quot;phase1_dh_group_number&quot; : 0,
-    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;ip&quot; : &quot;ip&quot;,
-    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
-    &quot;description&quot; : &quot;description&quot;,
-    &quot;dpd_timeout&quot; : &quot;240s&quot;,
-    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
-    &quot;start_action&quot; : &quot;start&quot;,
-    &quot;rekey_time&quot; : &quot;2h&quot;,
-    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
-    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
-    &quot;phase2_dh_group_number&quot; : 6,
-    &quot;firewall&quot; : {
-      &quot;ingress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ],
-      &quot;egress_policy&quot; : &quot;accept&quot;,
-      &quot;egress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ]
-    },
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
-    &quot;id&quot; : &quot;id&quot;
-  } ],
-  &quot;dnat&quot; : [ {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;destination&quot; : &quot;destination&quot;,
-    &quot;ports&quot; : &quot;ports&quot;
-  }, {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;destination&quot; : &quot;destination&quot;,
-    &quot;ports&quot; : &quot;ports&quot;
-  } ],
-  &quot;firewall&quot; : {
-    &quot;ingress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ],
-    &quot;egress_policy&quot; : &quot;accept&quot;,
-    &quot;egress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ]
-  },
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;netip&quot; : {
-    &quot;private&quot; : [ &quot;private&quot;, &quot;private&quot; ],
-    &quot;public&quot; : [ &quot;public&quot;, &quot;public&quot; ],
-    &quot;zones&quot; : [ {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;public&quot; : &quot;public&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    }, {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;public&quot; : &quot;public&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    } ]
-  },
-  &quot;id&quot; : &quot;id&quot;,
+  &quot;netip&quot; : &quot;&quot;,
+  &quot;firewall&quot; : &quot;&quot;,
+  &quot;dnat&quot; : [ {
+    &quot;destination&quot; : &quot;destination&quot;,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;ports&quot; : &quot;ports&quot;
+  }, {
+    &quot;destination&quot; : &quot;destination&quot;,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;ports&quot; : &quot;ports&quot;
+  } ],
   &quot;vpc_peerings&quot; : [ {
     &quot;subnet&quot; : &quot;subnet&quot;,
+    &quot;policy&quot; : &quot;drop&quot;,
     &quot;ingress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
@@ -37287,23 +37127,23 @@ The ID of the Kawaii IPsec connection.
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     } ],
-    &quot;netip&quot; : [ {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    }, {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    } ],
-    &quot;policy&quot; : &quot;drop&quot;,
     &quot;egress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     }, {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
+    } ],
+    &quot;netip&quot; : [ {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
+    }, {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
     } ]
   }, {
     &quot;subnet&quot; : &quot;subnet&quot;,
+    &quot;policy&quot; : &quot;drop&quot;,
     &quot;ingress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
@@ -37311,21 +37151,63 @@ The ID of the Kawaii IPsec connection.
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     } ],
-    &quot;netip&quot; : [ {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    }, {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    } ],
-    &quot;policy&quot; : &quot;drop&quot;,
     &quot;egress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     }, {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
+    } ],
+    &quot;netip&quot; : [ {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
+    }, {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
     } ]
+  } ],
+  &quot;ipsec_connections&quot; : [ {
+    &quot;id&quot; : &quot;id&quot;,
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;description&quot; : &quot;description&quot;,
+    &quot;ip&quot; : &quot;ip&quot;,
+    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
+    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
+    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
+    &quot;dpd_timeout&quot; : &quot;240s&quot;,
+    &quot;start_action&quot; : &quot;start&quot;,
+    &quot;rekey_time&quot; : &quot;2h&quot;,
+    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase1_dh_group_number&quot; : 0,
+    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase2_dh_group_number&quot; : 6,
+    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;firewall&quot; : &quot;&quot;
+  }, {
+    &quot;id&quot; : &quot;id&quot;,
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;description&quot; : &quot;description&quot;,
+    &quot;ip&quot; : &quot;ip&quot;,
+    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
+    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
+    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
+    &quot;dpd_timeout&quot; : &quot;240s&quot;,
+    &quot;start_action&quot; : &quot;start&quot;,
+    &quot;rekey_time&quot; : &quot;2h&quot;,
+    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase1_dh_group_number&quot; : 0,
+    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase2_dh_group_number&quot; : 6,
+    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;firewall&quot; : &quot;&quot;
   } ]
 }'
 </code></pre>
@@ -38274,46 +38156,26 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId}" \
  -d '{
-  &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
-  &quot;phase1_dh_group_number&quot; : 0,
-  &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
-  &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
-  &quot;ip&quot; : &quot;ip&quot;,
-  &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
-  &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+  &quot;id&quot; : &quot;id&quot;,
+  &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;dpd_timeout&quot; : &quot;240s&quot;,
+  &quot;ip&quot; : &quot;ip&quot;,
+  &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+  &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
+  &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
   &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
+  &quot;dpd_timeout&quot; : &quot;240s&quot;,
   &quot;start_action&quot; : &quot;start&quot;,
   &quot;rekey_time&quot; : &quot;2h&quot;,
-  &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+  &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+  &quot;phase1_dh_group_number&quot; : 0,
+  &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
+  &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
   &quot;phase2_lifetime&quot; : &quot;1h&quot;,
   &quot;phase2_dh_group_number&quot; : 6,
-  &quot;firewall&quot; : {
-    &quot;ingress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ],
-    &quot;egress_policy&quot; : &quot;accept&quot;,
-    &quot;egress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ]
-  },
-  &quot;name&quot; : &quot;name&quot;,
   &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
-  &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
+  &quot;firewall&quot; : &quot;&quot;
 }'
 </code></pre>
                           </div>
@@ -39298,46 +39160,26 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/kawaii/{kawaiiId}/ipsec" \
  -d '{
-  &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
-  &quot;phase1_dh_group_number&quot; : 0,
-  &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
-  &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
-  &quot;ip&quot; : &quot;ip&quot;,
-  &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
-  &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+  &quot;id&quot; : &quot;id&quot;,
+  &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;dpd_timeout&quot; : &quot;240s&quot;,
+  &quot;ip&quot; : &quot;ip&quot;,
+  &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+  &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
+  &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
   &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
+  &quot;dpd_timeout&quot; : &quot;240s&quot;,
   &quot;start_action&quot; : &quot;start&quot;,
   &quot;rekey_time&quot; : &quot;2h&quot;,
-  &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+  &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+  &quot;phase1_dh_group_number&quot; : 0,
+  &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
+  &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
   &quot;phase2_lifetime&quot; : &quot;1h&quot;,
   &quot;phase2_dh_group_number&quot; : 6,
-  &quot;firewall&quot; : {
-    &quot;ingress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ],
-    &quot;egress_policy&quot; : &quot;accept&quot;,
-    &quot;egress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ]
-  },
-  &quot;name&quot; : &quot;name&quot;,
   &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
-  &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
+  &quot;firewall&quot; : &quot;&quot;
 }'
 </code></pre>
                           </div>
@@ -42452,46 +42294,26 @@ The ID of the Kawaii IPsec connection.
  -H "Content-Type: application/json" \
  "/api/v1/kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId}" \
  -d '{
-  &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
-  &quot;phase1_dh_group_number&quot; : 0,
-  &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
-  &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
-  &quot;ip&quot; : &quot;ip&quot;,
-  &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
-  &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+  &quot;id&quot; : &quot;id&quot;,
+  &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;dpd_timeout&quot; : &quot;240s&quot;,
+  &quot;ip&quot; : &quot;ip&quot;,
+  &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+  &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
+  &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
   &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
+  &quot;dpd_timeout&quot; : &quot;240s&quot;,
   &quot;start_action&quot; : &quot;start&quot;,
   &quot;rekey_time&quot; : &quot;2h&quot;,
-  &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+  &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+  &quot;phase1_dh_group_number&quot; : 0,
+  &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
+  &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
   &quot;phase2_lifetime&quot; : &quot;1h&quot;,
   &quot;phase2_dh_group_number&quot; : 6,
-  &quot;firewall&quot; : {
-    &quot;ingress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ],
-    &quot;egress_policy&quot; : &quot;accept&quot;,
-    &quot;egress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ]
-  },
-  &quot;name&quot; : &quot;name&quot;,
   &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
-  &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
+  &quot;firewall&quot; : &quot;&quot;
 }'
 </code></pre>
                           </div>
@@ -43476,9 +43298,9 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/region/{regionId}/kiwi" \
  -d '{
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
   &quot;agents&quot; : [ &quot;agents&quot;, &quot;agents&quot; ]
 }'
 </code></pre>
@@ -47141,9 +46963,9 @@ The ID of the Kiwi (Kowabunga Inner Wan Interface) provides edge-network service
  -H "Content-Type: application/json" \
  "/api/v1/kiwi/{kiwiId}" \
  -d '{
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
   &quot;agents&quot; : [ &quot;agents&quot;, &quot;agents&quot; ]
 }'
 </code></pre>
@@ -48095,15 +47917,15 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/zone/{zoneId}/kompute?poolId=poolId_example&templateId=templateId_example&public=true" \
  -d '{
-  &quot;disk&quot; : 1,
-  &quot;data_disk&quot; : 5,
-  &quot;memory&quot; : 0,
-  &quot;uefi&quot; : true,
-  &quot;ip&quot; : &quot;ip&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;vcpus&quot; : 6
+  &quot;memory&quot; : 0,
+  &quot;vcpus&quot; : 6,
+  &quot;disk&quot; : 1,
+  &quot;data_disk&quot; : 5,
+  &quot;ip&quot; : &quot;ip&quot;,
+  &quot;uefi&quot; : true
 }'
 </code></pre>
                           </div>
@@ -57568,15 +57390,15 @@ The ID of the Kompute.
  -H "Content-Type: application/json" \
  "/api/v1/kompute/{komputeId}" \
  -d '{
-  &quot;disk&quot; : 1,
-  &quot;data_disk&quot; : 5,
-  &quot;memory&quot; : 0,
-  &quot;uefi&quot; : true,
-  &quot;ip&quot; : &quot;ip&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;vcpus&quot; : 6
+  &quot;memory&quot; : 0,
+  &quot;vcpus&quot; : 6,
+  &quot;disk&quot; : 1,
+  &quot;data_disk&quot; : 5,
+  &quot;ip&quot; : &quot;ip&quot;,
+  &quot;uefi&quot; : true
 }'
 </code></pre>
                           </div>
@@ -58527,28 +58349,22 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/region/{regionId}/konvey" \
  -d '{
-  &quot;endpoints&quot; : [ {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;port&quot; : 0,
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;backends&quot; : {
-      &quot;port&quot; : 6,
-      &quot;hosts&quot; : [ &quot;hosts&quot;, &quot;hosts&quot; ]
-    }
-  }, {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;port&quot; : 0,
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;backends&quot; : {
-      &quot;port&quot; : 6,
-      &quot;hosts&quot; : [ &quot;hosts&quot;, &quot;hosts&quot; ]
-    }
-  } ],
-  &quot;failover&quot; : true,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;vip&quot; : &quot;vip&quot;
+  &quot;vip&quot; : &quot;vip&quot;,
+  &quot;failover&quot; : true,
+  &quot;endpoints&quot; : [ {
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;port&quot; : 0,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;backends&quot; : &quot;&quot;
+  }, {
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;port&quot; : 0,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;backends&quot; : &quot;&quot;
+  } ]
 }'
 </code></pre>
                           </div>
@@ -59606,28 +59422,22 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/zone/{zoneId}/konvey" \
  -d '{
-  &quot;endpoints&quot; : [ {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;port&quot; : 0,
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;backends&quot; : {
-      &quot;port&quot; : 6,
-      &quot;hosts&quot; : [ &quot;hosts&quot;, &quot;hosts&quot; ]
-    }
-  }, {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;port&quot; : 0,
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;backends&quot; : {
-      &quot;port&quot; : 6,
-      &quot;hosts&quot; : [ &quot;hosts&quot;, &quot;hosts&quot; ]
-    }
-  } ],
-  &quot;failover&quot; : true,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;vip&quot; : &quot;vip&quot;
+  &quot;vip&quot; : &quot;vip&quot;,
+  &quot;failover&quot; : true,
+  &quot;endpoints&quot; : [ {
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;port&quot; : 0,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;backends&quot; : &quot;&quot;
+  }, {
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;port&quot; : 0,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;backends&quot; : &quot;&quot;
+  } ]
 }'
 </code></pre>
                           </div>
@@ -64047,28 +63857,22 @@ The ID of the Konvey (Kowabunga Network Load-Balancer).
  -H "Content-Type: application/json" \
  "/api/v1/konvey/{konveyId}" \
  -d '{
-  &quot;endpoints&quot; : [ {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;port&quot; : 0,
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;backends&quot; : {
-      &quot;port&quot; : 6,
-      &quot;hosts&quot; : [ &quot;hosts&quot;, &quot;hosts&quot; ]
-    }
-  }, {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;port&quot; : 0,
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;backends&quot; : {
-      &quot;port&quot; : 6,
-      &quot;hosts&quot; : [ &quot;hosts&quot;, &quot;hosts&quot; ]
-    }
-  } ],
-  &quot;failover&quot; : true,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;vip&quot; : &quot;vip&quot;
+  &quot;vip&quot; : &quot;vip&quot;,
+  &quot;failover&quot; : true,
+  &quot;endpoints&quot; : [ {
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;port&quot; : 0,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;backends&quot; : &quot;&quot;
+  }, {
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;port&quot; : 0,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;backends&quot; : &quot;&quot;
+  } ]
 }'
 </code></pre>
                           </div>
@@ -65019,13 +64823,13 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/region/{regionId}/kylo?nfsId=nfsId_example" \
  -d '{
-  &quot;endpoint&quot; : &quot;endpoint&quot;,
-  &quot;access&quot; : &quot;RW&quot;,
-  &quot;size&quot; : 6,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;protocols&quot; : [ 0, 0 ]
+  &quot;access&quot; : &quot;RW&quot;,
+  &quot;protocols&quot; : [ 0, 0 ],
+  &quot;endpoint&quot; : &quot;endpoint&quot;,
+  &quot;size&quot; : 6
 }'
 </code></pre>
                           </div>
@@ -69491,13 +69295,13 @@ The ID of the Kylo.
  -H "Content-Type: application/json" \
  "/api/v1/kylo/{kyloId}" \
  -d '{
-  &quot;endpoint&quot; : &quot;endpoint&quot;,
-  &quot;access&quot; : &quot;RW&quot;,
-  &quot;size&quot; : 6,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;protocols&quot; : [ 0, 0 ]
+  &quot;access&quot; : &quot;RW&quot;,
+  &quot;protocols&quot; : [ 0, 0 ],
+  &quot;endpoint&quot; : &quot;endpoint&quot;,
+  &quot;size&quot; : 6
 }'
 </code></pre>
                           </div>
@@ -70448,13 +70252,13 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/region/{regionId}/nfs?poolId=poolId_example" \
  -d '{
-  &quot;endpoint&quot; : &quot;endpoint&quot;,
-  &quot;port&quot; : 0,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
+  &quot;endpoint&quot; : &quot;endpoint&quot;,
   &quot;fs&quot; : &quot;nfs&quot;,
-  &quot;backends&quot; : [ &quot;backends&quot;, &quot;backends&quot; ]
+  &quot;backends&quot; : [ &quot;backends&quot;, &quot;backends&quot; ],
+  &quot;port&quot; : 0
 }'
 </code></pre>
                           </div>
@@ -75597,13 +75401,13 @@ The ID of the NFS storage.
  -H "Content-Type: application/json" \
  "/api/v1/nfs/{nfsId}" \
  -d '{
-  &quot;endpoint&quot; : &quot;endpoint&quot;,
-  &quot;port&quot; : 0,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
+  &quot;endpoint&quot; : &quot;endpoint&quot;,
   &quot;fs&quot; : &quot;nfs&quot;,
-  &quot;backends&quot; : [ &quot;backends&quot;, &quot;backends&quot; ]
+  &quot;backends&quot; : [ &quot;backends&quot;, &quot;backends&quot; ],
+  &quot;port&quot; : 0
 }'
 </code></pre>
                           </div>
@@ -76554,17 +76358,14 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/region/{regionId}/pool" \
  -d '{
-  &quot;ceph_secret_uuid&quot; : &quot;ceph_secret_uuid&quot;,
-  &quot;cost&quot; : {
-    &quot;price&quot; : 0.8008282,
-    &quot;currency&quot; : &quot;currency&quot;
-  },
-  &quot;name&quot; : &quot;name&quot;,
-  &quot;pool&quot; : &quot;pool&quot;,
-  &quot;ceph_port&quot; : 0,
-  &quot;description&quot; : &quot;description&quot;,
   &quot;id&quot; : &quot;id&quot;,
+  &quot;name&quot; : &quot;name&quot;,
+  &quot;description&quot; : &quot;description&quot;,
+  &quot;pool&quot; : &quot;pool&quot;,
   &quot;ceph_address&quot; : &quot;localhost&quot;,
+  &quot;ceph_port&quot; : 0,
+  &quot;ceph_secret_uuid&quot; : &quot;ceph_secret_uuid&quot;,
+  &quot;cost&quot; : &quot;&quot;,
   &quot;agents&quot; : [ &quot;agents&quot;, &quot;agents&quot; ]
 }'
 </code></pre>
@@ -77589,10 +77390,10 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/pool/{poolId}/template" \
  -d '{
-  &quot;os&quot; : &quot;linux&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
+  &quot;os&quot; : &quot;linux&quot;,
   &quot;source&quot; : &quot;source&quot;
 }'
 </code></pre>
@@ -84057,17 +83858,14 @@ The ID of the image template.
  -H "Content-Type: application/json" \
  "/api/v1/pool/{poolId}" \
  -d '{
-  &quot;ceph_secret_uuid&quot; : &quot;ceph_secret_uuid&quot;,
-  &quot;cost&quot; : {
-    &quot;price&quot; : 0.8008282,
-    &quot;currency&quot; : &quot;currency&quot;
-  },
-  &quot;name&quot; : &quot;name&quot;,
-  &quot;pool&quot; : &quot;pool&quot;,
-  &quot;ceph_port&quot; : 0,
-  &quot;description&quot; : &quot;description&quot;,
   &quot;id&quot; : &quot;id&quot;,
+  &quot;name&quot; : &quot;name&quot;,
+  &quot;description&quot; : &quot;description&quot;,
+  &quot;pool&quot; : &quot;pool&quot;,
   &quot;ceph_address&quot; : &quot;localhost&quot;,
+  &quot;ceph_port&quot; : 0,
+  &quot;ceph_secret_uuid&quot; : &quot;ceph_secret_uuid&quot;,
+  &quot;cost&quot; : &quot;&quot;,
   &quot;agents&quot; : [ &quot;agents&quot;, &quot;agents&quot; ]
 }'
 </code></pre>
@@ -85019,37 +84817,32 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project?subnetSize=56" \
  -d '{
-  &quot;quotas&quot; : {
-    &quot;memory&quot; : 6,
-    &quot;instances&quot; : 5,
-    &quot;storage&quot; : 1,
-    &quot;vcpus&quot; : 0
-  },
-  &quot;regions&quot; : [ &quot;regions&quot;, &quot;regions&quot; ],
-  &quot;teams&quot; : [ &quot;teams&quot;, &quot;teams&quot; ],
-  &quot;metadatas&quot; : [ {
-    &quot;value&quot; : &quot;value&quot;,
-    &quot;key&quot; : &quot;key&quot;
-  }, {
-    &quot;value&quot; : &quot;value&quot;,
-    &quot;key&quot; : &quot;key&quot;
-  } ],
-  &quot;root_password&quot; : &quot;root_password&quot;,
-  &quot;description&quot; : &quot;description&quot;,
-  &quot;bootstrap_user&quot; : &quot;bootstrap_user&quot;,
-  &quot;tags&quot; : [ &quot;tags&quot;, &quot;tags&quot; ],
-  &quot;reserved_vrrp_ids&quot; : [ 5, 5 ],
-  &quot;bootstrap_pubkey&quot; : &quot;bootstrap_pubkey&quot;,
-  &quot;private_subnets&quot; : [ {
-    &quot;value&quot; : &quot;value&quot;,
-    &quot;key&quot; : &quot;key&quot;
-  }, {
-    &quot;value&quot; : &quot;value&quot;,
-    &quot;key&quot; : &quot;key&quot;
-  } ],
-  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;description&quot; : &quot;description&quot;,
+  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;root_password&quot; : &quot;root_password&quot;,
+  &quot;bootstrap_user&quot; : &quot;bootstrap_user&quot;,
+  &quot;bootstrap_pubkey&quot; : &quot;bootstrap_pubkey&quot;,
+  &quot;tags&quot; : [ &quot;tags&quot;, &quot;tags&quot; ],
+  &quot;metadatas&quot; : [ {
+    &quot;key&quot; : &quot;key&quot;,
+    &quot;value&quot; : &quot;value&quot;
+  }, {
+    &quot;key&quot; : &quot;key&quot;,
+    &quot;value&quot; : &quot;value&quot;
+  } ],
+  &quot;quotas&quot; : &quot;&quot;,
+  &quot;private_subnets&quot; : [ {
+    &quot;key&quot; : &quot;key&quot;,
+    &quot;value&quot; : &quot;value&quot;
+  }, {
+    &quot;key&quot; : &quot;key&quot;,
+    &quot;value&quot; : &quot;value&quot;
+  } ],
+  &quot;reserved_vrrp_ids&quot; : [ 0, 0 ],
+  &quot;teams&quot; : [ &quot;teams&quot;, &quot;teams&quot; ],
+  &quot;regions&quot; : [ &quot;regions&quot;, &quot;regions&quot; ]
 }'
 </code></pre>
                           </div>
@@ -86072,11 +85865,11 @@ The minimum VPC subnet size to be affected to the project. WARNING, this cannot 
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/record" \
  -d '{
-  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ],
-  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ]
 }'
 </code></pre>
                           </div>
@@ -87100,137 +86893,23 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/region/{regionId}/kawaii" \
  -d '{
-  &quot;ipsec_connections&quot; : [ {
-    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
-    &quot;phase1_dh_group_number&quot; : 0,
-    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;ip&quot; : &quot;ip&quot;,
-    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
-    &quot;description&quot; : &quot;description&quot;,
-    &quot;dpd_timeout&quot; : &quot;240s&quot;,
-    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
-    &quot;start_action&quot; : &quot;start&quot;,
-    &quot;rekey_time&quot; : &quot;2h&quot;,
-    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
-    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
-    &quot;phase2_dh_group_number&quot; : 6,
-    &quot;firewall&quot; : {
-      &quot;ingress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ],
-      &quot;egress_policy&quot; : &quot;accept&quot;,
-      &quot;egress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ]
-    },
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
-    &quot;id&quot; : &quot;id&quot;
-  }, {
-    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
-    &quot;phase1_dh_group_number&quot; : 0,
-    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;ip&quot; : &quot;ip&quot;,
-    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
-    &quot;description&quot; : &quot;description&quot;,
-    &quot;dpd_timeout&quot; : &quot;240s&quot;,
-    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
-    &quot;start_action&quot; : &quot;start&quot;,
-    &quot;rekey_time&quot; : &quot;2h&quot;,
-    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
-    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
-    &quot;phase2_dh_group_number&quot; : 6,
-    &quot;firewall&quot; : {
-      &quot;ingress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ],
-      &quot;egress_policy&quot; : &quot;accept&quot;,
-      &quot;egress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ]
-    },
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
-    &quot;id&quot; : &quot;id&quot;
-  } ],
-  &quot;dnat&quot; : [ {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;destination&quot; : &quot;destination&quot;,
-    &quot;ports&quot; : &quot;ports&quot;
-  }, {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;destination&quot; : &quot;destination&quot;,
-    &quot;ports&quot; : &quot;ports&quot;
-  } ],
-  &quot;firewall&quot; : {
-    &quot;ingress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ],
-    &quot;egress_policy&quot; : &quot;accept&quot;,
-    &quot;egress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ]
-  },
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;netip&quot; : {
-    &quot;private&quot; : [ &quot;private&quot;, &quot;private&quot; ],
-    &quot;public&quot; : [ &quot;public&quot;, &quot;public&quot; ],
-    &quot;zones&quot; : [ {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;public&quot; : &quot;public&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    }, {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;public&quot; : &quot;public&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    } ]
-  },
-  &quot;id&quot; : &quot;id&quot;,
+  &quot;netip&quot; : &quot;&quot;,
+  &quot;firewall&quot; : &quot;&quot;,
+  &quot;dnat&quot; : [ {
+    &quot;destination&quot; : &quot;destination&quot;,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;ports&quot; : &quot;ports&quot;
+  }, {
+    &quot;destination&quot; : &quot;destination&quot;,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;ports&quot; : &quot;ports&quot;
+  } ],
   &quot;vpc_peerings&quot; : [ {
     &quot;subnet&quot; : &quot;subnet&quot;,
+    &quot;policy&quot; : &quot;drop&quot;,
     &quot;ingress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
@@ -87238,23 +86917,23 @@ $(document).ready(function() {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     } ],
-    &quot;netip&quot; : [ {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    }, {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    } ],
-    &quot;policy&quot; : &quot;drop&quot;,
     &quot;egress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     }, {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
+    } ],
+    &quot;netip&quot; : [ {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
+    }, {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
     } ]
   }, {
     &quot;subnet&quot; : &quot;subnet&quot;,
+    &quot;policy&quot; : &quot;drop&quot;,
     &quot;ingress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
@@ -87262,21 +86941,63 @@ $(document).ready(function() {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     } ],
-    &quot;netip&quot; : [ {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    }, {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    } ],
-    &quot;policy&quot; : &quot;drop&quot;,
     &quot;egress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     }, {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
+    } ],
+    &quot;netip&quot; : [ {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
+    }, {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
     } ]
+  } ],
+  &quot;ipsec_connections&quot; : [ {
+    &quot;id&quot; : &quot;id&quot;,
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;description&quot; : &quot;description&quot;,
+    &quot;ip&quot; : &quot;ip&quot;,
+    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
+    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
+    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
+    &quot;dpd_timeout&quot; : &quot;240s&quot;,
+    &quot;start_action&quot; : &quot;start&quot;,
+    &quot;rekey_time&quot; : &quot;2h&quot;,
+    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase1_dh_group_number&quot; : 0,
+    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase2_dh_group_number&quot; : 6,
+    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;firewall&quot; : &quot;&quot;
+  }, {
+    &quot;id&quot; : &quot;id&quot;,
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;description&quot; : &quot;description&quot;,
+    &quot;ip&quot; : &quot;ip&quot;,
+    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
+    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
+    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
+    &quot;dpd_timeout&quot; : &quot;240s&quot;,
+    &quot;start_action&quot; : &quot;start&quot;,
+    &quot;rekey_time&quot; : &quot;2h&quot;,
+    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase1_dh_group_number&quot; : 0,
+    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase2_dh_group_number&quot; : 6,
+    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;firewall&quot; : &quot;&quot;
   } ]
 }'
 </code></pre>
@@ -88335,28 +88056,22 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/region/{regionId}/konvey" \
  -d '{
-  &quot;endpoints&quot; : [ {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;port&quot; : 0,
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;backends&quot; : {
-      &quot;port&quot; : 6,
-      &quot;hosts&quot; : [ &quot;hosts&quot;, &quot;hosts&quot; ]
-    }
-  }, {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;port&quot; : 0,
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;backends&quot; : {
-      &quot;port&quot; : 6,
-      &quot;hosts&quot; : [ &quot;hosts&quot;, &quot;hosts&quot; ]
-    }
-  } ],
-  &quot;failover&quot; : true,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;vip&quot; : &quot;vip&quot;
+  &quot;vip&quot; : &quot;vip&quot;,
+  &quot;failover&quot; : true,
+  &quot;endpoints&quot; : [ {
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;port&quot; : 0,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;backends&quot; : &quot;&quot;
+  }, {
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;port&quot; : 0,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;backends&quot; : &quot;&quot;
+  } ]
 }'
 </code></pre>
                           </div>
@@ -89414,13 +89129,13 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/region/{regionId}/kylo?nfsId=nfsId_example" \
  -d '{
-  &quot;endpoint&quot; : &quot;endpoint&quot;,
-  &quot;access&quot; : &quot;RW&quot;,
-  &quot;size&quot; : 6,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;protocols&quot; : [ 0, 0 ]
+  &quot;access&quot; : &quot;RW&quot;,
+  &quot;protocols&quot; : [ 0, 0 ],
+  &quot;endpoint&quot; : &quot;endpoint&quot;,
+  &quot;size&quot; : 6
 }'
 </code></pre>
                           </div>
@@ -90518,11 +90233,11 @@ NFS storage ID (optional, region&#39;s default if unspecified).
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/region/{regionId}/volume?poolId=poolId_example&templateId=templateId_example" \
  -d '{
-  &quot;size&quot; : 0,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;type&quot; : &quot;os&quot;
+  &quot;type&quot; : &quot;os&quot;,
+  &quot;size&quot; : 0
 }'
 </code></pre>
                           </div>
@@ -91651,14 +91366,14 @@ Template to clone the storage volume from (optional, region&#39;s default if uns
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/zone/{zoneId}/instance" \
  -d '{
-  &quot;memory&quot; : 0,
-  &quot;adapters&quot; : [ &quot;adapters&quot;, &quot;adapters&quot; ],
-  &quot;uefi&quot; : true,
-  &quot;name&quot; : &quot;name&quot;,
-  &quot;volumes&quot; : [ &quot;volumes&quot;, &quot;volumes&quot; ],
-  &quot;description&quot; : &quot;description&quot;,
   &quot;id&quot; : &quot;id&quot;,
-  &quot;vcpus&quot; : 6
+  &quot;name&quot; : &quot;name&quot;,
+  &quot;description&quot; : &quot;description&quot;,
+  &quot;memory&quot; : 0,
+  &quot;vcpus&quot; : 6,
+  &quot;adapters&quot; : [ &quot;adapters&quot;, &quot;adapters&quot; ],
+  &quot;volumes&quot; : [ &quot;volumes&quot;, &quot;volumes&quot; ],
+  &quot;uefi&quot; : true
 }'
 </code></pre>
                           </div>
@@ -92716,15 +92431,15 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/zone/{zoneId}/kompute?poolId=poolId_example&templateId=templateId_example&public=true" \
  -d '{
-  &quot;disk&quot; : 1,
-  &quot;data_disk&quot; : 5,
-  &quot;memory&quot; : 0,
-  &quot;uefi&quot; : true,
-  &quot;ip&quot; : &quot;ip&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;vcpus&quot; : 6
+  &quot;memory&quot; : 0,
+  &quot;vcpus&quot; : 6,
+  &quot;disk&quot; : 1,
+  &quot;data_disk&quot; : 5,
+  &quot;ip&quot; : &quot;ip&quot;,
+  &quot;uefi&quot; : true
 }'
 </code></pre>
                           </div>
@@ -93884,28 +93599,22 @@ Should Kompute be exposed over public Internet ? (a public IPv4 address will the
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/zone/{zoneId}/konvey" \
  -d '{
-  &quot;endpoints&quot; : [ {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;port&quot; : 0,
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;backends&quot; : {
-      &quot;port&quot; : 6,
-      &quot;hosts&quot; : [ &quot;hosts&quot;, &quot;hosts&quot; ]
-    }
-  }, {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;port&quot; : 0,
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;backends&quot; : {
-      &quot;port&quot; : 6,
-      &quot;hosts&quot; : [ &quot;hosts&quot;, &quot;hosts&quot; ]
-    }
-  } ],
-  &quot;failover&quot; : true,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;vip&quot; : &quot;vip&quot;
+  &quot;vip&quot; : &quot;vip&quot;,
+  &quot;failover&quot; : true,
+  &quot;endpoints&quot; : [ {
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;port&quot; : 0,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;backends&quot; : &quot;&quot;
+  }, {
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;port&quot; : 0,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;backends&quot; : &quot;&quot;
+  } ]
 }'
 </code></pre>
                           </div>
@@ -103823,37 +103532,32 @@ The ID of the project.
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}" \
  -d '{
-  &quot;quotas&quot; : {
-    &quot;memory&quot; : 6,
-    &quot;instances&quot; : 5,
-    &quot;storage&quot; : 1,
-    &quot;vcpus&quot; : 0
-  },
-  &quot;regions&quot; : [ &quot;regions&quot;, &quot;regions&quot; ],
-  &quot;teams&quot; : [ &quot;teams&quot;, &quot;teams&quot; ],
-  &quot;metadatas&quot; : [ {
-    &quot;value&quot; : &quot;value&quot;,
-    &quot;key&quot; : &quot;key&quot;
-  }, {
-    &quot;value&quot; : &quot;value&quot;,
-    &quot;key&quot; : &quot;key&quot;
-  } ],
-  &quot;root_password&quot; : &quot;root_password&quot;,
-  &quot;description&quot; : &quot;description&quot;,
-  &quot;bootstrap_user&quot; : &quot;bootstrap_user&quot;,
-  &quot;tags&quot; : [ &quot;tags&quot;, &quot;tags&quot; ],
-  &quot;reserved_vrrp_ids&quot; : [ 5, 5 ],
-  &quot;bootstrap_pubkey&quot; : &quot;bootstrap_pubkey&quot;,
-  &quot;private_subnets&quot; : [ {
-    &quot;value&quot; : &quot;value&quot;,
-    &quot;key&quot; : &quot;key&quot;
-  }, {
-    &quot;value&quot; : &quot;value&quot;,
-    &quot;key&quot; : &quot;key&quot;
-  } ],
-  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;description&quot; : &quot;description&quot;,
+  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;root_password&quot; : &quot;root_password&quot;,
+  &quot;bootstrap_user&quot; : &quot;bootstrap_user&quot;,
+  &quot;bootstrap_pubkey&quot; : &quot;bootstrap_pubkey&quot;,
+  &quot;tags&quot; : [ &quot;tags&quot;, &quot;tags&quot; ],
+  &quot;metadatas&quot; : [ {
+    &quot;key&quot; : &quot;key&quot;,
+    &quot;value&quot; : &quot;value&quot;
+  }, {
+    &quot;key&quot; : &quot;key&quot;,
+    &quot;value&quot; : &quot;value&quot;
+  } ],
+  &quot;quotas&quot; : &quot;&quot;,
+  &quot;private_subnets&quot; : [ {
+    &quot;key&quot; : &quot;key&quot;,
+    &quot;value&quot; : &quot;value&quot;
+  }, {
+    &quot;key&quot; : &quot;key&quot;,
+    &quot;value&quot; : &quot;value&quot;
+  } ],
+  &quot;reserved_vrrp_ids&quot; : [ 0, 0 ],
+  &quot;teams&quot; : [ &quot;teams&quot;, &quot;teams&quot; ],
+  &quot;regions&quot; : [ &quot;regions&quot;, &quot;regions&quot; ]
 }'
 </code></pre>
                           </div>
@@ -104804,11 +104508,11 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/record" \
  -d '{
-  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ],
-  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ]
 }'
 </code></pre>
                           </div>
@@ -105832,11 +105536,11 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/region/{regionId}/record" \
  -d '{
-  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ],
-  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ]
 }'
 </code></pre>
                           </div>
@@ -109615,11 +109319,11 @@ The ID of the DNS record.
  -H "Content-Type: application/json" \
  "/api/v1/record/{recordId}" \
  -d '{
-  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ],
-  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ]
 }'
 </code></pre>
                           </div>
@@ -110570,9 +110274,9 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/region/{regionId}/kiwi" \
  -d '{
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
   &quot;agents&quot; : [ &quot;agents&quot;, &quot;agents&quot; ]
 }'
 </code></pre>
@@ -111597,137 +111301,23 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/region/{regionId}/kawaii" \
  -d '{
-  &quot;ipsec_connections&quot; : [ {
-    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
-    &quot;phase1_dh_group_number&quot; : 0,
-    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;ip&quot; : &quot;ip&quot;,
-    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
-    &quot;description&quot; : &quot;description&quot;,
-    &quot;dpd_timeout&quot; : &quot;240s&quot;,
-    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
-    &quot;start_action&quot; : &quot;start&quot;,
-    &quot;rekey_time&quot; : &quot;2h&quot;,
-    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
-    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
-    &quot;phase2_dh_group_number&quot; : 6,
-    &quot;firewall&quot; : {
-      &quot;ingress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ],
-      &quot;egress_policy&quot; : &quot;accept&quot;,
-      &quot;egress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ]
-    },
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
-    &quot;id&quot; : &quot;id&quot;
-  }, {
-    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
-    &quot;phase1_dh_group_number&quot; : 0,
-    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
-    &quot;ip&quot; : &quot;ip&quot;,
-    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
-    &quot;description&quot; : &quot;description&quot;,
-    &quot;dpd_timeout&quot; : &quot;240s&quot;,
-    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
-    &quot;start_action&quot; : &quot;start&quot;,
-    &quot;rekey_time&quot; : &quot;2h&quot;,
-    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
-    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
-    &quot;phase2_dh_group_number&quot; : 6,
-    &quot;firewall&quot; : {
-      &quot;ingress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ],
-      &quot;egress_policy&quot; : &quot;accept&quot;,
-      &quot;egress&quot; : [ {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      }, {
-        &quot;protocol&quot; : &quot;tcp&quot;,
-        &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-        &quot;ports&quot; : &quot;ports&quot;
-      } ]
-    },
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
-    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
-    &quot;id&quot; : &quot;id&quot;
-  } ],
-  &quot;dnat&quot; : [ {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;destination&quot; : &quot;destination&quot;,
-    &quot;ports&quot; : &quot;ports&quot;
-  }, {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;destination&quot; : &quot;destination&quot;,
-    &quot;ports&quot; : &quot;ports&quot;
-  } ],
-  &quot;firewall&quot; : {
-    &quot;ingress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;source&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ],
-    &quot;egress_policy&quot; : &quot;accept&quot;,
-    &quot;egress&quot; : [ {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    }, {
-      &quot;protocol&quot; : &quot;tcp&quot;,
-      &quot;destination&quot; : &quot;0.0.0.0/0&quot;,
-      &quot;ports&quot; : &quot;ports&quot;
-    } ]
-  },
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;netip&quot; : {
-    &quot;private&quot; : [ &quot;private&quot;, &quot;private&quot; ],
-    &quot;public&quot; : [ &quot;public&quot;, &quot;public&quot; ],
-    &quot;zones&quot; : [ {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;public&quot; : &quot;public&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    }, {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;public&quot; : &quot;public&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    } ]
-  },
-  &quot;id&quot; : &quot;id&quot;,
+  &quot;netip&quot; : &quot;&quot;,
+  &quot;firewall&quot; : &quot;&quot;,
+  &quot;dnat&quot; : [ {
+    &quot;destination&quot; : &quot;destination&quot;,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;ports&quot; : &quot;ports&quot;
+  }, {
+    &quot;destination&quot; : &quot;destination&quot;,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;ports&quot; : &quot;ports&quot;
+  } ],
   &quot;vpc_peerings&quot; : [ {
     &quot;subnet&quot; : &quot;subnet&quot;,
+    &quot;policy&quot; : &quot;drop&quot;,
     &quot;ingress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
@@ -111735,23 +111325,23 @@ $(document).ready(function() {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     } ],
-    &quot;netip&quot; : [ {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    }, {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    } ],
-    &quot;policy&quot; : &quot;drop&quot;,
     &quot;egress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     }, {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
+    } ],
+    &quot;netip&quot; : [ {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
+    }, {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
     } ]
   }, {
     &quot;subnet&quot; : &quot;subnet&quot;,
+    &quot;policy&quot; : &quot;drop&quot;,
     &quot;ingress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
@@ -111759,21 +111349,63 @@ $(document).ready(function() {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     } ],
-    &quot;netip&quot; : [ {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    }, {
-      &quot;private&quot; : &quot;private&quot;,
-      &quot;zone&quot; : &quot;zone&quot;
-    } ],
-    &quot;policy&quot; : &quot;drop&quot;,
     &quot;egress&quot; : [ {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
     }, {
       &quot;protocol&quot; : &quot;tcp&quot;,
       &quot;ports&quot; : &quot;ports&quot;
+    } ],
+    &quot;netip&quot; : [ {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
+    }, {
+      &quot;zone&quot; : &quot;zone&quot;,
+      &quot;private&quot; : &quot;private&quot;
     } ]
+  } ],
+  &quot;ipsec_connections&quot; : [ {
+    &quot;id&quot; : &quot;id&quot;,
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;description&quot; : &quot;description&quot;,
+    &quot;ip&quot; : &quot;ip&quot;,
+    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
+    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
+    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
+    &quot;dpd_timeout&quot; : &quot;240s&quot;,
+    &quot;start_action&quot; : &quot;start&quot;,
+    &quot;rekey_time&quot; : &quot;2h&quot;,
+    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase1_dh_group_number&quot; : 0,
+    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase2_dh_group_number&quot; : 6,
+    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;firewall&quot; : &quot;&quot;
+  }, {
+    &quot;id&quot; : &quot;id&quot;,
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;description&quot; : &quot;description&quot;,
+    &quot;ip&quot; : &quot;ip&quot;,
+    &quot;remote_ip&quot; : &quot;remote_ip&quot;,
+    &quot;remote_subnet&quot; : &quot;remote_subnet&quot;,
+    &quot;pre_shared_key&quot; : &quot;pre_shared_key&quot;,
+    &quot;dpd_timeout_action&quot; : &quot;restart&quot;,
+    &quot;dpd_timeout&quot; : &quot;240s&quot;,
+    &quot;start_action&quot; : &quot;start&quot;,
+    &quot;rekey_time&quot; : &quot;2h&quot;,
+    &quot;phase1_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase1_dh_group_number&quot; : 0,
+    &quot;phase1_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase1_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;phase2_lifetime&quot; : &quot;1h&quot;,
+    &quot;phase2_dh_group_number&quot; : 6,
+    &quot;phase2_integrity_algorithm&quot; : &quot;SHA1&quot;,
+    &quot;phase2_encryption_algorithm&quot; : &quot;AES128&quot;,
+    &quot;firewall&quot; : &quot;&quot;
   } ]
 }'
 </code></pre>
@@ -112832,28 +112464,22 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/region/{regionId}/konvey" \
  -d '{
-  &quot;endpoints&quot; : [ {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;port&quot; : 0,
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;backends&quot; : {
-      &quot;port&quot; : 6,
-      &quot;hosts&quot; : [ &quot;hosts&quot;, &quot;hosts&quot; ]
-    }
-  }, {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;port&quot; : 0,
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;backends&quot; : {
-      &quot;port&quot; : 6,
-      &quot;hosts&quot; : [ &quot;hosts&quot;, &quot;hosts&quot; ]
-    }
-  } ],
-  &quot;failover&quot; : true,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;vip&quot; : &quot;vip&quot;
+  &quot;vip&quot; : &quot;vip&quot;,
+  &quot;failover&quot; : true,
+  &quot;endpoints&quot; : [ {
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;port&quot; : 0,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;backends&quot; : &quot;&quot;
+  }, {
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;port&quot; : 0,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;backends&quot; : &quot;&quot;
+  } ]
 }'
 </code></pre>
                           </div>
@@ -113911,13 +113537,13 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/region/{regionId}/kylo?nfsId=nfsId_example" \
  -d '{
-  &quot;endpoint&quot; : &quot;endpoint&quot;,
-  &quot;access&quot; : &quot;RW&quot;,
-  &quot;size&quot; : 6,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;protocols&quot; : [ 0, 0 ]
+  &quot;access&quot; : &quot;RW&quot;,
+  &quot;protocols&quot; : [ 0, 0 ],
+  &quot;endpoint&quot; : &quot;endpoint&quot;,
+  &quot;size&quot; : 6
 }'
 </code></pre>
                           </div>
@@ -115015,11 +114641,11 @@ NFS storage ID (optional, region&#39;s default if unspecified).
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/region/{regionId}/volume?poolId=poolId_example&templateId=templateId_example" \
  -d '{
-  &quot;size&quot; : 0,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;type&quot; : &quot;os&quot;
+  &quot;type&quot; : &quot;os&quot;,
+  &quot;size&quot; : 0
 }'
 </code></pre>
                           </div>
@@ -116148,10 +115774,10 @@ Template to clone the storage volume from (optional, region&#39;s default if uns
  -H "Content-Type: application/json" \
  "/api/v1/region" \
  -d '{
-  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;domain&quot; : &quot;domain&quot;
 }'
 </code></pre>
                           </div>
@@ -117134,11 +116760,11 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/region/{regionId}/record" \
  -d '{
-  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ],
-  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ]
 }'
 </code></pre>
                           </div>
@@ -118162,13 +117788,13 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/region/{regionId}/nfs?poolId=poolId_example" \
  -d '{
-  &quot;endpoint&quot; : &quot;endpoint&quot;,
-  &quot;port&quot; : 0,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
+  &quot;endpoint&quot; : &quot;endpoint&quot;,
   &quot;fs&quot; : &quot;nfs&quot;,
-  &quot;backends&quot; : [ &quot;backends&quot;, &quot;backends&quot; ]
+  &quot;backends&quot; : [ &quot;backends&quot;, &quot;backends&quot; ],
+  &quot;port&quot; : 0
 }'
 </code></pre>
                           </div>
@@ -119232,17 +118858,14 @@ Storage pool ID (optional, region&#39;s default if unspecified).
  -H "Content-Type: application/json" \
  "/api/v1/region/{regionId}/pool" \
  -d '{
-  &quot;ceph_secret_uuid&quot; : &quot;ceph_secret_uuid&quot;,
-  &quot;cost&quot; : {
-    &quot;price&quot; : 0.8008282,
-    &quot;currency&quot; : &quot;currency&quot;
-  },
-  &quot;name&quot; : &quot;name&quot;,
-  &quot;pool&quot; : &quot;pool&quot;,
-  &quot;ceph_port&quot; : 0,
-  &quot;description&quot; : &quot;description&quot;,
   &quot;id&quot; : &quot;id&quot;,
+  &quot;name&quot; : &quot;name&quot;,
+  &quot;description&quot; : &quot;description&quot;,
+  &quot;pool&quot; : &quot;pool&quot;,
   &quot;ceph_address&quot; : &quot;localhost&quot;,
+  &quot;ceph_port&quot; : 0,
+  &quot;ceph_secret_uuid&quot; : &quot;ceph_secret_uuid&quot;,
+  &quot;cost&quot; : &quot;&quot;,
   &quot;agents&quot; : [ &quot;agents&quot;, &quot;agents&quot; ]
 }'
 </code></pre>
@@ -120267,12 +119890,12 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/region/{regionId}/vnet" \
  -d '{
-  &quot;private&quot; : true,
-  &quot;vlan&quot; : 0,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;interface&quot; : &quot;interface&quot;
+  &quot;vlan&quot; : 0,
+  &quot;interface&quot; : &quot;interface&quot;,
+  &quot;private&quot; : true
 }'
 </code></pre>
                           </div>
@@ -121296,9 +120919,9 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/region/{regionId}/zone" \
  -d '{
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
-  &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;description&quot; : &quot;description&quot;
 }'
 </code></pre>
                           </div>
@@ -132570,10 +132193,10 @@ The ID of the storage pool.
  -H "Content-Type: application/json" \
  "/api/v1/region/{regionId}" \
  -d '{
-  &quot;domain&quot; : &quot;domain&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;domain&quot; : &quot;domain&quot;
 }'
 </code></pre>
                           </div>
@@ -133524,12 +133147,12 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/subnet/{subnetId}/adapter?assignIP=true" \
  -d '{
-  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ],
-  &quot;reserved&quot; : false,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;mac&quot; : &quot;mac&quot;
+  &quot;mac&quot; : &quot;mac&quot;,
+  &quot;addresses&quot; : [ &quot;addresses&quot;, &quot;addresses&quot; ],
+  &quot;reserved&quot; : false
 }'
 </code></pre>
                           </div>
@@ -134593,28 +134216,28 @@ Whether Kowabunga should pick and assign an IP address to this adapter.
  -H "Content-Type: application/json" \
  "/api/v1/vnet/{vnetId}/subnet" \
  -d '{
-  &quot;extra_routes&quot; : [ &quot;extra_routes&quot;, &quot;extra_routes&quot; ],
-  &quot;application&quot; : &quot;user&quot;,
-  &quot;reserved&quot; : [ {
-    &quot;last&quot; : &quot;last&quot;,
-    &quot;first&quot; : &quot;first&quot;
-  }, {
-    &quot;last&quot; : &quot;last&quot;,
-    &quot;first&quot; : &quot;first&quot;
-  } ],
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
-  &quot;dns&quot; : &quot;dns&quot;,
   &quot;description&quot; : &quot;description&quot;,
   &quot;cidr&quot; : &quot;cidr&quot;,
-  &quot;gw_pool&quot; : [ {
-    &quot;last&quot; : &quot;last&quot;,
-    &quot;first&quot; : &quot;first&quot;
+  &quot;gateway&quot; : &quot;gateway&quot;,
+  &quot;dns&quot; : &quot;dns&quot;,
+  &quot;extra_routes&quot; : [ &quot;extra_routes&quot;, &quot;extra_routes&quot; ],
+  &quot;reserved&quot; : [ {
+    &quot;first&quot; : &quot;first&quot;,
+    &quot;last&quot; : &quot;last&quot;
   }, {
-    &quot;last&quot; : &quot;last&quot;,
-    &quot;first&quot; : &quot;first&quot;
+    &quot;first&quot; : &quot;first&quot;,
+    &quot;last&quot; : &quot;last&quot;
   } ],
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;gateway&quot; : &quot;gateway&quot;
+  &quot;gw_pool&quot; : [ {
+    &quot;first&quot; : &quot;first&quot;,
+    &quot;last&quot; : &quot;last&quot;
+  }, {
+    &quot;first&quot; : &quot;first&quot;,
+    &quot;last&quot; : &quot;last&quot;
+  } ],
+  &quot;application&quot; : &quot;user&quot;
 }'
 </code></pre>
                           </div>
@@ -139677,28 +139300,28 @@ The ID of the network subnet.
  -H "Content-Type: application/json" \
  "/api/v1/subnet/{subnetId}" \
  -d '{
-  &quot;extra_routes&quot; : [ &quot;extra_routes&quot;, &quot;extra_routes&quot; ],
-  &quot;application&quot; : &quot;user&quot;,
-  &quot;reserved&quot; : [ {
-    &quot;last&quot; : &quot;last&quot;,
-    &quot;first&quot; : &quot;first&quot;
-  }, {
-    &quot;last&quot; : &quot;last&quot;,
-    &quot;first&quot; : &quot;first&quot;
-  } ],
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
-  &quot;dns&quot; : &quot;dns&quot;,
   &quot;description&quot; : &quot;description&quot;,
   &quot;cidr&quot; : &quot;cidr&quot;,
-  &quot;gw_pool&quot; : [ {
-    &quot;last&quot; : &quot;last&quot;,
-    &quot;first&quot; : &quot;first&quot;
+  &quot;gateway&quot; : &quot;gateway&quot;,
+  &quot;dns&quot; : &quot;dns&quot;,
+  &quot;extra_routes&quot; : [ &quot;extra_routes&quot;, &quot;extra_routes&quot; ],
+  &quot;reserved&quot; : [ {
+    &quot;first&quot; : &quot;first&quot;,
+    &quot;last&quot; : &quot;last&quot;
   }, {
-    &quot;last&quot; : &quot;last&quot;,
-    &quot;first&quot; : &quot;first&quot;
+    &quot;first&quot; : &quot;first&quot;,
+    &quot;last&quot; : &quot;last&quot;
   } ],
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;gateway&quot; : &quot;gateway&quot;
+  &quot;gw_pool&quot; : [ {
+    &quot;first&quot; : &quot;first&quot;,
+    &quot;last&quot; : &quot;last&quot;
+  }, {
+    &quot;first&quot; : &quot;first&quot;,
+    &quot;last&quot; : &quot;last&quot;
+  } ],
+  &quot;application&quot; : &quot;user&quot;
 }'
 </code></pre>
                           </div>
@@ -140649,9 +140272,9 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/team" \
  -d '{
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
   &quot;users&quot; : [ &quot;users&quot;, &quot;users&quot; ]
 }'
 </code></pre>
@@ -143617,9 +143240,9 @@ The ID of the Kowabunga users team.
  -H "Content-Type: application/json" \
  "/api/v1/team/{teamId}" \
  -d '{
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
   &quot;users&quot; : [ &quot;users&quot;, &quot;users&quot; ]
 }'
 </code></pre>
@@ -144571,10 +144194,10 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/pool/{poolId}/template" \
  -d '{
-  &quot;os&quot; : &quot;linux&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
+  &quot;os&quot; : &quot;linux&quot;,
   &quot;source&quot; : &quot;source&quot;
 }'
 </code></pre>
@@ -148982,10 +148605,10 @@ The ID of the image template.
  -H "Content-Type: application/json" \
  "/api/v1/template/{templateId}" \
  -d '{
-  &quot;os&quot; : &quot;linux&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
+  &quot;os&quot; : &quot;linux&quot;,
   &quot;source&quot; : &quot;source&quot;
 }'
 </code></pre>
@@ -153510,10 +153133,10 @@ Token&#39;s expiration date (YYYY-MM-DD format).
  -H "Content-Type: application/json" \
  "/api/v1/token/{tokenId}" \
  -d '{
-  &quot;expire&quot; : false,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
+  &quot;expire&quot; : false,
   &quot;expiration_date&quot; : &quot;2000-01-23&quot;
 }'
 </code></pre>
@@ -154465,11 +154088,11 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/user" \
  -d '{
-  &quot;role&quot; : &quot;superAdmin&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
   &quot;email&quot; : &quot;email&quot;,
+  &quot;role&quot; : &quot;superAdmin&quot;,
   &quot;notifications&quot; : false
 }'
 </code></pre>
@@ -156779,9 +156402,9 @@ pub fn main() {
  -H "Content-Type: application/json" \
  "/api/v1/login" \
  -d '{
+  &quot;email&quot; : &quot;email&quot;,
   &quot;password&quot; : &quot;password&quot;,
-  &quot;jwt&quot; : &quot;jwt&quot;,
-  &quot;email&quot; : &quot;email&quot;
+  &quot;jwt&quot; : &quot;jwt&quot;
 }'
 </code></pre>
                           </div>
@@ -162627,11 +162250,11 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/user/{userId}" \
  -d '{
-  &quot;role&quot; : &quot;superAdmin&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
   &quot;email&quot; : &quot;email&quot;,
+  &quot;role&quot; : &quot;superAdmin&quot;,
   &quot;notifications&quot; : false
 }'
 </code></pre>
@@ -163583,28 +163206,28 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/vnet/{vnetId}/subnet" \
  -d '{
-  &quot;extra_routes&quot; : [ &quot;extra_routes&quot;, &quot;extra_routes&quot; ],
-  &quot;application&quot; : &quot;user&quot;,
-  &quot;reserved&quot; : [ {
-    &quot;last&quot; : &quot;last&quot;,
-    &quot;first&quot; : &quot;first&quot;
-  }, {
-    &quot;last&quot; : &quot;last&quot;,
-    &quot;first&quot; : &quot;first&quot;
-  } ],
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
-  &quot;dns&quot; : &quot;dns&quot;,
   &quot;description&quot; : &quot;description&quot;,
   &quot;cidr&quot; : &quot;cidr&quot;,
-  &quot;gw_pool&quot; : [ {
-    &quot;last&quot; : &quot;last&quot;,
-    &quot;first&quot; : &quot;first&quot;
+  &quot;gateway&quot; : &quot;gateway&quot;,
+  &quot;dns&quot; : &quot;dns&quot;,
+  &quot;extra_routes&quot; : [ &quot;extra_routes&quot;, &quot;extra_routes&quot; ],
+  &quot;reserved&quot; : [ {
+    &quot;first&quot; : &quot;first&quot;,
+    &quot;last&quot; : &quot;last&quot;
   }, {
-    &quot;last&quot; : &quot;last&quot;,
-    &quot;first&quot; : &quot;first&quot;
+    &quot;first&quot; : &quot;first&quot;,
+    &quot;last&quot; : &quot;last&quot;
   } ],
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;gateway&quot; : &quot;gateway&quot;
+  &quot;gw_pool&quot; : [ {
+    &quot;first&quot; : &quot;first&quot;,
+    &quot;last&quot; : &quot;last&quot;
+  }, {
+    &quot;first&quot; : &quot;first&quot;,
+    &quot;last&quot; : &quot;last&quot;
+  } ],
+  &quot;application&quot; : &quot;user&quot;
 }'
 </code></pre>
                           </div>
@@ -164628,12 +164251,12 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/region/{regionId}/vnet" \
  -d '{
-  &quot;private&quot; : true,
-  &quot;vlan&quot; : 0,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;interface&quot; : &quot;interface&quot;
+  &quot;vlan&quot; : 0,
+  &quot;interface&quot; : &quot;interface&quot;,
+  &quot;private&quot; : true
 }'
 </code></pre>
                           </div>
@@ -169696,12 +169319,12 @@ The ID of the network subnet.
  -H "Content-Type: application/json" \
  "/api/v1/vnet/{vnetId}" \
  -d '{
-  &quot;private&quot; : true,
-  &quot;vlan&quot; : 0,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;interface&quot; : &quot;interface&quot;
+  &quot;vlan&quot; : 0,
+  &quot;interface&quot; : &quot;interface&quot;,
+  &quot;private&quot; : true
 }'
 </code></pre>
                           </div>
@@ -170652,11 +170275,11 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/region/{regionId}/volume?poolId=poolId_example&templateId=templateId_example" \
  -d '{
-  &quot;size&quot; : 0,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;type&quot; : &quot;os&quot;
+  &quot;type&quot; : &quot;os&quot;,
+  &quot;size&quot; : 0
 }'
 </code></pre>
                           </div>
@@ -175113,11 +174736,11 @@ The ID of the storage volume.
  -H "Content-Type: application/json" \
  "/api/v1/volume/{volumeId}" \
  -d '{
-  &quot;size&quot; : 0,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;type&quot; : &quot;os&quot;
+  &quot;type&quot; : &quot;os&quot;,
+  &quot;size&quot; : 0
 }'
 </code></pre>
                           </div>
@@ -176068,19 +175691,13 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/zone/{zoneId}/kaktus" \
  -d '{
-  &quot;memory_cost&quot; : {
-    &quot;price&quot; : 0.8008282,
-    &quot;currency&quot; : &quot;currency&quot;
-  },
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;overcommit_memory_ratio&quot; : 1,
-  &quot;cpu_cost&quot; : {
-    &quot;price&quot; : 0.8008282,
-    &quot;currency&quot; : &quot;currency&quot;
-  },
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;overcommit_cpu_ratio&quot; : 6,
+  &quot;cpu_cost&quot; : &quot;&quot;,
+  &quot;memory_cost&quot; : &quot;&quot;,
+  &quot;overcommit_cpu_ratio&quot; : 0,
+  &quot;overcommit_memory_ratio&quot; : 6,
   &quot;agents&quot; : [ &quot;agents&quot;, &quot;agents&quot; ]
 }'
 </code></pre>
@@ -177105,14 +176722,14 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/zone/{zoneId}/instance" \
  -d '{
-  &quot;memory&quot; : 0,
-  &quot;adapters&quot; : [ &quot;adapters&quot;, &quot;adapters&quot; ],
-  &quot;uefi&quot; : true,
-  &quot;name&quot; : &quot;name&quot;,
-  &quot;volumes&quot; : [ &quot;volumes&quot;, &quot;volumes&quot; ],
-  &quot;description&quot; : &quot;description&quot;,
   &quot;id&quot; : &quot;id&quot;,
-  &quot;vcpus&quot; : 6
+  &quot;name&quot; : &quot;name&quot;,
+  &quot;description&quot; : &quot;description&quot;,
+  &quot;memory&quot; : 0,
+  &quot;vcpus&quot; : 6,
+  &quot;adapters&quot; : [ &quot;adapters&quot;, &quot;adapters&quot; ],
+  &quot;volumes&quot; : [ &quot;volumes&quot;, &quot;volumes&quot; ],
+  &quot;uefi&quot; : true
 }'
 </code></pre>
                           </div>
@@ -178170,15 +177787,15 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/zone/{zoneId}/kompute?poolId=poolId_example&templateId=templateId_example&public=true" \
  -d '{
-  &quot;disk&quot; : 1,
-  &quot;data_disk&quot; : 5,
-  &quot;memory&quot; : 0,
-  &quot;uefi&quot; : true,
-  &quot;ip&quot; : &quot;ip&quot;,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;vcpus&quot; : 6
+  &quot;memory&quot; : 0,
+  &quot;vcpus&quot; : 6,
+  &quot;disk&quot; : 1,
+  &quot;data_disk&quot; : 5,
+  &quot;ip&quot; : &quot;ip&quot;,
+  &quot;uefi&quot; : true
 }'
 </code></pre>
                           </div>
@@ -179338,28 +178955,22 @@ Should Kompute be exposed over public Internet ? (a public IPv4 address will the
  -H "Content-Type: application/json" \
  "/api/v1/project/{projectId}/zone/{zoneId}/konvey" \
  -d '{
-  &quot;endpoints&quot; : [ {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;port&quot; : 0,
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;backends&quot; : {
-      &quot;port&quot; : 6,
-      &quot;hosts&quot; : [ &quot;hosts&quot;, &quot;hosts&quot; ]
-    }
-  }, {
-    &quot;protocol&quot; : &quot;tcp&quot;,
-    &quot;port&quot; : 0,
-    &quot;name&quot; : &quot;name&quot;,
-    &quot;backends&quot; : {
-      &quot;port&quot; : 6,
-      &quot;hosts&quot; : [ &quot;hosts&quot;, &quot;hosts&quot; ]
-    }
-  } ],
-  &quot;failover&quot; : true,
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;,
-  &quot;vip&quot; : &quot;vip&quot;
+  &quot;vip&quot; : &quot;vip&quot;,
+  &quot;failover&quot; : true,
+  &quot;endpoints&quot; : [ {
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;port&quot; : 0,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;backends&quot; : &quot;&quot;
+  }, {
+    &quot;name&quot; : &quot;name&quot;,
+    &quot;port&quot; : 0,
+    &quot;protocol&quot; : &quot;tcp&quot;,
+    &quot;backends&quot; : &quot;&quot;
+  } ]
 }'
 </code></pre>
                           </div>
@@ -180417,9 +180028,9 @@ $(document).ready(function() {
  -H "Content-Type: application/json" \
  "/api/v1/region/{regionId}/zone" \
  -d '{
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
-  &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;description&quot; : &quot;description&quot;
 }'
 </code></pre>
                           </div>
@@ -186807,9 +186418,9 @@ The ID of the availability zone.
  -H "Content-Type: application/json" \
  "/api/v1/zone/{zoneId}" \
  -d '{
+  &quot;id&quot; : &quot;id&quot;,
   &quot;name&quot; : &quot;name&quot;,
-  &quot;description&quot; : &quot;description&quot;,
-  &quot;id&quot; : &quot;id&quot;
+  &quot;description&quot; : &quot;description&quot;
 }'
 </code></pre>
                           </div>
