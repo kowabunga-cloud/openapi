@@ -12,6 +12,7 @@ components:
 {{ oas.IntProperty('vcpus', 'The ' + resources.instance.desc + ' number of vCPUs') }}
 {{ oas.StringArrayProperty('adapters', 'a list of existing network adapters to be connected to the instance') }}
 {{ oas.StringArrayProperty('volumes', 'volumes list of existing storage volumes (i.e. disks) to be connected to the instance') }}
+{{ oas.BoolProperty('uefi', 'enable UEFI secure firmware (vs. legacy BIOS)', default=True) }}
 
 {{ oas.Schema(resources.instance_state, ['state', 'reason']) }}
 {{ oas.StringProperty('state', 'The ' + resources.instance.desc + ' state') }}

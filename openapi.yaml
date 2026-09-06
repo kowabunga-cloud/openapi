@@ -5032,6 +5032,7 @@ components:
         adapters:
         - adapters
         - adapters
+        uefi: true
         name: name
         volumes:
         - volumes
@@ -5069,6 +5070,10 @@ components:
           items:
             type: string
           type: array
+        uefi:
+          default: true
+          description: enable UEFI secure firmware (vs. legacy BIOS).
+          type: boolean
       required:
       - memory
       - name

@@ -1137,6 +1137,11 @@ ul.nav-tabs {
       "items" : {
         "type" : "string"
       }
+    },
+    "uefi" : {
+      "type" : "boolean",
+      "description" : "enable UEFI secure firmware (vs. legacy BIOS).",
+      "default" : true
     }
   },
   "description" : "A virtual machine instance."
@@ -12489,6 +12494,7 @@ $(document).ready(function() {
  -d '{
   &quot;memory&quot; : 0,
   &quot;adapters&quot; : [ &quot;adapters&quot;, &quot;adapters&quot; ],
+  &quot;uefi&quot; : true,
   &quot;name&quot; : &quot;name&quot;,
   &quot;volumes&quot; : [ &quot;volumes&quot;, &quot;volumes&quot; ],
   &quot;description&quot; : &quot;description&quot;,
@@ -23170,6 +23176,7 @@ The ID of the virtual machine instance.
  -d '{
   &quot;memory&quot; : 0,
   &quot;adapters&quot; : [ &quot;adapters&quot;, &quot;adapters&quot; ],
+  &quot;uefi&quot; : true,
   &quot;name&quot; : &quot;name&quot;,
   &quot;volumes&quot; : [ &quot;volumes&quot;, &quot;volumes&quot; ],
   &quot;description&quot; : &quot;description&quot;,
@@ -91639,6 +91646,7 @@ Template to clone the storage volume from (optional, region&#39;s default if uns
  -d '{
   &quot;memory&quot; : 0,
   &quot;adapters&quot; : [ &quot;adapters&quot;, &quot;adapters&quot; ],
+  &quot;uefi&quot; : true,
   &quot;name&quot; : &quot;name&quot;,
   &quot;volumes&quot; : [ &quot;volumes&quot;, &quot;volumes&quot; ],
   &quot;description&quot; : &quot;description&quot;,
@@ -177091,6 +177099,7 @@ $(document).ready(function() {
  -d '{
   &quot;memory&quot; : 0,
   &quot;adapters&quot; : [ &quot;adapters&quot;, &quot;adapters&quot; ],
+  &quot;uefi&quot; : true,
   &quot;name&quot; : &quot;name&quot;,
   &quot;volumes&quot; : [ &quot;volumes&quot;, &quot;volumes&quot; ],
   &quot;description&quot; : &quot;description&quot;,
