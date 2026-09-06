@@ -5872,6 +5872,7 @@ components:
         disk: 1
         data_disk: 5
         memory: 0
+        uefi: true
         ip: ip
         name: name
         description: description
@@ -5908,6 +5909,10 @@ components:
         ip:
           description: The Kompute assigned private IPv4 address (read-only).
           type: string
+        uefi:
+          default: true
+          description: enable UEFI secure firmware (vs. legacy BIOS).
+          type: boolean
       required:
       - disk
       - memory

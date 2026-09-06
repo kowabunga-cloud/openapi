@@ -11,6 +11,7 @@
 | **disk** | **Long** | The Kompute OS disk size (in bytes). | [default to null] |
 | **data\_disk** | **Long** | The Kompute extra data disk size (in bytes). If unspecified, no extra data disk will be assigned. | [optional] [default to 0] |
 | **ip** | **String** | The Kompute assigned private IPv4 address (read-only). | [optional] [default to null] |
+| **uefi** | **Boolean** | enable UEFI secure firmware (vs. legacy BIOS). | [optional] [default to true] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

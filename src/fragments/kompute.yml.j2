@@ -13,6 +13,7 @@ components:
 {{ oas.IntProperty('disk', 'The ' + resources.kompute.desc + ' OS disk size (in bytes)') }}
 {{ oas.IntProperty('data_disk', 'The ' + resources.kompute.desc + ' extra data disk size (in bytes). If unspecified, no extra data disk will be assigned', default=0) }}
 {{ oas.StringProperty('ip', 'The ' + resources.kompute.desc + ' assigned private IPv4 address (read-only)') }}
+{{ oas.BoolProperty('uefi', 'enable UEFI secure firmware (vs. legacy BIOS)', default=True) }}
 
   parameters:
 {{ oas.PathParamID(resources.kompute) }}

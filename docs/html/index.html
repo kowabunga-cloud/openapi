@@ -1682,6 +1682,11 @@ ul.nav-tabs {
     "ip" : {
       "type" : "string",
       "description" : "The Kompute assigned private IPv4 address (read-only)."
+    },
+    "uefi" : {
+      "type" : "boolean",
+      "description" : "enable UEFI secure firmware (vs. legacy BIOS).",
+      "default" : true
     }
   },
   "description" : "A Kompute is a wrapper object for bare virtual machines. It consists of an instance, one to several attached volumes and 2 network adapters (a private one, a public one). This is the prefered way for creating virtual machines. IP addresses will be automatically assigned."
@@ -48093,6 +48098,7 @@ $(document).ready(function() {
   &quot;disk&quot; : 1,
   &quot;data_disk&quot; : 5,
   &quot;memory&quot; : 0,
+  &quot;uefi&quot; : true,
   &quot;ip&quot; : &quot;ip&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
@@ -57565,6 +57571,7 @@ The ID of the Kompute.
   &quot;disk&quot; : 1,
   &quot;data_disk&quot; : 5,
   &quot;memory&quot; : 0,
+  &quot;uefi&quot; : true,
   &quot;ip&quot; : &quot;ip&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
@@ -92712,6 +92719,7 @@ $(document).ready(function() {
   &quot;disk&quot; : 1,
   &quot;data_disk&quot; : 5,
   &quot;memory&quot; : 0,
+  &quot;uefi&quot; : true,
   &quot;ip&quot; : &quot;ip&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
@@ -178165,6 +178173,7 @@ $(document).ready(function() {
   &quot;disk&quot; : 1,
   &quot;data_disk&quot; : 5,
   &quot;memory&quot; : 0,
+  &quot;uefi&quot; : true,
   &quot;ip&quot; : &quot;ip&quot;,
   &quot;name&quot; : &quot;name&quot;,
   &quot;description&quot; : &quot;description&quot;,
