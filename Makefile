@@ -10,7 +10,7 @@ BUILD_DIR = build
 BIN_DIR = $(BUILD_DIR)/bin
 DOCS_DIR = docs
 TEMPLATES_DIR = $(BUILD_DIR)/templates
-NODE_DIR = node_modules
+NODE_DIR = $(BUILD_DIR)/node_modules
 
 
 
@@ -21,7 +21,6 @@ YQ_VERSION = v4.45.1
 
 TEMPLATIZE = $(SCRIPTS_DIR)/templatize.sh
 JINJA = $(BIN_DIR)/jinjanate
-YARN = $(NODE_DIR)/.bin/yarn
 GENERATOR = $(NODE_DIR)/.bin/openapi-generator-cli
 
 OPENAPI_DEFINITION = $(BUILD_DIR)/openapi.generated.yml
@@ -59,13 +58,9 @@ get-yq: build-env; $(info $(M) [Misc] Downloading yq…) @
 get-jinjanator: build-env ; $(info $(M) [Misc] Installing jinjanator…) @
 	$Q test -x $(JINJA) || $(BIN_DIR)/pip3 install jinjanator
 
-.PHONY: get-yarn
-get-yarn: ; $(info $(M) [Npm] Installing yarn…) @
-	$Q test -x $(YARN) || npm install --silent yarn
-
 .PHONY: get-openapi-generator
-get-openapi-generator: get-yarn ;$(info $(M) [Yarn] Installing openapi-generator-cli…) @
-	$Q test -x $(GENERATOR) || $(YARN) add --silent @openapitools/openapi-generator-cli
+get-openapi-generator: ; $(info $(M) [Npm] Installing openapi-generator-cli…) @
+	$Q test -x $(GENERATOR) || npm install --prefix $(BUILD_DIR) --silent @openapitools/openapi-generator-cli
 	$Q chmod a+x $(GENERATOR)
 
 .PHONY: specs
@@ -120,5 +115,4 @@ api: specs validate doc ; @
 .PHONY: clean
 clean: ; $(info $(M) Cleaning build residues…) @
 	$Q rm -rf $(BUILD_DIR)
-	$Q rm -rf $(NODE_DIR)
 	$Q rm -rf openapitools.json
