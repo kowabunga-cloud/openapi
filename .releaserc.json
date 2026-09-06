@@ -48,14 +48,9 @@
             }
         ],
         [
-            "@semantic-release/github",
+            "@semantic-release/exec",
             {
-                "assets": [
-                    { "path": "openapi.yaml", "label": "OpenAPI Specification" }
-                ],
-                "successComment": "This ${issue.pull_request ? 'PR is included' : 'issue has been resolved'} in version ${nextRelease.version} :tada:",
-                "labels": false,
-                "releasedLabels": false
+                "prepareCmd": "sed -i 's/^  version: .*/  version: ${nextRelease.version}/' src/fragments/main.yml.j2 && make"
             }
         ],
         [
@@ -69,9 +64,23 @@
             "@semantic-release/git",
             {
                 "assets": [
-                    "CHANGELOG.md"
+                    "CHANGELOG.md",
+                    "openapi.yaml",
+                    "docs/**",
+                    "src/fragments/main.yml.j2"
                 ],
                 "message": "chore: version ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+            }
+        ],
+        [
+            "@semantic-release/github",
+            {
+                "assets": [
+                    { "path": "openapi.yaml", "label": "OpenAPI Specification" }
+                ],
+                "successComment": "This ${issue.pull_request ? 'PR is included' : 'issue has been resolved'} in version ${nextRelease.version} :tada:",
+                "labels": false,
+                "releasedLabels": false
             }
         ]
     ]

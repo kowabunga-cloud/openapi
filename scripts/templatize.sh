@@ -3,6 +3,8 @@
 SRC_DIR="src"
 BUILD_DIR="build"
 
+export PATH="${BUILD_DIR}/bin:${PATH}"
+
 OPENAPI_DATA="${SRC_DIR}/data.yml"
 OPENAPI_FRAGMENTS_DIR="${SRC_DIR}/fragments"
 OPENAPI_TEMPLATES_DIR="${BUILD_DIR}/templates"

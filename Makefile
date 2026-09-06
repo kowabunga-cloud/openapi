@@ -57,7 +57,7 @@ get-yq: build-env; $(info $(M) [Misc] Downloading yq…) @
 
 .PHONY: get-jinjanator
 get-jinjanator: build-env ; $(info $(M) [Misc] Installing jinjanator…) @
-	$Q which -s $(JINJA) || $(BIN_DIR)/pip3 install jinjanator
+	$Q test -x $(JINJA) || $(BIN_DIR)/pip3 install jinjanator
 
 .PHONY: get-yarn
 get-yarn: ; $(info $(M) [Npm] Installing yarn…) @
@@ -70,7 +70,7 @@ get-openapi-generator: get-yarn ;$(info $(M) [Yarn] Installing openapi-generator
 
 .PHONY: specs
 specs: get-jinjanator get-yq ; $(info $(M) [OpenAPIv3] Merge source fragments…) @
-	$Q $(TEMPLATIZE)
+	$Q PATH="$(BIN_DIR):$$PATH" $(TEMPLATIZE)
 	$Q $(YQ) ea '. as $$item ireduce ({}; . * $$item )' $(TEMPLATES_DIR)/*.yml > $(OPENAPI_DEFINITION)
 
 .PHONY: validate
