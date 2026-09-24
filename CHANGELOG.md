@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.54.1](https://github.com/kowabunga-cloud/openapi/compare/v0.54.0...v0.54.1) (2026-09-24)
+
+### Chores
+
+* add GitHub Sponsors FUNDING.yml ([6c528c5](https://github.com/kowabunga-cloud/openapi/commit/6c528c50f14d0788fb3be151665cc8d12796fab0))
+
 ## [0.54.0](https://github.com/kowabunga-cloud/openapi/compare/v0.53.3...v0.54.0) (2026-09-06)
 
 ### Bug Fixes
