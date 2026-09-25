@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.55.0](https://github.com/kowabunga-cloud/openapi/compare/v0.54.1...v0.55.0) (2026-09-25)
+
+### Chores
+
+* update generated API spec ([f2207b7](https://github.com/kowabunga-cloud/openapi/commit/f2207b7b2b5392f539565e407b1a094704f1f97e))
+
+### Features
+
+* add Kaktus host maintenance mode ([61d0de6](https://github.com/kowabunga-cloud/openapi/commit/61d0de65f67dce52659de3453200bd70dd19ab65))
+
 ## [0.54.1](https://github.com/kowabunga-cloud/openapi/compare/v0.54.0...v0.54.1) (2026-09-24)
 
 ### Chores
