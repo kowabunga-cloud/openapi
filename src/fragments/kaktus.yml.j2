@@ -13,6 +13,7 @@ components:
 {{ oas.IntProperty('overcommit_cpu_ratio', 'The Kaktus node CPU resource over-commit ratio. Overcommitting CPU resources for VMs means allocating more virtual CPUs (vCPUs) to the virtual machines (VMs) than the physical cores available on the node. This can help optimize the utilization of the node CPU and increase the density of VMs per node', default=3) }}
 {{ oas.IntProperty('overcommit_memory_ratio', 'The Kaktus node memory resource over-commit ratio. Memory overcommitment is a concept in computing that covers the assignment of more memory to virtual computing devices (or processes) than the physical machine they are hosted, or running on, actually has', default=2) }}
 {{ oas.StringArrayProperty('agents', 'a list of existing remote agents managing the Kaktus node') }}
+{{ oas.BoolProperty('maintenance', 'Whether the Kaktus node is under maintenance. A node under maintenance keeps running its existing instances but is excluded from scheduling of newly created workloads', default=False) }}
 
 {{ oas.Schema(resources.kaktus_caps, ['cpu', 'memory']) }}
 {{ oas.ObjectProperty('cpu', 'The ' + resources.kaktus.desc + ' CPU characteristics', resources.kaktus_cpu.schema) }}
@@ -35,6 +36,14 @@ paths:
 
   /kaktus/{{ '{' + resources.kaktus.paramId + '}' }}:
 {{ oas.RUD(resources.kaktus, [resources.kaktus.tag], [resources.kaktus.paramSchema]) }}
+
+  /kaktus/{{ '{' + resources.kaktus.paramId + '}' }}/maintenance/enable:
+{{ oas.Parameters([resources.kaktus.paramSchema]) }}
+{{ oas.Patch('EnableKaktusMaintenance', resources.kaktus.desc, 'entry into maintenance mode', [resources.kaktus.tag]) }}
+
+  /kaktus/{{ '{' + resources.kaktus.paramId + '}' }}/maintenance/disable:
+{{ oas.Parameters([resources.kaktus.paramSchema]) }}
+{{ oas.Patch('DisableKaktusMaintenance', resources.kaktus.desc, 'exit from maintenance mode', [resources.kaktus.tag]) }}
 
   /kaktus/{{ '{' + resources.kaktus.paramId + '}' }}/caps:
 {{ oas.Parameters([resources.kaktus.paramSchema]) }}

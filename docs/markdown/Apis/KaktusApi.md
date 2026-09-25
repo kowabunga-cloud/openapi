@@ -6,6 +6,8 @@ All URIs are relative to */api/v1*
 |------------- | ------------- | -------------|
 | [**createKaktus**](KaktusApi.md#createKaktus) | **POST** /zone/{zoneId}/kaktus |  |
 | [**deleteKaktus**](KaktusApi.md#deleteKaktus) | **DELETE** /kaktus/{kaktusId} |  |
+| [**disableKaktusMaintenance**](KaktusApi.md#disableKaktusMaintenance) | **PATCH** /kaktus/{kaktusId}/maintenance/disable |  |
+| [**enableKaktusMaintenance**](KaktusApi.md#enableKaktusMaintenance) | **PATCH** /kaktus/{kaktusId}/maintenance/enable |  |
 | [**listKaktusInstances**](KaktusApi.md#listKaktusInstances) | **GET** /kaktus/{kaktusId}/instances |  |
 | [**listKaktuss**](KaktusApi.md#listKaktuss) | **GET** /kaktus |  |
 | [**listZoneKaktuses**](KaktusApi.md#listZoneKaktuses) | **GET** /zone/{zoneId}/kaktuses |  |
@@ -49,6 +51,60 @@ All URIs are relative to */api/v1*
 
 
     Deletes an existing Kaktus computing node.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **kaktusId** | **String**| The ID of the Kaktus computing node. | [default to null] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="disableKaktusMaintenance"></a>
+# **disableKaktusMaintenance**
+> disableKaktusMaintenance(kaktusId)
+
+
+
+    Performs a Kaktus computing node exit from maintenance mode.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **kaktusId** | **String**| The ID of the Kaktus computing node. | [default to null] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="enableKaktusMaintenance"></a>
+# **enableKaktusMaintenance**
+> enableKaktusMaintenance(kaktusId)
+
+
+
+    Performs a Kaktus computing node entry into maintenance mode.
 
 ### Parameters
 

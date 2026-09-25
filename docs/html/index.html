@@ -1234,6 +1234,11 @@ ul.nav-tabs {
         "type" : "string"
       },
       "default" : null
+    },
+    "maintenance" : {
+      "type" : "boolean",
+      "description" : "Whether the Kaktus node is under maintenance. A node under maintenance keeps running its existing instances but is excluded from scheduling of newly created workloads.",
+      "default" : false
     }
   },
   "description" : "A Kaktus (Kowabunga Affordable KVM and Tight Underneath Storage) is an hyper-converged infrastructure (HCI) bare-metal node offering computing and distributed storage capabilites."
@@ -2477,6 +2482,12 @@ ul.nav-tabs {
                     </li>
                     <li data-group="Kaktus" data-name="deleteKaktus" class="">
                       <a href="#api-Kaktus-deleteKaktus">deleteKaktus</a>
+                    </li>
+                    <li data-group="Kaktus" data-name="disableKaktusMaintenance" class="">
+                      <a href="#api-Kaktus-disableKaktusMaintenance">disableKaktusMaintenance</a>
+                    </li>
+                    <li data-group="Kaktus" data-name="enableKaktusMaintenance" class="">
+                      <a href="#api-Kaktus-enableKaktusMaintenance">enableKaktusMaintenance</a>
                     </li>
                     <li data-group="Kaktus" data-name="listKaktusInstances" class="">
                       <a href="#api-Kaktus-listKaktusInstances">listKaktusInstances</a>
@@ -24202,7 +24213,8 @@ $(document).ready(function() {
   &quot;memory_cost&quot; : &quot;&quot;,
   &quot;overcommit_cpu_ratio&quot; : 0,
   &quot;overcommit_memory_ratio&quot; : 6,
-  &quot;agents&quot; : [ &quot;agents&quot;, &quot;agents&quot; ]
+  &quot;agents&quot; : [ &quot;agents&quot;, &quot;agents&quot; ],
+  &quot;maintenance&quot; : false
 }'
 </code></pre>
                           </div>
@@ -25967,6 +25979,1428 @@ The ID of the Kaktus computing node.
                                   </script>
                                 </div>
                                 <input id='responses-Kaktus-deleteKaktus-422-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Kaktus-disableKaktusMaintenance">
+                      <article id="api-Kaktus-disableKaktusMaintenance-0" data-group="User" data-name="disableKaktusMaintenance" data-version="0">
+                        <div class="pull-left">
+                          <h1>disableKaktusMaintenance</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Performs a Kaktus computing node exit from maintenance mode.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="patch"><code><span class="pln">/kaktus/{kaktusId}/maintenance/disable</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Kaktus-disableKaktusMaintenance-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Kaktus-disableKaktusMaintenance-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Kaktus-disableKaktusMaintenance-0-dart">Dart</a></li>
+                          <li class=""><a href="#examples-Kaktus-disableKaktusMaintenance-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Kaktus-disableKaktusMaintenance-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Kaktus-disableKaktusMaintenance-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Kaktus-disableKaktusMaintenance-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Kaktus-disableKaktusMaintenance-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Kaktus-disableKaktusMaintenance-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Kaktus-disableKaktusMaintenance-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Kaktus-disableKaktusMaintenance-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Kaktus-disableKaktusMaintenance-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Kaktus-disableKaktusMaintenance-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Kaktus-disableKaktusMaintenance-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X PATCH \
+-H "X-API-Key: [[apiKey]]" \
+ -H "Authorization: Bearer [[accessToken]]" \
+ -H "Accept: application/json" \
+ "/api/v1/kaktus/{kaktusId}/maintenance/disable"
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Kaktus-disableKaktusMaintenance-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.KaktusApi;
+
+import java.io.File;
+import java.util.*;
+
+public class KaktusApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure API key authorization: ApiKeyAuth
+        ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
+        ApiKeyAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //ApiKeyAuth.setApiKeyPrefix("Token");
+
+        // Configure Bearer (JWT) access token for authorization: BearerAuth
+        HttpBearerAuth BearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("BearerAuth");
+        BearerAuth.setBearerToken("BEARER TOKEN");
+
+        // Create an instance of the API class
+        KaktusApi apiInstance = new KaktusApi();
+        String kaktusId = kaktusId_example; // String | The ID of the Kaktus computing node.
+
+        try {
+            apiInstance.disableKaktusMaintenance(kaktusId);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling KaktusApi#disableKaktusMaintenance");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Kaktus-disableKaktusMaintenance-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+final String kaktusId = new String(); // String | The ID of the Kaktus computing node.
+
+try {
+    final result = await api_instance.disableKaktusMaintenance(kaktusId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->disableKaktusMaintenance: $e\n');
+}
+
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Kaktus-disableKaktusMaintenance-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.KaktusApi;
+
+public class KaktusApiExample {
+    public static void main(String[] args) {
+        KaktusApi apiInstance = new KaktusApi();
+        String kaktusId = kaktusId_example; // String | The ID of the Kaktus computing node.
+
+        try {
+            apiInstance.disableKaktusMaintenance(kaktusId);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling KaktusApi#disableKaktusMaintenance");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Kaktus-disableKaktusMaintenance-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Kaktus-disableKaktusMaintenance-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: ApiKeyAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-Key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-Key"];
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+[apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
+
+// Create an instance of the API class
+KaktusApi *apiInstance = [[KaktusApi alloc] init];
+String *kaktusId = kaktusId_example; // The ID of the Kaktus computing node. (default to null)
+
+[apiInstance disableKaktusMaintenanceWith:kaktusId
+              completionHandler: ^(NSError* error) {
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Kaktus-disableKaktusMaintenance-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var KowabungaApi = require('kowabunga_api');
+var defaultClient = KowabungaApi.ApiClient.instance;
+
+// Configure API key authorization: ApiKeyAuth
+var ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix['X-API-Key'] = "Token";
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+var BearerAuth = defaultClient.authentications['BearerAuth'];
+BearerAuth.accessToken = "YOUR ACCESS TOKEN";
+
+// Create an instance of the API class
+var api = new KowabungaApi.KaktusApi()
+var kaktusId = kaktusId_example; // {String} The ID of the Kaktus computing node.
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.disableKaktusMaintenance(kaktusId, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Kaktus-disableKaktusMaintenance-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Kaktus-disableKaktusMaintenance-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using kowabunga.Api;
+using kowabunga.Client;
+using kowabunga.Model;
+
+namespace Example
+{
+    public class disableKaktusMaintenanceExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: ApiKeyAuth
+            Configuration.Default.ApiKey.Add("X-API-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("X-API-Key", "Bearer");
+            // Configure Bearer (JWT) access token for authorization: BearerAuth
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // Create an instance of the API class
+            var apiInstance = new KaktusApi();
+            var kaktusId = kaktusId_example;  // String | The ID of the Kaktus computing node. (default to null)
+
+            try {
+                apiInstance.disableKaktusMaintenance(kaktusId);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling KaktusApi.disableKaktusMaintenance: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Kaktus-disableKaktusMaintenance-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: ApiKeyAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setAccessToken('', 'YOUR_ACCESS_TOKEN');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\KaktusApi();
+$kaktusId = kaktusId_example; // String | The ID of the Kaktus computing node.
+
+try {
+    $api_instance->disableKaktusMaintenance($kaktusId);
+} catch (Exception $e) {
+    echo 'Exception when calling KaktusApi->disableKaktusMaintenance: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Kaktus-disableKaktusMaintenance-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::KaktusApi;
+
+# Configure API key authorization: ApiKeyAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-Key'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-Key'} = "Bearer";
+
+# Configure Bearer (JWT) access token for authorization: BearerAuth
+$WWW::OPenAPIClient::Configuration::access_token = 'YOUR_ACCESS_TOKEN';
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::KaktusApi->new();
+my $kaktusId = kaktusId_example; # String | The ID of the Kaktus computing node.
+
+eval {
+    $api_instance->disableKaktusMaintenance(kaktusId => $kaktusId);
+};
+if ($@) {
+    warn "Exception when calling KaktusApi->disableKaktusMaintenance: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Kaktus-disableKaktusMaintenance-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: ApiKeyAuth
+openapi_client.configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['X-API-Key'] = 'Bearer'
+
+# Configure Bearer (JWT) access token for authorization: BearerAuth
+openapi_client.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Create an instance of the API class
+api_instance = openapi_client.KaktusApi()
+kaktusId = kaktusId_example # String | The ID of the Kaktus computing node. (default to null)
+
+try:
+    api_instance.disable_kaktus_maintenance(kaktusId)
+except ApiException as e:
+    print("Exception when calling KaktusApi->disableKaktusMaintenance: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Kaktus-disableKaktusMaintenance-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate KaktusApi;
+
+pub fn main() {
+    let kaktusId = kaktusId_example; // String
+
+    let mut context = KaktusApi::Context::default();
+    let result = client.disableKaktusMaintenance(kaktusId, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">kaktusId*</td>
+<td>
+
+
+    <div id="d2e199_disableKaktusMaintenance_kaktusId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The ID of the Kaktus computing node.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Kaktus-disableKaktusMaintenance-title-200"></h3>
+                            <p id="examples-Kaktus-disableKaktusMaintenance-description-200" class="marked"></p>
+                            <script>
+                              var responseKaktus200_description = `The Kaktus computing node exit from maintenance mode is successful.`;
+                              var responseKaktus200_description_break = responseKaktus200_description.indexOf('\n');
+                              if (responseKaktus200_description_break == -1) {
+                                $("#examples-Kaktus-disableKaktusMaintenance-title-200").text("Status: 200 - " + responseKaktus200_description);
+                              } else {
+                                $("#examples-Kaktus-disableKaktusMaintenance-title-200").text("Status: 200 - " + responseKaktus200_description.substring(0, responseKaktus200_description_break));
+                                $("#examples-Kaktus-disableKaktusMaintenance-description-200").html(responseKaktus200_description.substring(responseKaktus200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Kaktus-disableKaktusMaintenance-200" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Kaktus-disableKaktusMaintenance-200-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Kaktus-disableKaktusMaintenance-200-schema">
+                                <div id="responses-Kaktus-disableKaktusMaintenance-schema-200" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "The Kaktus computing node exit from maintenance mode is successful."
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Kaktus-disableKaktusMaintenance-200-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Kaktus-disableKaktusMaintenance-schema-200');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Kaktus-disableKaktusMaintenance-200-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Kaktus-disableKaktusMaintenance-title-401"></h3>
+                            <p id="examples-Kaktus-disableKaktusMaintenance-description-401" class="marked"></p>
+                            <script>
+                              var responseKaktus401_description = `Unauthorized error: Unauthorized resource access (wrong auth/credentials).`;
+                              var responseKaktus401_description_break = responseKaktus401_description.indexOf('\n');
+                              if (responseKaktus401_description_break == -1) {
+                                $("#examples-Kaktus-disableKaktusMaintenance-title-401").text("Status: 401 - " + responseKaktus401_description);
+                              } else {
+                                $("#examples-Kaktus-disableKaktusMaintenance-title-401").text("Status: 401 - " + responseKaktus401_description.substring(0, responseKaktus401_description_break));
+                                $("#examples-Kaktus-disableKaktusMaintenance-description-401").html(responseKaktus401_description.substring(responseKaktus401_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Kaktus-disableKaktusMaintenance-401" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Kaktus-disableKaktusMaintenance-401-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Kaktus-disableKaktusMaintenance-401-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Kaktus-disableKaktusMaintenance-401-schema">
+                                <div id="responses-Kaktus-disableKaktusMaintenance-schema-401" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Unauthorized error: Unauthorized resource access (wrong auth/credentials).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorUnauthorized"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Kaktus-disableKaktusMaintenance-401-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Kaktus-disableKaktusMaintenance-schema-401');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Kaktus-disableKaktusMaintenance-401-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Kaktus-disableKaktusMaintenance-title-403"></h3>
+                            <p id="examples-Kaktus-disableKaktusMaintenance-description-403" class="marked"></p>
+                            <script>
+                              var responseKaktus403_description = `Forbidden error: Forbidden resource access (restricted access control).`;
+                              var responseKaktus403_description_break = responseKaktus403_description.indexOf('\n');
+                              if (responseKaktus403_description_break == -1) {
+                                $("#examples-Kaktus-disableKaktusMaintenance-title-403").text("Status: 403 - " + responseKaktus403_description);
+                              } else {
+                                $("#examples-Kaktus-disableKaktusMaintenance-title-403").text("Status: 403 - " + responseKaktus403_description.substring(0, responseKaktus403_description_break));
+                                $("#examples-Kaktus-disableKaktusMaintenance-description-403").html(responseKaktus403_description.substring(responseKaktus403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Kaktus-disableKaktusMaintenance-403" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Kaktus-disableKaktusMaintenance-403-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Kaktus-disableKaktusMaintenance-403-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Kaktus-disableKaktusMaintenance-403-schema">
+                                <div id="responses-Kaktus-disableKaktusMaintenance-schema-403" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Forbidden error: Forbidden resource access (restricted access control).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorForbidden"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Kaktus-disableKaktusMaintenance-403-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Kaktus-disableKaktusMaintenance-schema-403');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Kaktus-disableKaktusMaintenance-403-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Kaktus-disableKaktusMaintenance-title-404"></h3>
+                            <p id="examples-Kaktus-disableKaktusMaintenance-description-404" class="marked"></p>
+                            <script>
+                              var responseKaktus404_description = `NotFound error: Specified resource does not exist.`;
+                              var responseKaktus404_description_break = responseKaktus404_description.indexOf('\n');
+                              if (responseKaktus404_description_break == -1) {
+                                $("#examples-Kaktus-disableKaktusMaintenance-title-404").text("Status: 404 - " + responseKaktus404_description);
+                              } else {
+                                $("#examples-Kaktus-disableKaktusMaintenance-title-404").text("Status: 404 - " + responseKaktus404_description.substring(0, responseKaktus404_description_break));
+                                $("#examples-Kaktus-disableKaktusMaintenance-description-404").html(responseKaktus404_description.substring(responseKaktus404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Kaktus-disableKaktusMaintenance-404" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Kaktus-disableKaktusMaintenance-404-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Kaktus-disableKaktusMaintenance-404-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Kaktus-disableKaktusMaintenance-404-schema">
+                                <div id="responses-Kaktus-disableKaktusMaintenance-schema-404" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "NotFound error: Specified resource does not exist.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorNotFound"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Kaktus-disableKaktusMaintenance-404-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Kaktus-disableKaktusMaintenance-schema-404');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Kaktus-disableKaktusMaintenance-404-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Kaktus-disableKaktusMaintenance-title-422"></h3>
+                            <p id="examples-Kaktus-disableKaktusMaintenance-description-422" class="marked"></p>
+                            <script>
+                              var responseKaktus422_description = `UnprocessableEntity error: Server can't process request.`;
+                              var responseKaktus422_description_break = responseKaktus422_description.indexOf('\n');
+                              if (responseKaktus422_description_break == -1) {
+                                $("#examples-Kaktus-disableKaktusMaintenance-title-422").text("Status: 422 - " + responseKaktus422_description);
+                              } else {
+                                $("#examples-Kaktus-disableKaktusMaintenance-title-422").text("Status: 422 - " + responseKaktus422_description.substring(0, responseKaktus422_description_break));
+                                $("#examples-Kaktus-disableKaktusMaintenance-description-422").html(responseKaktus422_description.substring(responseKaktus422_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Kaktus-disableKaktusMaintenance-422" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Kaktus-disableKaktusMaintenance-422-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Kaktus-disableKaktusMaintenance-422-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Kaktus-disableKaktusMaintenance-422-schema">
+                                <div id="responses-Kaktus-disableKaktusMaintenance-schema-422" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "UnprocessableEntity error: Server can't process request.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorUnprocessableEntity"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Kaktus-disableKaktusMaintenance-422-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Kaktus-disableKaktusMaintenance-schema-422');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Kaktus-disableKaktusMaintenance-422-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Kaktus-enableKaktusMaintenance">
+                      <article id="api-Kaktus-enableKaktusMaintenance-0" data-group="User" data-name="enableKaktusMaintenance" data-version="0">
+                        <div class="pull-left">
+                          <h1>enableKaktusMaintenance</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Performs a Kaktus computing node entry into maintenance mode.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="patch"><code><span class="pln">/kaktus/{kaktusId}/maintenance/enable</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Kaktus-enableKaktusMaintenance-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Kaktus-enableKaktusMaintenance-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Kaktus-enableKaktusMaintenance-0-dart">Dart</a></li>
+                          <li class=""><a href="#examples-Kaktus-enableKaktusMaintenance-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Kaktus-enableKaktusMaintenance-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Kaktus-enableKaktusMaintenance-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Kaktus-enableKaktusMaintenance-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Kaktus-enableKaktusMaintenance-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Kaktus-enableKaktusMaintenance-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Kaktus-enableKaktusMaintenance-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Kaktus-enableKaktusMaintenance-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Kaktus-enableKaktusMaintenance-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Kaktus-enableKaktusMaintenance-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Kaktus-enableKaktusMaintenance-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X PATCH \
+-H "X-API-Key: [[apiKey]]" \
+ -H "Authorization: Bearer [[accessToken]]" \
+ -H "Accept: application/json" \
+ "/api/v1/kaktus/{kaktusId}/maintenance/enable"
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Kaktus-enableKaktusMaintenance-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.KaktusApi;
+
+import java.io.File;
+import java.util.*;
+
+public class KaktusApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure API key authorization: ApiKeyAuth
+        ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
+        ApiKeyAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //ApiKeyAuth.setApiKeyPrefix("Token");
+
+        // Configure Bearer (JWT) access token for authorization: BearerAuth
+        HttpBearerAuth BearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("BearerAuth");
+        BearerAuth.setBearerToken("BEARER TOKEN");
+
+        // Create an instance of the API class
+        KaktusApi apiInstance = new KaktusApi();
+        String kaktusId = kaktusId_example; // String | The ID of the Kaktus computing node.
+
+        try {
+            apiInstance.enableKaktusMaintenance(kaktusId);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling KaktusApi#enableKaktusMaintenance");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Kaktus-enableKaktusMaintenance-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+final String kaktusId = new String(); // String | The ID of the Kaktus computing node.
+
+try {
+    final result = await api_instance.enableKaktusMaintenance(kaktusId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->enableKaktusMaintenance: $e\n');
+}
+
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Kaktus-enableKaktusMaintenance-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.KaktusApi;
+
+public class KaktusApiExample {
+    public static void main(String[] args) {
+        KaktusApi apiInstance = new KaktusApi();
+        String kaktusId = kaktusId_example; // String | The ID of the Kaktus computing node.
+
+        try {
+            apiInstance.enableKaktusMaintenance(kaktusId);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling KaktusApi#enableKaktusMaintenance");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Kaktus-enableKaktusMaintenance-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Kaktus-enableKaktusMaintenance-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: ApiKeyAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-Key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-Key"];
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+[apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
+
+// Create an instance of the API class
+KaktusApi *apiInstance = [[KaktusApi alloc] init];
+String *kaktusId = kaktusId_example; // The ID of the Kaktus computing node. (default to null)
+
+[apiInstance enableKaktusMaintenanceWith:kaktusId
+              completionHandler: ^(NSError* error) {
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Kaktus-enableKaktusMaintenance-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var KowabungaApi = require('kowabunga_api');
+var defaultClient = KowabungaApi.ApiClient.instance;
+
+// Configure API key authorization: ApiKeyAuth
+var ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix['X-API-Key'] = "Token";
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+var BearerAuth = defaultClient.authentications['BearerAuth'];
+BearerAuth.accessToken = "YOUR ACCESS TOKEN";
+
+// Create an instance of the API class
+var api = new KowabungaApi.KaktusApi()
+var kaktusId = kaktusId_example; // {String} The ID of the Kaktus computing node.
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.enableKaktusMaintenance(kaktusId, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Kaktus-enableKaktusMaintenance-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Kaktus-enableKaktusMaintenance-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using kowabunga.Api;
+using kowabunga.Client;
+using kowabunga.Model;
+
+namespace Example
+{
+    public class enableKaktusMaintenanceExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: ApiKeyAuth
+            Configuration.Default.ApiKey.Add("X-API-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("X-API-Key", "Bearer");
+            // Configure Bearer (JWT) access token for authorization: BearerAuth
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // Create an instance of the API class
+            var apiInstance = new KaktusApi();
+            var kaktusId = kaktusId_example;  // String | The ID of the Kaktus computing node. (default to null)
+
+            try {
+                apiInstance.enableKaktusMaintenance(kaktusId);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling KaktusApi.enableKaktusMaintenance: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Kaktus-enableKaktusMaintenance-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: ApiKeyAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure Bearer (JWT) access token for authorization: BearerAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setAccessToken('', 'YOUR_ACCESS_TOKEN');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\KaktusApi();
+$kaktusId = kaktusId_example; // String | The ID of the Kaktus computing node.
+
+try {
+    $api_instance->enableKaktusMaintenance($kaktusId);
+} catch (Exception $e) {
+    echo 'Exception when calling KaktusApi->enableKaktusMaintenance: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Kaktus-enableKaktusMaintenance-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::KaktusApi;
+
+# Configure API key authorization: ApiKeyAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-Key'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-Key'} = "Bearer";
+
+# Configure Bearer (JWT) access token for authorization: BearerAuth
+$WWW::OPenAPIClient::Configuration::access_token = 'YOUR_ACCESS_TOKEN';
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::KaktusApi->new();
+my $kaktusId = kaktusId_example; # String | The ID of the Kaktus computing node.
+
+eval {
+    $api_instance->enableKaktusMaintenance(kaktusId => $kaktusId);
+};
+if ($@) {
+    warn "Exception when calling KaktusApi->enableKaktusMaintenance: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Kaktus-enableKaktusMaintenance-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: ApiKeyAuth
+openapi_client.configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['X-API-Key'] = 'Bearer'
+
+# Configure Bearer (JWT) access token for authorization: BearerAuth
+openapi_client.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Create an instance of the API class
+api_instance = openapi_client.KaktusApi()
+kaktusId = kaktusId_example # String | The ID of the Kaktus computing node. (default to null)
+
+try:
+    api_instance.enable_kaktus_maintenance(kaktusId)
+except ApiException as e:
+    print("Exception when calling KaktusApi->enableKaktusMaintenance: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Kaktus-enableKaktusMaintenance-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate KaktusApi;
+
+pub fn main() {
+    let kaktusId = kaktusId_example; // String
+
+    let mut context = KaktusApi::Context::default();
+    let result = client.enableKaktusMaintenance(kaktusId, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">kaktusId*</td>
+<td>
+
+
+    <div id="d2e199_enableKaktusMaintenance_kaktusId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The ID of the Kaktus computing node.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Kaktus-enableKaktusMaintenance-title-200"></h3>
+                            <p id="examples-Kaktus-enableKaktusMaintenance-description-200" class="marked"></p>
+                            <script>
+                              var responseKaktus200_description = `The Kaktus computing node entry into maintenance mode is successful.`;
+                              var responseKaktus200_description_break = responseKaktus200_description.indexOf('\n');
+                              if (responseKaktus200_description_break == -1) {
+                                $("#examples-Kaktus-enableKaktusMaintenance-title-200").text("Status: 200 - " + responseKaktus200_description);
+                              } else {
+                                $("#examples-Kaktus-enableKaktusMaintenance-title-200").text("Status: 200 - " + responseKaktus200_description.substring(0, responseKaktus200_description_break));
+                                $("#examples-Kaktus-enableKaktusMaintenance-description-200").html(responseKaktus200_description.substring(responseKaktus200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Kaktus-enableKaktusMaintenance-200" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Kaktus-enableKaktusMaintenance-200-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Kaktus-enableKaktusMaintenance-200-schema">
+                                <div id="responses-Kaktus-enableKaktusMaintenance-schema-200" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "The Kaktus computing node entry into maintenance mode is successful."
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Kaktus-enableKaktusMaintenance-200-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Kaktus-enableKaktusMaintenance-schema-200');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Kaktus-enableKaktusMaintenance-200-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Kaktus-enableKaktusMaintenance-title-401"></h3>
+                            <p id="examples-Kaktus-enableKaktusMaintenance-description-401" class="marked"></p>
+                            <script>
+                              var responseKaktus401_description = `Unauthorized error: Unauthorized resource access (wrong auth/credentials).`;
+                              var responseKaktus401_description_break = responseKaktus401_description.indexOf('\n');
+                              if (responseKaktus401_description_break == -1) {
+                                $("#examples-Kaktus-enableKaktusMaintenance-title-401").text("Status: 401 - " + responseKaktus401_description);
+                              } else {
+                                $("#examples-Kaktus-enableKaktusMaintenance-title-401").text("Status: 401 - " + responseKaktus401_description.substring(0, responseKaktus401_description_break));
+                                $("#examples-Kaktus-enableKaktusMaintenance-description-401").html(responseKaktus401_description.substring(responseKaktus401_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Kaktus-enableKaktusMaintenance-401" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Kaktus-enableKaktusMaintenance-401-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Kaktus-enableKaktusMaintenance-401-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Kaktus-enableKaktusMaintenance-401-schema">
+                                <div id="responses-Kaktus-enableKaktusMaintenance-schema-401" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Unauthorized error: Unauthorized resource access (wrong auth/credentials).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorUnauthorized"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Kaktus-enableKaktusMaintenance-401-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Kaktus-enableKaktusMaintenance-schema-401');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Kaktus-enableKaktusMaintenance-401-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Kaktus-enableKaktusMaintenance-title-403"></h3>
+                            <p id="examples-Kaktus-enableKaktusMaintenance-description-403" class="marked"></p>
+                            <script>
+                              var responseKaktus403_description = `Forbidden error: Forbidden resource access (restricted access control).`;
+                              var responseKaktus403_description_break = responseKaktus403_description.indexOf('\n');
+                              if (responseKaktus403_description_break == -1) {
+                                $("#examples-Kaktus-enableKaktusMaintenance-title-403").text("Status: 403 - " + responseKaktus403_description);
+                              } else {
+                                $("#examples-Kaktus-enableKaktusMaintenance-title-403").text("Status: 403 - " + responseKaktus403_description.substring(0, responseKaktus403_description_break));
+                                $("#examples-Kaktus-enableKaktusMaintenance-description-403").html(responseKaktus403_description.substring(responseKaktus403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Kaktus-enableKaktusMaintenance-403" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Kaktus-enableKaktusMaintenance-403-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Kaktus-enableKaktusMaintenance-403-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Kaktus-enableKaktusMaintenance-403-schema">
+                                <div id="responses-Kaktus-enableKaktusMaintenance-schema-403" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "Forbidden error: Forbidden resource access (restricted access control).",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorForbidden"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Kaktus-enableKaktusMaintenance-403-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Kaktus-enableKaktusMaintenance-schema-403');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Kaktus-enableKaktusMaintenance-403-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Kaktus-enableKaktusMaintenance-title-404"></h3>
+                            <p id="examples-Kaktus-enableKaktusMaintenance-description-404" class="marked"></p>
+                            <script>
+                              var responseKaktus404_description = `NotFound error: Specified resource does not exist.`;
+                              var responseKaktus404_description_break = responseKaktus404_description.indexOf('\n');
+                              if (responseKaktus404_description_break == -1) {
+                                $("#examples-Kaktus-enableKaktusMaintenance-title-404").text("Status: 404 - " + responseKaktus404_description);
+                              } else {
+                                $("#examples-Kaktus-enableKaktusMaintenance-title-404").text("Status: 404 - " + responseKaktus404_description.substring(0, responseKaktus404_description_break));
+                                $("#examples-Kaktus-enableKaktusMaintenance-description-404").html(responseKaktus404_description.substring(responseKaktus404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Kaktus-enableKaktusMaintenance-404" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Kaktus-enableKaktusMaintenance-404-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Kaktus-enableKaktusMaintenance-404-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Kaktus-enableKaktusMaintenance-404-schema">
+                                <div id="responses-Kaktus-enableKaktusMaintenance-schema-404" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "NotFound error: Specified resource does not exist.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorNotFound"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Kaktus-enableKaktusMaintenance-404-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Kaktus-enableKaktusMaintenance-schema-404');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Kaktus-enableKaktusMaintenance-404-schema-data' type='hidden' value=''></input>
+                              </div>
+                            </div>
+                            <h3 id="examples-Kaktus-enableKaktusMaintenance-title-422"></h3>
+                            <p id="examples-Kaktus-enableKaktusMaintenance-description-422" class="marked"></p>
+                            <script>
+                              var responseKaktus422_description = `UnprocessableEntity error: Server can't process request.`;
+                              var responseKaktus422_description_break = responseKaktus422_description.indexOf('\n');
+                              if (responseKaktus422_description_break == -1) {
+                                $("#examples-Kaktus-enableKaktusMaintenance-title-422").text("Status: 422 - " + responseKaktus422_description);
+                              } else {
+                                $("#examples-Kaktus-enableKaktusMaintenance-title-422").text("Status: 422 - " + responseKaktus422_description.substring(0, responseKaktus422_description_break));
+                                $("#examples-Kaktus-enableKaktusMaintenance-description-422").html(responseKaktus422_description.substring(responseKaktus422_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Kaktus-enableKaktusMaintenance-422" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Kaktus-enableKaktusMaintenance-422-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Kaktus-enableKaktusMaintenance-422-wrapper" style='margin-bottom: 10px;'>
+                              <div class="tab-pane active" id="responses-Kaktus-enableKaktusMaintenance-422-schema">
+                                <div id="responses-Kaktus-enableKaktusMaintenance-schema-422" class="exampleStyle">
+                                  <script>
+                                    $(document).ready(function() {
+                                      var schemaWrapper = {
+  "description" : "UnprocessableEntity error: Server can't process request.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ApiErrorUnprocessableEntity"
+      }
+    }
+  }
+};
+                                      var schema = findNode('schema',schemaWrapper).schema;
+                                      if (!schema) {
+                                        schema = schemaWrapper.schema;
+                                      }
+                                      if (schema == null) {
+                                        return;
+                                      }
+                                      if (schema.$ref != null) {
+                                        schema = defsParser.$refs.get(schema.$ref);
+                                        if (schema.properties != null) {
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        }
+                                      } else if (schema.items != null && schema.items.$ref != null) {
+                                        schema.items = defsParser.$refs.get(schema.items.$ref);
+                                      } else {
+                                        schemaWrapper.definitions = Object.assign({}, defs);
+                                        $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                          console.log(err);
+                                        });
+                                      }
+
+                                      var view = new JSONSchemaView(schema, 3);
+                                      $('#responses-Kaktus-enableKaktusMaintenance-422-schema-data').val(JSON.stringify(schema));
+                                      var result = $('#responses-Kaktus-enableKaktusMaintenance-schema-422');
+                                      result.empty();
+                                      result.append(view.render());
+                                    });
+                                  </script>
+                                </div>
+                                <input id='responses-Kaktus-enableKaktusMaintenance-422-schema-data' type='hidden' value=''></input>
                               </div>
                             </div>
                         </article>
@@ -29183,7 +30617,8 @@ The ID of the Kaktus computing node.
   &quot;memory_cost&quot; : &quot;&quot;,
   &quot;overcommit_cpu_ratio&quot; : 0,
   &quot;overcommit_memory_ratio&quot; : 6,
-  &quot;agents&quot; : [ &quot;agents&quot;, &quot;agents&quot; ]
+  &quot;agents&quot; : [ &quot;agents&quot;, &quot;agents&quot; ],
+  &quot;maintenance&quot; : false
 }'
 </code></pre>
                           </div>
@@ -175698,7 +177133,8 @@ $(document).ready(function() {
   &quot;memory_cost&quot; : &quot;&quot;,
   &quot;overcommit_cpu_ratio&quot; : 0,
   &quot;overcommit_memory_ratio&quot; : 6,
-  &quot;agents&quot; : [ &quot;agents&quot;, &quot;agents&quot; ]
+  &quot;agents&quot; : [ &quot;agents&quot;, &quot;agents&quot; ],
+  &quot;maintenance&quot; : false
 }'
 </code></pre>
                           </div>

@@ -37,6 +37,8 @@ All URIs are relative to */api/v1*
 *InstanceApi* | [**updateInstance**](Apis/InstanceApi.md#updateInstance) | **PUT** /instance/{instanceId} | Updates a virtual machine instance configuration. |
 | *KaktusApi* | [**createKaktus**](Apis/KaktusApi.md#createKaktus) | **POST** /zone/{zoneId}/kaktus | Creates a new Kaktus computing node. |
 *KaktusApi* | [**deleteKaktus**](Apis/KaktusApi.md#deleteKaktus) | **DELETE** /kaktus/{kaktusId} | Deletes an existing Kaktus computing node. |
+*KaktusApi* | [**disableKaktusMaintenance**](Apis/KaktusApi.md#disableKaktusMaintenance) | **PATCH** /kaktus/{kaktusId}/maintenance/disable | Performs a Kaktus computing node exit from maintenance mode. |
+*KaktusApi* | [**enableKaktusMaintenance**](Apis/KaktusApi.md#enableKaktusMaintenance) | **PATCH** /kaktus/{kaktusId}/maintenance/enable | Performs a Kaktus computing node entry into maintenance mode. |
 *KaktusApi* | [**listKaktusInstances**](Apis/KaktusApi.md#listKaktusInstances) | **GET** /kaktus/{kaktusId}/instances | Returns the IDs of virtual machine instance objects. |
 *KaktusApi* | [**listKaktuss**](Apis/KaktusApi.md#listKaktuss) | **GET** /kaktus | Returns the IDs of Kaktus computing node objects. |
 *KaktusApi* | [**listZoneKaktuses**](Apis/KaktusApi.md#listZoneKaktuses) | **GET** /zone/{zoneId}/kaktuses | Returns the IDs of Kaktus computing node objects. |

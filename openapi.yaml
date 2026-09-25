@@ -770,6 +770,48 @@ paths:
           $ref: "#/components/responses/InsufficientResource"
       tags:
       - kaktus
+  /kaktus/{kaktusId}/maintenance/enable:
+    parameters:
+    - $ref: "#/components/parameters/KaktusID"
+    patch:
+      description: Performs a Kaktus computing node entry into maintenance mode.
+      operationId: EnableKaktusMaintenance
+      parameters:
+      - $ref: "#/components/parameters/KaktusID"
+      responses:
+        "200":
+          description: The Kaktus computing node entry into maintenance mode is successful.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+      tags:
+      - kaktus
+  /kaktus/{kaktusId}/maintenance/disable:
+    parameters:
+    - $ref: "#/components/parameters/KaktusID"
+    patch:
+      description: Performs a Kaktus computing node exit from maintenance mode.
+      operationId: DisableKaktusMaintenance
+      parameters:
+      - $ref: "#/components/parameters/KaktusID"
+      responses:
+        "200":
+          description: The Kaktus computing node exit from maintenance mode is successful.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+      tags:
+      - kaktus
   /kaktus/{kaktusId}/caps:
     get:
       description: Returns a Kaktus computing node capability.
@@ -5123,6 +5165,7 @@ components:
         agents:
         - agents
         - agents
+        maintenance: false
       properties:
         id:
           description: The Kaktus computing node ID (auto-generated).
@@ -5164,6 +5207,12 @@ components:
             type: string
           type: array
           default: null
+        maintenance:
+          default: false
+          description: Whether the Kaktus node is under maintenance. A node under
+            maintenance keeps running its existing instances but is excluded from
+            scheduling of newly created workloads.
+          type: boolean
       required:
       - agents
       - name
