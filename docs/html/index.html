@@ -1351,8 +1351,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to forward public traffic to.",
-      "default" : "tcp",
-      "enum" : [ "tcp", "udp" ]
+      "enum" : [ "tcp", "udp" ],
+      "default" : "tcp"
     },
     "ports" : {
       "type" : "string",
@@ -1374,8 +1374,8 @@ ul.nav-tabs {
     "egress_policy" : {
       "type" : "string",
       "description" : "The default public traffic egress policy.",
-      "default" : "accept",
-      "enum" : [ "accept", "drop" ]
+      "enum" : [ "accept", "drop" ],
+      "default" : "accept"
     },
     "egress" : {
       "type" : "array",
@@ -1399,8 +1399,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to accept/drop public traffic to.",
-      "default" : "tcp",
-      "enum" : [ "tcp", "udp" ]
+      "enum" : [ "tcp", "udp" ],
+      "default" : "tcp"
     },
     "ports" : {
       "type" : "string",
@@ -1420,8 +1420,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to accept public traffic from.",
-      "default" : "tcp",
-      "enum" : [ "tcp", "udp" ]
+      "enum" : [ "tcp", "udp" ],
+      "default" : "tcp"
     },
     "ports" : {
       "type" : "string",
@@ -1464,8 +1464,8 @@ ul.nav-tabs {
     "dpd_timeout_action" : {
       "type" : "string",
       "description" : "The Kawaii IPsec connection Dead Peer Detection Action (clear,restart or trap).",
-      "default" : "restart",
-      "enum" : [ "clear", "restart", "start" ]
+      "enum" : [ "clear", "restart", "start" ],
+      "default" : "restart"
     },
     "dpd_timeout" : {
       "type" : "string",
@@ -1475,8 +1475,8 @@ ul.nav-tabs {
     "start_action" : {
       "type" : "string",
       "description" : "The Kawaii IPsec connection start action (none, start, trap).",
-      "default" : "start",
-      "enum" : [ "none", "start", "trap" ]
+      "enum" : [ "none", "start", "trap" ],
+      "default" : "start"
     },
     "rekey_time" : {
       "type" : "string",
@@ -1588,8 +1588,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to forward public traffic to.",
-      "default" : "tcp",
-      "enum" : [ "tcp", "udp" ]
+      "enum" : [ "tcp", "udp" ],
+      "default" : "tcp"
     },
     "ports" : {
       "type" : "string",
@@ -1622,8 +1622,8 @@ ul.nav-tabs {
     "policy" : {
       "type" : "string",
       "description" : "The default VPC traffic forwarding policy.",
-      "default" : "drop",
-      "enum" : [ "accept", "drop" ]
+      "enum" : [ "accept", "drop" ],
+      "default" : "drop"
     },
     "ingress" : {
       "type" : "array",
@@ -1795,8 +1795,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to be exposed.",
-      "default" : "tcp",
-      "enum" : [ "tcp", "udp" ]
+      "enum" : [ "tcp", "udp" ],
+      "default" : "tcp"
     },
     "backends" : {
       "description" : "The Konvey (Kowabunga Network Load-Balancer) list of load-balanced backends.",
@@ -1825,8 +1825,8 @@ ul.nav-tabs {
     "access" : {
       "type" : "string",
       "description" : "The Kylo volume access type.",
-      "default" : "RW",
-      "enum" : [ "RO", "RW" ]
+      "enum" : [ "RO", "RW" ],
+      "default" : "RW"
     },
     "protocols" : {
       "type" : "array",
@@ -2167,8 +2167,8 @@ ul.nav-tabs {
     "application" : {
       "type" : "string",
       "description" : "Optional application service type.",
-      "default" : "user",
-      "enum" : [ "ceph", "user" ]
+      "enum" : [ "ceph", "user" ],
+      "default" : "user"
     }
   },
   "description" : "A network subnet."
@@ -2217,8 +2217,8 @@ ul.nav-tabs {
     "os" : {
       "type" : "string",
       "description" : "Type of operating system if OS kind (useful to determine cloud-init parameters for instance).",
-      "default" : "linux",
-      "enum" : [ "linux", "windows" ]
+      "enum" : [ "linux", "windows" ],
+      "default" : "linux"
     },
     "source" : {
       "type" : "string",
