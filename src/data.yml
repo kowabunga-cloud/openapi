@@ -43,6 +43,15 @@ resources:
   instance_ra:
     desc: virtual machine instance remote access characteristics
     schema: InstanceRemoteAccess
+  kmotion_plan_request:
+    desc: virtual machine instance kMotion plan request
+    schema: KMotionPlanRequest
+  kmotion_plan:
+    desc: virtual machine instance kMotion plan
+    schema: KMotionPlan
+  kmotion_commit_request:
+    desc: virtual machine instance kMotion commit request
+    schema: KMotionCommitRequest
   ip_range:
     desc: reserved IPv4 addresses pool range, non-addressable by Kowabunga
     schema: IpRange

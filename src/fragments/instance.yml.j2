@@ -13,6 +13,7 @@ components:
 {{ oas.StringArrayProperty('adapters', 'a list of existing network adapters to be connected to the instance') }}
 {{ oas.StringArrayProperty('volumes', 'volumes list of existing storage volumes (i.e. disks) to be connected to the instance') }}
 {{ oas.BoolProperty('uefi', 'enable UEFI secure firmware (vs. legacy BIOS)', default=True) }}
+{{ oas.BoolProperty('kmotion_enabled', 'Whether kMotion (live/cold host migration) is enabled for the ' + resources.instance.desc + '. When disabled, the instance remains bound to its original hosting node', default=True) }}
 
 {{ oas.Schema(resources.instance_state, ['state', 'reason']) }}
 {{ oas.StringProperty('state', 'The ' + resources.instance.desc + ' state') }}
@@ -20,6 +21,21 @@ components:
 
 {{ oas.Schema(resources.instance_ra, ['url']) }}
 {{ oas.StringProperty('url', 'The ' + resources.instance.desc + ' remote access URL') }}
+
+{{ oas.Schema(resources.kmotion_plan_request) }}
+{{ oas.StringProperty('destination', 'How the destination Kaktus computing node must be elected. Use "manual" to explicitly target a given node (see kaktus), "zone" to automatically elect the least busy node within the instance own availability zone, "region" to automatically elect the least busy node anywhere within the instance region, or "auto" to let Kowabunga fully decide the best possible destination across the region, regardless of the number of availability zones it contains', ['manual', 'zone', 'region', 'auto'], 'auto') }}
+{{ oas.StringProperty('kaktus', 'The explicit target Kaktus computing node ID to kMotion the instance to. Only used (and required) when destination is set to manual') }}
+{{ oas.BoolProperty('live', 'Whether the kMotion must be performed live, without any service interruption, or the instance can instead be shutdown and restarted on its new host', default=True) }}
+
+{{ oas.Schema(resources.kmotion_plan, ['instance', 'source', 'target', 'live']) }}
+{{ oas.StringProperty('id', 'The kMotion plan ID (auto-generated)') }}
+{{ oas.StringProperty('instance', 'The ID of the ' + resources.instance.desc + ' this kMotion plan applies to') }}
+{{ oas.StringProperty('source', 'The ID of the Kaktus computing node currently hosting the instance') }}
+{{ oas.StringProperty('target', 'The ID of the Kaktus computing node elected to host the instance once the kMotion completes') }}
+{{ oas.BoolProperty('live', 'Whether the plan is for a live kMotion, without any service interruption, or the instance will be shutdown and restarted on its new host') }}
+
+{{ oas.Schema(resources.kmotion_commit_request, ['plan']) }}
+{{ oas.StringProperty('plan', 'The ID of the previously computed kMotion plan (see kMotion plan webservice) to execute') }}
 
   parameters:
 {{ oas.PathParamID(resources.instance) }}
@@ -66,3 +82,26 @@ paths:
   /instance/{{ '{' + resources.instance.paramId + '}' }}/connect:
 {{ oas.Parameters([resources.instance.paramSchema]) }}
 {{ oas.Read('ReadInstanceRemoteConnection', resources.instance_ra.schema, resources.instance_ra.desc, [resources.instance.tag]) }}
+
+  /instance/{{ '{' + resources.instance.paramId + '}' }}/kmotion/plan:
+{{ oas.Parameters([resources.instance.paramSchema]) }}
+    post:
+{{ oas.Tags([resources.instance.tag]) }}
+      description: Computes a kMotion plan for the {{ resources.instance.desc }}, electing the best destination Kaktus computing node to host it.
+      operationId: PlanInstanceKMotion
+{{ oas.Payload(resources.kmotion_plan_request.schema) }}
+      responses:
+{{ oas.CreateOneResource(resources.kmotion_plan.schema, resources.kmotion_plan.desc) }}
+{{ oas.ErrorsCreate() }}
+
+  /instance/{{ '{' + resources.instance.paramId + '}' }}/kmotion/commit:
+{{ oas.Parameters([resources.instance.paramSchema]) }}
+    patch:
+{{ oas.Tags([resources.instance.tag]) }}
+      description: Commits a previously computed kMotion plan, performing the actual {{ resources.instance.desc }} host kMotion.
+      operationId: CommitInstanceKMotion
+{{ oas.Payload(resources.kmotion_commit_request.schema) }}
+      responses:
+{{ oas.ResponseOk('The ' + resources.instance.desc + ' kMotion has been successfully initiated') }}
+{{ oas.ErrorsWrongParams() }}
+{{ oas.ErrorsPatch() }}

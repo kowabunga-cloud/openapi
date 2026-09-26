@@ -4,10 +4,12 @@ All URIs are relative to */api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**commitKomputeKMotion**](KomputeApi.md#commitKomputeKMotion) | **PATCH** /kompute/{komputeId}/kmotion/commit |  |
 | [**createProjectZoneKompute**](KomputeApi.md#createProjectZoneKompute) | **POST** /project/{projectId}/zone/{zoneId}/kompute |  |
 | [**deleteKompute**](KomputeApi.md#deleteKompute) | **DELETE** /kompute/{komputeId} |  |
 | [**listKomputes**](KomputeApi.md#listKomputes) | **GET** /kompute |  |
 | [**listProjectZoneKomputes**](KomputeApi.md#listProjectZoneKomputes) | **GET** /project/{projectId}/zone/{zoneId}/komputes |  |
+| [**planKomputeKMotion**](KomputeApi.md#planKomputeKMotion) | **POST** /kompute/{komputeId}/kmotion/plan |  |
 | [**readKompute**](KomputeApi.md#readKompute) | **GET** /kompute/{komputeId} |  |
 | [**readKomputeState**](KomputeApi.md#readKomputeState) | **GET** /kompute/{komputeId}/state |  |
 | [**rebootKompute**](KomputeApi.md#rebootKompute) | **PATCH** /kompute/{komputeId}/reboot |  |
@@ -19,6 +21,34 @@ All URIs are relative to */api/v1*
 | [**suspendKompute**](KomputeApi.md#suspendKompute) | **PATCH** /kompute/{komputeId}/suspend |  |
 | [**updateKompute**](KomputeApi.md#updateKompute) | **PUT** /kompute/{komputeId} |  |
 
+
+<a name="commitKomputeKMotion"></a>
+# **commitKomputeKMotion**
+> commitKomputeKMotion(komputeId, KMotionCommitRequest)
+
+
+
+    Commits a previously computed kMotion plan, performing the actual Kompute host kMotion.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **komputeId** | **String**| The ID of the Kompute. | [default to null] |
+| **KMotionCommitRequest** | [**KMotionCommitRequest**](../Models/KMotionCommitRequest.md)| KMotionCommitRequest payload. | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 <a name="createProjectZoneKompute"></a>
 # **createProjectZoneKompute**
@@ -129,6 +159,34 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="planKomputeKMotion"></a>
+# **planKomputeKMotion**
+> KMotionPlan planKomputeKMotion(komputeId, KMotionPlanRequest)
+
+
+
+    Computes a kMotion plan for the Kompute, electing the best destination Kaktus computing node to host it.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **komputeId** | **String**| The ID of the Kompute. | [default to null] |
+| **KMotionPlanRequest** | [**KMotionPlanRequest**](../Models/KMotionPlanRequest.md)| KMotionPlanRequest payload. | |
+
+### Return type
+
+[**KMotionPlan**](../Models/KMotionPlan.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 <a name="readKompute"></a>

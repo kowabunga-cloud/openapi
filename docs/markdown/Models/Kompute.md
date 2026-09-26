@@ -12,6 +12,7 @@
 | **data\_disk** | **Long** | The Kompute extra data disk size (in bytes). If unspecified, no extra data disk will be assigned. | [optional] [default to 0] |
 | **ip** | **String** | The Kompute assigned private IPv4 address (read-only). | [optional] [default to null] |
 | **uefi** | **Boolean** | enable UEFI secure firmware (vs. legacy BIOS). | [optional] [default to true] |
+| **kmotion\_enabled** | **Boolean** | Whether kMotion (live/cold host migration) is enabled for the Kompute. When disabled, the instance remains bound to its original hosting node. | [optional] [default to true] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

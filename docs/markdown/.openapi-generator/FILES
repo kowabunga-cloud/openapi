@@ -37,6 +37,9 @@ Models/Instance.md
 Models/InstanceRemoteAccess.md
 Models/InstanceState.md
 Models/IpRange.md
+Models/KMotionCommitRequest.md
+Models/KMotionPlan.md
+Models/KMotionPlanRequest.md
 Models/Kaktus.md
 Models/KaktusCPU.md
 Models/KaktusCaps.md

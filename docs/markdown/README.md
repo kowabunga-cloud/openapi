@@ -19,11 +19,13 @@ All URIs are relative to */api/v1*
 *AgentApi* | [**readAgent**](Apis/AgentApi.md#readAgent) | **GET** /agent/{agentId} | Returns a Kowabunga remote agent. |
 *AgentApi* | [**setAgentApiToken**](Apis/AgentApi.md#setAgentApiToken) | **PATCH** /agent/{agentId}/token | Performs a Kowabunga remote agent setting of API token (will replace any existing one). |
 *AgentApi* | [**updateAgent**](Apis/AgentApi.md#updateAgent) | **PUT** /agent/{agentId} | Updates a Kowabunga remote agent configuration. |
-| *InstanceApi* | [**createProjectZoneInstance**](Apis/InstanceApi.md#createProjectZoneInstance) | **POST** /project/{projectId}/zone/{zoneId}/instance | Creates a new virtual machine instance. |
+| *InstanceApi* | [**commitInstanceKMotion**](Apis/InstanceApi.md#commitInstanceKMotion) | **PATCH** /instance/{instanceId}/kmotion/commit | Commits a previously computed kMotion plan, performing the actual virtual machine instance host kMotion. |
+*InstanceApi* | [**createProjectZoneInstance**](Apis/InstanceApi.md#createProjectZoneInstance) | **POST** /project/{projectId}/zone/{zoneId}/instance | Creates a new virtual machine instance. |
 *InstanceApi* | [**deleteInstance**](Apis/InstanceApi.md#deleteInstance) | **DELETE** /instance/{instanceId} | Deletes an existing virtual machine instance. |
 *InstanceApi* | [**listInstances**](Apis/InstanceApi.md#listInstances) | **GET** /instance | Returns the IDs of virtual machine instance objects. |
 *InstanceApi* | [**listKaktusInstances**](Apis/InstanceApi.md#listKaktusInstances) | **GET** /kaktus/{kaktusId}/instances | Returns the IDs of virtual machine instance objects. |
 *InstanceApi* | [**listProjectZoneInstances**](Apis/InstanceApi.md#listProjectZoneInstances) | **GET** /project/{projectId}/zone/{zoneId}/instances | Returns the IDs of virtual machine instance objects. |
+*InstanceApi* | [**planInstanceKMotion**](Apis/InstanceApi.md#planInstanceKMotion) | **POST** /instance/{instanceId}/kmotion/plan | Computes a kMotion plan for the virtual machine instance, electing the best destination Kaktus computing node to host it. |
 *InstanceApi* | [**readInstance**](Apis/InstanceApi.md#readInstance) | **GET** /instance/{instanceId} | Returns a virtual machine instance. |
 *InstanceApi* | [**readInstanceRemoteConnection**](Apis/InstanceApi.md#readInstanceRemoteConnection) | **GET** /instance/{instanceId}/connect | Returns a virtual machine instance remote access characteristics. |
 *InstanceApi* | [**readInstanceState**](Apis/InstanceApi.md#readInstanceState) | **GET** /instance/{instanceId}/state | Returns a virtual machine instance state. |
@@ -67,10 +69,12 @@ All URIs are relative to */api/v1*
 *KiwiApi* | [**listRegionKiwis**](Apis/KiwiApi.md#listRegionKiwis) | **GET** /region/{regionId}/kiwis | Returns the IDs of Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. objects. |
 *KiwiApi* | [**readKiwi**](Apis/KiwiApi.md#readKiwi) | **GET** /kiwi/{kiwiId} | Returns a Kiwi (Kowabunga Inner Wan Interface) provides edge-network services.. |
 *KiwiApi* | [**updateKiwi**](Apis/KiwiApi.md#updateKiwi) | **PUT** /kiwi/{kiwiId} | Updates a Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. configuration. |
-| *KomputeApi* | [**createProjectZoneKompute**](Apis/KomputeApi.md#createProjectZoneKompute) | **POST** /project/{projectId}/zone/{zoneId}/kompute | Creates a new Kompute. |
+| *KomputeApi* | [**commitKomputeKMotion**](Apis/KomputeApi.md#commitKomputeKMotion) | **PATCH** /kompute/{komputeId}/kmotion/commit | Commits a previously computed kMotion plan, performing the actual Kompute host kMotion. |
+*KomputeApi* | [**createProjectZoneKompute**](Apis/KomputeApi.md#createProjectZoneKompute) | **POST** /project/{projectId}/zone/{zoneId}/kompute | Creates a new Kompute. |
 *KomputeApi* | [**deleteKompute**](Apis/KomputeApi.md#deleteKompute) | **DELETE** /kompute/{komputeId} | Deletes an existing Kompute. |
 *KomputeApi* | [**listKomputes**](Apis/KomputeApi.md#listKomputes) | **GET** /kompute | Returns the IDs of Kompute objects. |
 *KomputeApi* | [**listProjectZoneKomputes**](Apis/KomputeApi.md#listProjectZoneKomputes) | **GET** /project/{projectId}/zone/{zoneId}/komputes | Returns the IDs of Kompute objects. |
+*KomputeApi* | [**planKomputeKMotion**](Apis/KomputeApi.md#planKomputeKMotion) | **POST** /kompute/{komputeId}/kmotion/plan | Computes a kMotion plan for the Kompute, electing the best destination Kaktus computing node to host it. |
 *KomputeApi* | [**readKompute**](Apis/KomputeApi.md#readKompute) | **GET** /kompute/{komputeId} | Returns a Kompute. |
 *KomputeApi* | [**readKomputeState**](Apis/KomputeApi.md#readKomputeState) | **GET** /kompute/{komputeId}/state | Returns a virtual machine instance state. |
 *KomputeApi* | [**rebootKompute**](Apis/KomputeApi.md#rebootKompute) | **PATCH** /kompute/{komputeId}/reboot | Performs a Kompute software reboot. |
@@ -261,6 +265,9 @@ All URIs are relative to */api/v1*
  - [InstanceRemoteAccess](./Models/InstanceRemoteAccess.md)
  - [InstanceState](./Models/InstanceState.md)
  - [IpRange](./Models/IpRange.md)
+ - [KMotionCommitRequest](./Models/KMotionCommitRequest.md)
+ - [KMotionPlan](./Models/KMotionPlan.md)
+ - [KMotionPlanRequest](./Models/KMotionPlanRequest.md)
  - [Kaktus](./Models/Kaktus.md)
  - [KaktusCPU](./Models/KaktusCPU.md)
  - [KaktusCaps](./Models/KaktusCaps.md)

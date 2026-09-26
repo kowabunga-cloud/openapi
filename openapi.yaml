@@ -677,6 +677,78 @@ paths:
       - instance
     parameters:
     - $ref: "#/components/parameters/InstanceID"
+  /instance/{instanceId}/kmotion/plan:
+    parameters:
+    - $ref: "#/components/parameters/InstanceID"
+    post:
+      description: "Computes a kMotion plan for the virtual machine instance, electing\
+        \ the best destination Kaktus computing node to host it."
+      operationId: PlanInstanceKMotion
+      parameters:
+      - $ref: "#/components/parameters/InstanceID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KMotionPlanRequest"
+        description: KMotionPlanRequest payload.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KMotionPlan"
+          description: Returns the newly created virtual machine instance kMotion
+            plan object.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+        "507":
+          $ref: "#/components/responses/InsufficientResource"
+      tags:
+      - instance
+  /instance/{instanceId}/kmotion/commit:
+    parameters:
+    - $ref: "#/components/parameters/InstanceID"
+    patch:
+      description: "Commits a previously computed kMotion plan, performing the actual\
+        \ virtual machine instance host kMotion."
+      operationId: CommitInstanceKMotion
+      parameters:
+      - $ref: "#/components/parameters/InstanceID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KMotionCommitRequest"
+        description: KMotionCommitRequest payload.
+        required: true
+      responses:
+        "200":
+          description: The virtual machine instance kMotion has been successfully
+            initiated.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+      tags:
+      - instance
   /kaktus:
     get:
       description: Returns the IDs of Kaktus computing node objects.
@@ -1447,6 +1519,77 @@ paths:
       responses:
         "200":
           description: The Kompute software shutdown is successful.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+      tags:
+      - kompute
+  /kompute/{komputeId}/kmotion/plan:
+    parameters:
+    - $ref: "#/components/parameters/KomputeID"
+    post:
+      description: "Computes a kMotion plan for the Kompute, electing the best destination\
+        \ Kaktus computing node to host it."
+      operationId: PlanKomputeKMotion
+      parameters:
+      - $ref: "#/components/parameters/KomputeID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KMotionPlanRequest"
+        description: KMotionPlanRequest payload.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KMotionPlan"
+          description: Returns the newly created virtual machine instance kMotion
+            plan object.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+        "507":
+          $ref: "#/components/responses/InsufficientResource"
+      tags:
+      - kompute
+  /kompute/{komputeId}/kmotion/commit:
+    parameters:
+    - $ref: "#/components/parameters/KomputeID"
+    patch:
+      description: "Commits a previously computed kMotion plan, performing the actual\
+        \ Kompute host kMotion."
+      operationId: CommitKomputeKMotion
+      parameters:
+      - $ref: "#/components/parameters/KomputeID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KMotionCommitRequest"
+        description: KMotionCommitRequest payload.
+        required: true
+      responses:
+        "200":
+          description: The Kompute kMotion has been successfully initiated.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -5085,6 +5228,7 @@ components:
         - volumes
         - volumes
         uefi: true
+        kmotion_enabled: true
       properties:
         id:
           description: The virtual machine instance ID (auto-generated).
@@ -5121,6 +5265,12 @@ components:
           default: true
           description: enable UEFI secure firmware (vs. legacy BIOS).
           type: boolean
+        kmotion_enabled:
+          default: true
+          description: "Whether kMotion (live/cold host migration) is enabled for\
+            \ the virtual machine instance. When disabled, the instance remains bound\
+            \ to its original hosting node."
+          type: boolean
       required:
       - memory
       - name
@@ -5150,6 +5300,82 @@ components:
           type: string
       required:
       - url
+    KMotionPlanRequest:
+      description: A virtual machine instance kMotion plan request.
+      example:
+        destination: auto
+        kaktus: kaktus
+        live: true
+      properties:
+        destination:
+          default: auto
+          description: "How the destination Kaktus computing node must be elected.\
+            \ Use \"manual\" to explicitly target a given node (see kaktus), \"zone\"\
+            \ to automatically elect the least busy node within the instance own availability\
+            \ zone, \"region\" to automatically elect the least busy node anywhere\
+            \ within the instance region, or \"auto\" to let Kowabunga fully decide\
+            \ the best possible destination across the region, regardless of the number\
+            \ of availability zones it contains."
+          enum:
+          - manual
+          - zone
+          - region
+          - auto
+          type: string
+        kaktus:
+          description: The explicit target Kaktus computing node ID to kMotion the
+            instance to. Only used (and required) when destination is set to manual.
+          type: string
+        live:
+          default: true
+          description: "Whether the kMotion must be performed live, without any service\
+            \ interruption, or the instance can instead be shutdown and restarted\
+            \ on its new host."
+          type: boolean
+    KMotionPlan:
+      description: A virtual machine instance kMotion plan.
+      example:
+        id: id
+        instance: instance
+        source: source
+        target: target
+        live: true
+      properties:
+        id:
+          description: The kMotion plan ID (auto-generated).
+          type: string
+        instance:
+          description: The ID of the virtual machine instance this kMotion plan applies
+            to.
+          type: string
+        source:
+          description: The ID of the Kaktus computing node currently hosting the instance.
+          type: string
+        target:
+          description: The ID of the Kaktus computing node elected to host the instance
+            once the kMotion completes.
+          type: string
+        live:
+          description: "Whether the plan is for a live kMotion, without any service\
+            \ interruption, or the instance will be shutdown and restarted on its\
+            \ new host."
+          type: boolean
+      required:
+      - instance
+      - live
+      - source
+      - target
+    KMotionCommitRequest:
+      description: A virtual machine instance kMotion commit request.
+      example:
+        plan: plan
+      properties:
+        plan:
+          description: The ID of the previously computed kMotion plan (see kMotion
+            plan webservice) to execute.
+          type: string
+      required:
+      - plan
     Kaktus:
       description: A Kaktus (Kowabunga Affordable KVM and Tight Underneath Storage)
         is an hyper-converged infrastructure (HCI) bare-metal node offering computing
@@ -5827,6 +6053,7 @@ components:
         data_disk: 5
         ip: ip
         uefi: true
+        kmotion_enabled: true
       properties:
         id:
           description: The Kompute ID (auto-generated).
@@ -5861,6 +6088,12 @@ components:
         uefi:
           default: true
           description: enable UEFI secure firmware (vs. legacy BIOS).
+          type: boolean
+        kmotion_enabled:
+          default: true
+          description: "Whether kMotion (live/cold host migration) is enabled for\
+            \ the Kompute. When disabled, the instance remains bound to its original\
+            \ hosting node."
           type: boolean
       required:
       - disk

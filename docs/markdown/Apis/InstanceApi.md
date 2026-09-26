@@ -4,11 +4,13 @@ All URIs are relative to */api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**commitInstanceKMotion**](InstanceApi.md#commitInstanceKMotion) | **PATCH** /instance/{instanceId}/kmotion/commit |  |
 | [**createProjectZoneInstance**](InstanceApi.md#createProjectZoneInstance) | **POST** /project/{projectId}/zone/{zoneId}/instance |  |
 | [**deleteInstance**](InstanceApi.md#deleteInstance) | **DELETE** /instance/{instanceId} |  |
 | [**listInstances**](InstanceApi.md#listInstances) | **GET** /instance |  |
 | [**listKaktusInstances**](InstanceApi.md#listKaktusInstances) | **GET** /kaktus/{kaktusId}/instances |  |
 | [**listProjectZoneInstances**](InstanceApi.md#listProjectZoneInstances) | **GET** /project/{projectId}/zone/{zoneId}/instances |  |
+| [**planInstanceKMotion**](InstanceApi.md#planInstanceKMotion) | **POST** /instance/{instanceId}/kmotion/plan |  |
 | [**readInstance**](InstanceApi.md#readInstance) | **GET** /instance/{instanceId} |  |
 | [**readInstanceRemoteConnection**](InstanceApi.md#readInstanceRemoteConnection) | **GET** /instance/{instanceId}/connect |  |
 | [**readInstanceState**](InstanceApi.md#readInstanceState) | **GET** /instance/{instanceId}/state |  |
@@ -21,6 +23,34 @@ All URIs are relative to */api/v1*
 | [**suspendInstance**](InstanceApi.md#suspendInstance) | **PATCH** /instance/{instanceId}/suspend |  |
 | [**updateInstance**](InstanceApi.md#updateInstance) | **PUT** /instance/{instanceId} |  |
 
+
+<a name="commitInstanceKMotion"></a>
+# **commitInstanceKMotion**
+> commitInstanceKMotion(instanceId, KMotionCommitRequest)
+
+
+
+    Commits a previously computed kMotion plan, performing the actual virtual machine instance host kMotion.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **instanceId** | **String**| The ID of the virtual machine instance. | [default to null] |
+| **KMotionCommitRequest** | [**KMotionCommitRequest**](../Models/KMotionCommitRequest.md)| KMotionCommitRequest payload. | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 <a name="createProjectZoneInstance"></a>
 # **createProjectZoneInstance**
@@ -155,6 +185,34 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="planInstanceKMotion"></a>
+# **planInstanceKMotion**
+> KMotionPlan planInstanceKMotion(instanceId, KMotionPlanRequest)
+
+
+
+    Computes a kMotion plan for the virtual machine instance, electing the best destination Kaktus computing node to host it.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **instanceId** | **String**| The ID of the virtual machine instance. | [default to null] |
+| **KMotionPlanRequest** | [**KMotionPlanRequest**](../Models/KMotionPlanRequest.md)| KMotionPlanRequest payload. | |
+
+### Return type
+
+[**KMotionPlan**](../Models/KMotionPlan.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 <a name="readInstance"></a>

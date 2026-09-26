@@ -14,6 +14,7 @@ components:
 {{ oas.IntProperty('data_disk', 'The ' + resources.kompute.desc + ' extra data disk size (in bytes). If unspecified, no extra data disk will be assigned', default=0) }}
 {{ oas.StringProperty('ip', 'The ' + resources.kompute.desc + ' assigned private IPv4 address (read-only)') }}
 {{ oas.BoolProperty('uefi', 'enable UEFI secure firmware (vs. legacy BIOS)', default=True) }}
+{{ oas.BoolProperty('kmotion_enabled', 'Whether kMotion (live/cold host migration) is enabled for the ' + resources.kompute.desc + '. When disabled, the instance remains bound to its original hosting node', default=True) }}
 
   parameters:
 {{ oas.PathParamID(resources.kompute) }}
@@ -57,3 +58,26 @@ paths:
   /kompute/{{ '{' + resources.kompute.paramId + '}' }}/shutdown:
 {{ oas.Parameters([resources.kompute.paramSchema]) }}
 {{ oas.Patch('ShutdownKompute', resources.kompute.desc, 'software shutdown', [resources.kompute.tag]) }}
+
+  /kompute/{{ '{' + resources.kompute.paramId + '}' }}/kmotion/plan:
+{{ oas.Parameters([resources.kompute.paramSchema]) }}
+    post:
+{{ oas.Tags([resources.kompute.tag]) }}
+      description: Computes a kMotion plan for the {{ resources.kompute.desc }}, electing the best destination Kaktus computing node to host it.
+      operationId: PlanKomputeKMotion
+{{ oas.Payload(resources.kmotion_plan_request.schema) }}
+      responses:
+{{ oas.CreateOneResource(resources.kmotion_plan.schema, resources.kmotion_plan.desc) }}
+{{ oas.ErrorsCreate() }}
+
+  /kompute/{{ '{' + resources.kompute.paramId + '}' }}/kmotion/commit:
+{{ oas.Parameters([resources.kompute.paramSchema]) }}
+    patch:
+{{ oas.Tags([resources.kompute.tag]) }}
+      description: Commits a previously computed kMotion plan, performing the actual {{ resources.kompute.desc }} host kMotion.
+      operationId: CommitKomputeKMotion
+{{ oas.Payload(resources.kmotion_commit_request.schema) }}
+      responses:
+{{ oas.ResponseOk('The ' + resources.kompute.desc + ' kMotion has been successfully initiated') }}
+{{ oas.ErrorsWrongParams() }}
+{{ oas.ErrorsPatch() }}

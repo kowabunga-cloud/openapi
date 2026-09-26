@@ -11,6 +11,7 @@
 | **adapters** | **List** | a list of existing network adapters to be connected to the instance. | [optional] [default to null] |
 | **volumes** | **List** | volumes list of existing storage volumes (i.e. disks) to be connected to the instance. | [optional] [default to null] |
 | **uefi** | **Boolean** | enable UEFI secure firmware (vs. legacy BIOS). | [optional] [default to true] |
+| **kmotion\_enabled** | **Boolean** | Whether kMotion (live/cold host migration) is enabled for the virtual machine instance. When disabled, the instance remains bound to its original hosting node. | [optional] [default to true] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
