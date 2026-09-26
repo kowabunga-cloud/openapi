@@ -19,7 +19,8 @@ All URIs are relative to */api/v1*
 *AgentApi* | [**readAgent**](Apis/AgentApi.md#readAgent) | **GET** /agent/{agentId} | Returns a Kowabunga remote agent. |
 *AgentApi* | [**setAgentApiToken**](Apis/AgentApi.md#setAgentApiToken) | **PATCH** /agent/{agentId}/token | Performs a Kowabunga remote agent setting of API token (will replace any existing one). |
 *AgentApi* | [**updateAgent**](Apis/AgentApi.md#updateAgent) | **PUT** /agent/{agentId} | Updates a Kowabunga remote agent configuration. |
-| *InstanceApi* | [**commitInstanceKMotion**](Apis/InstanceApi.md#commitInstanceKMotion) | **PATCH** /instance/{instanceId}/kmotion/commit | Commits a previously computed kMotion plan, performing the actual virtual machine instance host kMotion. |
+| *InstanceApi* | [**addKwarantineInstance**](Apis/InstanceApi.md#addKwarantineInstance) | **PUT** /kwarantine/{kwarantineId}/instance/{instanceId} | Adds an existing virtual machine instance to the Kwarantine group. Idempotent, calling it multiple times has no additional effect. |
+*InstanceApi* | [**commitInstanceKMotion**](Apis/InstanceApi.md#commitInstanceKMotion) | **PATCH** /instance/{instanceId}/kmotion/commit | Commits a previously computed kMotion plan, performing the actual virtual machine instance host kMotion. |
 *InstanceApi* | [**createProjectZoneInstance**](Apis/InstanceApi.md#createProjectZoneInstance) | **POST** /project/{projectId}/zone/{zoneId}/instance | Creates a new virtual machine instance. |
 *InstanceApi* | [**deleteInstance**](Apis/InstanceApi.md#deleteInstance) | **DELETE** /instance/{instanceId} | Deletes an existing virtual machine instance. |
 *InstanceApi* | [**listInstances**](Apis/InstanceApi.md#listInstances) | **GET** /instance | Returns the IDs of virtual machine instance objects. |
@@ -30,6 +31,7 @@ All URIs are relative to */api/v1*
 *InstanceApi* | [**readInstanceRemoteConnection**](Apis/InstanceApi.md#readInstanceRemoteConnection) | **GET** /instance/{instanceId}/connect | Returns a virtual machine instance remote access characteristics. |
 *InstanceApi* | [**readInstanceState**](Apis/InstanceApi.md#readInstanceState) | **GET** /instance/{instanceId}/state | Returns a virtual machine instance state. |
 *InstanceApi* | [**rebootInstance**](Apis/InstanceApi.md#rebootInstance) | **PATCH** /instance/{instanceId}/reboot | Performs a virtual machine instance software reboot. |
+*InstanceApi* | [**removeKwarantineInstance**](Apis/InstanceApi.md#removeKwarantineInstance) | **DELETE** /kwarantine/{kwarantineId}/instance/{instanceId} | Removes an existing virtual machine instance from the Kwarantine group. |
 *InstanceApi* | [**resetInstance**](Apis/InstanceApi.md#resetInstance) | **PATCH** /instance/{instanceId}/reset | Performs a virtual machine instance hardware reset. |
 *InstanceApi* | [**resumeInstance**](Apis/InstanceApi.md#resumeInstance) | **PATCH** /instance/{instanceId}/resume | Performs a virtual machine instance software PM resume. |
 *InstanceApi* | [**shutdownInstance**](Apis/InstanceApi.md#shutdownInstance) | **PATCH** /instance/{instanceId}/shutdown | Performs a virtual machine instance software shutdown. |
@@ -69,7 +71,8 @@ All URIs are relative to */api/v1*
 *KiwiApi* | [**listRegionKiwis**](Apis/KiwiApi.md#listRegionKiwis) | **GET** /region/{regionId}/kiwis | Returns the IDs of Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. objects. |
 *KiwiApi* | [**readKiwi**](Apis/KiwiApi.md#readKiwi) | **GET** /kiwi/{kiwiId} | Returns a Kiwi (Kowabunga Inner Wan Interface) provides edge-network services.. |
 *KiwiApi* | [**updateKiwi**](Apis/KiwiApi.md#updateKiwi) | **PUT** /kiwi/{kiwiId} | Updates a Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. configuration. |
-| *KomputeApi* | [**commitKomputeKMotion**](Apis/KomputeApi.md#commitKomputeKMotion) | **PATCH** /kompute/{komputeId}/kmotion/commit | Commits a previously computed kMotion plan, performing the actual Kompute host kMotion. |
+| *KomputeApi* | [**addKwarantineKompute**](Apis/KomputeApi.md#addKwarantineKompute) | **PUT** /kwarantine/{kwarantineId}/kompute/{komputeId} | Adds an existing Kompute to the Kwarantine group. Idempotent, calling it multiple times has no additional effect. |
+*KomputeApi* | [**commitKomputeKMotion**](Apis/KomputeApi.md#commitKomputeKMotion) | **PATCH** /kompute/{komputeId}/kmotion/commit | Commits a previously computed kMotion plan, performing the actual Kompute host kMotion. |
 *KomputeApi* | [**createProjectZoneKompute**](Apis/KomputeApi.md#createProjectZoneKompute) | **POST** /project/{projectId}/zone/{zoneId}/kompute | Creates a new Kompute. |
 *KomputeApi* | [**deleteKompute**](Apis/KomputeApi.md#deleteKompute) | **DELETE** /kompute/{komputeId} | Deletes an existing Kompute. |
 *KomputeApi* | [**listKomputes**](Apis/KomputeApi.md#listKomputes) | **GET** /kompute | Returns the IDs of Kompute objects. |
@@ -78,6 +81,7 @@ All URIs are relative to */api/v1*
 *KomputeApi* | [**readKompute**](Apis/KomputeApi.md#readKompute) | **GET** /kompute/{komputeId} | Returns a Kompute. |
 *KomputeApi* | [**readKomputeState**](Apis/KomputeApi.md#readKomputeState) | **GET** /kompute/{komputeId}/state | Returns a virtual machine instance state. |
 *KomputeApi* | [**rebootKompute**](Apis/KomputeApi.md#rebootKompute) | **PATCH** /kompute/{komputeId}/reboot | Performs a Kompute software reboot. |
+*KomputeApi* | [**removeKwarantineKompute**](Apis/KomputeApi.md#removeKwarantineKompute) | **DELETE** /kwarantine/{kwarantineId}/kompute/{komputeId} | Removes an existing Kompute from the Kwarantine group. |
 *KomputeApi* | [**resetKompute**](Apis/KomputeApi.md#resetKompute) | **PATCH** /kompute/{komputeId}/reset | Performs a Kompute hardware reset. |
 *KomputeApi* | [**resumeKompute**](Apis/KomputeApi.md#resumeKompute) | **PATCH** /kompute/{komputeId}/resume | Performs a Kompute software PM resume. |
 *KomputeApi* | [**shutdownKompute**](Apis/KomputeApi.md#shutdownKompute) | **PATCH** /kompute/{komputeId}/shutdown | Performs a Kompute software shutdown. |
@@ -93,6 +97,16 @@ All URIs are relative to */api/v1*
 *KonveyApi* | [**listProjectZoneKonveys**](Apis/KonveyApi.md#listProjectZoneKonveys) | **GET** /project/{projectId}/zone/{zoneId}/konveys | Returns the IDs of Konvey (Kowabunga Network Load-Balancer) objects. |
 *KonveyApi* | [**readKonvey**](Apis/KonveyApi.md#readKonvey) | **GET** /konvey/{konveyId} | Returns a Konvey (Kowabunga Network Load-Balancer). |
 *KonveyApi* | [**updateKonvey**](Apis/KonveyApi.md#updateKonvey) | **PUT** /konvey/{konveyId} | Updates a Konvey (Kowabunga Network Load-Balancer) configuration. |
+| *KwarantineApi* | [**addKwarantineInstance**](Apis/KwarantineApi.md#addKwarantineInstance) | **PUT** /kwarantine/{kwarantineId}/instance/{instanceId} | Adds an existing virtual machine instance to the Kwarantine group. Idempotent, calling it multiple times has no additional effect. |
+*KwarantineApi* | [**addKwarantineKompute**](Apis/KwarantineApi.md#addKwarantineKompute) | **PUT** /kwarantine/{kwarantineId}/kompute/{komputeId} | Adds an existing Kompute to the Kwarantine group. Idempotent, calling it multiple times has no additional effect. |
+*KwarantineApi* | [**createProjectKwarantine**](Apis/KwarantineApi.md#createProjectKwarantine) | **POST** /project/{projectId}/kwarantine | Creates a new Kwarantine. |
+*KwarantineApi* | [**deleteKwarantine**](Apis/KwarantineApi.md#deleteKwarantine) | **DELETE** /kwarantine/{kwarantineId} | Deletes an existing Kwarantine. |
+*KwarantineApi* | [**listKwarantines**](Apis/KwarantineApi.md#listKwarantines) | **GET** /kwarantine | Returns the IDs of Kwarantine objects. |
+*KwarantineApi* | [**listProjectKwarantines**](Apis/KwarantineApi.md#listProjectKwarantines) | **GET** /project/{projectId}/kwarantines | Returns the IDs of Kwarantine objects. |
+*KwarantineApi* | [**readKwarantine**](Apis/KwarantineApi.md#readKwarantine) | **GET** /kwarantine/{kwarantineId} | Returns a Kwarantine. |
+*KwarantineApi* | [**removeKwarantineInstance**](Apis/KwarantineApi.md#removeKwarantineInstance) | **DELETE** /kwarantine/{kwarantineId}/instance/{instanceId} | Removes an existing virtual machine instance from the Kwarantine group. |
+*KwarantineApi* | [**removeKwarantineKompute**](Apis/KwarantineApi.md#removeKwarantineKompute) | **DELETE** /kwarantine/{kwarantineId}/kompute/{komputeId} | Removes an existing Kompute from the Kwarantine group. |
+*KwarantineApi* | [**updateKwarantine**](Apis/KwarantineApi.md#updateKwarantine) | **PUT** /kwarantine/{kwarantineId} | Updates a Kwarantine configuration. |
 | *KyloApi* | [**createProjectRegionKylo**](Apis/KyloApi.md#createProjectRegionKylo) | **POST** /project/{projectId}/region/{regionId}/kylo | Creates a new Kylo. |
 *KyloApi* | [**deleteKylo**](Apis/KyloApi.md#deleteKylo) | **DELETE** /kylo/{kyloId} | Deletes an existing Kylo. |
 *KyloApi* | [**listKylos**](Apis/KyloApi.md#listKylos) | **GET** /kylo | Returns the IDs of Kylo objects. |
@@ -121,6 +135,7 @@ All URIs are relative to */api/v1*
 *PoolApi* | [**updateStoragePool**](Apis/PoolApi.md#updateStoragePool) | **PUT** /pool/{poolId} | Updates a storage pool configuration. |
 | *ProjectApi* | [**createProject**](Apis/ProjectApi.md#createProject) | **POST** /project | Creates a new project. |
 *ProjectApi* | [**createProjectDnsRecord**](Apis/ProjectApi.md#createProjectDnsRecord) | **POST** /project/{projectId}/record | Creates a new DNS record. |
+*ProjectApi* | [**createProjectKwarantine**](Apis/ProjectApi.md#createProjectKwarantine) | **POST** /project/{projectId}/kwarantine | Creates a new Kwarantine. |
 *ProjectApi* | [**createProjectRegionKawaii**](Apis/ProjectApi.md#createProjectRegionKawaii) | **POST** /project/{projectId}/region/{regionId}/kawaii | Creates a new Kawaii. |
 *ProjectApi* | [**createProjectRegionKonvey**](Apis/ProjectApi.md#createProjectRegionKonvey) | **POST** /project/{projectId}/region/{regionId}/konvey | Creates a new Konvey (Kowabunga Network Load-Balancer). |
 *ProjectApi* | [**createProjectRegionKylo**](Apis/ProjectApi.md#createProjectRegionKylo) | **POST** /project/{projectId}/region/{regionId}/kylo | Creates a new Kylo. |
@@ -130,6 +145,7 @@ All URIs are relative to */api/v1*
 *ProjectApi* | [**createProjectZoneKonvey**](Apis/ProjectApi.md#createProjectZoneKonvey) | **POST** /project/{projectId}/zone/{zoneId}/konvey | Creates a new Konvey (Kowabunga Network Load-Balancer). |
 *ProjectApi* | [**deleteProject**](Apis/ProjectApi.md#deleteProject) | **DELETE** /project/{projectId} | Deletes an existing project. |
 *ProjectApi* | [**listProjectDnsRecords**](Apis/ProjectApi.md#listProjectDnsRecords) | **GET** /project/{projectId}/records | Returns the IDs of DNS record objects. |
+*ProjectApi* | [**listProjectKwarantines**](Apis/ProjectApi.md#listProjectKwarantines) | **GET** /project/{projectId}/kwarantines | Returns the IDs of Kwarantine objects. |
 *ProjectApi* | [**listProjectRegionKawaiis**](Apis/ProjectApi.md#listProjectRegionKawaiis) | **GET** /project/{projectId}/region/{regionId}/kawaiis | Returns the IDs of Kawaii objects. |
 *ProjectApi* | [**listProjectRegionKonveys**](Apis/ProjectApi.md#listProjectRegionKonveys) | **GET** /project/{projectId}/region/{regionId}/konveys | Returns the IDs of Konvey (Kowabunga Network Load-Balancer) objects. |
 *ProjectApi* | [**listProjectRegionKylos**](Apis/ProjectApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylo | Returns the IDs of Kylo objects. |
@@ -287,6 +303,7 @@ All URIs are relative to */api/v1*
  - [Konvey](./Models/Konvey.md)
  - [KonveyBackends](./Models/KonveyBackends.md)
  - [KonveyEndpoint](./Models/KonveyEndpoint.md)
+ - [Kwarantine](./Models/Kwarantine.md)
  - [Kylo](./Models/Kylo.md)
  - [Metadata](./Models/Metadata.md)
  - [Password](./Models/Password.md)

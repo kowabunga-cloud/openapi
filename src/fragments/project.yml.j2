@@ -44,6 +44,14 @@ paths:
 {{ oas.Parameters([resources.project.paramSchema]) }}
 {{ oas.Read('Read' + resources.project.schema + 'Usage', resources.project_resources.schema, resources.project_resources.desc, [resources.project.tag]) }}
 
+  /project/{{ '{' + resources.project.paramId + '}' }}/kwarantine:
+{{ oas.Parameters([resources.project.paramSchema]) }}
+{{ oas.Create('Create' + resources.project.schema + resources.kwarantine.schema, resources.kwarantine.schema, resources.kwarantine.desc, [resources.project.tag, resources.kwarantine.tag]) }}
+
+  /project/{{ '{' + resources.project.paramId + '}' }}/kwarantines:
+{{ oas.Parameters([resources.project.paramSchema]) }}
+{{ oas.GetAll('List' + resources.project.schema + resources.kwarantine.schema + 's', resources.kwarantine.desc, [resources.project.tag, resources.kwarantine.tag], True) }}
+
   /project/{{ '{' + resources.project.paramId + '}' }}/record:
 {{ oas.Parameters([resources.project.paramSchema]) }}
 {{ oas.Create('Create' + resources.project.schema + resources.record.schema, resources.record.schema, resources.record.desc, [resources.project.tag, resources.record.tag]) }}

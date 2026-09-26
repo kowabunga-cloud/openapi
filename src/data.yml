@@ -4,6 +4,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 resources:
+  kwarantine:
+    tag: kwarantine
+    desc: Kwarantine
+    extended_desc: Kwarantine is an anti-affinity mechanism that ensures its member virtual machine instances or Kompute resources are never co-scheduled on the same Kaktus computing node (host policy) or the same availability zone (zone policy), regardless of Kaktus host scheduling score, so that critical redundant resources stay properly spread out
+    schema: Kwarantine
+    paramId: kwarantineId
+    paramSchema: KwarantineID
   adapter:
     tag: adapter
     desc: network adapter

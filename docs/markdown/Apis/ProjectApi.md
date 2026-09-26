@@ -6,6 +6,7 @@ All URIs are relative to */api/v1*
 |------------- | ------------- | -------------|
 | [**createProject**](ProjectApi.md#createProject) | **POST** /project |  |
 | [**createProjectDnsRecord**](ProjectApi.md#createProjectDnsRecord) | **POST** /project/{projectId}/record |  |
+| [**createProjectKwarantine**](ProjectApi.md#createProjectKwarantine) | **POST** /project/{projectId}/kwarantine |  |
 | [**createProjectRegionKawaii**](ProjectApi.md#createProjectRegionKawaii) | **POST** /project/{projectId}/region/{regionId}/kawaii |  |
 | [**createProjectRegionKonvey**](ProjectApi.md#createProjectRegionKonvey) | **POST** /project/{projectId}/region/{regionId}/konvey |  |
 | [**createProjectRegionKylo**](ProjectApi.md#createProjectRegionKylo) | **POST** /project/{projectId}/region/{regionId}/kylo |  |
@@ -15,6 +16,7 @@ All URIs are relative to */api/v1*
 | [**createProjectZoneKonvey**](ProjectApi.md#createProjectZoneKonvey) | **POST** /project/{projectId}/zone/{zoneId}/konvey |  |
 | [**deleteProject**](ProjectApi.md#deleteProject) | **DELETE** /project/{projectId} |  |
 | [**listProjectDnsRecords**](ProjectApi.md#listProjectDnsRecords) | **GET** /project/{projectId}/records |  |
+| [**listProjectKwarantines**](ProjectApi.md#listProjectKwarantines) | **GET** /project/{projectId}/kwarantines |  |
 | [**listProjectRegionKawaiis**](ProjectApi.md#listProjectRegionKawaiis) | **GET** /project/{projectId}/region/{regionId}/kawaiis |  |
 | [**listProjectRegionKonveys**](ProjectApi.md#listProjectRegionKonveys) | **GET** /project/{projectId}/region/{regionId}/konveys |  |
 | [**listProjectRegionKylos**](ProjectApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylo |  |
@@ -75,6 +77,34 @@ All URIs are relative to */api/v1*
 ### Return type
 
 [**DnsRecord**](../Models/DnsRecord.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="createProjectKwarantine"></a>
+# **createProjectKwarantine**
+> Kwarantine createProjectKwarantine(projectId, Kwarantine)
+
+
+
+    Creates a new Kwarantine.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| The ID of the project. | [default to null] |
+| **Kwarantine** | [**Kwarantine**](../Models/Kwarantine.md)| Kwarantine payload. | |
+
+### Return type
+
+[**Kwarantine**](../Models/Kwarantine.md)
 
 ### Authorization
 
@@ -328,6 +358,33 @@ null (empty response body)
 
 
     Returns the IDs of DNS record objects.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| The ID of the project. | [default to null] |
+
+### Return type
+
+**List**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="listProjectKwarantines"></a>
+# **listProjectKwarantines**
+> List listProjectKwarantines(projectId)
+
+
+
+    Returns the IDs of Kwarantine objects.
 
 ### Parameters
 

@@ -1,0 +1,57 @@
+---
+# Copyright (c) The Kowabunga Project
+# Apache License, Version 2.0 (see LICENSE or https://www.apache.org/licenses/LICENSE-2.0.txt)
+# SPDX-License-Identifier: Apache-2.0
+
+{%- import "src/oas.macros.yml.j2" as oas with context %}
+
+components:
+  schemas:
+{{ oas.SchemaBaseResource(resources.kwarantine, ['name']) }}
+{{ oas.StringProperty('policy', 'The anti-affinity enforcement policy. Use "host" to guarantee no two group members are ever scheduled on the same Kaktus computing node, or "zone" to guarantee no two group members are ever scheduled within the same availability zone', ['host', 'zone'], 'host') }}
+{{ oas.StringArrayProperty('instances', 'A list of existing virtual machine instance IDs that are part of the Kwarantine group. Members are guaranteed to never be co-scheduled according to the group policy, regardless of Kaktus host scheduling score') }}
+{{ oas.StringArrayProperty('komputes', 'A list of existing Kompute IDs that are part of the Kwarantine group. Members are guaranteed to never be co-scheduled according to the group policy, regardless of Kaktus host scheduling score') }}
+
+  parameters:
+{{ oas.PathParamID(resources.kwarantine) }}
+
+paths:
+  /kwarantine:
+{{ oas.List(resources.kwarantine, [resources.kwarantine.tag]) }}
+
+  /kwarantine/{{ '{' + resources.kwarantine.paramId + '}' }}:
+{{ oas.RUD(resources.kwarantine, [resources.kwarantine.tag], [resources.kwarantine.paramSchema]) }}
+
+  /kwarantine/{{ '{' + resources.kwarantine.paramId + '}' }}/instance/{{ '{' + resources.instance.paramId + '}' }}:
+{{ oas.Parameters([resources.kwarantine.paramSchema, resources.instance.paramSchema]) }}
+    put:
+{{ oas.Tags([resources.kwarantine.tag, resources.instance.tag]) }}
+      description: Adds an existing {{ resources.instance.desc }} to the Kwarantine group. Idempotent, calling it multiple times has no additional effect.
+      operationId: AddKwarantineInstance
+      responses:
+{{ oas.GetOneResource(resources.kwarantine.schema, resources.kwarantine.desc) }}
+{{ oas.ErrorsPatch() }}
+    delete:
+{{ oas.Tags([resources.kwarantine.tag, resources.instance.tag]) }}
+      description: Removes an existing {{ resources.instance.desc }} from the Kwarantine group.
+      operationId: RemoveKwarantineInstance
+      responses:
+{{ oas.ResponseOk('The ' + resources.instance.desc + ' has been removed from the Kwarantine group') }}
+{{ oas.ErrorsPatch() }}
+
+  /kwarantine/{{ '{' + resources.kwarantine.paramId + '}' }}/kompute/{{ '{' + resources.kompute.paramId + '}' }}:
+{{ oas.Parameters([resources.kwarantine.paramSchema, resources.kompute.paramSchema]) }}
+    put:
+{{ oas.Tags([resources.kwarantine.tag, resources.kompute.tag]) }}
+      description: Adds an existing {{ resources.kompute.desc }} to the Kwarantine group. Idempotent, calling it multiple times has no additional effect.
+      operationId: AddKwarantineKompute
+      responses:
+{{ oas.GetOneResource(resources.kwarantine.schema, resources.kwarantine.desc) }}
+{{ oas.ErrorsPatch() }}
+    delete:
+{{ oas.Tags([resources.kwarantine.tag, resources.kompute.tag]) }}
+      description: Removes an existing {{ resources.kompute.desc }} from the Kwarantine group.
+      operationId: RemoveKwarantineKompute
+      responses:
+{{ oas.ResponseOk('The ' + resources.kompute.desc + ' has been removed from the Kwarantine group') }}
+{{ oas.ErrorsPatch() }}

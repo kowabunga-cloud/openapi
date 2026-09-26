@@ -16,6 +16,8 @@ security:
 - ApiKeyAuth: []
 - BearerAuth: []
 tags:
+- description: Everything about Kwarantine
+  name: kwarantine
 - description: Everything about network adapter
   name: adapter
 - description: Everything about Kowabunga remote agent
@@ -1695,6 +1697,199 @@ paths:
           $ref: "#/components/responses/InsufficientResource"
       tags:
       - konvey
+  /kwarantine:
+    get:
+      description: Returns the IDs of Kwarantine objects.
+      operationId: ListKwarantines
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ObjectIds"
+          description: Returns an array of Kwarantine IDs.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+      tags:
+      - kwarantine
+  /kwarantine/{kwarantineId}:
+    delete:
+      description: Deletes an existing Kwarantine.
+      operationId: DeleteKwarantine
+      parameters:
+      - $ref: "#/components/parameters/KwarantineID"
+      responses:
+        "200":
+          description: The Kwarantine has been successfully removed.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+      tags:
+      - kwarantine
+    get:
+      description: Returns a Kwarantine.
+      operationId: ReadKwarantine
+      parameters:
+      - $ref: "#/components/parameters/KwarantineID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Kwarantine"
+          description: Returns the Kwarantine object.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      tags:
+      - kwarantine
+    parameters:
+    - $ref: "#/components/parameters/KwarantineID"
+    put:
+      description: Updates a Kwarantine configuration.
+      operationId: UpdateKwarantine
+      parameters:
+      - $ref: "#/components/parameters/KwarantineID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Kwarantine"
+        description: Kwarantine payload.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Kwarantine"
+          description: Returns the Kwarantine object.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+        "507":
+          $ref: "#/components/responses/InsufficientResource"
+      tags:
+      - kwarantine
+  /kwarantine/{kwarantineId}/instance/{instanceId}:
+    delete:
+      description: Removes an existing virtual machine instance from the Kwarantine
+        group.
+      operationId: RemoveKwarantineInstance
+      parameters:
+      - $ref: "#/components/parameters/KwarantineID"
+      - $ref: "#/components/parameters/InstanceID"
+      responses:
+        "200":
+          description: The virtual machine instance has been removed from the Kwarantine
+            group.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+      tags:
+      - kwarantine
+      - instance
+    parameters:
+    - $ref: "#/components/parameters/KwarantineID"
+    - $ref: "#/components/parameters/InstanceID"
+    put:
+      description: "Adds an existing virtual machine instance to the Kwarantine group.\
+        \ Idempotent, calling it multiple times has no additional effect."
+      operationId: AddKwarantineInstance
+      parameters:
+      - $ref: "#/components/parameters/KwarantineID"
+      - $ref: "#/components/parameters/InstanceID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Kwarantine"
+          description: Returns the Kwarantine object.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+      tags:
+      - kwarantine
+      - instance
+  /kwarantine/{kwarantineId}/kompute/{komputeId}:
+    delete:
+      description: Removes an existing Kompute from the Kwarantine group.
+      operationId: RemoveKwarantineKompute
+      parameters:
+      - $ref: "#/components/parameters/KwarantineID"
+      - $ref: "#/components/parameters/KomputeID"
+      responses:
+        "200":
+          description: The Kompute has been removed from the Kwarantine group.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+      tags:
+      - kwarantine
+      - kompute
+    parameters:
+    - $ref: "#/components/parameters/KwarantineID"
+    - $ref: "#/components/parameters/KomputeID"
+    put:
+      description: "Adds an existing Kompute to the Kwarantine group. Idempotent,\
+        \ calling it multiple times has no additional effect."
+      operationId: AddKwarantineKompute
+      parameters:
+      - $ref: "#/components/parameters/KwarantineID"
+      - $ref: "#/components/parameters/KomputeID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Kwarantine"
+          description: Returns the Kwarantine object.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+      tags:
+      - kwarantine
+      - kompute
   /kylo:
     get:
       description: Returns the IDs of Kylo objects.
@@ -1965,6 +2160,69 @@ paths:
           $ref: "#/components/responses/NotFound"
       tags:
       - project
+    parameters:
+    - $ref: "#/components/parameters/ProjectID"
+  /project/{projectId}/kwarantine:
+    parameters:
+    - $ref: "#/components/parameters/ProjectID"
+    post:
+      description: Creates a new Kwarantine.
+      operationId: CreateProjectKwarantine
+      parameters:
+      - $ref: "#/components/parameters/ProjectID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Kwarantine"
+        description: Kwarantine payload.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Kwarantine"
+          description: Returns the newly created Kwarantine object.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+        "507":
+          $ref: "#/components/responses/InsufficientResource"
+      tags:
+      - project
+      - kwarantine
+  /project/{projectId}/kwarantines:
+    get:
+      description: Returns the IDs of Kwarantine objects.
+      operationId: ListProjectKwarantines
+      parameters:
+      - $ref: "#/components/parameters/ProjectID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ObjectIds"
+          description: Returns an array of Kwarantine IDs.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      tags:
+      - project
+      - kwarantine
     parameters:
     - $ref: "#/components/parameters/ProjectID"
   /project/{projectId}/record:
@@ -4709,6 +4967,15 @@ components:
       schema:
         type: string
       style: simple
+    KwarantineID:
+      description: The ID of the Kwarantine.
+      explode: false
+      in: path
+      name: kwarantineId
+      required: true
+      schema:
+        type: string
+      style: simple
     KyloID:
       description: The ID of the Kylo.
       explode: false
@@ -6196,6 +6463,62 @@ components:
       required:
       - hosts
       - port
+    Kwarantine:
+      description: "A Kwarantine is an anti-affinity mechanism that ensures its member\
+        \ virtual machine instances or Kompute resources are never co-scheduled on\
+        \ the same Kaktus computing node (host policy) or the same availability zone\
+        \ (zone policy), regardless of Kaktus host scheduling score, so that critical\
+        \ redundant resources stay properly spread out."
+      example:
+        id: id
+        name: name
+        description: description
+        policy: host
+        instances:
+        - instances
+        - instances
+        komputes:
+        - komputes
+        - komputes
+      properties:
+        id:
+          description: The Kwarantine ID (auto-generated).
+          type: string
+        name:
+          description: The Kwarantine name.
+          type: string
+        description:
+          description: The Kwarantine description.
+          type: string
+        policy:
+          default: host
+          description: "The anti-affinity enforcement policy. Use \"host\" to guarantee\
+            \ no two group members are ever scheduled on the same Kaktus computing\
+            \ node, or \"zone\" to guarantee no two group members are ever scheduled\
+            \ within the same availability zone."
+          enum:
+          - host
+          - zone
+          type: string
+        instances:
+          description: "A list of existing virtual machine instance IDs that are part\
+            \ of the Kwarantine group. Members are guaranteed to never be co-scheduled\
+            \ according to the group policy, regardless of Kaktus host scheduling\
+            \ score."
+          items:
+            type: string
+          type: array
+          default: null
+        komputes:
+          description: "A list of existing Kompute IDs that are part of the Kwarantine\
+            \ group. Members are guaranteed to never be co-scheduled according to\
+            \ the group policy, regardless of Kaktus host scheduling score."
+          items:
+            type: string
+          type: array
+          default: null
+      required:
+      - name
     Kylo:
       description: A Kylo provides an elastic NFS-like remote storage volume.
       example:

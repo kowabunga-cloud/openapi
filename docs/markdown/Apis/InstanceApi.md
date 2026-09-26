@@ -4,6 +4,7 @@ All URIs are relative to */api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**addKwarantineInstance**](InstanceApi.md#addKwarantineInstance) | **PUT** /kwarantine/{kwarantineId}/instance/{instanceId} |  |
 | [**commitInstanceKMotion**](InstanceApi.md#commitInstanceKMotion) | **PATCH** /instance/{instanceId}/kmotion/commit |  |
 | [**createProjectZoneInstance**](InstanceApi.md#createProjectZoneInstance) | **POST** /project/{projectId}/zone/{zoneId}/instance |  |
 | [**deleteInstance**](InstanceApi.md#deleteInstance) | **DELETE** /instance/{instanceId} |  |
@@ -15,6 +16,7 @@ All URIs are relative to */api/v1*
 | [**readInstanceRemoteConnection**](InstanceApi.md#readInstanceRemoteConnection) | **GET** /instance/{instanceId}/connect |  |
 | [**readInstanceState**](InstanceApi.md#readInstanceState) | **GET** /instance/{instanceId}/state |  |
 | [**rebootInstance**](InstanceApi.md#rebootInstance) | **PATCH** /instance/{instanceId}/reboot |  |
+| [**removeKwarantineInstance**](InstanceApi.md#removeKwarantineInstance) | **DELETE** /kwarantine/{kwarantineId}/instance/{instanceId} |  |
 | [**resetInstance**](InstanceApi.md#resetInstance) | **PATCH** /instance/{instanceId}/reset |  |
 | [**resumeInstance**](InstanceApi.md#resumeInstance) | **PATCH** /instance/{instanceId}/resume |  |
 | [**shutdownInstance**](InstanceApi.md#shutdownInstance) | **PATCH** /instance/{instanceId}/shutdown |  |
@@ -23,6 +25,34 @@ All URIs are relative to */api/v1*
 | [**suspendInstance**](InstanceApi.md#suspendInstance) | **PATCH** /instance/{instanceId}/suspend |  |
 | [**updateInstance**](InstanceApi.md#updateInstance) | **PUT** /instance/{instanceId} |  |
 
+
+<a name="addKwarantineInstance"></a>
+# **addKwarantineInstance**
+> Kwarantine addKwarantineInstance(kwarantineId, instanceId)
+
+
+
+    Adds an existing virtual machine instance to the Kwarantine group. Idempotent, calling it multiple times has no additional effect.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **kwarantineId** | **String**| The ID of the Kwarantine. | [default to null] |
+| **instanceId** | **String**| The ID of the virtual machine instance. | [default to null] |
+
+### Return type
+
+[**Kwarantine**](../Models/Kwarantine.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 <a name="commitInstanceKMotion"></a>
 # **commitInstanceKMotion**
@@ -308,6 +338,34 @@ This endpoint does not need any parameter.
 
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **instanceId** | **String**| The ID of the virtual machine instance. | [default to null] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="removeKwarantineInstance"></a>
+# **removeKwarantineInstance**
+> removeKwarantineInstance(kwarantineId, instanceId)
+
+
+
+    Removes an existing virtual machine instance from the Kwarantine group.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **kwarantineId** | **String**| The ID of the Kwarantine. | [default to null] |
 | **instanceId** | **String**| The ID of the virtual machine instance. | [default to null] |
 
 ### Return type

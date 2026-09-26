@@ -4,6 +4,7 @@ All URIs are relative to */api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**addKwarantineKompute**](KomputeApi.md#addKwarantineKompute) | **PUT** /kwarantine/{kwarantineId}/kompute/{komputeId} |  |
 | [**commitKomputeKMotion**](KomputeApi.md#commitKomputeKMotion) | **PATCH** /kompute/{komputeId}/kmotion/commit |  |
 | [**createProjectZoneKompute**](KomputeApi.md#createProjectZoneKompute) | **POST** /project/{projectId}/zone/{zoneId}/kompute |  |
 | [**deleteKompute**](KomputeApi.md#deleteKompute) | **DELETE** /kompute/{komputeId} |  |
@@ -13,6 +14,7 @@ All URIs are relative to */api/v1*
 | [**readKompute**](KomputeApi.md#readKompute) | **GET** /kompute/{komputeId} |  |
 | [**readKomputeState**](KomputeApi.md#readKomputeState) | **GET** /kompute/{komputeId}/state |  |
 | [**rebootKompute**](KomputeApi.md#rebootKompute) | **PATCH** /kompute/{komputeId}/reboot |  |
+| [**removeKwarantineKompute**](KomputeApi.md#removeKwarantineKompute) | **DELETE** /kwarantine/{kwarantineId}/kompute/{komputeId} |  |
 | [**resetKompute**](KomputeApi.md#resetKompute) | **PATCH** /kompute/{komputeId}/reset |  |
 | [**resumeKompute**](KomputeApi.md#resumeKompute) | **PATCH** /kompute/{komputeId}/resume |  |
 | [**shutdownKompute**](KomputeApi.md#shutdownKompute) | **PATCH** /kompute/{komputeId}/shutdown |  |
@@ -21,6 +23,34 @@ All URIs are relative to */api/v1*
 | [**suspendKompute**](KomputeApi.md#suspendKompute) | **PATCH** /kompute/{komputeId}/suspend |  |
 | [**updateKompute**](KomputeApi.md#updateKompute) | **PUT** /kompute/{komputeId} |  |
 
+
+<a name="addKwarantineKompute"></a>
+# **addKwarantineKompute**
+> Kwarantine addKwarantineKompute(kwarantineId, komputeId)
+
+
+
+    Adds an existing Kompute to the Kwarantine group. Idempotent, calling it multiple times has no additional effect.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **kwarantineId** | **String**| The ID of the Kwarantine. | [default to null] |
+| **komputeId** | **String**| The ID of the Kompute. | [default to null] |
+
+### Return type
+
+[**Kwarantine**](../Models/Kwarantine.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 <a name="commitKomputeKMotion"></a>
 # **commitKomputeKMotion**
@@ -255,6 +285,34 @@ This endpoint does not need any parameter.
 
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **komputeId** | **String**| The ID of the Kompute. | [default to null] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="removeKwarantineKompute"></a>
+# **removeKwarantineKompute**
+> removeKwarantineKompute(kwarantineId, komputeId)
+
+
+
+    Removes an existing Kompute from the Kwarantine group.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **kwarantineId** | **String**| The ID of the Kwarantine. | [default to null] |
 | **komputeId** | **String**| The ID of the Kompute. | [default to null] |
 
 ### Return type
