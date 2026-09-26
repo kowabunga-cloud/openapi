@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.56.0](https://github.com/kowabunga-cloud/openapi/compare/v0.55.0...v0.56.0) (2026-09-26)
+
+### Features
+
+* add kMotion live/cold host migration for instances and kompute ([3408109](https://github.com/kowabunga-cloud/openapi/commit/340810958a6df7e16ac630541eb5d1bfc39ec6ef))
+* add Kwarantine anti-affinity groups for instances and kompute ([4634873](https://github.com/kowabunga-cloud/openapi/commit/4634873a64072c6f5faf6f1d0bf99e6265351eac))
+
 ## [0.55.0](https://github.com/kowabunga-cloud/openapi/compare/v0.54.1...v0.55.0) (2026-09-25)
 
 ### Chores

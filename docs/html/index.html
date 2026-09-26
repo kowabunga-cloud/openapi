@@ -1234,8 +1234,8 @@ ul.nav-tabs {
     "destination" : {
       "type" : "string",
       "description" : "How the destination Kaktus computing node must be elected. Use \"manual\" to explicitly target a given node (see kaktus), \"zone\" to automatically elect the least busy node within the instance own availability zone, \"region\" to automatically elect the least busy node anywhere within the instance region, or \"auto\" to let Kowabunga fully decide the best possible destination across the region, regardless of the number of availability zones it contains.",
-      "enum" : [ "manual", "zone", "region", "auto" ],
-      "default" : "auto"
+      "default" : "auto",
+      "enum" : [ "manual", "zone", "region", "auto" ]
     },
     "kaktus" : {
       "type" : "string",
@@ -1896,8 +1896,8 @@ ul.nav-tabs {
     "policy" : {
       "type" : "string",
       "description" : "The anti-affinity enforcement policy. Use \"host\" to guarantee no two group members are ever scheduled on the same Kaktus computing node, or \"zone\" to guarantee no two group members are ever scheduled within the same availability zone.",
-      "enum" : [ "host", "zone" ],
-      "default" : "host"
+      "default" : "host",
+      "enum" : [ "host", "zone" ]
     },
     "instances" : {
       "type" : "array",
@@ -3291,7 +3291,7 @@ ul.nav-tabs {
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 0.55.0</div>
+              <div class="app-desc">Version: 0.56.0</div>
             <hr>
             <div id="app-description" class="app-desc">
                 Kvm Orchestrator With A BUNch of Goods Added
