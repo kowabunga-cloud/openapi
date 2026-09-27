@@ -6,9 +6,11 @@ All URIs are relative to */api/v1*
 |------------- | ------------- | -------------|
 | [**addKwarantineKompute**](KomputeApi.md#addKwarantineKompute) | **PUT** /kwarantine/{kwarantineId}/kompute/{komputeId} |  |
 | [**commitKomputeKMotion**](KomputeApi.md#commitKomputeKMotion) | **PATCH** /kompute/{komputeId}/kmotion/commit |  |
+| [**createProjectRegionKompute**](KomputeApi.md#createProjectRegionKompute) | **POST** /project/{projectId}/region/{regionId}/kompute |  |
 | [**createProjectZoneKompute**](KomputeApi.md#createProjectZoneKompute) | **POST** /project/{projectId}/zone/{zoneId}/kompute |  |
 | [**deleteKompute**](KomputeApi.md#deleteKompute) | **DELETE** /kompute/{komputeId} |  |
 | [**listKomputes**](KomputeApi.md#listKomputes) | **GET** /kompute |  |
+| [**listProjectRegionKomputes**](KomputeApi.md#listProjectRegionKomputes) | **GET** /project/{projectId}/region/{regionId}/komputes |  |
 | [**listProjectZoneKomputes**](KomputeApi.md#listProjectZoneKomputes) | **GET** /project/{projectId}/zone/{zoneId}/komputes |  |
 | [**planKomputeKMotion**](KomputeApi.md#planKomputeKMotion) | **POST** /kompute/{komputeId}/kmotion/plan |  |
 | [**readKompute**](KomputeApi.md#readKompute) | **GET** /kompute/{komputeId} |  |
@@ -70,6 +72,38 @@ All URIs are relative to */api/v1*
 ### Return type
 
 null (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="createProjectRegionKompute"></a>
+# **createProjectRegionKompute**
+> Kompute createProjectRegionKompute(projectId, regionId, Kompute, poolId, templateId, public)
+
+
+
+    Creates a new Kompute.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| The ID of the project. | [default to null] |
+| **regionId** | **String**| The ID of the region. | [default to null] |
+| **Kompute** | [**Kompute**](../Models/Kompute.md)| Kompute payload. | |
+| **poolId** | **String**| Storage pool ID (optional, region&#39;s default if unspecified). | [optional] [default to null] |
+| **templateId** | **String**| Template to clone the storage volume from (optional, region&#39;s default if unspecified). | [optional] [default to null] |
+| **public** | **Boolean**| Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). | [optional] [default to null] |
+
+### Return type
+
+[**Kompute**](../Models/Kompute.md)
 
 ### Authorization
 
@@ -149,6 +183,34 @@ null (empty response body)
 
 ### Parameters
 This endpoint does not need any parameter.
+
+### Return type
+
+**List**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="listProjectRegionKomputes"></a>
+# **listProjectRegionKomputes**
+> List listProjectRegionKomputes(projectId, regionId)
+
+
+
+    Returns the IDs of Kompute objects.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| The ID of the project. | [default to null] |
+| **regionId** | **String**| The ID of the region. | [default to null] |
 
 ### Return type
 

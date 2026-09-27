@@ -5,7 +5,9 @@ All URIs are relative to */api/v1*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**createKiwi**](RegionApi.md#createKiwi) | **POST** /region/{regionId}/kiwi |  |
+| [**createProjectRegionInstance**](RegionApi.md#createProjectRegionInstance) | **POST** /project/{projectId}/region/{regionId}/instance |  |
 | [**createProjectRegionKawaii**](RegionApi.md#createProjectRegionKawaii) | **POST** /project/{projectId}/region/{regionId}/kawaii |  |
+| [**createProjectRegionKompute**](RegionApi.md#createProjectRegionKompute) | **POST** /project/{projectId}/region/{regionId}/kompute |  |
 | [**createProjectRegionKonvey**](RegionApi.md#createProjectRegionKonvey) | **POST** /project/{projectId}/region/{regionId}/konvey |  |
 | [**createProjectRegionKylo**](RegionApi.md#createProjectRegionKylo) | **POST** /project/{projectId}/region/{regionId}/kylo |  |
 | [**createProjectRegionVolume**](RegionApi.md#createProjectRegionVolume) | **POST** /project/{projectId}/region/{regionId}/volume |  |
@@ -16,7 +18,9 @@ All URIs are relative to */api/v1*
 | [**createVNet**](RegionApi.md#createVNet) | **POST** /region/{regionId}/vnet |  |
 | [**createZone**](RegionApi.md#createZone) | **POST** /region/{regionId}/zone |  |
 | [**deleteRegion**](RegionApi.md#deleteRegion) | **DELETE** /region/{regionId} |  |
+| [**listProjectRegionInstances**](RegionApi.md#listProjectRegionInstances) | **GET** /project/{projectId}/region/{regionId}/instances |  |
 | [**listProjectRegionKawaiis**](RegionApi.md#listProjectRegionKawaiis) | **GET** /project/{projectId}/region/{regionId}/kawaiis |  |
+| [**listProjectRegionKomputes**](RegionApi.md#listProjectRegionKomputes) | **GET** /project/{projectId}/region/{regionId}/komputes |  |
 | [**listProjectRegionKonveys**](RegionApi.md#listProjectRegionKonveys) | **GET** /project/{projectId}/region/{regionId}/konveys |  |
 | [**listProjectRegionKylos**](RegionApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylo |  |
 | [**listProjectRegionVolumes**](RegionApi.md#listProjectRegionVolumes) | **GET** /project/{projectId}/region/{regionId}/volumes |  |
@@ -61,6 +65,35 @@ All URIs are relative to */api/v1*
 - **Content-Type**: application/json
 - **Accept**: application/json
 
+<a name="createProjectRegionInstance"></a>
+# **createProjectRegionInstance**
+> Instance createProjectRegionInstance(projectId, regionId, Instance)
+
+
+
+    Creates a new virtual machine instance.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| The ID of the project. | [default to null] |
+| **regionId** | **String**| The ID of the region. | [default to null] |
+| **Instance** | [**Instance**](../Models/Instance.md)| Instance payload. | |
+
+### Return type
+
+[**Instance**](../Models/Instance.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
 <a name="createProjectRegionKawaii"></a>
 # **createProjectRegionKawaii**
 > Kawaii createProjectRegionKawaii(projectId, regionId, Kawaii)
@@ -80,6 +113,38 @@ All URIs are relative to */api/v1*
 ### Return type
 
 [**Kawaii**](../Models/Kawaii.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="createProjectRegionKompute"></a>
+# **createProjectRegionKompute**
+> Kompute createProjectRegionKompute(projectId, regionId, Kompute, poolId, templateId, public)
+
+
+
+    Creates a new Kompute.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| The ID of the project. | [default to null] |
+| **regionId** | **String**| The ID of the region. | [default to null] |
+| **Kompute** | [**Kompute**](../Models/Kompute.md)| Kompute payload. | |
+| **poolId** | **String**| Storage pool ID (optional, region&#39;s default if unspecified). | [optional] [default to null] |
+| **templateId** | **String**| Template to clone the storage volume from (optional, region&#39;s default if unspecified). | [optional] [default to null] |
+| **public** | **Boolean**| Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). | [optional] [default to null] |
+
+### Return type
+
+[**Kompute**](../Models/Kompute.md)
 
 ### Authorization
 
@@ -375,6 +440,34 @@ null (empty response body)
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="listProjectRegionInstances"></a>
+# **listProjectRegionInstances**
+> List listProjectRegionInstances(projectId, regionId)
+
+
+
+    Returns the IDs of virtual machine instance objects.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| The ID of the project. | [default to null] |
+| **regionId** | **String**| The ID of the region. | [default to null] |
+
+### Return type
+
+**List**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 <a name="listProjectRegionKawaiis"></a>
 # **listProjectRegionKawaiis**
 > List listProjectRegionKawaiis(projectId, regionId)
@@ -382,6 +475,34 @@ null (empty response body)
 
 
     Returns the IDs of Kawaii objects.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| The ID of the project. | [default to null] |
+| **regionId** | **String**| The ID of the region. | [default to null] |
+
+### Return type
+
+**List**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="listProjectRegionKomputes"></a>
+# **listProjectRegionKomputes**
+> List listProjectRegionKomputes(projectId, regionId)
+
+
+
+    Returns the IDs of Kompute objects.
 
 ### Parameters
 

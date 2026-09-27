@@ -12,6 +12,7 @@ components:
 {{ oas.IntProperty('vcpus', 'The ' + resources.instance.desc + ' number of vCPUs') }}
 {{ oas.StringArrayProperty('adapters', 'a list of existing network adapters to be connected to the instance') }}
 {{ oas.StringArrayProperty('volumes', 'volumes list of existing storage volumes (i.e. disks) to be connected to the instance') }}
+{{ oas.StringArrayProperty('kwarantines', 'An optional list of existing Kwarantine anti-affinity group IDs. Only considered at instance creation time, to elect an initial host consistent with the referenced groups policies and register the instance as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices') }}
 {{ oas.BoolProperty('uefi', 'enable UEFI secure firmware (vs. legacy BIOS)', default=True) }}
 {{ oas.BoolProperty('kmotion_enabled', 'Whether kMotion (live/cold host migration) is enabled for the ' + resources.instance.desc + '. When disabled, the instance remains bound to its original hosting node', default=True) }}
 

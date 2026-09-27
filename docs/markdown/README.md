@@ -21,10 +21,12 @@ All URIs are relative to */api/v1*
 *AgentApi* | [**updateAgent**](Apis/AgentApi.md#updateAgent) | **PUT** /agent/{agentId} | Updates a Kowabunga remote agent configuration. |
 | *InstanceApi* | [**addKwarantineInstance**](Apis/InstanceApi.md#addKwarantineInstance) | **PUT** /kwarantine/{kwarantineId}/instance/{instanceId} | Adds an existing virtual machine instance to the Kwarantine group. Idempotent, calling it multiple times has no additional effect. |
 *InstanceApi* | [**commitInstanceKMotion**](Apis/InstanceApi.md#commitInstanceKMotion) | **PATCH** /instance/{instanceId}/kmotion/commit | Commits a previously computed kMotion plan, performing the actual virtual machine instance host kMotion. |
+*InstanceApi* | [**createProjectRegionInstance**](Apis/InstanceApi.md#createProjectRegionInstance) | **POST** /project/{projectId}/region/{regionId}/instance | Creates a new virtual machine instance. |
 *InstanceApi* | [**createProjectZoneInstance**](Apis/InstanceApi.md#createProjectZoneInstance) | **POST** /project/{projectId}/zone/{zoneId}/instance | Creates a new virtual machine instance. |
 *InstanceApi* | [**deleteInstance**](Apis/InstanceApi.md#deleteInstance) | **DELETE** /instance/{instanceId} | Deletes an existing virtual machine instance. |
 *InstanceApi* | [**listInstances**](Apis/InstanceApi.md#listInstances) | **GET** /instance | Returns the IDs of virtual machine instance objects. |
 *InstanceApi* | [**listKaktusInstances**](Apis/InstanceApi.md#listKaktusInstances) | **GET** /kaktus/{kaktusId}/instances | Returns the IDs of virtual machine instance objects. |
+*InstanceApi* | [**listProjectRegionInstances**](Apis/InstanceApi.md#listProjectRegionInstances) | **GET** /project/{projectId}/region/{regionId}/instances | Returns the IDs of virtual machine instance objects. |
 *InstanceApi* | [**listProjectZoneInstances**](Apis/InstanceApi.md#listProjectZoneInstances) | **GET** /project/{projectId}/zone/{zoneId}/instances | Returns the IDs of virtual machine instance objects. |
 *InstanceApi* | [**planInstanceKMotion**](Apis/InstanceApi.md#planInstanceKMotion) | **POST** /instance/{instanceId}/kmotion/plan | Computes a kMotion plan for the virtual machine instance, electing the best destination Kaktus computing node to host it. |
 *InstanceApi* | [**readInstance**](Apis/InstanceApi.md#readInstance) | **GET** /instance/{instanceId} | Returns a virtual machine instance. |
@@ -73,9 +75,11 @@ All URIs are relative to */api/v1*
 *KiwiApi* | [**updateKiwi**](Apis/KiwiApi.md#updateKiwi) | **PUT** /kiwi/{kiwiId} | Updates a Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. configuration. |
 | *KomputeApi* | [**addKwarantineKompute**](Apis/KomputeApi.md#addKwarantineKompute) | **PUT** /kwarantine/{kwarantineId}/kompute/{komputeId} | Adds an existing Kompute to the Kwarantine group. Idempotent, calling it multiple times has no additional effect. |
 *KomputeApi* | [**commitKomputeKMotion**](Apis/KomputeApi.md#commitKomputeKMotion) | **PATCH** /kompute/{komputeId}/kmotion/commit | Commits a previously computed kMotion plan, performing the actual Kompute host kMotion. |
+*KomputeApi* | [**createProjectRegionKompute**](Apis/KomputeApi.md#createProjectRegionKompute) | **POST** /project/{projectId}/region/{regionId}/kompute | Creates a new Kompute. |
 *KomputeApi* | [**createProjectZoneKompute**](Apis/KomputeApi.md#createProjectZoneKompute) | **POST** /project/{projectId}/zone/{zoneId}/kompute | Creates a new Kompute. |
 *KomputeApi* | [**deleteKompute**](Apis/KomputeApi.md#deleteKompute) | **DELETE** /kompute/{komputeId} | Deletes an existing Kompute. |
 *KomputeApi* | [**listKomputes**](Apis/KomputeApi.md#listKomputes) | **GET** /kompute | Returns the IDs of Kompute objects. |
+*KomputeApi* | [**listProjectRegionKomputes**](Apis/KomputeApi.md#listProjectRegionKomputes) | **GET** /project/{projectId}/region/{regionId}/komputes | Returns the IDs of Kompute objects. |
 *KomputeApi* | [**listProjectZoneKomputes**](Apis/KomputeApi.md#listProjectZoneKomputes) | **GET** /project/{projectId}/zone/{zoneId}/komputes | Returns the IDs of Kompute objects. |
 *KomputeApi* | [**planKomputeKMotion**](Apis/KomputeApi.md#planKomputeKMotion) | **POST** /kompute/{komputeId}/kmotion/plan | Computes a kMotion plan for the Kompute, electing the best destination Kaktus computing node to host it. |
 *KomputeApi* | [**readKompute**](Apis/KomputeApi.md#readKompute) | **GET** /kompute/{komputeId} | Returns a Kompute. |
@@ -136,7 +140,9 @@ All URIs are relative to */api/v1*
 | *ProjectApi* | [**createProject**](Apis/ProjectApi.md#createProject) | **POST** /project | Creates a new project. |
 *ProjectApi* | [**createProjectDnsRecord**](Apis/ProjectApi.md#createProjectDnsRecord) | **POST** /project/{projectId}/record | Creates a new DNS record. |
 *ProjectApi* | [**createProjectKwarantine**](Apis/ProjectApi.md#createProjectKwarantine) | **POST** /project/{projectId}/kwarantine | Creates a new Kwarantine. |
+*ProjectApi* | [**createProjectRegionInstance**](Apis/ProjectApi.md#createProjectRegionInstance) | **POST** /project/{projectId}/region/{regionId}/instance | Creates a new virtual machine instance. |
 *ProjectApi* | [**createProjectRegionKawaii**](Apis/ProjectApi.md#createProjectRegionKawaii) | **POST** /project/{projectId}/region/{regionId}/kawaii | Creates a new Kawaii. |
+*ProjectApi* | [**createProjectRegionKompute**](Apis/ProjectApi.md#createProjectRegionKompute) | **POST** /project/{projectId}/region/{regionId}/kompute | Creates a new Kompute. |
 *ProjectApi* | [**createProjectRegionKonvey**](Apis/ProjectApi.md#createProjectRegionKonvey) | **POST** /project/{projectId}/region/{regionId}/konvey | Creates a new Konvey (Kowabunga Network Load-Balancer). |
 *ProjectApi* | [**createProjectRegionKylo**](Apis/ProjectApi.md#createProjectRegionKylo) | **POST** /project/{projectId}/region/{regionId}/kylo | Creates a new Kylo. |
 *ProjectApi* | [**createProjectRegionVolume**](Apis/ProjectApi.md#createProjectRegionVolume) | **POST** /project/{projectId}/region/{regionId}/volume | Creates a new storage volume. |
@@ -146,7 +152,9 @@ All URIs are relative to */api/v1*
 *ProjectApi* | [**deleteProject**](Apis/ProjectApi.md#deleteProject) | **DELETE** /project/{projectId} | Deletes an existing project. |
 *ProjectApi* | [**listProjectDnsRecords**](Apis/ProjectApi.md#listProjectDnsRecords) | **GET** /project/{projectId}/records | Returns the IDs of DNS record objects. |
 *ProjectApi* | [**listProjectKwarantines**](Apis/ProjectApi.md#listProjectKwarantines) | **GET** /project/{projectId}/kwarantines | Returns the IDs of Kwarantine objects. |
+*ProjectApi* | [**listProjectRegionInstances**](Apis/ProjectApi.md#listProjectRegionInstances) | **GET** /project/{projectId}/region/{regionId}/instances | Returns the IDs of virtual machine instance objects. |
 *ProjectApi* | [**listProjectRegionKawaiis**](Apis/ProjectApi.md#listProjectRegionKawaiis) | **GET** /project/{projectId}/region/{regionId}/kawaiis | Returns the IDs of Kawaii objects. |
+*ProjectApi* | [**listProjectRegionKomputes**](Apis/ProjectApi.md#listProjectRegionKomputes) | **GET** /project/{projectId}/region/{regionId}/komputes | Returns the IDs of Kompute objects. |
 *ProjectApi* | [**listProjectRegionKonveys**](Apis/ProjectApi.md#listProjectRegionKonveys) | **GET** /project/{projectId}/region/{regionId}/konveys | Returns the IDs of Konvey (Kowabunga Network Load-Balancer) objects. |
 *ProjectApi* | [**listProjectRegionKylos**](Apis/ProjectApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylo | Returns the IDs of Kylo objects. |
 *ProjectApi* | [**listProjectRegionVolumes**](Apis/ProjectApi.md#listProjectRegionVolumes) | **GET** /project/{projectId}/region/{regionId}/volumes | Returns the IDs of storage volume objects. |
@@ -166,7 +174,9 @@ All URIs are relative to */api/v1*
 *RecordApi* | [**readDnsRecord**](Apis/RecordApi.md#readDnsRecord) | **GET** /record/{recordId} | Returns a DNS record. |
 *RecordApi* | [**updateDnsRecord**](Apis/RecordApi.md#updateDnsRecord) | **PUT** /record/{recordId} | Updates a DNS record configuration. |
 | *RegionApi* | [**createKiwi**](Apis/RegionApi.md#createKiwi) | **POST** /region/{regionId}/kiwi | Creates a new Kiwi (Kowabunga Inner Wan Interface) provides edge-network services.. |
+*RegionApi* | [**createProjectRegionInstance**](Apis/RegionApi.md#createProjectRegionInstance) | **POST** /project/{projectId}/region/{regionId}/instance | Creates a new virtual machine instance. |
 *RegionApi* | [**createProjectRegionKawaii**](Apis/RegionApi.md#createProjectRegionKawaii) | **POST** /project/{projectId}/region/{regionId}/kawaii | Creates a new Kawaii. |
+*RegionApi* | [**createProjectRegionKompute**](Apis/RegionApi.md#createProjectRegionKompute) | **POST** /project/{projectId}/region/{regionId}/kompute | Creates a new Kompute. |
 *RegionApi* | [**createProjectRegionKonvey**](Apis/RegionApi.md#createProjectRegionKonvey) | **POST** /project/{projectId}/region/{regionId}/konvey | Creates a new Konvey (Kowabunga Network Load-Balancer). |
 *RegionApi* | [**createProjectRegionKylo**](Apis/RegionApi.md#createProjectRegionKylo) | **POST** /project/{projectId}/region/{regionId}/kylo | Creates a new Kylo. |
 *RegionApi* | [**createProjectRegionVolume**](Apis/RegionApi.md#createProjectRegionVolume) | **POST** /project/{projectId}/region/{regionId}/volume | Creates a new storage volume. |
@@ -177,7 +187,9 @@ All URIs are relative to */api/v1*
 *RegionApi* | [**createVNet**](Apis/RegionApi.md#createVNet) | **POST** /region/{regionId}/vnet | Creates a new virtual network. |
 *RegionApi* | [**createZone**](Apis/RegionApi.md#createZone) | **POST** /region/{regionId}/zone | Creates a new availability zone. |
 *RegionApi* | [**deleteRegion**](Apis/RegionApi.md#deleteRegion) | **DELETE** /region/{regionId} | Deletes an existing region. |
+*RegionApi* | [**listProjectRegionInstances**](Apis/RegionApi.md#listProjectRegionInstances) | **GET** /project/{projectId}/region/{regionId}/instances | Returns the IDs of virtual machine instance objects. |
 *RegionApi* | [**listProjectRegionKawaiis**](Apis/RegionApi.md#listProjectRegionKawaiis) | **GET** /project/{projectId}/region/{regionId}/kawaiis | Returns the IDs of Kawaii objects. |
+*RegionApi* | [**listProjectRegionKomputes**](Apis/RegionApi.md#listProjectRegionKomputes) | **GET** /project/{projectId}/region/{regionId}/komputes | Returns the IDs of Kompute objects. |
 *RegionApi* | [**listProjectRegionKonveys**](Apis/RegionApi.md#listProjectRegionKonveys) | **GET** /project/{projectId}/region/{regionId}/konveys | Returns the IDs of Konvey (Kowabunga Network Load-Balancer) objects. |
 *RegionApi* | [**listProjectRegionKylos**](Apis/RegionApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylo | Returns the IDs of Kylo objects. |
 *RegionApi* | [**listProjectRegionVolumes**](Apis/RegionApi.md#listProjectRegionVolumes) | **GET** /project/{projectId}/region/{regionId}/volumes | Returns the IDs of storage volume objects. |

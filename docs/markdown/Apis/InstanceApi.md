@@ -6,10 +6,12 @@ All URIs are relative to */api/v1*
 |------------- | ------------- | -------------|
 | [**addKwarantineInstance**](InstanceApi.md#addKwarantineInstance) | **PUT** /kwarantine/{kwarantineId}/instance/{instanceId} |  |
 | [**commitInstanceKMotion**](InstanceApi.md#commitInstanceKMotion) | **PATCH** /instance/{instanceId}/kmotion/commit |  |
+| [**createProjectRegionInstance**](InstanceApi.md#createProjectRegionInstance) | **POST** /project/{projectId}/region/{regionId}/instance |  |
 | [**createProjectZoneInstance**](InstanceApi.md#createProjectZoneInstance) | **POST** /project/{projectId}/zone/{zoneId}/instance |  |
 | [**deleteInstance**](InstanceApi.md#deleteInstance) | **DELETE** /instance/{instanceId} |  |
 | [**listInstances**](InstanceApi.md#listInstances) | **GET** /instance |  |
 | [**listKaktusInstances**](InstanceApi.md#listKaktusInstances) | **GET** /kaktus/{kaktusId}/instances |  |
+| [**listProjectRegionInstances**](InstanceApi.md#listProjectRegionInstances) | **GET** /project/{projectId}/region/{regionId}/instances |  |
 | [**listProjectZoneInstances**](InstanceApi.md#listProjectZoneInstances) | **GET** /project/{projectId}/zone/{zoneId}/instances |  |
 | [**planInstanceKMotion**](InstanceApi.md#planInstanceKMotion) | **POST** /instance/{instanceId}/kmotion/plan |  |
 | [**readInstance**](InstanceApi.md#readInstance) | **GET** /instance/{instanceId} |  |
@@ -72,6 +74,35 @@ All URIs are relative to */api/v1*
 ### Return type
 
 null (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="createProjectRegionInstance"></a>
+# **createProjectRegionInstance**
+> Instance createProjectRegionInstance(projectId, regionId, Instance)
+
+
+
+    Creates a new virtual machine instance.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| The ID of the project. | [default to null] |
+| **regionId** | **String**| The ID of the region. | [default to null] |
+| **Instance** | [**Instance**](../Models/Instance.md)| Instance payload. | |
+
+### Return type
+
+[**Instance**](../Models/Instance.md)
 
 ### Authorization
 
@@ -175,6 +206,34 @@ This endpoint does not need any parameter.
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **kaktusId** | **String**| The ID of the Kaktus computing node. | [default to null] |
+
+### Return type
+
+**List**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="listProjectRegionInstances"></a>
+# **listProjectRegionInstances**
+> List listProjectRegionInstances(projectId, regionId)
+
+
+
+    Returns the IDs of virtual machine instance objects.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| The ID of the project. | [default to null] |
+| **regionId** | **String**| The ID of the region. | [default to null] |
 
 ### Return type
 
