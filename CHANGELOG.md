@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.57.0](https://github.com/kowabunga-cloud/openapi/compare/v0.56.0...v0.57.0) (2026-09-27)
+
+### Features
+
+* add region-scoped instance/kompute creation and Kwarantine hints ([5bce26b](https://github.com/kowabunga-cloud/openapi/commit/5bce26b6ac9bf134ad186d8c26d8477e85fecfd2))
+
 ## [0.56.0](https://github.com/kowabunga-cloud/openapi/compare/v0.55.0...v0.56.0) (2026-09-26)
 
 ### Features
