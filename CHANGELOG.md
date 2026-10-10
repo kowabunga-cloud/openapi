@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.57.1](https://github.com/kowabunga-cloud/openapi/compare/v0.57.0...v0.57.1) (2026-10-10)
+
+### Bug Fixes
+
+* strip invalid generator artifacts from published spec ([0f4b3ce](https://github.com/kowabunga-cloud/openapi/commit/0f4b3ce88b552f97c09d7605298b38bc2cd66b20))
+
 ## [0.57.0](https://github.com/kowabunga-cloud/openapi/compare/v0.56.0...v0.57.0) (2026-09-27)
 
 ### Features
