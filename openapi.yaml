@@ -5353,15 +5353,6 @@ components:
   schemas:
     Adapter:
       description: A network adapter.
-      example:
-        id: id
-        name: name
-        description: description
-        mac: mac
-        addresses:
-        - addresses
-        - addresses
-        reserved: false
       properties:
         id:
           description: The network adapter ID (auto-generated).
@@ -5381,7 +5372,6 @@ components:
           items:
             type: string
           type: array
-          default: null
         reserved:
           default: false
           description: "The network adapter is a reserved adapter (e.g. router), where\
@@ -5391,11 +5381,6 @@ components:
       - name
     Agent:
       description: A Kowabunga remote agent.
-      example:
-        id: id
-        name: name
-        description: description
-        type: Kiwi
       properties:
         id:
           description: The Kowabunga remote agent ID (auto-generated).
@@ -5417,9 +5402,6 @@ components:
       - type
     Cost:
       description: A resource cost.
-      example:
-        price: 0.8008282
-        currency: currency
       properties:
         price:
           description: The unit price information.
@@ -5433,14 +5415,6 @@ components:
       - price
     DnsRecord:
       description: A DNS record.
-      example:
-        id: id
-        name: name
-        description: description
-        domain: domain
-        addresses:
-        - addresses
-        - addresses
       properties:
         id:
           description: The DNS record ID (auto-generated).
@@ -5460,15 +5434,10 @@ components:
           items:
             type: string
           type: array
-          default: null
       required:
       - addresses
       - name
     ApiErrorBadRequest:
-      example:
-        status: 400
-        error: Bad request (wrong input parameters).
-        reason: server_side_details
       properties:
         status:
           example: 400
@@ -5485,10 +5454,6 @@ components:
       - reason
       - status
     ApiErrorUnauthorized:
-      example:
-        status: 401
-        error: Unauthorized resource access (wrong auth/credentials).
-        reason: server_side_details
       properties:
         status:
           example: 401
@@ -5505,10 +5470,6 @@ components:
       - reason
       - status
     ApiErrorForbidden:
-      example:
-        status: 403
-        error: Forbidden resource access (restricted access control).
-        reason: server_side_details
       properties:
         status:
           example: 403
@@ -5525,10 +5486,6 @@ components:
       - reason
       - status
     ApiErrorNotFound:
-      example:
-        status: 404
-        error: Specified resource does not exist.
-        reason: server_side_details
       properties:
         status:
           example: 404
@@ -5545,11 +5502,6 @@ components:
       - reason
       - status
     ApiErrorConflict:
-      example:
-        status: 409
-        error: A similar resource already exists or resource is still being referenced
-          somewhere.
-        reason: server_side_details
       properties:
         status:
           example: 409
@@ -5567,10 +5519,6 @@ components:
       - reason
       - status
     ApiErrorUnprocessableEntity:
-      example:
-        status: 422
-        error: Server can't process request.
-        reason: server_side_details
       properties:
         status:
           example: 422
@@ -5587,11 +5535,6 @@ components:
       - reason
       - status
     ApiErrorInsufficientResource:
-      example:
-        status: 507
-        error: Server can't allocate resources (logical quotas or physical limits
-          hit).
-        reason: server_side_details
       properties:
         status:
           example: 507
@@ -5613,11 +5556,8 @@ components:
       items:
         type: string
       type: array
-      default: null
     Password:
       description: A user plain-text password.
-      example:
-        value: value
       properties:
         value:
           description: The plain-text password.
@@ -5626,23 +5566,6 @@ components:
       - value
     Instance:
       description: A virtual machine instance.
-      example:
-        id: id
-        name: name
-        description: description
-        memory: 0
-        vcpus: 6
-        adapters:
-        - adapters
-        - adapters
-        volumes:
-        - volumes
-        - volumes
-        kwarantines:
-        - kwarantines
-        - kwarantines
-        uefi: true
-        kmotion_enabled: true
       properties:
         id:
           description: The virtual machine instance ID (auto-generated).
@@ -5667,14 +5590,12 @@ components:
           items:
             type: string
           type: array
-          default: null
         volumes:
           description: volumes list of existing storage volumes (i.e. disks) to be
             connected to the instance.
           items:
             type: string
           type: array
-          default: null
         kwarantines:
           description: "An optional list of existing Kwarantine anti-affinity group\
             \ IDs. Only considered at instance creation time, to elect an initial\
@@ -5685,7 +5606,6 @@ components:
           items:
             type: string
           type: array
-          default: null
         uefi:
           default: true
           description: enable UEFI secure firmware (vs. legacy BIOS).
@@ -5702,9 +5622,6 @@ components:
       - vcpus
     InstanceState:
       description: A virtual machine instance state.
-      example:
-        state: state
-        reason: reason
       properties:
         state:
           description: The virtual machine instance state.
@@ -5717,8 +5634,6 @@ components:
       - state
     InstanceRemoteAccess:
       description: A virtual machine instance remote access characteristics.
-      example:
-        url: url
       properties:
         url:
           description: The virtual machine instance remote access URL.
@@ -5727,10 +5642,6 @@ components:
       - url
     KMotionPlanRequest:
       description: A virtual machine instance kMotion plan request.
-      example:
-        destination: auto
-        kaktus: kaktus
-        live: true
       properties:
         destination:
           default: auto
@@ -5759,12 +5670,6 @@ components:
           type: boolean
     KMotionPlan:
       description: A virtual machine instance kMotion plan.
-      example:
-        id: id
-        instance: instance
-        source: source
-        target: target
-        live: true
       properties:
         id:
           description: The kMotion plan ID (auto-generated).
@@ -5792,8 +5697,6 @@ components:
       - target
     KMotionCommitRequest:
       description: A virtual machine instance kMotion commit request.
-      example:
-        plan: plan
       properties:
         plan:
           description: The ID of the previously computed kMotion plan (see kMotion
@@ -5805,18 +5708,6 @@ components:
       description: A Kaktus (Kowabunga Affordable KVM and Tight Underneath Storage)
         is an hyper-converged infrastructure (HCI) bare-metal node offering computing
         and distributed storage capabilites.
-      example:
-        id: id
-        name: name
-        description: description
-        cpu_cost: ""
-        memory_cost: ""
-        overcommit_cpu_ratio: 0
-        overcommit_memory_ratio: 6
-        agents:
-        - agents
-        - agents
-        maintenance: false
       properties:
         id:
           description: The Kaktus computing node ID (auto-generated).
@@ -5857,7 +5748,6 @@ components:
           items:
             type: string
           type: array
-          default: null
         maintenance:
           default: false
           description: Whether the Kaktus node is under maintenance. A node under
@@ -5869,9 +5759,6 @@ components:
       - name
     KaktusCaps:
       description: A Kaktus computing node capability.
-      example:
-        cpu: ""
-        memory: 0
       properties:
         cpu:
           allOf:
@@ -5918,95 +5805,6 @@ components:
     Kawaii:
       description: A Kawaii (Kowabunga Adapative WAn Intelligent Interface) is a network
         gateway used for your Internet inbound and outbound traffic.
-      example:
-        id: id
-        name: name
-        description: description
-        netip: ""
-        firewall: ""
-        dnat:
-        - destination: destination
-          protocol: tcp
-          ports: ports
-        - destination: destination
-          protocol: tcp
-          ports: ports
-        vpc_peerings:
-        - subnet: subnet
-          policy: drop
-          ingress:
-          - protocol: tcp
-            ports: ports
-          - protocol: tcp
-            ports: ports
-          egress:
-          - protocol: tcp
-            ports: ports
-          - protocol: tcp
-            ports: ports
-          netip:
-          - zone: zone
-            private: private
-          - zone: zone
-            private: private
-        - subnet: subnet
-          policy: drop
-          ingress:
-          - protocol: tcp
-            ports: ports
-          - protocol: tcp
-            ports: ports
-          egress:
-          - protocol: tcp
-            ports: ports
-          - protocol: tcp
-            ports: ports
-          netip:
-          - zone: zone
-            private: private
-          - zone: zone
-            private: private
-        ipsec_connections:
-        - id: id
-          name: name
-          description: description
-          ip: ip
-          remote_ip: remote_ip
-          remote_subnet: remote_subnet
-          pre_shared_key: pre_shared_key
-          dpd_timeout_action: restart
-          dpd_timeout: 240s
-          start_action: start
-          rekey_time: 2h
-          phase1_lifetime: 1h
-          phase1_dh_group_number: 0
-          phase1_integrity_algorithm: SHA1
-          phase1_encryption_algorithm: AES128
-          phase2_lifetime: 1h
-          phase2_dh_group_number: 6
-          phase2_integrity_algorithm: SHA1
-          phase2_encryption_algorithm: AES128
-          firewall: ""
-        - id: id
-          name: name
-          description: description
-          ip: ip
-          remote_ip: remote_ip
-          remote_subnet: remote_subnet
-          pre_shared_key: pre_shared_key
-          dpd_timeout_action: restart
-          dpd_timeout: 240s
-          start_action: start
-          rekey_time: 2h
-          phase1_lifetime: 1h
-          phase1_dh_group_number: 0
-          phase1_integrity_algorithm: SHA1
-          phase1_encryption_algorithm: AES128
-          phase2_lifetime: 1h
-          phase2_dh_group_number: 6
-          phase2_integrity_algorithm: SHA1
-          phase2_encryption_algorithm: AES128
-          firewall: ""
       properties:
         id:
           description: The Kawaii ID (auto-generated).
@@ -6033,19 +5831,16 @@ components:
           items:
             $ref: "#/components/schemas/KawaiiDNatRule"
           type: array
-          default: null
         vpc_peerings:
           description: The Kawaii list of Kowabunga private VPC subnet peering entries.
           items:
             $ref: "#/components/schemas/KawaiiVpcPeering"
           type: array
-          default: null
         ipsec_connections:
           description: The Kawaii list of Kowabunga IPsec connections.
           items:
             $ref: "#/components/schemas/KawaiiIpSec"
           type: array
-          default: null
     KawaiiNetIp:
       description: A Kawaii Network IP settings.
       properties:
@@ -6054,19 +5849,16 @@ components:
           items:
             type: string
           type: array
-          default: null
         private:
           description: The Kawaii global private gateways virtual IP addresses (read-only).
           items:
             type: string
           type: array
-          default: null
         zones:
           description: The Kawaii per-zone list of Kowabunga virtual IP addresses.
           items:
             $ref: "#/components/schemas/KawaiiNetIpZone"
           type: array
-          default: null
       required:
       - private
       - public
@@ -6097,7 +5889,6 @@ components:
           items:
             $ref: "#/components/schemas/KawaiiFirewallIngressRule"
           type: array
-          default: null
         egress_policy:
           default: accept
           description: The default public traffic egress policy.
@@ -6113,7 +5904,6 @@ components:
           items:
             $ref: "#/components/schemas/KawaiiFirewallEgressRule"
           type: array
-          default: null
     KawaiiFirewallIngressRule:
       description: A Kawaii public firewall ingress rule.
       properties:
@@ -6157,10 +5947,6 @@ components:
       - ports
     KawaiiDNatRule:
       description: A Kawaii public firewall destination NAT rule.
-      example:
-        destination: destination
-        protocol: tcp
-        ports: ports
       properties:
         destination:
           description: Target private IP address to forward public traffic to.
@@ -6181,24 +5967,6 @@ components:
       - ports
     KawaiiVpcPeering:
       description: A Kawaii internal VPC subnet peering.
-      example:
-        subnet: subnet
-        policy: drop
-        ingress:
-        - protocol: tcp
-          ports: ports
-        - protocol: tcp
-          ports: ports
-        egress:
-        - protocol: tcp
-          ports: ports
-        - protocol: tcp
-          ports: ports
-        netip:
-        - zone: zone
-          private: private
-        - zone: zone
-          private: private
       properties:
         subnet:
           description: Kowabunga Subnet ID to be peered with (subnet local IP addresses
@@ -6218,7 +5986,6 @@ components:
           items:
             $ref: "#/components/schemas/KawaiiVpcForwardRule"
           type: array
-          default: null
         egress:
           description: The firewall list of forwarding egress rules to VPC peered
             subnet. ICMP traffic is always accepted. The specified ruleset will be
@@ -6226,20 +5993,15 @@ components:
           items:
             $ref: "#/components/schemas/KawaiiVpcForwardRule"
           type: array
-          default: null
         netip:
           description: The per-zone auto-assigned private IPs in peered subnet (read-only).
           items:
             $ref: "#/components/schemas/KawaiiVpcNetIpZone"
           type: array
-          default: null
       required:
       - subnet
     KawaiiVpcForwardRule:
       description: A Kawaii VPC firewall forwarding rule.
-      example:
-        protocol: tcp
-        ports: ports
       properties:
         protocol:
           default: tcp
@@ -6256,9 +6018,6 @@ components:
       - ports
     KawaiiVpcNetIpZone:
       description: A Kawaii VPC Network IP zone settings.
-      example:
-        zone: zone
-        private: private
       properties:
         zone:
           description: The Kawaii zone name (read-only).
@@ -6271,27 +6030,6 @@ components:
       - zone
     KawaiiIpSec:
       description: A Kawaii IPsec connection.
-      example:
-        id: id
-        name: name
-        description: description
-        ip: ip
-        remote_ip: remote_ip
-        remote_subnet: remote_subnet
-        pre_shared_key: pre_shared_key
-        dpd_timeout_action: restart
-        dpd_timeout: 240s
-        start_action: start
-        rekey_time: 2h
-        phase1_lifetime: 1h
-        phase1_dh_group_number: 0
-        phase1_integrity_algorithm: SHA1
-        phase1_encryption_algorithm: AES128
-        phase2_lifetime: 1h
-        phase2_dh_group_number: 6
-        phase2_integrity_algorithm: SHA1
-        phase2_encryption_algorithm: AES128
-        firewall: ""
       properties:
         id:
           description: The Kawaii IPsec connection ID (auto-generated).
@@ -6435,13 +6173,6 @@ components:
       - remote_subnet
     Kiwi:
       description: A Kiwi (Kowabunga Inner Wan Interface) provides edge-network services..
-      example:
-        id: id
-        name: name
-        description: description
-        agents:
-        - agents
-        - agents
       properties:
         id:
           description: The Kiwi (Kowabunga Inner Wan Interface) provides edge-network
@@ -6460,7 +6191,6 @@ components:
           items:
             type: string
           type: array
-          default: null
       required:
       - name
     Kompute:
@@ -6468,20 +6198,6 @@ components:
         \ of an instance, one to several attached volumes and 2 network adapters (a\
         \ private one, a public one). This is the prefered way for creating virtual\
         \ machines. IP addresses will be automatically assigned."
-      example:
-        id: id
-        name: name
-        description: description
-        memory: 0
-        vcpus: 6
-        disk: 1
-        data_disk: 5
-        ip: ip
-        kwarantines:
-        - kwarantines
-        - kwarantines
-        uefi: true
-        kmotion_enabled: true
       properties:
         id:
           description: The Kompute ID (auto-generated).
@@ -6523,7 +6239,6 @@ components:
           items:
             type: string
           type: array
-          default: null
         uefi:
           default: true
           description: enable UEFI secure firmware (vs. legacy BIOS).
@@ -6542,21 +6257,6 @@ components:
     Konvey:
       description: A Kowabunga Konvey is a layer-4 network load-balancer used to distribute
         service requests to associated backend instances.
-      example:
-        id: id
-        name: name
-        description: description
-        vip: vip
-        failover: true
-        endpoints:
-        - name: name
-          port: 0
-          protocol: tcp
-          backends: ""
-        - name: name
-          port: 0
-          protocol: tcp
-          backends: ""
       properties:
         id:
           description: The Konvey (Kowabunga Network Load-Balancer) ID (auto-generated).
@@ -6582,16 +6282,10 @@ components:
           items:
             $ref: "#/components/schemas/KonveyEndpoint"
           type: array
-          default: null
       required:
       - endpoints
     KonveyEndpoint:
       description: A Konvey Endpoint Service settings.
-      example:
-        name: name
-        port: 0
-        protocol: tcp
-        backends: ""
       properties:
         name:
           description: The Konvey (Kowabunga Network Load-Balancer) endpoint name.
@@ -6626,7 +6320,6 @@ components:
           items:
             type: string
           type: array
-          default: null
         port:
           description: The Konvey (Kowabunga Network Load-Balancer) endpoint backend
             service port.
@@ -6641,17 +6334,6 @@ components:
         \ the same Kaktus computing node (host policy) or the same availability zone\
         \ (zone policy), regardless of Kaktus host scheduling score, so that critical\
         \ redundant resources stay properly spread out."
-      example:
-        id: id
-        name: name
-        description: description
-        policy: host
-        instances:
-        - instances
-        - instances
-        komputes:
-        - komputes
-        - komputes
       properties:
         id:
           description: The Kwarantine ID (auto-generated).
@@ -6680,7 +6362,6 @@ components:
           items:
             type: string
           type: array
-          default: null
         komputes:
           description: "A list of existing Kompute IDs that are part of the Kwarantine\
             \ group. Members are guaranteed to never be co-scheduled according to\
@@ -6688,21 +6369,10 @@ components:
           items:
             type: string
           type: array
-          default: null
       required:
       - name
     Kylo:
       description: A Kylo provides an elastic NFS-like remote storage volume.
-      example:
-        id: id
-        name: name
-        description: description
-        access: RW
-        protocols:
-        - 0
-        - 0
-        endpoint: endpoint
-        size: 6
       properties:
         id:
           description: The Kylo ID (auto-generated).
@@ -6742,9 +6412,6 @@ components:
       - name
     Metadata:
       description: A key/value metadata.
-      example:
-        key: key
-        value: value
       properties:
         key:
           description: The metadata key.
@@ -6758,37 +6425,6 @@ components:
     Project:
       description: "A Kowabunga project corresponds to a single tenant, isolated set\
         \ of resources."
-      example:
-        id: id
-        name: name
-        description: description
-        domain: domain
-        root_password: root_password
-        bootstrap_user: bootstrap_user
-        bootstrap_pubkey: bootstrap_pubkey
-        tags:
-        - tags
-        - tags
-        metadatas:
-        - key: key
-          value: value
-        - key: key
-          value: value
-        quotas: ""
-        private_subnets:
-        - key: key
-          value: value
-        - key: key
-          value: value
-        reserved_vrrp_ids:
-        - 0
-        - 0
-        teams:
-        - teams
-        - teams
-        regions:
-        - regions
-        - regions
       properties:
         id:
           description: The project ID (auto-generated).
@@ -6820,13 +6456,11 @@ components:
           items:
             type: string
           type: array
-          default: null
         metadatas:
           description: A list of metadata to be associated to the project.
           items:
             $ref: "#/components/schemas/Metadata"
           type: array
-          default: null
         quotas:
           allOf:
           - $ref: "#/components/schemas/ProjectResources"
@@ -6836,7 +6470,6 @@ components:
           items:
             $ref: "#/components/schemas/RegionSubnet"
           type: array
-          default: null
         reserved_vrrp_ids:
           description: "The list of VRRP IDs used by -as-a-service resources within\
             \ the project virtual network (read-only). Should your application use\
@@ -6845,32 +6478,24 @@ components:
           items:
             type: integer
           type: array
-          default: null
         teams:
           description: A list of user teams allowed to administrate the project (i.e.
             capable of managing internal resources).
           items:
             type: string
           type: array
-          default: null
         regions:
           description: A list of Kowabunga regions the project is managing resources
             from.
           items:
             type: string
           type: array
-          default: null
       required:
       - name
       - regions
       - teams
     ProjectResources:
       description: A global project resource quotas/usage (0 for unlimited).
-      example:
-        vcpus: 0
-        memory: 6
-        storage: 1
-        instances: 5
       properties:
         vcpus:
           description: The maximum total number of vCPUs allowed to be consumed by
@@ -6893,11 +6518,6 @@ components:
           type: integer
     Region:
       description: A region.
-      example:
-        id: id
-        name: name
-        description: description
-        domain: domain
       properties:
         id:
           description: The region ID (auto-generated).
@@ -6916,16 +6536,6 @@ components:
       - name
     StorageNFS:
       description: A NFS storage.
-      example:
-        id: id
-        name: name
-        description: description
-        endpoint: endpoint
-        fs: nfs
-        backends:
-        - backends
-        - backends
-        port: 0
       properties:
         id:
           description: The NFS storage ID (auto-generated).
@@ -6948,7 +6558,6 @@ components:
           items:
             type: string
           type: array
-          default: null
         port:
           default: 54934
           description: NFS Ganesha API server port (default 54934).
@@ -6959,18 +6568,6 @@ components:
       - name
     StoragePool:
       description: A storage pool.
-      example:
-        id: id
-        name: name
-        description: description
-        pool: pool
-        ceph_address: localhost
-        ceph_port: 0
-        ceph_secret_uuid: ceph_secret_uuid
-        cost: ""
-        agents:
-        - agents
-        - agents
       properties:
         id:
           description: The storage pool ID (auto-generated).
@@ -7005,34 +6602,12 @@ components:
           items:
             type: string
           type: array
-          default: null
       required:
       - agents
       - name
       - pool
     Subnet:
       description: A network subnet.
-      example:
-        id: id
-        name: name
-        description: description
-        cidr: cidr
-        gateway: gateway
-        dns: dns
-        extra_routes:
-        - extra_routes
-        - extra_routes
-        reserved:
-        - first: first
-          last: last
-        - first: first
-          last: last
-        gw_pool:
-        - first: first
-          last: last
-        - first: first
-          last: last
-        application: user
       properties:
         id:
           description: The network subnet ID (auto-generated).
@@ -7059,14 +6634,12 @@ components:
           items:
             type: string
           type: array
-          default: null
         reserved:
           description: The network subnet reserved IPv4 ranges (i.e. no IP address
             can be assigned from there).
           items:
             $ref: "#/components/schemas/IpRange"
           type: array
-          default: null
         gw_pool:
           description: The network subnet IPv4 ranges reserved for per-zone local
             network gateways (range size must be at least equal to region number of
@@ -7074,7 +6647,6 @@ components:
           items:
             $ref: "#/components/schemas/IpRange"
           type: array
-          default: null
         application:
           default: user
           description: Optional application service type.
@@ -7088,9 +6660,6 @@ components:
       - name
     IpRange:
       description: "A reserved IPv4 addresses pool range, non-addressable by Kowabunga."
-      example:
-        first: first
-        last: last
       properties:
         first:
           description: The range's first IP address.
@@ -7103,9 +6672,6 @@ components:
       - last
     RegionSubnet:
       description: A region/subnet map.
-      example:
-        key: key
-        value: value
       properties:
         key:
           description: The region key.
@@ -7115,13 +6681,6 @@ components:
           type: string
     Team:
       description: A Kowabunga users team.
-      example:
-        id: id
-        name: name
-        description: description
-        users:
-        - users
-        - users
       properties:
         id:
           description: The Kowabunga users team ID (auto-generated).
@@ -7137,18 +6696,11 @@ components:
           items:
             type: string
           type: array
-          default: null
       required:
       - name
       - users
     Template:
       description: A image template.
-      example:
-        id: id
-        name: name
-        description: description
-        os: linux
-        source: source
       properties:
         id:
           description: The image template ID (auto-generated).
@@ -7176,12 +6728,6 @@ components:
     ApiToken:
       description: A Kowabunga authentication security token consists of an API key
         granting access to resources.
-      example:
-        id: id
-        name: name
-        description: description
-        expire: false
-        expiration_date: 2000-01-23
       properties:
         id:
           description: The server-to-server authentication security token ID (auto-generated).
@@ -7205,13 +6751,6 @@ components:
       - name
     User:
       description: A Kowabunga user.
-      example:
-        id: id
-        name: name
-        description: description
-        email: email
-        role: superAdmin
-        notifications: false
       properties:
         id:
           description: The Kowabunga user ID (auto-generated).
@@ -7242,10 +6781,6 @@ components:
       - role
     UserCredentials:
       description: A Kowabunga user login credentials.
-      example:
-        email: email
-        password: password
-        jwt: jwt
       properties:
         email:
           description: The user email address for login.
@@ -7262,8 +6797,6 @@ components:
       - password
     UserEmail:
       description: A Kowabunga user email.
-      example:
-        email: email
       properties:
         email:
           description: The user email address used for login.
@@ -7272,13 +6805,6 @@ components:
       - email
     VNet:
       description: A virtual network.
-      example:
-        id: id
-        name: name
-        description: description
-        vlan: 0
-        interface: interface
-        private: true
       properties:
         id:
           description: The virtual network ID (auto-generated).
@@ -7306,12 +6832,6 @@ components:
       - name
     Volume:
       description: A storage volume.
-      example:
-        id: id
-        name: name
-        description: description
-        type: os
-        size: 0
       properties:
         id:
           description: The storage volume ID (auto-generated).
@@ -7339,10 +6859,6 @@ components:
       - type
     Zone:
       description: A availability zone.
-      example:
-        id: id
-        name: name
-        description: description
       properties:
         id:
           description: The availability zone ID (auto-generated).

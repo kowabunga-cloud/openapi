@@ -20,6 +20,7 @@ YQ = $(BIN_DIR)/yq
 YQ_VERSION = v4.45.1
 
 TEMPLATIZE = $(SCRIPTS_DIR)/templatize.sh
+CLEANUP = $(SCRIPTS_DIR)/cleanup.sh
 JINJA = $(BIN_DIR)/jinjanate
 GENERATOR = $(NODE_DIR)/.bin/openapi-generator-cli
 
@@ -85,6 +86,7 @@ docs-yaml: ; $(info $(M) [OpenAPIv3] Generate YAML schema…) @
 	  $(OUT)
 	$Q mv $(OPENAPI_YAML_DOCS_DIR)/openapi/openapi.yaml openapi.yaml
 	$Q rm -rf $(OPENAPI_YAML_DOCS_DIR)
+	$Q $(CLEANUP) openapi.yaml
 
 .PHONY: docs-html
 docs-html: ; $(info $(M) [OpenAPIv3] Generate HTML documentation…) @
