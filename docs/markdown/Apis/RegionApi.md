@@ -4,7 +4,6 @@ All URIs are relative to */api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createKiwi**](RegionApi.md#createKiwi) | **POST** /region/{regionId}/kiwi |  |
 | [**createProjectRegionInstance**](RegionApi.md#createProjectRegionInstance) | **POST** /project/{projectId}/region/{regionId}/instance |  |
 | [**createProjectRegionKawaii**](RegionApi.md#createProjectRegionKawaii) | **POST** /project/{projectId}/region/{regionId}/kawaii |  |
 | [**createProjectRegionKompute**](RegionApi.md#createProjectRegionKompute) | **POST** /project/{projectId}/region/{regionId}/kompute |  |
@@ -13,20 +12,21 @@ All URIs are relative to */api/v1*
 | [**createProjectRegionVolume**](RegionApi.md#createProjectRegionVolume) | **POST** /project/{projectId}/region/{regionId}/volume |  |
 | [**createRegion**](RegionApi.md#createRegion) | **POST** /region |  |
 | [**createRegionDnsRecord**](RegionApi.md#createRegionDnsRecord) | **POST** /region/{regionId}/record |  |
-| [**createStorageNFS**](RegionApi.md#createStorageNFS) | **POST** /region/{regionId}/nfs |  |
-| [**createStoragePool**](RegionApi.md#createStoragePool) | **POST** /region/{regionId}/pool |  |
-| [**createVNet**](RegionApi.md#createVNet) | **POST** /region/{regionId}/vnet |  |
-| [**createZone**](RegionApi.md#createZone) | **POST** /region/{regionId}/zone |  |
+| [**createRegionKiwi**](RegionApi.md#createRegionKiwi) | **POST** /region/{regionId}/kiwi |  |
+| [**createRegionStorageNFS**](RegionApi.md#createRegionStorageNFS) | **POST** /region/{regionId}/nfs |  |
+| [**createRegionStoragePool**](RegionApi.md#createRegionStoragePool) | **POST** /region/{regionId}/pool |  |
+| [**createRegionVNet**](RegionApi.md#createRegionVNet) | **POST** /region/{regionId}/vnet |  |
+| [**createRegionZone**](RegionApi.md#createRegionZone) | **POST** /region/{regionId}/zone |  |
 | [**deleteRegion**](RegionApi.md#deleteRegion) | **DELETE** /region/{regionId} |  |
 | [**listProjectRegionInstances**](RegionApi.md#listProjectRegionInstances) | **GET** /project/{projectId}/region/{regionId}/instances |  |
 | [**listProjectRegionKawaiis**](RegionApi.md#listProjectRegionKawaiis) | **GET** /project/{projectId}/region/{regionId}/kawaiis |  |
 | [**listProjectRegionKomputes**](RegionApi.md#listProjectRegionKomputes) | **GET** /project/{projectId}/region/{regionId}/komputes |  |
 | [**listProjectRegionKonveys**](RegionApi.md#listProjectRegionKonveys) | **GET** /project/{projectId}/region/{regionId}/konveys |  |
-| [**listProjectRegionKylos**](RegionApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylo |  |
+| [**listProjectRegionKylos**](RegionApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylos |  |
 | [**listProjectRegionVolumes**](RegionApi.md#listProjectRegionVolumes) | **GET** /project/{projectId}/region/{regionId}/volumes |  |
 | [**listRegionDnsRecords**](RegionApi.md#listRegionDnsRecords) | **GET** /region/{regionId}/records |  |
 | [**listRegionKiwis**](RegionApi.md#listRegionKiwis) | **GET** /region/{regionId}/kiwis |  |
-| [**listRegionStorageNFSs**](RegionApi.md#listRegionStorageNFSs) | **GET** /region/{regionId}/nfs |  |
+| [**listRegionStorageNFSes**](RegionApi.md#listRegionStorageNFSes) | **GET** /region/{regionId}/nfses |  |
 | [**listRegionStoragePools**](RegionApi.md#listRegionStoragePools) | **GET** /region/{regionId}/pools |  |
 | [**listRegionVNets**](RegionApi.md#listRegionVNets) | **GET** /region/{regionId}/vnets |  |
 | [**listRegionZones**](RegionApi.md#listRegionZones) | **GET** /region/{regionId}/zones |  |
@@ -36,34 +36,6 @@ All URIs are relative to */api/v1*
 | [**setRegionDefaultStoragePool**](RegionApi.md#setRegionDefaultStoragePool) | **PATCH** /region/{regionId}/pool/{poolId}/default |  |
 | [**updateRegion**](RegionApi.md#updateRegion) | **PUT** /region/{regionId} |  |
 
-
-<a name="createKiwi"></a>
-# **createKiwi**
-> Kiwi createKiwi(regionId, Kiwi)
-
-
-
-    Creates a new Kiwi (Kowabunga Inner Wan Interface) provides edge-network services..
-
-### Parameters
-
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **regionId** | **String**| The ID of the region. | [default to null] |
-| **Kiwi** | [**Kiwi**](../Models/Kiwi.md)| Kiwi payload. | |
-
-### Return type
-
-[**Kiwi**](../Models/Kiwi.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
 
 <a name="createProjectRegionInstance"></a>
 # **createProjectRegionInstance**
@@ -140,7 +112,7 @@ All URIs are relative to */api/v1*
 | **Kompute** | [**Kompute**](../Models/Kompute.md)| Kompute payload. | |
 | **poolId** | **String**| Storage pool ID (optional, region&#39;s default if unspecified). | [optional] [default to null] |
 | **templateId** | **String**| Template to clone the storage volume from (optional, region&#39;s default if unspecified). | [optional] [default to null] |
-| **public** | **Boolean**| Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). | [optional] [default to null] |
+| **public** | **Boolean**| Whether the Kompute should be exposed over public Internet (a public IPv4 address will then be auto-assigned). | [optional] [default to false] |
 
 ### Return type
 
@@ -300,9 +272,37 @@ All URIs are relative to */api/v1*
 - **Content-Type**: application/json
 - **Accept**: application/json
 
-<a name="createStorageNFS"></a>
-# **createStorageNFS**
-> StorageNFS createStorageNFS(regionId, StorageNFS, poolId)
+<a name="createRegionKiwi"></a>
+# **createRegionKiwi**
+> Kiwi createRegionKiwi(regionId, Kiwi)
+
+
+
+    Creates a new Kiwi (Kowabunga Inner Wan Interface) provides edge-network services..
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **regionId** | **String**| The ID of the region. | [default to null] |
+| **Kiwi** | [**Kiwi**](../Models/Kiwi.md)| Kiwi payload. | |
+
+### Return type
+
+[**Kiwi**](../Models/Kiwi.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="createRegionStorageNFS"></a>
+# **createRegionStorageNFS**
+> StorageNFS createRegionStorageNFS(regionId, StorageNFS, poolId)
 
 
 
@@ -329,9 +329,9 @@ All URIs are relative to */api/v1*
 - **Content-Type**: application/json
 - **Accept**: application/json
 
-<a name="createStoragePool"></a>
-# **createStoragePool**
-> StoragePool createStoragePool(regionId, StoragePool)
+<a name="createRegionStoragePool"></a>
+# **createRegionStoragePool**
+> StoragePool createRegionStoragePool(regionId, StoragePool)
 
 
 
@@ -357,9 +357,9 @@ All URIs are relative to */api/v1*
 - **Content-Type**: application/json
 - **Accept**: application/json
 
-<a name="createVNet"></a>
-# **createVNet**
-> VNet createVNet(regionId, VNet)
+<a name="createRegionVNet"></a>
+# **createRegionVNet**
+> VNet createRegionVNet(regionId, VNet)
 
 
 
@@ -385,9 +385,9 @@ All URIs are relative to */api/v1*
 - **Content-Type**: application/json
 - **Accept**: application/json
 
-<a name="createZone"></a>
-# **createZone**
-> Zone createZone(regionId, Zone)
+<a name="createRegionZone"></a>
+# **createRegionZone**
+> Zone createRegionZone(regionId, Zone)
 
 
 
@@ -663,9 +663,9 @@ null (empty response body)
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-<a name="listRegionStorageNFSs"></a>
-# **listRegionStorageNFSs**
-> List listRegionStorageNFSs(regionId, poolId)
+<a name="listRegionStorageNFSes"></a>
+# **listRegionStorageNFSes**
+> List listRegionStorageNFSes(regionId)
 
 
 
@@ -676,7 +676,6 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **regionId** | **String**| The ID of the region. | [default to null] |
-| **poolId** | **String**| Storage pool ID (optional, region&#39;s default if unspecified). | [optional] [default to null] |
 
 ### Return type
 
@@ -881,7 +880,7 @@ null (empty response body)
 
 <a name="updateRegion"></a>
 # **updateRegion**
-> Region updateRegion(regionId, Region)
+> Region updateRegion(regionId, RegionUpdate)
 
 
 
@@ -892,7 +891,7 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **regionId** | **String**| The ID of the region. | [default to null] |
-| **Region** | [**Region**](../Models/Region.md)| Region payload. | |
+| **RegionUpdate** | [**RegionUpdate**](../Models/RegionUpdate.md)| RegionUpdate payload. | |
 
 ### Return type
 

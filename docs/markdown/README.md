@@ -7,7 +7,7 @@ All URIs are relative to */api/v1*
 
 | Class | Method | HTTP request | Description |
 |------------ | ------------- | ------------- | -------------|
-| *AdapterApi* | [**createAdapter**](Apis/AdapterApi.md#createAdapter) | **POST** /subnet/{subnetId}/adapter | Creates a new network adapter. |
+| *AdapterApi* | [**createSubnetAdapter**](Apis/AdapterApi.md#createSubnetAdapter) | **POST** /subnet/{subnetId}/adapter | Creates a new network adapter. |
 *AdapterApi* | [**deleteAdapter**](Apis/AdapterApi.md#deleteAdapter) | **DELETE** /adapter/{adapterId} | Deletes an existing network adapter. |
 *AdapterApi* | [**listAdapters**](Apis/AdapterApi.md#listAdapters) | **GET** /adapter | Returns the IDs of network adapter objects. |
 *AdapterApi* | [**listSubnetAdapters**](Apis/AdapterApi.md#listSubnetAdapters) | **GET** /subnet/{subnetId}/adapters | Returns the IDs of network adapter objects. |
@@ -17,7 +17,7 @@ All URIs are relative to */api/v1*
 *AgentApi* | [**deleteAgent**](Apis/AgentApi.md#deleteAgent) | **DELETE** /agent/{agentId} | Deletes an existing Kowabunga remote agent. |
 *AgentApi* | [**listAgents**](Apis/AgentApi.md#listAgents) | **GET** /agent | Returns the IDs of Kowabunga remote agent objects. |
 *AgentApi* | [**readAgent**](Apis/AgentApi.md#readAgent) | **GET** /agent/{agentId} | Returns a Kowabunga remote agent. |
-*AgentApi* | [**setAgentApiToken**](Apis/AgentApi.md#setAgentApiToken) | **PATCH** /agent/{agentId}/token | Performs a Kowabunga remote agent setting of API token (will replace any existing one). |
+*AgentApi* | [**setAgentApiToken**](Apis/AgentApi.md#setAgentApiToken) | **PATCH** /agent/{agentId}/token | Performs a Kowabunga remote agent setting of API token (will replace any existing one, disconnecting the agent; the generated API key is only sent once, by email, to administrators). |
 *AgentApi* | [**updateAgent**](Apis/AgentApi.md#updateAgent) | **PUT** /agent/{agentId} | Updates a Kowabunga remote agent configuration. |
 | *InstanceApi* | [**addKwarantineInstance**](Apis/InstanceApi.md#addKwarantineInstance) | **PUT** /kwarantine/{kwarantineId}/instance/{instanceId} | Adds an existing virtual machine instance to the Kwarantine group. Idempotent, calling it multiple times has no additional effect. |
 *InstanceApi* | [**commitInstanceKMotion**](Apis/InstanceApi.md#commitInstanceKMotion) | **PATCH** /instance/{instanceId}/kmotion/commit | Commits a previously computed kMotion plan, performing the actual virtual machine instance host kMotion. |
@@ -41,12 +41,17 @@ All URIs are relative to */api/v1*
 *InstanceApi* | [**stopInstance**](Apis/InstanceApi.md#stopInstance) | **PATCH** /instance/{instanceId}/stop | Performs a virtual machine instance hardware stop. |
 *InstanceApi* | [**suspendInstance**](Apis/InstanceApi.md#suspendInstance) | **PATCH** /instance/{instanceId}/suspend | Performs a virtual machine instance software PM suspend. |
 *InstanceApi* | [**updateInstance**](Apis/InstanceApi.md#updateInstance) | **PUT** /instance/{instanceId} | Updates a virtual machine instance configuration. |
-| *KaktusApi* | [**createKaktus**](Apis/KaktusApi.md#createKaktus) | **POST** /zone/{zoneId}/kaktus | Creates a new Kaktus computing node. |
+| *IpsecApi* | [**createKawaiiIpSec**](Apis/IpsecApi.md#createKawaiiIpSec) | **POST** /kawaii/{kawaiiId}/ipsec | Creates a new Kawaii IPsec connection. |
+*IpsecApi* | [**deleteKawaiiIpSec**](Apis/IpsecApi.md#deleteKawaiiIpSec) | **DELETE** /kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId} | Deletes an existing Kawaii IPsec connection. |
+*IpsecApi* | [**listKawaiiIpSecs**](Apis/IpsecApi.md#listKawaiiIpSecs) | **GET** /kawaii/{kawaiiId}/ipsec | Returns the IDs of Kawaii IPsec connection objects. |
+*IpsecApi* | [**readKawaiiIpSec**](Apis/IpsecApi.md#readKawaiiIpSec) | **GET** /kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId} | Returns a Kawaii IPsec connection. |
+*IpsecApi* | [**updateKawaiiIpSec**](Apis/IpsecApi.md#updateKawaiiIpSec) | **PUT** /kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId} | Updates a Kawaii IPsec connection configuration. |
+| *KaktusApi* | [**createZoneKaktus**](Apis/KaktusApi.md#createZoneKaktus) | **POST** /zone/{zoneId}/kaktus | Creates a new Kaktus computing node. |
 *KaktusApi* | [**deleteKaktus**](Apis/KaktusApi.md#deleteKaktus) | **DELETE** /kaktus/{kaktusId} | Deletes an existing Kaktus computing node. |
 *KaktusApi* | [**disableKaktusMaintenance**](Apis/KaktusApi.md#disableKaktusMaintenance) | **PATCH** /kaktus/{kaktusId}/maintenance/disable | Performs a Kaktus computing node exit from maintenance mode. |
 *KaktusApi* | [**enableKaktusMaintenance**](Apis/KaktusApi.md#enableKaktusMaintenance) | **PATCH** /kaktus/{kaktusId}/maintenance/enable | Performs a Kaktus computing node entry into maintenance mode. |
 *KaktusApi* | [**listKaktusInstances**](Apis/KaktusApi.md#listKaktusInstances) | **GET** /kaktus/{kaktusId}/instances | Returns the IDs of virtual machine instance objects. |
-*KaktusApi* | [**listKaktuss**](Apis/KaktusApi.md#listKaktuss) | **GET** /kaktus | Returns the IDs of Kaktus computing node objects. |
+*KaktusApi* | [**listKaktuses**](Apis/KaktusApi.md#listKaktuses) | **GET** /kaktus | Returns the IDs of Kaktus computing node objects. |
 *KaktusApi* | [**listZoneKaktuses**](Apis/KaktusApi.md#listZoneKaktuses) | **GET** /zone/{zoneId}/kaktuses | Returns the IDs of Kaktus computing node objects. |
 *KaktusApi* | [**readKaktus**](Apis/KaktusApi.md#readKaktus) | **GET** /kaktus/{kaktusId} | Returns a Kaktus computing node. |
 *KaktusApi* | [**readKaktusCaps**](Apis/KaktusApi.md#readKaktusCaps) | **GET** /kaktus/{kaktusId}/caps | Returns a Kaktus computing node capability. |
@@ -54,20 +59,15 @@ All URIs are relative to */api/v1*
 | *KawaiiApi* | [**createKawaiiIpSec**](Apis/KawaiiApi.md#createKawaiiIpSec) | **POST** /kawaii/{kawaiiId}/ipsec | Creates a new Kawaii IPsec connection. |
 *KawaiiApi* | [**createProjectRegionKawaii**](Apis/KawaiiApi.md#createProjectRegionKawaii) | **POST** /project/{projectId}/region/{regionId}/kawaii | Creates a new Kawaii. |
 *KawaiiApi* | [**deleteKawaii**](Apis/KawaiiApi.md#deleteKawaii) | **DELETE** /kawaii/{kawaiiId} | Deletes an existing Kawaii. |
-*KawaiiApi* | [**deleteKawaiiIpSec**](Apis/KawaiiApi.md#deleteKawaiiIpSec) | **DELETE** /kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId} | Deletes an existing Kawaii IPsec connection. |
+*KawaiiApi* | [**deleteKawaiiIpSec**](Apis/KawaiiApi.md#deleteKawaiiIpSec) | **DELETE** /kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId} | Deletes an existing Kawaii IPsec connection. |
 *KawaiiApi* | [**listKawaiiIpSecs**](Apis/KawaiiApi.md#listKawaiiIpSecs) | **GET** /kawaii/{kawaiiId}/ipsec | Returns the IDs of Kawaii IPsec connection objects. |
 *KawaiiApi* | [**listKawaiis**](Apis/KawaiiApi.md#listKawaiis) | **GET** /kawaii | Returns the IDs of Kawaii objects. |
 *KawaiiApi* | [**listProjectRegionKawaiis**](Apis/KawaiiApi.md#listProjectRegionKawaiis) | **GET** /project/{projectId}/region/{regionId}/kawaiis | Returns the IDs of Kawaii objects. |
 *KawaiiApi* | [**readKawaii**](Apis/KawaiiApi.md#readKawaii) | **GET** /kawaii/{kawaiiId} | Returns a Kawaii. |
-*KawaiiApi* | [**readKawaiiIpSec**](Apis/KawaiiApi.md#readKawaiiIpSec) | **GET** /kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId} | Returns a Kawaii IPsec connection. |
+*KawaiiApi* | [**readKawaiiIpSec**](Apis/KawaiiApi.md#readKawaiiIpSec) | **GET** /kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId} | Returns a Kawaii IPsec connection. |
 *KawaiiApi* | [**updateKawaii**](Apis/KawaiiApi.md#updateKawaii) | **PUT** /kawaii/{kawaiiId} | Updates a Kawaii configuration. |
-*KawaiiApi* | [**updateKawaiiIpSec**](Apis/KawaiiApi.md#updateKawaiiIpSec) | **PUT** /kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId} | Updates a Kawaii IPsec connection configuration. |
-| *KawaiiIpsecApi* | [**createKawaiiIpSec**](Apis/KawaiiIpsecApi.md#createKawaiiIpSec) | **POST** /kawaii/{kawaiiId}/ipsec | Creates a new Kawaii IPsec connection. |
-*KawaiiIpsecApi* | [**deleteKawaiiIpSec**](Apis/KawaiiIpsecApi.md#deleteKawaiiIpSec) | **DELETE** /kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId} | Deletes an existing Kawaii IPsec connection. |
-*KawaiiIpsecApi* | [**listKawaiiIpSecs**](Apis/KawaiiIpsecApi.md#listKawaiiIpSecs) | **GET** /kawaii/{kawaiiId}/ipsec | Returns the IDs of Kawaii IPsec connection objects. |
-*KawaiiIpsecApi* | [**readKawaiiIpSec**](Apis/KawaiiIpsecApi.md#readKawaiiIpSec) | **GET** /kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId} | Returns a Kawaii IPsec connection. |
-*KawaiiIpsecApi* | [**updateKawaiiIpSec**](Apis/KawaiiIpsecApi.md#updateKawaiiIpSec) | **PUT** /kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId} | Updates a Kawaii IPsec connection configuration. |
-| *KiwiApi* | [**createKiwi**](Apis/KiwiApi.md#createKiwi) | **POST** /region/{regionId}/kiwi | Creates a new Kiwi (Kowabunga Inner Wan Interface) provides edge-network services.. |
+*KawaiiApi* | [**updateKawaiiIpSec**](Apis/KawaiiApi.md#updateKawaiiIpSec) | **PUT** /kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId} | Updates a Kawaii IPsec connection configuration. |
+| *KiwiApi* | [**createRegionKiwi**](Apis/KiwiApi.md#createRegionKiwi) | **POST** /region/{regionId}/kiwi | Creates a new Kiwi (Kowabunga Inner Wan Interface) provides edge-network services.. |
 *KiwiApi* | [**deleteKiwi**](Apis/KiwiApi.md#deleteKiwi) | **DELETE** /kiwi/{kiwiId} | Deletes an existing Kiwi (Kowabunga Inner Wan Interface) provides edge-network services.. |
 *KiwiApi* | [**listKiwis**](Apis/KiwiApi.md#listKiwis) | **GET** /kiwi | Returns the IDs of Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. objects. |
 *KiwiApi* | [**listRegionKiwis**](Apis/KiwiApi.md#listRegionKiwis) | **GET** /region/{regionId}/kiwis | Returns the IDs of Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. objects. |
@@ -114,20 +114,20 @@ All URIs are relative to */api/v1*
 | *KyloApi* | [**createProjectRegionKylo**](Apis/KyloApi.md#createProjectRegionKylo) | **POST** /project/{projectId}/region/{regionId}/kylo | Creates a new Kylo. |
 *KyloApi* | [**deleteKylo**](Apis/KyloApi.md#deleteKylo) | **DELETE** /kylo/{kyloId} | Deletes an existing Kylo. |
 *KyloApi* | [**listKylos**](Apis/KyloApi.md#listKylos) | **GET** /kylo | Returns the IDs of Kylo objects. |
-*KyloApi* | [**listProjectRegionKylos**](Apis/KyloApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylo | Returns the IDs of Kylo objects. |
-*KyloApi* | [**listStorageNFSKylos**](Apis/KyloApi.md#listStorageNFSKylos) | **GET** /nfs/{nfsId}/kylo | Returns the IDs of Kylo objects. |
+*KyloApi* | [**listProjectRegionKylos**](Apis/KyloApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylos | Returns the IDs of Kylo objects. |
+*KyloApi* | [**listStorageNFSKylos**](Apis/KyloApi.md#listStorageNFSKylos) | **GET** /nfs/{nfsId}/kylos | Returns the IDs of Kylo objects. |
 *KyloApi* | [**readKylo**](Apis/KyloApi.md#readKylo) | **GET** /kylo/{kyloId} | Returns a Kylo. |
 *KyloApi* | [**updateKylo**](Apis/KyloApi.md#updateKylo) | **PUT** /kylo/{kyloId} | Updates a Kylo configuration. |
-| *NfsApi* | [**createStorageNFS**](Apis/NfsApi.md#createStorageNFS) | **POST** /region/{regionId}/nfs | Creates a new NFS storage. |
+| *NfsApi* | [**createRegionStorageNFS**](Apis/NfsApi.md#createRegionStorageNFS) | **POST** /region/{regionId}/nfs | Creates a new NFS storage. |
 *NfsApi* | [**deleteStorageNFS**](Apis/NfsApi.md#deleteStorageNFS) | **DELETE** /nfs/{nfsId} | Deletes an existing NFS storage. |
-*NfsApi* | [**listRegionStorageNFSs**](Apis/NfsApi.md#listRegionStorageNFSs) | **GET** /region/{regionId}/nfs | Returns the IDs of NFS storage objects. |
-*NfsApi* | [**listStorageNFSKylos**](Apis/NfsApi.md#listStorageNFSKylos) | **GET** /nfs/{nfsId}/kylo | Returns the IDs of Kylo objects. |
-*NfsApi* | [**listStorageNFSs**](Apis/NfsApi.md#listStorageNFSs) | **GET** /nfs | Returns the IDs of NFS storage objects. |
+*NfsApi* | [**listRegionStorageNFSes**](Apis/NfsApi.md#listRegionStorageNFSes) | **GET** /region/{regionId}/nfses | Returns the IDs of NFS storage objects. |
+*NfsApi* | [**listStorageNFSKylos**](Apis/NfsApi.md#listStorageNFSKylos) | **GET** /nfs/{nfsId}/kylos | Returns the IDs of Kylo objects. |
+*NfsApi* | [**listStorageNFSes**](Apis/NfsApi.md#listStorageNFSes) | **GET** /nfs | Returns the IDs of NFS storage objects. |
 *NfsApi* | [**readStorageNFS**](Apis/NfsApi.md#readStorageNFS) | **GET** /nfs/{nfsId} | Returns a NFS storage. |
 *NfsApi* | [**setRegionDefaultStorageNFS**](Apis/NfsApi.md#setRegionDefaultStorageNFS) | **PATCH** /region/{regionId}/nfs/{nfsId}/default | Performs a region setting of default NFS storage. |
 *NfsApi* | [**updateStorageNFS**](Apis/NfsApi.md#updateStorageNFS) | **PUT** /nfs/{nfsId} | Updates a NFS storage configuration. |
-| *PoolApi* | [**createStoragePool**](Apis/PoolApi.md#createStoragePool) | **POST** /region/{regionId}/pool | Creates a new storage pool. |
-*PoolApi* | [**createTemplate**](Apis/PoolApi.md#createTemplate) | **POST** /pool/{poolId}/template | Creates a new image template. |
+| *PoolApi* | [**createRegionStoragePool**](Apis/PoolApi.md#createRegionStoragePool) | **POST** /region/{regionId}/pool | Creates a new storage pool. |
+*PoolApi* | [**createStoragePoolTemplate**](Apis/PoolApi.md#createStoragePoolTemplate) | **POST** /pool/{poolId}/template | Creates a new image template. |
 *PoolApi* | [**deleteStoragePool**](Apis/PoolApi.md#deleteStoragePool) | **DELETE** /pool/{poolId} | Deletes an existing storage pool. |
 *PoolApi* | [**listRegionStoragePools**](Apis/PoolApi.md#listRegionStoragePools) | **GET** /region/{regionId}/pools | Returns the IDs of storage pool objects. |
 *PoolApi* | [**listStoragePoolTemplates**](Apis/PoolApi.md#listStoragePoolTemplates) | **GET** /pool/{poolId}/templates | Returns the IDs of image template objects. |
@@ -156,7 +156,7 @@ All URIs are relative to */api/v1*
 *ProjectApi* | [**listProjectRegionKawaiis**](Apis/ProjectApi.md#listProjectRegionKawaiis) | **GET** /project/{projectId}/region/{regionId}/kawaiis | Returns the IDs of Kawaii objects. |
 *ProjectApi* | [**listProjectRegionKomputes**](Apis/ProjectApi.md#listProjectRegionKomputes) | **GET** /project/{projectId}/region/{regionId}/komputes | Returns the IDs of Kompute objects. |
 *ProjectApi* | [**listProjectRegionKonveys**](Apis/ProjectApi.md#listProjectRegionKonveys) | **GET** /project/{projectId}/region/{regionId}/konveys | Returns the IDs of Konvey (Kowabunga Network Load-Balancer) objects. |
-*ProjectApi* | [**listProjectRegionKylos**](Apis/ProjectApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylo | Returns the IDs of Kylo objects. |
+*ProjectApi* | [**listProjectRegionKylos**](Apis/ProjectApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylos | Returns the IDs of Kylo objects. |
 *ProjectApi* | [**listProjectRegionVolumes**](Apis/ProjectApi.md#listProjectRegionVolumes) | **GET** /project/{projectId}/region/{regionId}/volumes | Returns the IDs of storage volume objects. |
 *ProjectApi* | [**listProjectZoneInstances**](Apis/ProjectApi.md#listProjectZoneInstances) | **GET** /project/{projectId}/zone/{zoneId}/instances | Returns the IDs of virtual machine instance objects. |
 *ProjectApi* | [**listProjectZoneKomputes**](Apis/ProjectApi.md#listProjectZoneKomputes) | **GET** /project/{projectId}/zone/{zoneId}/komputes | Returns the IDs of Kompute objects. |
@@ -173,8 +173,7 @@ All URIs are relative to */api/v1*
 *RecordApi* | [**listRegionDnsRecords**](Apis/RecordApi.md#listRegionDnsRecords) | **GET** /region/{regionId}/records | Returns the IDs of DNS record objects. |
 *RecordApi* | [**readDnsRecord**](Apis/RecordApi.md#readDnsRecord) | **GET** /record/{recordId} | Returns a DNS record. |
 *RecordApi* | [**updateDnsRecord**](Apis/RecordApi.md#updateDnsRecord) | **PUT** /record/{recordId} | Updates a DNS record configuration. |
-| *RegionApi* | [**createKiwi**](Apis/RegionApi.md#createKiwi) | **POST** /region/{regionId}/kiwi | Creates a new Kiwi (Kowabunga Inner Wan Interface) provides edge-network services.. |
-*RegionApi* | [**createProjectRegionInstance**](Apis/RegionApi.md#createProjectRegionInstance) | **POST** /project/{projectId}/region/{regionId}/instance | Creates a new virtual machine instance. |
+| *RegionApi* | [**createProjectRegionInstance**](Apis/RegionApi.md#createProjectRegionInstance) | **POST** /project/{projectId}/region/{regionId}/instance | Creates a new virtual machine instance. |
 *RegionApi* | [**createProjectRegionKawaii**](Apis/RegionApi.md#createProjectRegionKawaii) | **POST** /project/{projectId}/region/{regionId}/kawaii | Creates a new Kawaii. |
 *RegionApi* | [**createProjectRegionKompute**](Apis/RegionApi.md#createProjectRegionKompute) | **POST** /project/{projectId}/region/{regionId}/kompute | Creates a new Kompute. |
 *RegionApi* | [**createProjectRegionKonvey**](Apis/RegionApi.md#createProjectRegionKonvey) | **POST** /project/{projectId}/region/{regionId}/konvey | Creates a new Konvey (Kowabunga Network Load-Balancer). |
@@ -182,20 +181,21 @@ All URIs are relative to */api/v1*
 *RegionApi* | [**createProjectRegionVolume**](Apis/RegionApi.md#createProjectRegionVolume) | **POST** /project/{projectId}/region/{regionId}/volume | Creates a new storage volume. |
 *RegionApi* | [**createRegion**](Apis/RegionApi.md#createRegion) | **POST** /region | Creates a new region. |
 *RegionApi* | [**createRegionDnsRecord**](Apis/RegionApi.md#createRegionDnsRecord) | **POST** /region/{regionId}/record | Creates a new DNS record. |
-*RegionApi* | [**createStorageNFS**](Apis/RegionApi.md#createStorageNFS) | **POST** /region/{regionId}/nfs | Creates a new NFS storage. |
-*RegionApi* | [**createStoragePool**](Apis/RegionApi.md#createStoragePool) | **POST** /region/{regionId}/pool | Creates a new storage pool. |
-*RegionApi* | [**createVNet**](Apis/RegionApi.md#createVNet) | **POST** /region/{regionId}/vnet | Creates a new virtual network. |
-*RegionApi* | [**createZone**](Apis/RegionApi.md#createZone) | **POST** /region/{regionId}/zone | Creates a new availability zone. |
+*RegionApi* | [**createRegionKiwi**](Apis/RegionApi.md#createRegionKiwi) | **POST** /region/{regionId}/kiwi | Creates a new Kiwi (Kowabunga Inner Wan Interface) provides edge-network services.. |
+*RegionApi* | [**createRegionStorageNFS**](Apis/RegionApi.md#createRegionStorageNFS) | **POST** /region/{regionId}/nfs | Creates a new NFS storage. |
+*RegionApi* | [**createRegionStoragePool**](Apis/RegionApi.md#createRegionStoragePool) | **POST** /region/{regionId}/pool | Creates a new storage pool. |
+*RegionApi* | [**createRegionVNet**](Apis/RegionApi.md#createRegionVNet) | **POST** /region/{regionId}/vnet | Creates a new virtual network. |
+*RegionApi* | [**createRegionZone**](Apis/RegionApi.md#createRegionZone) | **POST** /region/{regionId}/zone | Creates a new availability zone. |
 *RegionApi* | [**deleteRegion**](Apis/RegionApi.md#deleteRegion) | **DELETE** /region/{regionId} | Deletes an existing region. |
 *RegionApi* | [**listProjectRegionInstances**](Apis/RegionApi.md#listProjectRegionInstances) | **GET** /project/{projectId}/region/{regionId}/instances | Returns the IDs of virtual machine instance objects. |
 *RegionApi* | [**listProjectRegionKawaiis**](Apis/RegionApi.md#listProjectRegionKawaiis) | **GET** /project/{projectId}/region/{regionId}/kawaiis | Returns the IDs of Kawaii objects. |
 *RegionApi* | [**listProjectRegionKomputes**](Apis/RegionApi.md#listProjectRegionKomputes) | **GET** /project/{projectId}/region/{regionId}/komputes | Returns the IDs of Kompute objects. |
 *RegionApi* | [**listProjectRegionKonveys**](Apis/RegionApi.md#listProjectRegionKonveys) | **GET** /project/{projectId}/region/{regionId}/konveys | Returns the IDs of Konvey (Kowabunga Network Load-Balancer) objects. |
-*RegionApi* | [**listProjectRegionKylos**](Apis/RegionApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylo | Returns the IDs of Kylo objects. |
+*RegionApi* | [**listProjectRegionKylos**](Apis/RegionApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylos | Returns the IDs of Kylo objects. |
 *RegionApi* | [**listProjectRegionVolumes**](Apis/RegionApi.md#listProjectRegionVolumes) | **GET** /project/{projectId}/region/{regionId}/volumes | Returns the IDs of storage volume objects. |
 *RegionApi* | [**listRegionDnsRecords**](Apis/RegionApi.md#listRegionDnsRecords) | **GET** /region/{regionId}/records | Returns the IDs of DNS record objects. |
 *RegionApi* | [**listRegionKiwis**](Apis/RegionApi.md#listRegionKiwis) | **GET** /region/{regionId}/kiwis | Returns the IDs of Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. objects. |
-*RegionApi* | [**listRegionStorageNFSs**](Apis/RegionApi.md#listRegionStorageNFSs) | **GET** /region/{regionId}/nfs | Returns the IDs of NFS storage objects. |
+*RegionApi* | [**listRegionStorageNFSes**](Apis/RegionApi.md#listRegionStorageNFSes) | **GET** /region/{regionId}/nfses | Returns the IDs of NFS storage objects. |
 *RegionApi* | [**listRegionStoragePools**](Apis/RegionApi.md#listRegionStoragePools) | **GET** /region/{regionId}/pools | Returns the IDs of storage pool objects. |
 *RegionApi* | [**listRegionVNets**](Apis/RegionApi.md#listRegionVNets) | **GET** /region/{regionId}/vnets | Returns the IDs of virtual network objects. |
 *RegionApi* | [**listRegionZones**](Apis/RegionApi.md#listRegionZones) | **GET** /region/{regionId}/zones | Returns the IDs of availability zone objects. |
@@ -204,8 +204,8 @@ All URIs are relative to */api/v1*
 *RegionApi* | [**setRegionDefaultStorageNFS**](Apis/RegionApi.md#setRegionDefaultStorageNFS) | **PATCH** /region/{regionId}/nfs/{nfsId}/default | Performs a region setting of default NFS storage. |
 *RegionApi* | [**setRegionDefaultStoragePool**](Apis/RegionApi.md#setRegionDefaultStoragePool) | **PATCH** /region/{regionId}/pool/{poolId}/default | Performs a region setting of default storage pool. |
 *RegionApi* | [**updateRegion**](Apis/RegionApi.md#updateRegion) | **PUT** /region/{regionId} | Updates a region configuration. |
-| *SubnetApi* | [**createAdapter**](Apis/SubnetApi.md#createAdapter) | **POST** /subnet/{subnetId}/adapter | Creates a new network adapter. |
-*SubnetApi* | [**createSubnet**](Apis/SubnetApi.md#createSubnet) | **POST** /vnet/{vnetId}/subnet | Creates a new network subnet. |
+| *SubnetApi* | [**createSubnetAdapter**](Apis/SubnetApi.md#createSubnetAdapter) | **POST** /subnet/{subnetId}/adapter | Creates a new network adapter. |
+*SubnetApi* | [**createVNetSubnet**](Apis/SubnetApi.md#createVNetSubnet) | **POST** /vnet/{vnetId}/subnet | Creates a new network subnet. |
 *SubnetApi* | [**deleteSubnet**](Apis/SubnetApi.md#deleteSubnet) | **DELETE** /subnet/{subnetId} | Deletes an existing network subnet. |
 *SubnetApi* | [**listSubnetAdapters**](Apis/SubnetApi.md#listSubnetAdapters) | **GET** /subnet/{subnetId}/adapters | Returns the IDs of network adapter objects. |
 *SubnetApi* | [**listSubnets**](Apis/SubnetApi.md#listSubnets) | **GET** /subnet | Returns the IDs of network subnet objects. |
@@ -218,7 +218,7 @@ All URIs are relative to */api/v1*
 *TeamApi* | [**listTeams**](Apis/TeamApi.md#listTeams) | **GET** /team | Returns the IDs of Kowabunga users team objects. |
 *TeamApi* | [**readTeam**](Apis/TeamApi.md#readTeam) | **GET** /team/{teamId} | Returns a Kowabunga users team. |
 *TeamApi* | [**updateTeam**](Apis/TeamApi.md#updateTeam) | **PUT** /team/{teamId} | Updates a Kowabunga users team configuration. |
-| *TemplateApi* | [**createTemplate**](Apis/TemplateApi.md#createTemplate) | **POST** /pool/{poolId}/template | Creates a new image template. |
+| *TemplateApi* | [**createStoragePoolTemplate**](Apis/TemplateApi.md#createStoragePoolTemplate) | **POST** /pool/{poolId}/template | Creates a new image template. |
 *TemplateApi* | [**deleteTemplate**](Apis/TemplateApi.md#deleteTemplate) | **DELETE** /template/{templateId} | Deletes an existing image template. |
 *TemplateApi* | [**listStoragePoolTemplates**](Apis/TemplateApi.md#listStoragePoolTemplates) | **GET** /pool/{poolId}/templates | Returns the IDs of image template objects. |
 *TemplateApi* | [**listTemplates**](Apis/TemplateApi.md#listTemplates) | **GET** /template | Returns the IDs of image template objects. |
@@ -228,22 +228,22 @@ All URIs are relative to */api/v1*
 | *TokenApi* | [**deleteApiToken**](Apis/TokenApi.md#deleteApiToken) | **DELETE** /token/{tokenId} | Deletes an existing server-to-server authentication security token. |
 *TokenApi* | [**listApiTokens**](Apis/TokenApi.md#listApiTokens) | **GET** /token | Returns the IDs of server-to-server authentication security token objects. |
 *TokenApi* | [**readApiToken**](Apis/TokenApi.md#readApiToken) | **GET** /token/{tokenId} | Returns a server-to-server authentication security token. |
-*TokenApi* | [**setAgentApiToken**](Apis/TokenApi.md#setAgentApiToken) | **PATCH** /agent/{agentId}/token | Performs a Kowabunga remote agent setting of API token (will replace any existing one). |
-*TokenApi* | [**setUserApiToken**](Apis/TokenApi.md#setUserApiToken) | **PATCH** /user/{userId}/token | Performs a Kowabunga user setting of API token (will replace any existing one). |
+*TokenApi* | [**setAgentApiToken**](Apis/TokenApi.md#setAgentApiToken) | **PATCH** /agent/{agentId}/token | Performs a Kowabunga remote agent setting of API token (will replace any existing one, disconnecting the agent; the generated API key is only sent once, by email, to administrators). |
+*TokenApi* | [**setUserApiToken**](Apis/TokenApi.md#setUserApiToken) | **PATCH** /user/{userId}/token | Performs a Kowabunga user setting of API token (will replace any existing one; the generated API key is only sent once, by email, to the user). |
 *TokenApi* | [**updateApiToken**](Apis/TokenApi.md#updateApiToken) | **PUT** /token/{tokenId} | Updates a server-to-server authentication security token configuration. |
 | *UserApi* | [**createUser**](Apis/UserApi.md#createUser) | **POST** /user | Creates a new Kowabunga user. |
 *UserApi* | [**deleteUser**](Apis/UserApi.md#deleteUser) | **DELETE** /user/{userId} | Deletes an existing Kowabunga user. |
 *UserApi* | [**listUsers**](Apis/UserApi.md#listUsers) | **GET** /user | Returns the IDs of Kowabunga user objects. |
-*UserApi* | [**login**](Apis/UserApi.md#login) | **POST** /login | Creates a new Kowabunga user login credentials. |
-*UserApi* | [**logout**](Apis/UserApi.md#logout) | **POST** /logout | Creates a new Kowabunga user logout session. |
+*UserApi* | [**login**](Apis/UserApi.md#login) | **POST** /login | Authenticates a Kowabunga user and returns a JWT token for Bearer Authentication. |
+*UserApi* | [**logout**](Apis/UserApi.md#logout) | **POST** /logout | Terminates the Kowabunga user logout session, revoking the JWT token in use. |
 *UserApi* | [**readUser**](Apis/UserApi.md#readUser) | **GET** /user/{userId} | Returns a Kowabunga user. |
-*UserApi* | [**resetPassword**](Apis/UserApi.md#resetPassword) | **PUT** /resetPassword | Updates a Kowabunga userreset of password for the provided email (server-side generated, will replace any existing one) configuration. |
+*UserApi* | [**resetPassword**](Apis/UserApi.md#resetPassword) | **POST** /resetPassword | Resets the password of the Kowabunga user with the provided email address. A new password is server-side generated, replacing any existing one, and sent by email. For privacy reasons, the response is the same whether the email address is registered or not. |
 *UserApi* | [**resetUserPassword**](Apis/UserApi.md#resetUserPassword) | **PATCH** /user/{userId}/resetPassword | Performs a Kowabunga user reset of password (server-side generated, will replace any existing one). |
-*UserApi* | [**setUserApiToken**](Apis/UserApi.md#setUserApiToken) | **PATCH** /user/{userId}/token | Performs a Kowabunga user setting of API token (will replace any existing one). |
+*UserApi* | [**setUserApiToken**](Apis/UserApi.md#setUserApiToken) | **PATCH** /user/{userId}/token | Performs a Kowabunga user setting of API token (will replace any existing one; the generated API key is only sent once, by email, to the user). |
 *UserApi* | [**setUserPassword**](Apis/UserApi.md#setUserPassword) | **PUT** /user/{userId}/password | Updates a Kowabunga user password (will replace any existing one) configuration. |
 *UserApi* | [**updateUser**](Apis/UserApi.md#updateUser) | **PUT** /user/{userId} | Updates a Kowabunga user configuration. |
-| *VnetApi* | [**createSubnet**](Apis/VnetApi.md#createSubnet) | **POST** /vnet/{vnetId}/subnet | Creates a new network subnet. |
-*VnetApi* | [**createVNet**](Apis/VnetApi.md#createVNet) | **POST** /region/{regionId}/vnet | Creates a new virtual network. |
+| *VnetApi* | [**createRegionVNet**](Apis/VnetApi.md#createRegionVNet) | **POST** /region/{regionId}/vnet | Creates a new virtual network. |
+*VnetApi* | [**createVNetSubnet**](Apis/VnetApi.md#createVNetSubnet) | **POST** /vnet/{vnetId}/subnet | Creates a new network subnet. |
 *VnetApi* | [**deleteVNet**](Apis/VnetApi.md#deleteVNet) | **DELETE** /vnet/{vnetId} | Deletes an existing virtual network. |
 *VnetApi* | [**listRegionVNets**](Apis/VnetApi.md#listRegionVNets) | **GET** /region/{regionId}/vnets | Returns the IDs of virtual network objects. |
 *VnetApi* | [**listVNetSubnets**](Apis/VnetApi.md#listVNetSubnets) | **GET** /vnet/{vnetId}/subnets | Returns the IDs of network subnet objects. |
@@ -258,11 +258,11 @@ All URIs are relative to */api/v1*
 *VolumeApi* | [**listVolumes**](Apis/VolumeApi.md#listVolumes) | **GET** /volume | Returns the IDs of storage volume objects. |
 *VolumeApi* | [**readVolume**](Apis/VolumeApi.md#readVolume) | **GET** /volume/{volumeId} | Returns a storage volume. |
 *VolumeApi* | [**updateVolume**](Apis/VolumeApi.md#updateVolume) | **PUT** /volume/{volumeId} | Updates a storage volume configuration. |
-| *ZoneApi* | [**createKaktus**](Apis/ZoneApi.md#createKaktus) | **POST** /zone/{zoneId}/kaktus | Creates a new Kaktus computing node. |
-*ZoneApi* | [**createProjectZoneInstance**](Apis/ZoneApi.md#createProjectZoneInstance) | **POST** /project/{projectId}/zone/{zoneId}/instance | Creates a new virtual machine instance. |
+| *ZoneApi* | [**createProjectZoneInstance**](Apis/ZoneApi.md#createProjectZoneInstance) | **POST** /project/{projectId}/zone/{zoneId}/instance | Creates a new virtual machine instance. |
 *ZoneApi* | [**createProjectZoneKompute**](Apis/ZoneApi.md#createProjectZoneKompute) | **POST** /project/{projectId}/zone/{zoneId}/kompute | Creates a new Kompute. |
 *ZoneApi* | [**createProjectZoneKonvey**](Apis/ZoneApi.md#createProjectZoneKonvey) | **POST** /project/{projectId}/zone/{zoneId}/konvey | Creates a new Konvey (Kowabunga Network Load-Balancer). |
-*ZoneApi* | [**createZone**](Apis/ZoneApi.md#createZone) | **POST** /region/{regionId}/zone | Creates a new availability zone. |
+*ZoneApi* | [**createRegionZone**](Apis/ZoneApi.md#createRegionZone) | **POST** /region/{regionId}/zone | Creates a new availability zone. |
+*ZoneApi* | [**createZoneKaktus**](Apis/ZoneApi.md#createZoneKaktus) | **POST** /zone/{zoneId}/kaktus | Creates a new Kaktus computing node. |
 *ZoneApi* | [**deleteZone**](Apis/ZoneApi.md#deleteZone) | **DELETE** /zone/{zoneId} | Deletes an existing availability zone. |
 *ZoneApi* | [**listProjectZoneInstances**](Apis/ZoneApi.md#listProjectZoneInstances) | **GET** /project/{projectId}/zone/{zoneId}/instances | Returns the IDs of virtual machine instance objects. |
 *ZoneApi* | [**listProjectZoneKomputes**](Apis/ZoneApi.md#listProjectZoneKomputes) | **GET** /project/{projectId}/zone/{zoneId}/komputes | Returns the IDs of Kompute objects. |
@@ -278,20 +278,26 @@ All URIs are relative to */api/v1*
 ## Documentation for Models
 
  - [Adapter](./Models/Adapter.md)
+ - [AdapterUpdate](./Models/AdapterUpdate.md)
  - [Agent](./Models/Agent.md)
+ - [AgentUpdate](./Models/AgentUpdate.md)
  - [ApiErrorBadRequest](./Models/ApiErrorBadRequest.md)
  - [ApiErrorConflict](./Models/ApiErrorConflict.md)
  - [ApiErrorForbidden](./Models/ApiErrorForbidden.md)
  - [ApiErrorInsufficientResource](./Models/ApiErrorInsufficientResource.md)
+ - [ApiErrorInternalServerError](./Models/ApiErrorInternalServerError.md)
  - [ApiErrorNotFound](./Models/ApiErrorNotFound.md)
  - [ApiErrorUnauthorized](./Models/ApiErrorUnauthorized.md)
  - [ApiErrorUnprocessableEntity](./Models/ApiErrorUnprocessableEntity.md)
  - [ApiToken](./Models/ApiToken.md)
+ - [ApiTokenUpdate](./Models/ApiTokenUpdate.md)
  - [Cost](./Models/Cost.md)
  - [DnsRecord](./Models/DnsRecord.md)
+ - [DnsRecordUpdate](./Models/DnsRecordUpdate.md)
  - [Instance](./Models/Instance.md)
  - [InstanceRemoteAccess](./Models/InstanceRemoteAccess.md)
  - [InstanceState](./Models/InstanceState.md)
+ - [InstanceUpdate](./Models/InstanceUpdate.md)
  - [IpRange](./Models/IpRange.md)
  - [KMotionCommitRequest](./Models/KMotionCommitRequest.md)
  - [KMotionPlan](./Models/KMotionPlan.md)
@@ -299,41 +305,60 @@ All URIs are relative to */api/v1*
  - [Kaktus](./Models/Kaktus.md)
  - [KaktusCPU](./Models/KaktusCPU.md)
  - [KaktusCaps](./Models/KaktusCaps.md)
+ - [KaktusUpdate](./Models/KaktusUpdate.md)
  - [Kawaii](./Models/Kawaii.md)
  - [KawaiiDNatRule](./Models/KawaiiDNatRule.md)
  - [KawaiiFirewall](./Models/KawaiiFirewall.md)
  - [KawaiiFirewallEgressRule](./Models/KawaiiFirewallEgressRule.md)
  - [KawaiiFirewallIngressRule](./Models/KawaiiFirewallIngressRule.md)
  - [KawaiiIpSec](./Models/KawaiiIpSec.md)
+ - [KawaiiIpSecFirewall](./Models/KawaiiIpSecFirewall.md)
+ - [KawaiiIpSecUpdate](./Models/KawaiiIpSecUpdate.md)
  - [KawaiiNetIp](./Models/KawaiiNetIp.md)
  - [KawaiiNetIpZone](./Models/KawaiiNetIpZone.md)
+ - [KawaiiUpdate](./Models/KawaiiUpdate.md)
  - [KawaiiVpcForwardRule](./Models/KawaiiVpcForwardRule.md)
- - [KawaiiVpcNetIpZone](./Models/KawaiiVpcNetIpZone.md)
  - [KawaiiVpcPeering](./Models/KawaiiVpcPeering.md)
  - [Kiwi](./Models/Kiwi.md)
+ - [KiwiUpdate](./Models/KiwiUpdate.md)
  - [Kompute](./Models/Kompute.md)
+ - [KomputeUpdate](./Models/KomputeUpdate.md)
  - [Konvey](./Models/Konvey.md)
  - [KonveyBackends](./Models/KonveyBackends.md)
  - [KonveyEndpoint](./Models/KonveyEndpoint.md)
+ - [KonveyUpdate](./Models/KonveyUpdate.md)
  - [Kwarantine](./Models/Kwarantine.md)
+ - [KwarantineUpdate](./Models/KwarantineUpdate.md)
  - [Kylo](./Models/Kylo.md)
+ - [KyloUpdate](./Models/KyloUpdate.md)
  - [Metadata](./Models/Metadata.md)
  - [Password](./Models/Password.md)
  - [Project](./Models/Project.md)
  - [ProjectResources](./Models/ProjectResources.md)
+ - [ProjectUpdate](./Models/ProjectUpdate.md)
  - [Region](./Models/Region.md)
  - [RegionSubnet](./Models/RegionSubnet.md)
+ - [RegionUpdate](./Models/RegionUpdate.md)
  - [StorageNFS](./Models/StorageNFS.md)
+ - [StorageNFSUpdate](./Models/StorageNFSUpdate.md)
  - [StoragePool](./Models/StoragePool.md)
+ - [StoragePoolUpdate](./Models/StoragePoolUpdate.md)
  - [Subnet](./Models/Subnet.md)
+ - [SubnetUpdate](./Models/SubnetUpdate.md)
  - [Team](./Models/Team.md)
+ - [TeamUpdate](./Models/TeamUpdate.md)
  - [Template](./Models/Template.md)
+ - [TemplateUpdate](./Models/TemplateUpdate.md)
  - [User](./Models/User.md)
  - [UserCredentials](./Models/UserCredentials.md)
  - [UserEmail](./Models/UserEmail.md)
+ - [UserUpdate](./Models/UserUpdate.md)
  - [VNet](./Models/VNet.md)
+ - [VNetUpdate](./Models/VNetUpdate.md)
  - [Volume](./Models/Volume.md)
+ - [VolumeUpdate](./Models/VolumeUpdate.md)
  - [Zone](./Models/Zone.md)
+ - [ZoneUpdate](./Models/ZoneUpdate.md)
 
 
 <a name="documentation-for-authorization"></a>

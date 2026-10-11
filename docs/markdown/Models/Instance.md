@@ -3,15 +3,15 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **id** | **String** | The virtual machine instance ID (auto-generated). | [optional] [default to null] |
+| **id** | **String** | The virtual machine instance ID (auto-generated) (read-only). | [optional] [default to null] |
 | **name** | **String** | The virtual machine instance name. | [default to null] |
 | **description** | **String** | The virtual machine instance description. | [optional] [default to null] |
 | **memory** | **Long** | The virtual machine instance memory size (in bytes). | [default to null] |
-| **vcpus** | **Long** | The virtual machine instance number of vCPUs. | [default to null] |
-| **adapters** | **List** | a list of existing network adapters to be connected to the instance. | [optional] [default to null] |
-| **volumes** | **List** | volumes list of existing storage volumes (i.e. disks) to be connected to the instance. | [optional] [default to null] |
-| **kwarantines** | **List** | An optional list of existing Kwarantine anti-affinity group IDs. Only considered at instance creation time, to elect an initial host consistent with the referenced groups policies and register the instance as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices. | [optional] [default to null] |
-| **uefi** | **Boolean** | enable UEFI secure firmware (vs. legacy BIOS). | [optional] [default to true] |
+| **vcpus** | **Integer** | The virtual machine instance number of vCPUs. | [default to null] |
+| **adapters** | **List** | A list of existing network adapters to be connected to the instance. | [optional] [default to null] |
+| **volumes** | **List** | A list of existing storage volumes (i.e. disks) to be connected to the instance. | [optional] [default to null] |
+| **kwarantines** | **List** | An optional list of existing Kwarantine anti-affinity group IDs. Only considered at instance creation time, to elect an initial host consistent with the referenced groups policies and register the instance as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices. Can only be set at creation time, ignored on updates. | [optional] [default to null] |
+| **uefi** | **Boolean** | Enable UEFI secure firmware (vs. legacy BIOS). Can only be set at creation time, ignored on updates. | [optional] [default to true] |
 | **kmotion\_enabled** | **Boolean** | Whether kMotion (live/cold host migration) is enabled for the virtual machine instance. When disabled, the instance remains bound to its original hosting node. | [optional] [default to true] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

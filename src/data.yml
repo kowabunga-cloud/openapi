@@ -67,6 +67,7 @@ resources:
     desc: Kaktus computing node
     extended_desc: Kaktus (Kowabunga Affordable KVM and Tight Underneath Storage) is an hyper-converged infrastructure (HCI) bare-metal node offering computing and distributed storage capabilites
     schema: Kaktus
+    plural: Kaktuses
     paramId: kaktusId
     paramSchema: KaktusID
   kaktus_caps:
@@ -91,6 +92,9 @@ resources:
   kawaii_firewall:
     desc: Kawaii public firewall settings
     schema: KawaiiFirewall
+  kawaii_ipsec_firewall:
+    desc: Kawaii IPsec connection firewall settings
+    schema: KawaiiIpSecFirewall
   kawaii_firewall_ingress_rule:
     desc: Kawaii public firewall ingress rule
     schema: KawaiiFirewallIngressRule
@@ -104,10 +108,10 @@ resources:
     desc: Kawaii public firewall destination NAT rule
     schema: KawaiiDNatRule
   kawaii_ipsec:
-    tag: kawaii_ipsec
+    tag: ipsec
     desc: Kawaii IPsec connection
     schema: KawaiiIpSec
-    paramId: KawaiiIpSecId
+    paramId: kawaiiIpSecId
     paramSchema: KawaiiIpSecID
   kawaii_vpc_peering:
     desc: Kawaii internal VPC subnet peering
@@ -115,9 +119,6 @@ resources:
   kawaii_vpc_forward_rule:
     desc: Kawaii VPC firewall forwarding rule
     schema: KawaiiVpcForwardRule
-  kawaii_vpc_netip_zone:
-    desc: Kawaii VPC Network IP zone settings
-    schema: KawaiiVpcNetIpZone
   kiwi:
     tag: kiwi
     desc: Kiwi (Kowabunga Inner Wan Interface) provides edge-network services.
@@ -179,6 +180,7 @@ resources:
     tag: nfs
     desc: NFS storage
     schema: StorageNFS
+    plural: StorageNFSes
     paramId: nfsId
     paramSchema: NfsID
   pool:
@@ -271,6 +273,10 @@ errors:
     code: 422
     schema: UnprocessableEntity
     desc: Server can't process request
+  InternalServerError:
+    code: 500
+    schema: InternalServerError
+    desc: Server-side failure while processing the request
   InsufficientResource:
     code: 507
     schema: InsufficientResource

@@ -3,7 +3,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **id** | **String** | The network adapter ID (auto-generated). | [optional] [default to null] |
+| **id** | **String** | The network adapter ID (auto-generated) (read-only). | [optional] [default to null] |
 | **name** | **String** | The network adapter name. | [default to null] |
 | **description** | **String** | The network adapter description. | [optional] [default to null] |
 | **mac** | **String** | The network adapter hardware address (e.g. 00:11:22:33:44:55). Auto-generated if unspecified. | [optional] [default to null] |

@@ -4,7 +4,7 @@ All URIs are relative to */api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createTemplate**](TemplateApi.md#createTemplate) | **POST** /pool/{poolId}/template |  |
+| [**createStoragePoolTemplate**](TemplateApi.md#createStoragePoolTemplate) | **POST** /pool/{poolId}/template |  |
 | [**deleteTemplate**](TemplateApi.md#deleteTemplate) | **DELETE** /template/{templateId} |  |
 | [**listStoragePoolTemplates**](TemplateApi.md#listStoragePoolTemplates) | **GET** /pool/{poolId}/templates |  |
 | [**listTemplates**](TemplateApi.md#listTemplates) | **GET** /template |  |
@@ -13,9 +13,9 @@ All URIs are relative to */api/v1*
 | [**updateTemplate**](TemplateApi.md#updateTemplate) | **PUT** /template/{templateId} |  |
 
 
-<a name="createTemplate"></a>
-# **createTemplate**
-> Template createTemplate(poolId, Template)
+<a name="createStoragePoolTemplate"></a>
+# **createStoragePoolTemplate**
+> Template createStoragePoolTemplate(poolId, Template)
 
 
 
@@ -176,7 +176,7 @@ null (empty response body)
 
 <a name="updateTemplate"></a>
 # **updateTemplate**
-> Template updateTemplate(templateId, Template)
+> Template updateTemplate(templateId, TemplateUpdate)
 
 
 
@@ -187,7 +187,7 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **templateId** | **String**| The ID of the image template. | [default to null] |
-| **Template** | [**Template**](../Models/Template.md)| Template payload. | |
+| **TemplateUpdate** | [**TemplateUpdate**](../Models/TemplateUpdate.md)| TemplateUpdate payload. | |
 
 ### Return type
 

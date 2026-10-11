@@ -4,8 +4,8 @@ All URIs are relative to */api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createAdapter**](SubnetApi.md#createAdapter) | **POST** /subnet/{subnetId}/adapter |  |
-| [**createSubnet**](SubnetApi.md#createSubnet) | **POST** /vnet/{vnetId}/subnet |  |
+| [**createSubnetAdapter**](SubnetApi.md#createSubnetAdapter) | **POST** /subnet/{subnetId}/adapter |  |
+| [**createVNetSubnet**](SubnetApi.md#createVNetSubnet) | **POST** /vnet/{vnetId}/subnet |  |
 | [**deleteSubnet**](SubnetApi.md#deleteSubnet) | **DELETE** /subnet/{subnetId} |  |
 | [**listSubnetAdapters**](SubnetApi.md#listSubnetAdapters) | **GET** /subnet/{subnetId}/adapters |  |
 | [**listSubnets**](SubnetApi.md#listSubnets) | **GET** /subnet |  |
@@ -15,9 +15,9 @@ All URIs are relative to */api/v1*
 | [**updateSubnet**](SubnetApi.md#updateSubnet) | **PUT** /subnet/{subnetId} |  |
 
 
-<a name="createAdapter"></a>
-# **createAdapter**
-> Adapter createAdapter(subnetId, Adapter, assignIP)
+<a name="createSubnetAdapter"></a>
+# **createSubnetAdapter**
+> Adapter createSubnetAdapter(subnetId, Adapter, assignIP)
 
 
 
@@ -29,7 +29,7 @@ All URIs are relative to */api/v1*
 |------------- | ------------- | ------------- | -------------|
 | **subnetId** | **String**| The ID of the network subnet. | [default to null] |
 | **Adapter** | [**Adapter**](../Models/Adapter.md)| Adapter payload. | |
-| **assignIP** | **Boolean**| Whether Kowabunga should pick and assign an IP address to this adapter. | [optional] [default to null] |
+| **assignIP** | **Boolean**| Whether Kowabunga should pick and assign an IP address to this adapter. | [optional] [default to false] |
 
 ### Return type
 
@@ -44,9 +44,9 @@ All URIs are relative to */api/v1*
 - **Content-Type**: application/json
 - **Accept**: application/json
 
-<a name="createSubnet"></a>
-# **createSubnet**
-> Subnet createSubnet(vnetId, Subnet)
+<a name="createVNetSubnet"></a>
+# **createVNetSubnet**
+> Subnet createVNetSubnet(vnetId, Subnet)
 
 
 
@@ -234,7 +234,7 @@ null (empty response body)
 
 <a name="updateSubnet"></a>
 # **updateSubnet**
-> Subnet updateSubnet(subnetId, Subnet)
+> Subnet updateSubnet(subnetId, SubnetUpdate)
 
 
 
@@ -245,7 +245,7 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **subnetId** | **String**| The ID of the network subnet. | [default to null] |
-| **Subnet** | [**Subnet**](../Models/Subnet.md)| Subnet payload. | |
+| **SubnetUpdate** | [**SubnetUpdate**](../Models/SubnetUpdate.md)| SubnetUpdate payload. | |
 
 ### Return type
 

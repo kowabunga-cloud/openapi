@@ -208,7 +208,7 @@ This endpoint does not need any parameter.
 
 <a name="updateKonvey"></a>
 # **updateKonvey**
-> Konvey updateKonvey(konveyId, Konvey)
+> Konvey updateKonvey(konveyId, KonveyUpdate)
 
 
 
@@ -219,7 +219,7 @@ This endpoint does not need any parameter.
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **konveyId** | **String**| The ID of the Konvey (Kowabunga Network Load-Balancer). | [default to null] |
-| **Konvey** | [**Konvey**](../Models/Konvey.md)| Konvey payload. | |
+| **KonveyUpdate** | [**KonveyUpdate**](../Models/KonveyUpdate.md)| KonveyUpdate payload. | |
 
 ### Return type
 

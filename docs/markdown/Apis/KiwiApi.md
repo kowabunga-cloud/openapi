@@ -4,7 +4,7 @@ All URIs are relative to */api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createKiwi**](KiwiApi.md#createKiwi) | **POST** /region/{regionId}/kiwi |  |
+| [**createRegionKiwi**](KiwiApi.md#createRegionKiwi) | **POST** /region/{regionId}/kiwi |  |
 | [**deleteKiwi**](KiwiApi.md#deleteKiwi) | **DELETE** /kiwi/{kiwiId} |  |
 | [**listKiwis**](KiwiApi.md#listKiwis) | **GET** /kiwi |  |
 | [**listRegionKiwis**](KiwiApi.md#listRegionKiwis) | **GET** /region/{regionId}/kiwis |  |
@@ -12,9 +12,9 @@ All URIs are relative to */api/v1*
 | [**updateKiwi**](KiwiApi.md#updateKiwi) | **PUT** /kiwi/{kiwiId} |  |
 
 
-<a name="createKiwi"></a>
-# **createKiwi**
-> Kiwi createKiwi(regionId, Kiwi)
+<a name="createRegionKiwi"></a>
+# **createRegionKiwi**
+> Kiwi createRegionKiwi(regionId, Kiwi)
 
 
 
@@ -147,7 +147,7 @@ This endpoint does not need any parameter.
 
 <a name="updateKiwi"></a>
 # **updateKiwi**
-> Kiwi updateKiwi(kiwiId, Kiwi)
+> Kiwi updateKiwi(kiwiId, KiwiUpdate)
 
 
 
@@ -158,7 +158,7 @@ This endpoint does not need any parameter.
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **kiwiId** | **String**| The ID of the Kiwi (Kowabunga Inner Wan Interface) provides edge-network services.. | [default to null] |
-| **Kiwi** | [**Kiwi**](../Models/Kiwi.md)| Kiwi payload. | |
+| **KiwiUpdate** | [**KiwiUpdate**](../Models/KiwiUpdate.md)| KiwiUpdate payload. | |
 
 ### Return type
 

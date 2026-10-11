@@ -119,19 +119,19 @@ This endpoint does not need any parameter.
 
 <a name="setAgentApiToken"></a>
 # **setAgentApiToken**
-> ApiToken setAgentApiToken(agentId, expire, expiration\_date)
+> ApiToken setAgentApiToken(agentId, expire, expirationDate)
 
 
 
-    Performs a Kowabunga remote agent setting of API token (will replace any existing one).
+    Performs a Kowabunga remote agent setting of API token (will replace any existing one, disconnecting the agent; the generated API key is only sent once, by email, to administrators).
 
 ### Parameters
 
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **agentId** | **String**| The ID of the Kowabunga remote agent. | [default to null] |
-| **expire** | **Boolean**| Whether or not the token should expire. | [optional] [default to null] |
-| **expiration\_date** | **date**| Token&#39;s expiration date (YYYY-MM-DD format). | [optional] [default to null] |
+| **expire** | **Boolean**| Whether or not the token should expire. | [optional] [default to false] |
+| **expirationDate** | **date**| Token&#39;s expiration date (YYYY-MM-DD format). | [optional] [default to null] |
 
 ### Return type
 
@@ -148,7 +148,7 @@ This endpoint does not need any parameter.
 
 <a name="updateAgent"></a>
 # **updateAgent**
-> Agent updateAgent(agentId, Agent)
+> Agent updateAgent(agentId, AgentUpdate)
 
 
 
@@ -159,7 +159,7 @@ This endpoint does not need any parameter.
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **agentId** | **String**| The ID of the Kowabunga remote agent. | [default to null] |
-| **Agent** | [**Agent**](../Models/Agent.md)| Agent payload. | |
+| **AgentUpdate** | [**AgentUpdate**](../Models/AgentUpdate.md)| AgentUpdate payload. | |
 
 ### Return type
 

@@ -118,7 +118,7 @@ This endpoint does not need any parameter.
 
 <a name="updateTeam"></a>
 # **updateTeam**
-> Team updateTeam(teamId, Team)
+> Team updateTeam(teamId, TeamUpdate)
 
 
 
@@ -129,7 +129,7 @@ This endpoint does not need any parameter.
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **teamId** | **String**| The ID of the Kowabunga users team. | [default to null] |
-| **Team** | [**Team**](../Models/Team.md)| Team payload. | |
+| **TeamUpdate** | [**TeamUpdate**](../Models/TeamUpdate.md)| TeamUpdate payload. | |
 
 ### Return type
 

@@ -7,14 +7,14 @@ All URIs are relative to */api/v1*
 | [**createKawaiiIpSec**](KawaiiApi.md#createKawaiiIpSec) | **POST** /kawaii/{kawaiiId}/ipsec |  |
 | [**createProjectRegionKawaii**](KawaiiApi.md#createProjectRegionKawaii) | **POST** /project/{projectId}/region/{regionId}/kawaii |  |
 | [**deleteKawaii**](KawaiiApi.md#deleteKawaii) | **DELETE** /kawaii/{kawaiiId} |  |
-| [**deleteKawaiiIpSec**](KawaiiApi.md#deleteKawaiiIpSec) | **DELETE** /kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId} |  |
+| [**deleteKawaiiIpSec**](KawaiiApi.md#deleteKawaiiIpSec) | **DELETE** /kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId} |  |
 | [**listKawaiiIpSecs**](KawaiiApi.md#listKawaiiIpSecs) | **GET** /kawaii/{kawaiiId}/ipsec |  |
 | [**listKawaiis**](KawaiiApi.md#listKawaiis) | **GET** /kawaii |  |
 | [**listProjectRegionKawaiis**](KawaiiApi.md#listProjectRegionKawaiis) | **GET** /project/{projectId}/region/{regionId}/kawaiis |  |
 | [**readKawaii**](KawaiiApi.md#readKawaii) | **GET** /kawaii/{kawaiiId} |  |
-| [**readKawaiiIpSec**](KawaiiApi.md#readKawaiiIpSec) | **GET** /kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId} |  |
+| [**readKawaiiIpSec**](KawaiiApi.md#readKawaiiIpSec) | **GET** /kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId} |  |
 | [**updateKawaii**](KawaiiApi.md#updateKawaii) | **PUT** /kawaii/{kawaiiId} |  |
-| [**updateKawaiiIpSec**](KawaiiApi.md#updateKawaiiIpSec) | **PUT** /kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId} |  |
+| [**updateKawaiiIpSec**](KawaiiApi.md#updateKawaiiIpSec) | **PUT** /kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId} |  |
 
 
 <a name="createKawaiiIpSec"></a>
@@ -103,7 +103,7 @@ null (empty response body)
 
 <a name="deleteKawaiiIpSec"></a>
 # **deleteKawaiiIpSec**
-> deleteKawaiiIpSec(kawaiiId, KawaiiIpSecId)
+> deleteKawaiiIpSec(kawaiiId, kawaiiIpSecId)
 
 
 
@@ -114,7 +114,7 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **kawaiiId** | **String**| The ID of the Kawaii. | [default to null] |
-| **KawaiiIpSecId** | **String**| The ID of the Kawaii IPsec connection. | [default to null] |
+| **kawaiiIpSecId** | **String**| The ID of the Kawaii IPsec connection. | [default to null] |
 
 ### Return type
 
@@ -237,7 +237,7 @@ This endpoint does not need any parameter.
 
 <a name="readKawaiiIpSec"></a>
 # **readKawaiiIpSec**
-> KawaiiIpSec readKawaiiIpSec(kawaiiId, KawaiiIpSecId)
+> KawaiiIpSec readKawaiiIpSec(kawaiiId, kawaiiIpSecId)
 
 
 
@@ -248,7 +248,7 @@ This endpoint does not need any parameter.
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **kawaiiId** | **String**| The ID of the Kawaii. | [default to null] |
-| **KawaiiIpSecId** | **String**| The ID of the Kawaii IPsec connection. | [default to null] |
+| **kawaiiIpSecId** | **String**| The ID of the Kawaii IPsec connection. | [default to null] |
 
 ### Return type
 
@@ -265,7 +265,7 @@ This endpoint does not need any parameter.
 
 <a name="updateKawaii"></a>
 # **updateKawaii**
-> Kawaii updateKawaii(kawaiiId, Kawaii)
+> Kawaii updateKawaii(kawaiiId, KawaiiUpdate)
 
 
 
@@ -276,7 +276,7 @@ This endpoint does not need any parameter.
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **kawaiiId** | **String**| The ID of the Kawaii. | [default to null] |
-| **Kawaii** | [**Kawaii**](../Models/Kawaii.md)| Kawaii payload. | |
+| **KawaiiUpdate** | [**KawaiiUpdate**](../Models/KawaiiUpdate.md)| KawaiiUpdate payload. | |
 
 ### Return type
 
@@ -293,7 +293,7 @@ This endpoint does not need any parameter.
 
 <a name="updateKawaiiIpSec"></a>
 # **updateKawaiiIpSec**
-> KawaiiIpSec updateKawaiiIpSec(kawaiiId, KawaiiIpSecId, KawaiiIpSec)
+> KawaiiIpSec updateKawaiiIpSec(kawaiiId, kawaiiIpSecId, KawaiiIpSecUpdate)
 
 
 
@@ -304,8 +304,8 @@ This endpoint does not need any parameter.
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **kawaiiId** | **String**| The ID of the Kawaii. | [default to null] |
-| **KawaiiIpSecId** | **String**| The ID of the Kawaii IPsec connection. | [default to null] |
-| **KawaiiIpSec** | [**KawaiiIpSec**](../Models/KawaiiIpSec.md)| KawaiiIpSec payload. | |
+| **kawaiiIpSecId** | **String**| The ID of the Kawaii IPsec connection. | [default to null] |
+| **KawaiiIpSecUpdate** | [**KawaiiIpSecUpdate**](../Models/KawaiiIpSecUpdate.md)| KawaiiIpSecUpdate payload. | |
 
 ### Return type
 

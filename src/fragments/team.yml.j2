@@ -7,8 +7,9 @@
 
 components:
   schemas:
-{{ oas.SchemaBaseResource(resources.team, ['name', 'users']) }}
+{% call oas.Resource(resources.team, ['name', 'users']) %}
 {{ oas.StringArrayProperty('users', 'List of user IDs that are part of the team') }}
+{% endcall %}
 
   parameters:
 {{ oas.PathParamID(resources.team) }}

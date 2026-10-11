@@ -179,7 +179,7 @@ null (empty response body)
 
 <a name="updateDnsRecord"></a>
 # **updateDnsRecord**
-> DnsRecord updateDnsRecord(recordId, DnsRecord)
+> DnsRecord updateDnsRecord(recordId, DnsRecordUpdate)
 
 
 
@@ -190,7 +190,7 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **recordId** | **String**| The ID of the DNS record. | [default to null] |
-| **DnsRecord** | [**DnsRecord**](../Models/DnsRecord.md)| DnsRecord payload. | |
+| **DnsRecordUpdate** | [**DnsRecordUpdate**](../Models/DnsRecordUpdate.md)| DnsRecordUpdate payload. | |
 
 ### Return type
 

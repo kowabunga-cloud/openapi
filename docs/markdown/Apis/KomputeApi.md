@@ -99,7 +99,7 @@ null (empty response body)
 | **Kompute** | [**Kompute**](../Models/Kompute.md)| Kompute payload. | |
 | **poolId** | **String**| Storage pool ID (optional, region&#39;s default if unspecified). | [optional] [default to null] |
 | **templateId** | **String**| Template to clone the storage volume from (optional, region&#39;s default if unspecified). | [optional] [default to null] |
-| **public** | **Boolean**| Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). | [optional] [default to null] |
+| **public** | **Boolean**| Whether the Kompute should be exposed over public Internet (a public IPv4 address will then be auto-assigned). | [optional] [default to false] |
 
 ### Return type
 
@@ -131,7 +131,7 @@ null (empty response body)
 | **Kompute** | [**Kompute**](../Models/Kompute.md)| Kompute payload. | |
 | **poolId** | **String**| Storage pool ID (optional, region&#39;s default if unspecified). | [optional] [default to null] |
 | **templateId** | **String**| Template to clone the storage volume from (optional, region&#39;s default if unspecified). | [optional] [default to null] |
-| **public** | **Boolean**| Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). | [optional] [default to null] |
+| **public** | **Boolean**| Whether the Kompute should be exposed over public Internet (a public IPv4 address will then be auto-assigned). | [optional] [default to false] |
 
 ### Return type
 
@@ -554,7 +554,7 @@ null (empty response body)
 
 <a name="updateKompute"></a>
 # **updateKompute**
-> Kompute updateKompute(komputeId, Kompute)
+> Kompute updateKompute(komputeId, KomputeUpdate)
 
 
 
@@ -565,7 +565,7 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **komputeId** | **String**| The ID of the Kompute. | [default to null] |
-| **Kompute** | [**Kompute**](../Models/Kompute.md)| Kompute payload. | |
+| **KomputeUpdate** | [**KomputeUpdate**](../Models/KomputeUpdate.md)| KomputeUpdate payload. | |
 
 ### Return type
 

@@ -7,8 +7,9 @@
 
 components:
   schemas:
-{{ oas.SchemaBaseResource(resources.kiwi, ['name']) }}
+{% call oas.Resource(resources.kiwi, ['name']) %}
 {{ oas.StringArrayProperty('agents', 'a list of existing remote agents managing the network gateway') }}
+{% endcall %}
 
   parameters:
 {{ oas.PathParamID(resources.kiwi) }}

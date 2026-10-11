@@ -7,14 +7,15 @@
 
 components:
   schemas:
-{{ oas.SchemaBaseResource(resources.token, ['name', 'expire']) }}
-{{ oas.BoolProperty('expire', 'Does the API token expires at some stage ?', default=False) }}
+{% call oas.Resource(resources.token, ['name', 'expire']) %}
+{{ oas.BoolProperty('expire', 'Whether the API token expires at some stage', default=False) }}
 {{ oas.DateProperty('expiration_date', 'Expiration date of the token (YYYY-MM-DD format)') }}
+{% endcall %}
 
   parameters:
 {{ oas.PathParamID(resources.token) }}
-{{ oas.BoolQueryParam('Expire', 'expire', 'Whether or not the token should expire') }}
-{{ oas.DateQueryParam('ExpirationDate', 'expiration_date', "Token's expiration date (YYYY-MM-DD format)") }}
+{{ oas.BoolQueryParam('Expire', 'expire', 'Whether or not the token should expire', default='false') }}
+{{ oas.DateQueryParam('ExpirationDate', 'expirationDate', "Token's expiration date (YYYY-MM-DD format)") }}
 
 paths:
   /token:

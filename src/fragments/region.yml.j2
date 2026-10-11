@@ -7,8 +7,9 @@
 
 components:
   schemas:
-{{ oas.SchemaBaseResource(resources.region, ['name', 'domain']) }}
+{% call oas.Resource(resources.region, ['name', 'domain']) %}
 {{ oas.StringProperty('domain', 'Region domain name (e.g. myregion.kowabunga.acme.com)') }}
+{% endcall %}
 
   parameters:
 {{ oas.PathParamID(resources.region) }}
@@ -22,7 +23,7 @@ paths:
 
   /region/{{ '{' + resources.region.paramId + '}' }}/zone:
 {{ oas.Parameters([resources.region.paramSchema]) }}
-{{ oas.Create('Create' + resources.zone.schema, resources.zone.schema, resources.zone.desc, [resources.region.tag, resources.zone.tag]) }}
+{{ oas.Create('Create' + resources.region.schema + resources.zone.schema, resources.zone.schema, resources.zone.desc, [resources.region.tag, resources.zone.tag]) }}
 
   /region/{{ '{' + resources.region.paramId + '}' }}/zones:
 {{ oas.Parameters([resources.region.paramSchema]) }}
@@ -30,23 +31,23 @@ paths:
 
   /region/{{ '{' + resources.region.paramId + '}' }}/pool:
 {{ oas.Parameters([resources.region.paramSchema]) }}
-{{ oas.Create('Create' + resources.pool.schema, resources.pool.schema, resources.pool.desc, [resources.region.tag, resources.pool.tag]) }}
+{{ oas.Create('Create' + resources.region.schema + resources.pool.schema, resources.pool.schema, resources.pool.desc, [resources.region.tag, resources.pool.tag]) }}
 
   /region/{{ '{' + resources.region.paramId + '}' }}/kiwi:
 {{ oas.Parameters([resources.region.paramSchema]) }}
-{{ oas.Create('Create' + resources.kiwi.schema, resources.kiwi.schema, resources.kiwi.desc, [resources.region.tag, resources.kiwi.tag]) }}
+{{ oas.Create('Create' + resources.region.schema + resources.kiwi.schema, resources.kiwi.schema, resources.kiwi.desc, [resources.region.tag, resources.kiwi.tag]) }}
 
   /region/{{ '{' + resources.region.paramId + '}' }}/kiwis:
 {{ oas.Parameters([resources.region.paramSchema]) }}
-{{ oas.GetAll('List' + resources.region.schema + resources.kiwi.schema + 's', resources.kiwi.desc, [resources.region.tag, resources.kiwi.tag], True) }}
+{{ oas.GetAll('List' + resources.region.schema + oas.Plural(resources.kiwi), resources.kiwi.desc, [resources.region.tag, resources.kiwi.tag], True) }}
 
   /region/{{ '{' + resources.region.paramId + '}' }}/vnet:
 {{ oas.Parameters([resources.region.paramSchema]) }}
-{{ oas.Create('Create' + resources.vnet.schema, resources.vnet.schema, resources.vnet.desc, [resources.region.tag, resources.vnet.tag]) }}
+{{ oas.Create('Create' + resources.region.schema + resources.vnet.schema, resources.vnet.schema, resources.vnet.desc, [resources.region.tag, resources.vnet.tag]) }}
 
   /region/{{ '{' + resources.region.paramId + '}' }}/vnets:
 {{ oas.Parameters([resources.region.paramSchema]) }}
-{{ oas.GetAll('List' + resources.region.schema + resources.vnet.schema + 's', resources.vnet.desc, [resources.region.tag, resources.vnet.tag], True) }}
+{{ oas.GetAll('List' + resources.region.schema + oas.Plural(resources.vnet), resources.vnet.desc, [resources.region.tag, resources.vnet.tag], True) }}
 
   /region/{{ '{' + resources.region.paramId + '}' }}/pool/{{ '{' + resources.pool.paramId + '}' }}/default:
 {{ oas.Parameters([resources.region.paramSchema, resources.pool.paramSchema]) }}
@@ -54,12 +55,15 @@ paths:
 
   /region/{{ '{' + resources.region.paramId + '}' }}/pools:
 {{ oas.Parameters([resources.region.paramSchema]) }}
-{{ oas.GetAll('List' + resources.region.schema + resources.pool.schema + 's', resources.pool.desc, [resources.region.tag, resources.pool.tag], True) }}
+{{ oas.GetAll('List' + resources.region.schema + oas.Plural(resources.pool), resources.pool.desc, [resources.region.tag, resources.pool.tag], True) }}
 
   /region/{{ '{' + resources.region.paramId + '}' }}/nfs:
-{{ oas.Parameters([resources.region.paramSchema, 'OptionalQuery' + resources.pool.paramSchema]) }}
-{{ oas.GetAll('List' + resources.region.schema + resources.nfs.schema + 's', resources.nfs.desc, [resources.region.tag, resources.nfs.tag], True) }}
-{{ oas.Create('Create' + resources.nfs.schema, resources.nfs.schema, resources.nfs.desc, [resources.region.tag, resources.nfs.tag]) }}
+{{ oas.Parameters([resources.region.paramSchema]) }}
+{{ oas.Create('Create' + resources.region.schema + resources.nfs.schema, resources.nfs.schema, resources.nfs.desc, [resources.region.tag, resources.nfs.tag], params=['OptionalQuery' + resources.pool.paramSchema]) }}
+
+  /region/{{ '{' + resources.region.paramId + '}' }}/nfses:
+{{ oas.Parameters([resources.region.paramSchema]) }}
+{{ oas.GetAll('List' + resources.region.schema + oas.Plural(resources.nfs), resources.nfs.desc, [resources.region.tag, resources.nfs.tag], True) }}
 
   /region/{{ '{' + resources.region.paramId + '}' }}/nfs/{{ '{' + resources.nfs.paramId + '}' }}/default:
 {{ oas.Parameters([resources.region.paramSchema, resources.nfs.paramSchema]) }}
@@ -69,6 +73,6 @@ paths:
 {{ oas.Parameters([resources.region.paramSchema]) }}
 {{ oas.Create('Create' + resources.region.schema + resources.record.schema, resources.record.schema, resources.record.desc, [resources.region.tag, resources.record.tag]) }}
 
-  /region/{{ '{' + resources.region.paramId }}}/records:
+  /region/{{ '{' + resources.region.paramId + '}' }}/records:
 {{ oas.Parameters([resources.region.paramSchema]) }}
-{{ oas.GetAll('List' + resources.region.schema + resources.record.schema + 's', resources.record.desc, [resources.region.tag, resources.record.tag], True) }}
+{{ oas.GetAll('List' + resources.region.schema + oas.Plural(resources.record), resources.record.desc, [resources.region.tag, resources.record.tag], True) }}

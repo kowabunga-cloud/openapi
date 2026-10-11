@@ -7,13 +7,14 @@
 
 components:
   schemas:
-{{ oas.SchemaBaseResource(resources.pool, ['name', 'pool', 'agents']) }}
+{% call oas.Resource(resources.pool, ['name', 'pool', 'agents']) %}
 {{ oas.StringProperty('pool', 'Ceph pool name') }}
 {{ oas.StringProperty('ceph_address', 'Ceph Monitor(s) address or FQDN', default='localhost') }}
-{{ oas.IntProperty('ceph_port', 'Ceph Monitor(s) port (default 3300)', default=3300) }}
+{{ oas.ShortIntProperty('ceph_port', 'Ceph Monitor(s) port', default=3300, minimum=1, maximum=65535) }}
 {{ oas.StringProperty('ceph_secret_uuid', 'The libvirt secret UUID for CephX authentication') }}
 {{ oas.ObjectProperty('cost', 'Cost associated to the storage pool', resources.cost.schema) }}
 {{ oas.StringArrayProperty('agents', 'a list of existing remote agents managing the storage pool') }}
+{% endcall %}
 
   parameters:
 {{ oas.PathParamID(resources.pool) }}
@@ -32,7 +33,7 @@ paths:
 
   /pool/{{ '{' + resources.pool.paramId + '}' }}/template:
 {{ oas.Parameters([resources.pool.paramSchema]) }}
-{{ oas.Create('Create' + resources.template.schema, resources.template.schema, resources.template.desc, [resources.pool.tag, resources.template.tag]) }}
+{{ oas.Create('Create' + resources.pool.schema + resources.template.schema, resources.template.schema, resources.template.desc, [resources.pool.tag, resources.template.tag]) }}
 
   /pool/{{ '{' + resources.pool.paramId + '}' }}/template/{{ '{' + resources.template.paramId + '}' }}/default:
 {{ oas.Parameters([resources.pool.paramSchema, resources.template.paramSchema]) }}

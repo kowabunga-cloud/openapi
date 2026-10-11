@@ -4,19 +4,19 @@ All URIs are relative to */api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createStorageNFS**](NfsApi.md#createStorageNFS) | **POST** /region/{regionId}/nfs |  |
+| [**createRegionStorageNFS**](NfsApi.md#createRegionStorageNFS) | **POST** /region/{regionId}/nfs |  |
 | [**deleteStorageNFS**](NfsApi.md#deleteStorageNFS) | **DELETE** /nfs/{nfsId} |  |
-| [**listRegionStorageNFSs**](NfsApi.md#listRegionStorageNFSs) | **GET** /region/{regionId}/nfs |  |
-| [**listStorageNFSKylos**](NfsApi.md#listStorageNFSKylos) | **GET** /nfs/{nfsId}/kylo |  |
-| [**listStorageNFSs**](NfsApi.md#listStorageNFSs) | **GET** /nfs |  |
+| [**listRegionStorageNFSes**](NfsApi.md#listRegionStorageNFSes) | **GET** /region/{regionId}/nfses |  |
+| [**listStorageNFSKylos**](NfsApi.md#listStorageNFSKylos) | **GET** /nfs/{nfsId}/kylos |  |
+| [**listStorageNFSes**](NfsApi.md#listStorageNFSes) | **GET** /nfs |  |
 | [**readStorageNFS**](NfsApi.md#readStorageNFS) | **GET** /nfs/{nfsId} |  |
 | [**setRegionDefaultStorageNFS**](NfsApi.md#setRegionDefaultStorageNFS) | **PATCH** /region/{regionId}/nfs/{nfsId}/default |  |
 | [**updateStorageNFS**](NfsApi.md#updateStorageNFS) | **PUT** /nfs/{nfsId} |  |
 
 
-<a name="createStorageNFS"></a>
-# **createStorageNFS**
-> StorageNFS createStorageNFS(regionId, StorageNFS, poolId)
+<a name="createRegionStorageNFS"></a>
+# **createRegionStorageNFS**
+> StorageNFS createRegionStorageNFS(regionId, StorageNFS, poolId)
 
 
 
@@ -70,9 +70,9 @@ null (empty response body)
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-<a name="listRegionStorageNFSs"></a>
-# **listRegionStorageNFSs**
-> List listRegionStorageNFSs(regionId, poolId)
+<a name="listRegionStorageNFSes"></a>
+# **listRegionStorageNFSes**
+> List listRegionStorageNFSes(regionId)
 
 
 
@@ -83,7 +83,6 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **regionId** | **String**| The ID of the region. | [default to null] |
-| **poolId** | **String**| Storage pool ID (optional, region&#39;s default if unspecified). | [optional] [default to null] |
 
 ### Return type
 
@@ -125,9 +124,9 @@ null (empty response body)
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-<a name="listStorageNFSs"></a>
-# **listStorageNFSs**
-> List listStorageNFSs()
+<a name="listStorageNFSes"></a>
+# **listStorageNFSes**
+> List listStorageNFSes()
 
 
 
@@ -206,7 +205,7 @@ null (empty response body)
 
 <a name="updateStorageNFS"></a>
 # **updateStorageNFS**
-> StorageNFS updateStorageNFS(nfsId, StorageNFS)
+> StorageNFS updateStorageNFS(nfsId, StorageNFSUpdate)
 
 
 
@@ -217,7 +216,7 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **nfsId** | **String**| The ID of the NFS storage. | [default to null] |
-| **StorageNFS** | [**StorageNFS**](../Models/StorageNFS.md)| StorageNFS payload. | |
+| **StorageNFSUpdate** | [**StorageNFSUpdate**](../Models/StorageNFSUpdate.md)| StorageNFSUpdate payload. | |
 
 ### Return type
 

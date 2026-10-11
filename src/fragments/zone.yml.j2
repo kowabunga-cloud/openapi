@@ -7,7 +7,8 @@
 
 components:
   schemas:
-{{ oas.SchemaBaseResource(resources.zone, ['name']) }}
+{% call oas.Resource(resources.zone, ['name']) %}
+{% endcall %}
 
   parameters:
 {{ oas.PathParamID(resources.zone) }}
@@ -21,8 +22,8 @@ paths:
 
   /zone/{{ '{' + resources.zone.paramId + '}' }}/kaktus:
 {{ oas.Parameters([resources.zone.paramSchema]) }}
-{{ oas.Create('Create' + resources.kaktus.schema, resources.kaktus.schema, resources.kaktus.desc, [resources.zone.tag, resources.kaktus.tag]) }}
+{{ oas.Create('Create' + resources.zone.schema + resources.kaktus.schema, resources.kaktus.schema, resources.kaktus.desc, [resources.zone.tag, resources.kaktus.tag]) }}
 
   /zone/{{ '{' + resources.zone.paramId + '}' }}/kaktuses:
 {{ oas.Parameters([resources.zone.paramSchema]) }}
-{{ oas.GetAll('List' + resources.zone.schema + resources.kaktus.schema + 'es', resources.kaktus.desc, [resources.zone.tag, resources.kaktus.tag], True) }}
+{{ oas.GetAll('List' + resources.zone.schema + oas.Plural(resources.kaktus), resources.kaktus.desc, [resources.zone.tag, resources.kaktus.tag], True) }}

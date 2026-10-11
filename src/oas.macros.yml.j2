@@ -3,6 +3,9 @@
 # Apache License, Version 2.0 (see LICENSE or https://www.apache.org/licenses/LICENSE-2.0.txt)
 # SPDX-License-Identifier: Apache-2.0
 
+{# rendering state, set while rendering resources update schemas #}
+{% set state = namespace(update=False) %}
+
 {% macro ErrorSchema(err) %}
     ApiError{{ err.schema }}:
       type: object
@@ -61,101 +64,143 @@
 {{ ArraySchema(name, desc, 'string') }}
 {% endmacro %}
 
-{% macro Property(name, type, desc, values=[], default=None, format=None) %}
+{% macro PropertyTraits(desc, readOnly=False, writeOnly=False, immutable=False, minimum=None, maximum=None) %}
+          description: {{ desc }}{% if readOnly %} (read-only){% endif %}{% if immutable %}. Can only be set at creation time, ignored on updates{% endif %}.
+{% if readOnly %}
+          readOnly: true
+{% endif %}
+{% if writeOnly %}
+          writeOnly: true
+{% endif %}
+{% if immutable %}
+          x-immutable: true
+{% endif %}
+{% if minimum != None %}
+          minimum: {{ minimum }}
+{% endif %}
+{% if maximum != None %}
+          maximum: {{ maximum }}
+{% endif %}
+{% endmacro %}
+
+{% macro Property(name, type, desc, values=[], default=None, format=None, readOnly=False, writeOnly=False, immutable=False, minimum=None, maximum=None) %}
+{% if not (state.update and (readOnly or immutable)) %}
         {{ name }}:
           type: {{ type }}
 {% if format != None %}
           format: {{ format }}
 {% endif %}
-          description: {{ desc }}.
+{{ PropertyTraits(desc, readOnly, writeOnly, immutable, minimum, maximum) }}
 {% if values != [] %}
           enum:
 {% for v in values %}
             - {{ v }}
 {% endfor %}
 {% endif %}
-{% if default != None %}
+{% if default != None and not state.update %}
           default: {{ default }}
+{% endif %}
 {% endif %}
 {% endmacro %}
 
 {% macro StringProperty(name, desc, values=[], default=None) %}
-{{ Property(name, 'string', desc, values, default) }}
+{{ Property(name, 'string', desc, values, default, **kwargs) }}
 {% endmacro %}
 
 {% macro DateProperty(name, desc, values=[], default=None) %}
-{{ Property(name, 'string', desc, values, default, format='date') }}
+{{ Property(name, 'string', desc, values, default, format='date', **kwargs) }}
 {% endmacro %}
 
 {% macro DateTimeProperty(name, desc, values=[], default=None) %}
-{{ Property(name, 'string', desc, values, default, format='date-time') }}
+{{ Property(name, 'string', desc, values, default, format='date-time', **kwargs) }}
 {% endmacro %}
 
 {% macro BoolProperty(name, desc, values=[], default=None) %}
-{{ Property(name, 'boolean', desc, values, default) }}
+{{ Property(name, 'boolean', desc, values, default, **kwargs) }}
 {% endmacro %}
 
 {% macro IntProperty(name, desc, values=[], default=None) %}
-{{ Property(name, 'integer', desc, values, default, format='int64') }}
+{{ Property(name, 'integer', desc, values, default, format='int64', **kwargs) }}
 {% endmacro %}
 
 {% macro ShortIntProperty(name, desc, values=[], default=None) %}
-{{ Property(name, 'integer', desc, values, default, format='int32') }}
-{% endmacro %}
-
-{% macro LongIntProperty(name, desc, values=[], default=None) %}
-{{ Property(name, 'integer', desc, values, default, format='int64') }}
+{{ Property(name, 'integer', desc, values, default, format='int32', **kwargs) }}
 {% endmacro %}
 
 {% macro FloatProperty(name, desc, values=[], default=None) %}
-{{ Property(name, 'number', desc, values, default, format='float') }}
+{{ Property(name, 'number', desc, values, default, format='float', **kwargs) }}
 {% endmacro %}
 
 {% macro ObjectProperty(name, desc, schema) %}
+{% if not (state.update and (kwargs.get('readOnly') or kwargs.get('immutable'))) %}
         {{ name }}:
           type: object
-          description: {{ desc }}.
           $ref: '#/components/schemas/{{ schema }}'
+{{ PropertyTraits(desc, **kwargs) }}
+{% endif %}
 {% endmacro %}
 
-{% macro ArrayProperty(name, type, desc, values=[], default=None) %}
+{% macro ArrayProperty(name, type, desc, values=[], default=None, format=None) %}
+{% if not (state.update and (kwargs.get('readOnly') or kwargs.get('immutable'))) %}
         {{ name }}:
           type: array
-          description: {{ desc }}.
+{{ PropertyTraits(desc, **kwargs) }}
           items:
             type: {{ type }}
+{% if format != None %}
+            format: {{ format }}
+{% endif %}
 {% if values != [] %}
             enum:
 {% for v in values %}
               - {{ v }}
 {% endfor %}
 {% endif %}
-{% if default != None %}
+{% if default != None and not state.update %}
           default: {{ default }}
+{% endif %}
 {% endif %}
 {% endmacro %}
 
 {% macro StringArrayProperty(name, desc, values=[], default=None) %}
-{{ ArrayProperty(name, 'string', desc, values, default) }}
+{{ ArrayProperty(name, 'string', desc, values, default, **kwargs) }}
 {% endmacro %}
 
 {% macro IntArrayProperty(name, desc, values=[], default=None) %}
-{{ ArrayProperty(name, 'integer', desc, values, default) }}
+{{ ArrayProperty(name, 'integer', desc, values, default, format='int32', **kwargs) }}
 {% endmacro %}
 
 {% macro ObjectArrayProperty(name, desc, schema) %}
+{% if not (state.update and (kwargs.get('readOnly') or kwargs.get('immutable'))) %}
         {{ name }}:
           type: array
-          description: {{ desc }}.
+{{ PropertyTraits(desc, **kwargs) }}
           items:
             $ref:  '#/components/schemas/{{ schema }}'
+{% endif %}
 {% endmacro %}
 
-{% macro SchemaBaseResource(obj, required=[]) %}
+{% macro SchemaBaseResource(obj, required=[], nameDesc=None) %}
 {{ Schema(obj, required) }}
-{{ StringProperty('id', 'The ' + obj.desc + ' ID (auto-generated)') }}
-{{ StringProperty('name', 'The ' + obj.desc + ' name') }}
+{{ StringProperty('id', 'The ' + obj.desc + ' ID (auto-generated)', readOnly=True) }}
+{{ StringProperty('name', nameDesc | default('The ' + obj.desc + ' name', true)) }}
 {{ StringProperty('description', 'The ' + obj.desc + ' description') }}
+{% endmacro %}
+
+{#
+  A resource, along with its update schema, used by PUT operations, where
+  all properties are optional (unspecified ones are left unchanged) and have
+  no defaults. Properties are given as the call block content.
+#}
+{% macro Resource(obj, required=[], nameDesc=None) %}
+{{ SchemaBaseResource(obj, required, nameDesc) }}
+{{ caller() }}
+{{ SchemaRaw(obj.schema + 'Update', obj.desc + ' update (unspecified properties are left unchanged)') }}
+{{ StringProperty('name', nameDesc | default('The ' + obj.desc + ' name', true)) }}
+{{ StringProperty('description', 'The ' + obj.desc + ' description') }}
+{% set state.update = True %}
+{{ caller() }}
+{% set state.update = False %}
 {% endmacro %}
 
 {% macro PathParam(key, name, desc, t) %}
@@ -176,7 +221,7 @@
 {{ StringPathParam(obj.paramSchema, obj.paramId, 'The ID of the ' + obj.desc) }}
 {% endmacro %}
 
-{% macro QueryParam(key, name, desc, t, format=None) %}
+{% macro QueryParam(key, name, desc, t, format=None, default=None, minimum=None, maximum=None) %}
     OptionalQuery{{ key }}:
       name: {{ name }}
       in: query
@@ -186,10 +231,19 @@
 {% if format != None %}
         format: {{ format }}
 {% endif %}
+{% if default != None %}
+        default: {{ default }}
+{% endif %}
+{% if minimum != None %}
+        minimum: {{ minimum }}
+{% endif %}
+{% if maximum != None %}
+        maximum: {{ maximum }}
+{% endif %}
 {% endmacro %}
 
 {% macro BoolQueryParam(key, name, desc) %}
-{{ QueryParam(key, name, desc, 'boolean') }}
+{{ QueryParam(key, name, desc, 'boolean', **kwargs) }}
 {% endmacro %}
 
 {% macro StringQueryParam(key, name, desc) %}
@@ -205,7 +259,7 @@
 {% endmacro %}
 
 {% macro IntQueryParam(key, name, desc) %}
-{{ QueryParam(key, name, desc, 'integer') }}
+{{ QueryParam(key, name, desc, 'integer', format='int32', **kwargs) }}
 {% endmacro %}
 
 {% macro Tags(tgs) %}
@@ -227,6 +281,11 @@
 {% macro ErrorsAuth() %}
 {{ ErrorDefinition(errors.Unauthorized) }}
 {{ ErrorDefinition(errors.Forbidden) }}
+{{ ErrorDefinition(errors.InternalServerError) }}
+{% endmacro %}
+
+{% macro ErrorsServer() %}
+{{ ErrorDefinition(errors.InternalServerError) }}
 {% endmacro %}
 
 {% macro ErrorsUnknownResource() %}
@@ -292,6 +351,15 @@
 {% endif %}
 {% endmacro %}
 
+{% macro OperationParameters(params=[]) %}
+{% if params != [] %}
+      parameters:
+{% for p in params %}
+        - $ref: '#/components/parameters/{{ p }}'
+{% endfor %}
+{% endif %}
+{% endmacro %}
+
 {% macro ResponseOk(desc) %}
         '200':
           description: {{ desc }}.
@@ -338,11 +406,12 @@
 {{ ErrorsGetAll(childOf) }}
 {% endmacro %}
 
-{% macro Create(opId, schema, desc, tags, httpCode=201) %}
+{% macro Create(opId, schema, desc, tags, httpCode=201, params=[]) %}
     post:
 {{ Tags(tags) }}
       description: Creates a new {{ desc }}.
       operationId: {{ opId }}
+{{ OperationParameters(params) }}
 {{ Payload(schema) }}
       responses:
 {{ CreateOneResource(schema, desc, httpCode) }}
@@ -370,12 +439,12 @@
 {{ ErrorsGetOne() }}
 {% endmacro %}
 
-{% macro Update(opId, schema, desc, tags, output=True) %}
+{% macro Update(opId, schema, desc, tags, output=True, payload=None) %}
     put:
 {{ Tags(tags) }}
       description: Updates a {{ desc }} configuration.
       operationId: {{ opId }}
-{{ Payload(schema) }}
+{{ Payload(payload | default(schema, true)) }}
       responses:
 {% if output %}
 {{ GetOneResource(schema, desc) }}
@@ -385,14 +454,14 @@
 {{ ErrorsUpdate() }}
 {% endmacro %}
 
-{% macro Patch(opId, desc, action, tags, schema=None) %}
+{% macro Patch(opId, desc, action, tags, schema=None, schemaDesc=None) %}
     patch:
 {{ Tags(tags) }}
       description: Performs a {{ desc }} {{ action }}.
       operationId: {{ opId }}
       responses:
 {% if schema != None %}
-{{ GetOneResource(schema, desc) }}
+{{ GetOneResource(schema, schemaDesc | default(desc, true)) }}
 {% else %}
 {{ ResponseOk('The ' + desc + ' ' + action + ' is successful') }}
 {% endif %}
@@ -409,9 +478,11 @@
 {{ ErrorsDelete() }}
 {% endmacro %}
 
+{% macro Plural(obj) %}{{ obj.plural | default(obj.schema + 's') }}{% endmacro %}
+
 {% macro List(obj, tags, params=[]) %}
 {{ Parameters(params) }}
-{{ GetAll('List' + obj.schema + 's', obj.desc, tags) }}
+{{ GetAll('List' + Plural(obj), obj.desc, tags) }}
 {% endmacro %}
 
 {% macro REST(obj, tags, params=[], create=False) %}
@@ -420,7 +491,7 @@
 {{ Create('Create' + obj.schema, obj.schema, obj.desc, tags) }}
 {% endif %}
 {{ Read('Read' + obj.schema, obj.schema, obj.desc, tags) }}
-{{ Update('Update' + obj.schema, obj.schema, obj.desc, tags) }}
+{{ Update('Update' + obj.schema, obj.schema, obj.desc, tags, payload=obj.schema + 'Update') }}
 {{ Delete('Delete' + obj.schema, obj.desc, tags) }}
 {% endmacro %}
 
@@ -428,10 +499,10 @@
 {{ REST(obj, tags, params, True) }}
 {% endmacro %}
 
-{% macro LC(obj, tags, params=[]) %}
+{% macro LC(obj, tags, params=[], createParams=[]) %}
 {{ Parameters(params) }}
 {{ List(obj, tags) }}
-{{ Create('Create' + obj.schema, obj.schema, obj.desc, tags) }}
+{{ Create('Create' + obj.schema, obj.schema, obj.desc, tags, params=createParams) }}
 {% endmacro %}
 
 {% macro RUD(obj, tags, params=[]) %}

@@ -263,7 +263,7 @@ null (empty response body)
 
 <a name="updateKwarantine"></a>
 # **updateKwarantine**
-> Kwarantine updateKwarantine(kwarantineId, Kwarantine)
+> Kwarantine updateKwarantine(kwarantineId, KwarantineUpdate)
 
 
 
@@ -274,7 +274,7 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **kwarantineId** | **String**| The ID of the Kwarantine. | [default to null] |
-| **Kwarantine** | [**Kwarantine**](../Models/Kwarantine.md)| Kwarantine payload. | |
+| **KwarantineUpdate** | [**KwarantineUpdate**](../Models/KwarantineUpdate.md)| KwarantineUpdate payload. | |
 
 ### Return type
 

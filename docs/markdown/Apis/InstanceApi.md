@@ -604,7 +604,7 @@ null (empty response body)
 
 <a name="updateInstance"></a>
 # **updateInstance**
-> Instance updateInstance(instanceId, Instance)
+> Instance updateInstance(instanceId, InstanceUpdate)
 
 
 
@@ -615,7 +615,7 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **instanceId** | **String**| The ID of the virtual machine instance. | [default to null] |
-| **Instance** | [**Instance**](../Models/Instance.md)| Instance payload. | |
+| **InstanceUpdate** | [**InstanceUpdate**](../Models/InstanceUpdate.md)| InstanceUpdate payload. | |
 
 ### Return type
 

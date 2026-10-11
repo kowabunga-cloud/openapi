@@ -3,7 +3,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **id** | **String** | The Kowabunga user ID (auto-generated). | [optional] [default to null] |
+| **id** | **String** | The Kowabunga user ID (auto-generated) (read-only). | [optional] [default to null] |
 | **name** | **String** | The Kowabunga user name. | [default to null] |
 | **description** | **String** | The Kowabunga user description. | [optional] [default to null] |
 | **email** | **String** | User email address. | [default to null] |

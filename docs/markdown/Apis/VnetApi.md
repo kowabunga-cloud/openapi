@@ -4,8 +4,8 @@ All URIs are relative to */api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createSubnet**](VnetApi.md#createSubnet) | **POST** /vnet/{vnetId}/subnet |  |
-| [**createVNet**](VnetApi.md#createVNet) | **POST** /region/{regionId}/vnet |  |
+| [**createRegionVNet**](VnetApi.md#createRegionVNet) | **POST** /region/{regionId}/vnet |  |
+| [**createVNetSubnet**](VnetApi.md#createVNetSubnet) | **POST** /vnet/{vnetId}/subnet |  |
 | [**deleteVNet**](VnetApi.md#deleteVNet) | **DELETE** /vnet/{vnetId} |  |
 | [**listRegionVNets**](VnetApi.md#listRegionVNets) | **GET** /region/{regionId}/vnets |  |
 | [**listVNetSubnets**](VnetApi.md#listVNetSubnets) | **GET** /vnet/{vnetId}/subnets |  |
@@ -15,37 +15,9 @@ All URIs are relative to */api/v1*
 | [**updateVNet**](VnetApi.md#updateVNet) | **PUT** /vnet/{vnetId} |  |
 
 
-<a name="createSubnet"></a>
-# **createSubnet**
-> Subnet createSubnet(vnetId, Subnet)
-
-
-
-    Creates a new network subnet.
-
-### Parameters
-
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **vnetId** | **String**| The ID of the virtual network. | [default to null] |
-| **Subnet** | [**Subnet**](../Models/Subnet.md)| Subnet payload. | |
-
-### Return type
-
-[**Subnet**](../Models/Subnet.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-<a name="createVNet"></a>
-# **createVNet**
-> VNet createVNet(regionId, VNet)
+<a name="createRegionVNet"></a>
+# **createRegionVNet**
+> VNet createRegionVNet(regionId, VNet)
 
 
 
@@ -61,6 +33,34 @@ All URIs are relative to */api/v1*
 ### Return type
 
 [**VNet**](../Models/VNet.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="createVNetSubnet"></a>
+# **createVNetSubnet**
+> Subnet createVNetSubnet(vnetId, Subnet)
+
+
+
+    Creates a new network subnet.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **vnetId** | **String**| The ID of the virtual network. | [default to null] |
+| **Subnet** | [**Subnet**](../Models/Subnet.md)| Subnet payload. | |
+
+### Return type
+
+[**Subnet**](../Models/Subnet.md)
 
 ### Authorization
 
@@ -233,7 +233,7 @@ null (empty response body)
 
 <a name="updateVNet"></a>
 # **updateVNet**
-> VNet updateVNet(vnetId, VNet)
+> VNet updateVNet(vnetId, VNetUpdate)
 
 
 
@@ -244,7 +244,7 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **vnetId** | **String**| The ID of the virtual network. | [default to null] |
-| **VNet** | [**VNet**](../Models/VNet.md)| VNet payload. | |
+| **VNetUpdate** | [**VNetUpdate**](../Models/VNetUpdate.md)| VNetUpdate payload. | |
 
 ### Return type
 

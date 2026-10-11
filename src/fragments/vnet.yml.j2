@@ -7,10 +7,11 @@
 
 components:
   schemas:
-{{ oas.SchemaBaseResource(resources.vnet, ['name', 'interface']) }}
-{{ oas.IntProperty('vlan', 'The VLAN identifier (0 if unspecified)') }}
+{% call oas.Resource(resources.vnet, ['name', 'interface']) %}
+{{ oas.ShortIntProperty('vlan', 'The VLAN identifier (0 if unspecified)', minimum=0, maximum=4094) }}
 {{ oas.StringProperty('interface', "The libvirt's bridge network interface (brX)") }}
-{{ oas.BoolProperty('private', 'Is the virtual network adapter connected to private (LAN) or public (WAN) physical network ?', default='true') }}
+{{ oas.BoolProperty('private', 'Whether the virtual network is connected to private (LAN) or public (WAN) physical network', default='true', immutable=True) }}
+{% endcall %}
 
   parameters:
 {{ oas.PathParamID(resources.vnet) }}
@@ -24,7 +25,7 @@ paths:
 
   /vnet/{{ '{' + resources.vnet.paramId + '}' }}/subnet:
 {{ oas.Parameters([resources.vnet.paramSchema]) }}
-{{ oas.Create('Create' + resources.subnet.schema, resources.subnet.schema, resources.subnet.desc, [resources.vnet.tag, resources.subnet.tag]) }}
+{{ oas.Create('Create' + resources.vnet.schema + resources.subnet.schema, resources.subnet.schema, resources.subnet.desc, [resources.vnet.tag, resources.subnet.tag]) }}
 
   /vnet/{{ '{' + resources.vnet.paramId + '}' }}/subnet/{{ '{' + resources.subnet.paramId + '}' }}/default:
 {{ oas.Parameters([resources.vnet.paramSchema, resources.subnet.paramSchema]) }}
@@ -32,4 +33,4 @@ paths:
 
   /vnet/{{ '{' + resources.vnet.paramId + '}' }}/subnets:
 {{ oas.Parameters([resources.vnet.paramSchema]) }}
-{{ oas.GetAll('List' + resources.vnet.schema + resources.subnet.schema + 's', resources.subnet.desc, [resources.vnet.tag, resources.subnet.tag], True) }}
+{{ oas.GetAll('List' + resources.vnet.schema + oas.Plural(resources.subnet), resources.subnet.desc, [resources.vnet.tag, resources.subnet.tag], True) }}

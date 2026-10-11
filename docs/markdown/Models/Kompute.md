@@ -3,16 +3,16 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **id** | **String** | The Kompute ID (auto-generated). | [optional] [default to null] |
+| **id** | **String** | The Kompute ID (auto-generated) (read-only). | [optional] [default to null] |
 | **name** | **String** | The Kompute name. | [default to null] |
 | **description** | **String** | The Kompute description. | [optional] [default to null] |
 | **memory** | **Long** | The Kompute memory size (in bytes). | [default to null] |
-| **vcpus** | **Long** | The Kompute number of vCPUs. | [default to null] |
+| **vcpus** | **Integer** | The Kompute number of vCPUs. | [default to null] |
 | **disk** | **Long** | The Kompute OS disk size (in bytes). | [default to null] |
 | **data\_disk** | **Long** | The Kompute extra data disk size (in bytes). If unspecified, no extra data disk will be assigned. | [optional] [default to 0] |
 | **ip** | **String** | The Kompute assigned private IPv4 address (read-only). | [optional] [default to null] |
-| **kwarantines** | **List** | An optional list of existing Kwarantine anti-affinity group IDs. Only considered at Kompute creation time, to elect an initial host consistent with the referenced groups policies and register the Kompute as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices. | [optional] [default to null] |
-| **uefi** | **Boolean** | enable UEFI secure firmware (vs. legacy BIOS). | [optional] [default to true] |
+| **kwarantines** | **List** | An optional list of existing Kwarantine anti-affinity group IDs. Only considered at Kompute creation time, to elect an initial host consistent with the referenced groups policies and register the Kompute as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices. Can only be set at creation time, ignored on updates. | [optional] [default to null] |
+| **uefi** | **Boolean** | Enable UEFI secure firmware (vs. legacy BIOS). Can only be set at creation time, ignored on updates. | [optional] [default to true] |
 | **kmotion\_enabled** | **Boolean** | Whether kMotion (live/cold host migration) is enabled for the Kompute. When disabled, the instance remains bound to its original hosting node. | [optional] [default to true] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

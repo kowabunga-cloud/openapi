@@ -10,7 +10,7 @@ All URIs are relative to */api/v1*
 | [**login**](UserApi.md#login) | **POST** /login |  |
 | [**logout**](UserApi.md#logout) | **POST** /logout |  |
 | [**readUser**](UserApi.md#readUser) | **GET** /user/{userId} |  |
-| [**resetPassword**](UserApi.md#resetPassword) | **PUT** /resetPassword |  |
+| [**resetPassword**](UserApi.md#resetPassword) | **POST** /resetPassword |  |
 | [**resetUserPassword**](UserApi.md#resetUserPassword) | **PATCH** /user/{userId}/resetPassword |  |
 | [**setUserApiToken**](UserApi.md#setUserApiToken) | **PATCH** /user/{userId}/token |  |
 | [**setUserPassword**](UserApi.md#setUserPassword) | **PUT** /user/{userId}/password |  |
@@ -101,7 +101,7 @@ This endpoint does not need any parameter.
 
 
 
-    Creates a new Kowabunga user login credentials.
+    Authenticates a Kowabunga user and returns a JWT token for Bearer Authentication.
 
 ### Parameters
 
@@ -115,7 +115,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -128,7 +128,7 @@ This endpoint does not need any parameter.
 
 
 
-    Creates a new Kowabunga user logout session.
+    Terminates the Kowabunga user logout session, revoking the JWT token in use.
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -179,7 +179,7 @@ null (empty response body)
 
 
 
-    Updates a Kowabunga userreset of password for the provided email (server-side generated, will replace any existing one) configuration.
+    Resets the password of the Kowabunga user with the provided email address. A new password is server-side generated, replacing any existing one, and sent by email. For privacy reasons, the response is the same whether the email address is registered or not.
 
 ### Parameters
 
@@ -193,7 +193,7 @@ null (empty response body)
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -229,23 +229,23 @@ null (empty response body)
 
 <a name="setUserApiToken"></a>
 # **setUserApiToken**
-> setUserApiToken(userId, expire, expiration\_date)
+> ApiToken setUserApiToken(userId, expire, expirationDate)
 
 
 
-    Performs a Kowabunga user setting of API token (will replace any existing one).
+    Performs a Kowabunga user setting of API token (will replace any existing one; the generated API key is only sent once, by email, to the user).
 
 ### Parameters
 
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| The ID of the Kowabunga user. | [default to null] |
-| **expire** | **Boolean**| Whether or not the token should expire. | [optional] [default to null] |
-| **expiration\_date** | **date**| Token&#39;s expiration date (YYYY-MM-DD format). | [optional] [default to null] |
+| **expire** | **Boolean**| Whether or not the token should expire. | [optional] [default to false] |
+| **expirationDate** | **date**| Token&#39;s expiration date (YYYY-MM-DD format). | [optional] [default to null] |
 
 ### Return type
 
-null (empty response body)
+[**ApiToken**](../Models/ApiToken.md)
 
 ### Authorization
 
@@ -286,7 +286,7 @@ null (empty response body)
 
 <a name="updateUser"></a>
 # **updateUser**
-> User updateUser(userId, User)
+> User updateUser(userId, UserUpdate)
 
 
 
@@ -297,7 +297,7 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| The ID of the Kowabunga user. | [default to null] |
-| **User** | [**User**](../Models/User.md)| User payload. | |
+| **UserUpdate** | [**UserUpdate**](../Models/UserUpdate.md)| UserUpdate payload. | |
 
 ### Return type
 

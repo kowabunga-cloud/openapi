@@ -7,9 +7,10 @@
 
 components:
   schemas:
-{{ oas.SchemaBaseResource(resources.volume, ['name', 'type', 'size']) }}
-{{ oas.StringProperty('type', 'The ' + resources.volume.desc + ' type', values=['os', 'iso', 'raw']) }}
-{{ oas.IntProperty('size', 'The ' + resources.volume.desc + ' size (in bytes)') }}
+{% call oas.Resource(resources.volume, ['name', 'type', 'size']) %}
+{{ oas.StringProperty('type', 'The ' + resources.volume.desc + ' type', values=['os', 'iso', 'raw', 'template'], immutable=True) }}
+{{ oas.IntProperty('size', 'The ' + resources.volume.desc + ' size (in bytes), can only be increased', minimum=0) }}
+{% endcall %}
 
   parameters:
 {{ oas.PathParamID(resources.volume) }}

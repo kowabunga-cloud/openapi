@@ -4,7 +4,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 | **name** | **String** | The Konvey (Kowabunga Network Load-Balancer) endpoint name. | [default to null] |
-| **port** | **Long** | The port to be exposed. | [default to null] |
+| **port** | **Integer** | The port to be exposed. | [default to null] |
 | **protocol** | **String** | The transport layer protocol to be exposed. | [default to tcp] |
 | **backends** | [**KonveyBackends**](KonveyBackends.md) | The Konvey (Kowabunga Network Load-Balancer) list of load-balanced backends. | [default to null] |
 

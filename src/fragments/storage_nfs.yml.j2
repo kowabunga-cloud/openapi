@@ -7,11 +7,12 @@
 
 components:
   schemas:
-{{ oas.SchemaBaseResource(resources.nfs, ['name', 'endpoint']) }}
+{% call oas.Resource(resources.nfs, ['name', 'endpoint', 'backends']) %}
 {{ oas.StringProperty('endpoint', 'The associated NFS endpoint FQDN') }}
 {{ oas.StringProperty('fs', 'The underlying associated Ceph volume name', default='nfs') }}
 {{ oas.StringArrayProperty('backends', 'List of NFS Ganesha API server IP addresses') }}
-{{ oas.IntProperty('port', 'NFS Ganesha API server port (default 54934)', default=54934) }}
+{{ oas.ShortIntProperty('port', 'NFS Ganesha API server port', default=54934, minimum=1, maximum=65535) }}
+{% endcall %}
 
   parameters:
 {{ oas.PathParamID(resources.nfs) }}
@@ -24,6 +25,6 @@ paths:
   /nfs/{{ '{' + resources.nfs.paramId + '}' }}:
 {{ oas.RUD(resources.nfs, [resources.nfs.tag], [resources.nfs.paramSchema]) }}
 
-  /nfs/{{ '{' + resources.nfs.paramId + '}' }}/kylo:
+  /nfs/{{ '{' + resources.nfs.paramId + '}' }}/kylos:
 {{ oas.Parameters([resources.nfs.paramSchema]) }}
-{{ oas.GetAll('List' + resources.nfs.schema + resources.kylo.schema + 's', resources.kylo.desc, [resources.nfs.tag, resources.kylo.tag], True) }}
+{{ oas.GetAll('List' + resources.nfs.schema + oas.Plural(resources.kylo), resources.kylo.desc, [resources.nfs.tag, resources.kylo.tag], True) }}

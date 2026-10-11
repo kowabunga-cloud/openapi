@@ -4,7 +4,7 @@ All URIs are relative to */api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createAdapter**](AdapterApi.md#createAdapter) | **POST** /subnet/{subnetId}/adapter |  |
+| [**createSubnetAdapter**](AdapterApi.md#createSubnetAdapter) | **POST** /subnet/{subnetId}/adapter |  |
 | [**deleteAdapter**](AdapterApi.md#deleteAdapter) | **DELETE** /adapter/{adapterId} |  |
 | [**listAdapters**](AdapterApi.md#listAdapters) | **GET** /adapter |  |
 | [**listSubnetAdapters**](AdapterApi.md#listSubnetAdapters) | **GET** /subnet/{subnetId}/adapters |  |
@@ -12,9 +12,9 @@ All URIs are relative to */api/v1*
 | [**updateAdapter**](AdapterApi.md#updateAdapter) | **PUT** /adapter/{adapterId} |  |
 
 
-<a name="createAdapter"></a>
-# **createAdapter**
-> Adapter createAdapter(subnetId, Adapter, assignIP)
+<a name="createSubnetAdapter"></a>
+# **createSubnetAdapter**
+> Adapter createSubnetAdapter(subnetId, Adapter, assignIP)
 
 
 
@@ -26,7 +26,7 @@ All URIs are relative to */api/v1*
 |------------- | ------------- | ------------- | -------------|
 | **subnetId** | **String**| The ID of the network subnet. | [default to null] |
 | **Adapter** | [**Adapter**](../Models/Adapter.md)| Adapter payload. | |
-| **assignIP** | **Boolean**| Whether Kowabunga should pick and assign an IP address to this adapter. | [optional] [default to null] |
+| **assignIP** | **Boolean**| Whether Kowabunga should pick and assign an IP address to this adapter. | [optional] [default to false] |
 
 ### Return type
 
@@ -148,7 +148,7 @@ This endpoint does not need any parameter.
 
 <a name="updateAdapter"></a>
 # **updateAdapter**
-> Adapter updateAdapter(adapterId, Adapter)
+> Adapter updateAdapter(adapterId, AdapterUpdate)
 
 
 
@@ -159,7 +159,7 @@ This endpoint does not need any parameter.
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adapterId** | **String**| The ID of the network adapter. | [default to null] |
-| **Adapter** | [**Adapter**](../Models/Adapter.md)| Adapter payload. | |
+| **AdapterUpdate** | [**AdapterUpdate**](../Models/AdapterUpdate.md)| AdapterUpdate payload. | |
 
 ### Return type
 

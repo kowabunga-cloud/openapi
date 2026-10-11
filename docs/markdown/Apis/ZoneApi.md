@@ -4,11 +4,11 @@ All URIs are relative to */api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createKaktus**](ZoneApi.md#createKaktus) | **POST** /zone/{zoneId}/kaktus |  |
 | [**createProjectZoneInstance**](ZoneApi.md#createProjectZoneInstance) | **POST** /project/{projectId}/zone/{zoneId}/instance |  |
 | [**createProjectZoneKompute**](ZoneApi.md#createProjectZoneKompute) | **POST** /project/{projectId}/zone/{zoneId}/kompute |  |
 | [**createProjectZoneKonvey**](ZoneApi.md#createProjectZoneKonvey) | **POST** /project/{projectId}/zone/{zoneId}/konvey |  |
-| [**createZone**](ZoneApi.md#createZone) | **POST** /region/{regionId}/zone |  |
+| [**createRegionZone**](ZoneApi.md#createRegionZone) | **POST** /region/{regionId}/zone |  |
+| [**createZoneKaktus**](ZoneApi.md#createZoneKaktus) | **POST** /zone/{zoneId}/kaktus |  |
 | [**deleteZone**](ZoneApi.md#deleteZone) | **DELETE** /zone/{zoneId} |  |
 | [**listProjectZoneInstances**](ZoneApi.md#listProjectZoneInstances) | **GET** /project/{projectId}/zone/{zoneId}/instances |  |
 | [**listProjectZoneKomputes**](ZoneApi.md#listProjectZoneKomputes) | **GET** /project/{projectId}/zone/{zoneId}/komputes |  |
@@ -19,34 +19,6 @@ All URIs are relative to */api/v1*
 | [**readZone**](ZoneApi.md#readZone) | **GET** /zone/{zoneId} |  |
 | [**updateZone**](ZoneApi.md#updateZone) | **PUT** /zone/{zoneId} |  |
 
-
-<a name="createKaktus"></a>
-# **createKaktus**
-> Kaktus createKaktus(zoneId, Kaktus)
-
-
-
-    Creates a new Kaktus computing node.
-
-### Parameters
-
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **zoneId** | **String**| The ID of the availability zone. | [default to null] |
-| **Kaktus** | [**Kaktus**](../Models/Kaktus.md)| Kaktus payload. | |
-
-### Return type
-
-[**Kaktus**](../Models/Kaktus.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
 
 <a name="createProjectZoneInstance"></a>
 # **createProjectZoneInstance**
@@ -94,7 +66,7 @@ All URIs are relative to */api/v1*
 | **Kompute** | [**Kompute**](../Models/Kompute.md)| Kompute payload. | |
 | **poolId** | **String**| Storage pool ID (optional, region&#39;s default if unspecified). | [optional] [default to null] |
 | **templateId** | **String**| Template to clone the storage volume from (optional, region&#39;s default if unspecified). | [optional] [default to null] |
-| **public** | **Boolean**| Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). | [optional] [default to null] |
+| **public** | **Boolean**| Whether the Kompute should be exposed over public Internet (a public IPv4 address will then be auto-assigned). | [optional] [default to false] |
 
 ### Return type
 
@@ -138,9 +110,9 @@ All URIs are relative to */api/v1*
 - **Content-Type**: application/json
 - **Accept**: application/json
 
-<a name="createZone"></a>
-# **createZone**
-> Zone createZone(regionId, Zone)
+<a name="createRegionZone"></a>
+# **createRegionZone**
+> Zone createRegionZone(regionId, Zone)
 
 
 
@@ -156,6 +128,34 @@ All URIs are relative to */api/v1*
 ### Return type
 
 [**Zone**](../Models/Zone.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="createZoneKaktus"></a>
+# **createZoneKaktus**
+> Kaktus createZoneKaktus(zoneId, Kaktus)
+
+
+
+    Creates a new Kaktus computing node.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **zoneId** | **String**| The ID of the availability zone. | [default to null] |
+| **Kaktus** | [**Kaktus**](../Models/Kaktus.md)| Kaktus payload. | |
+
+### Return type
+
+[**Kaktus**](../Models/Kaktus.md)
 
 ### Authorization
 
@@ -384,7 +384,7 @@ This endpoint does not need any parameter.
 
 <a name="updateZone"></a>
 # **updateZone**
-> Zone updateZone(zoneId, Zone)
+> Zone updateZone(zoneId, ZoneUpdate)
 
 
 
@@ -395,7 +395,7 @@ This endpoint does not need any parameter.
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **zoneId** | **String**| The ID of the availability zone. | [default to null] |
-| **Zone** | [**Zone**](../Models/Zone.md)| Zone payload. | |
+| **ZoneUpdate** | [**ZoneUpdate**](../Models/ZoneUpdate.md)| ZoneUpdate payload. | |
 
 ### Return type
 

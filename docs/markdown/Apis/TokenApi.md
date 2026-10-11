@@ -92,19 +92,19 @@ This endpoint does not need any parameter.
 
 <a name="setAgentApiToken"></a>
 # **setAgentApiToken**
-> ApiToken setAgentApiToken(agentId, expire, expiration\_date)
+> ApiToken setAgentApiToken(agentId, expire, expirationDate)
 
 
 
-    Performs a Kowabunga remote agent setting of API token (will replace any existing one).
+    Performs a Kowabunga remote agent setting of API token (will replace any existing one, disconnecting the agent; the generated API key is only sent once, by email, to administrators).
 
 ### Parameters
 
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **agentId** | **String**| The ID of the Kowabunga remote agent. | [default to null] |
-| **expire** | **Boolean**| Whether or not the token should expire. | [optional] [default to null] |
-| **expiration\_date** | **date**| Token&#39;s expiration date (YYYY-MM-DD format). | [optional] [default to null] |
+| **expire** | **Boolean**| Whether or not the token should expire. | [optional] [default to false] |
+| **expirationDate** | **date**| Token&#39;s expiration date (YYYY-MM-DD format). | [optional] [default to null] |
 
 ### Return type
 
@@ -121,23 +121,23 @@ This endpoint does not need any parameter.
 
 <a name="setUserApiToken"></a>
 # **setUserApiToken**
-> setUserApiToken(userId, expire, expiration\_date)
+> ApiToken setUserApiToken(userId, expire, expirationDate)
 
 
 
-    Performs a Kowabunga user setting of API token (will replace any existing one).
+    Performs a Kowabunga user setting of API token (will replace any existing one; the generated API key is only sent once, by email, to the user).
 
 ### Parameters
 
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| The ID of the Kowabunga user. | [default to null] |
-| **expire** | **Boolean**| Whether or not the token should expire. | [optional] [default to null] |
-| **expiration\_date** | **date**| Token&#39;s expiration date (YYYY-MM-DD format). | [optional] [default to null] |
+| **expire** | **Boolean**| Whether or not the token should expire. | [optional] [default to false] |
+| **expirationDate** | **date**| Token&#39;s expiration date (YYYY-MM-DD format). | [optional] [default to null] |
 
 ### Return type
 
-null (empty response body)
+[**ApiToken**](../Models/ApiToken.md)
 
 ### Authorization
 
@@ -150,7 +150,7 @@ null (empty response body)
 
 <a name="updateApiToken"></a>
 # **updateApiToken**
-> ApiToken updateApiToken(tokenId, ApiToken)
+> ApiToken updateApiToken(tokenId, ApiTokenUpdate)
 
 
 
@@ -161,7 +161,7 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **tokenId** | **String**| The ID of the server-to-server authentication security token. | [default to null] |
-| **ApiToken** | [**ApiToken**](../Models/ApiToken.md)| ApiToken payload. | |
+| **ApiTokenUpdate** | [**ApiTokenUpdate**](../Models/ApiTokenUpdate.md)| ApiTokenUpdate payload. | |
 
 ### Return type
 

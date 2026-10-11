@@ -4,8 +4,8 @@ All URIs are relative to */api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createStoragePool**](PoolApi.md#createStoragePool) | **POST** /region/{regionId}/pool |  |
-| [**createTemplate**](PoolApi.md#createTemplate) | **POST** /pool/{poolId}/template |  |
+| [**createRegionStoragePool**](PoolApi.md#createRegionStoragePool) | **POST** /region/{regionId}/pool |  |
+| [**createStoragePoolTemplate**](PoolApi.md#createStoragePoolTemplate) | **POST** /pool/{poolId}/template |  |
 | [**deleteStoragePool**](PoolApi.md#deleteStoragePool) | **DELETE** /pool/{poolId} |  |
 | [**listRegionStoragePools**](PoolApi.md#listRegionStoragePools) | **GET** /region/{regionId}/pools |  |
 | [**listStoragePoolTemplates**](PoolApi.md#listStoragePoolTemplates) | **GET** /pool/{poolId}/templates |  |
@@ -17,9 +17,9 @@ All URIs are relative to */api/v1*
 | [**updateStoragePool**](PoolApi.md#updateStoragePool) | **PUT** /pool/{poolId} |  |
 
 
-<a name="createStoragePool"></a>
-# **createStoragePool**
-> StoragePool createStoragePool(regionId, StoragePool)
+<a name="createRegionStoragePool"></a>
+# **createRegionStoragePool**
+> StoragePool createRegionStoragePool(regionId, StoragePool)
 
 
 
@@ -45,9 +45,9 @@ All URIs are relative to */api/v1*
 - **Content-Type**: application/json
 - **Accept**: application/json
 
-<a name="createTemplate"></a>
-# **createTemplate**
-> Template createTemplate(poolId, Template)
+<a name="createStoragePoolTemplate"></a>
+# **createStoragePoolTemplate**
+> Template createStoragePoolTemplate(poolId, Template)
 
 
 
@@ -290,7 +290,7 @@ null (empty response body)
 
 <a name="updateStoragePool"></a>
 # **updateStoragePool**
-> StoragePool updateStoragePool(poolId, StoragePool)
+> StoragePool updateStoragePool(poolId, StoragePoolUpdate)
 
 
 
@@ -301,7 +301,7 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **poolId** | **String**| The ID of the storage pool. | [default to null] |
-| **StoragePool** | [**StoragePool**](../Models/StoragePool.md)| StoragePool payload. | |
+| **StoragePoolUpdate** | [**StoragePoolUpdate**](../Models/StoragePoolUpdate.md)| StoragePoolUpdate payload. | |
 
 ### Return type
 

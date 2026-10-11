@@ -7,15 +7,16 @@
 
 components:
   schemas:
-{{ oas.SchemaBaseResource(resources.user, ['name', 'email', 'role']) }}
+{% call oas.Resource(resources.user, ['name', 'email', 'role']) %}
 {{ oas.StringProperty('email', 'User email address') }}
 {{ oas.StringProperty('role', 'The Kowabunga user role', values=['superAdmin', 'projectAdmin', 'user']) }}
 {{ oas.BoolProperty('notifications', 'Whether or not to receive email notifications on events', default=False) }}
+{% endcall %}
 
 {{ oas.Schema(resources.user_credentials, ['email', 'password']) }}
 {{ oas.StringProperty('email', 'The user email address for login') }}
-{{ oas.StringProperty('password', 'The user password for login') }}
-{{ oas.StringProperty('jwt', 'The resulting server-generated JWT token for Bearer Authentication (read-only)') }}
+{{ oas.StringProperty('password', 'The user password for login', writeOnly=True) }}
+{{ oas.StringProperty('jwt', 'The resulting server-generated JWT token for Bearer Authentication', readOnly=True) }}
 
 {{ oas.Schema(resources.user_email, ['email']) }}
 {{ oas.StringProperty('email', 'The user email address used for login') }}
@@ -25,13 +26,40 @@ components:
 
 paths:
   /login:
-{{ oas.Create('Login', resources.user_credentials.schema, resources.user_credentials.desc, [resources.user.tag]) }}
+    post:
+{{ oas.Tags([resources.user.tag]) }}
+      description: Authenticates a {{ resources.user.desc }} and returns a JWT token for Bearer Authentication.
+      operationId: Login
+      security: []
+{{ oas.Payload(resources.user_credentials.schema) }}
+      responses:
+{{ oas.GetResource(200, resources.user_credentials.schema, 'Returns the ' + resources.user_credentials.desc + ', along with the JWT token') }}
+{{ oas.ErrorsWrongParams() }}
+{{ oas.ErrorDefinition(errors.Unauthorized) }}
+{{ oas.ErrorsServer() }}
 
   /logout:
-{{ oas.CreateEmpty('Logout', resources.user_logout.desc, [resources.user.tag]) }}
+    post:
+{{ oas.Tags([resources.user.tag]) }}
+      description: Terminates the {{ resources.user_logout.desc }}, revoking the JWT token in use.
+      operationId: Logout
+      responses:
+        '204':
+          description: The {{ resources.user_logout.desc }} has been terminated.
+{{ oas.ErrorDefinition(errors.Unauthorized) }}
+{{ oas.ErrorsServer() }}
 
   /resetPassword:
-{{ oas.Update('Reset' + resources.password.schema, resources.user_email.schema, resources.user.desc + 'reset of password for the provided email (server-side generated, will replace any existing one)', [resources.user.tag], False) }}
+    post:
+{{ oas.Tags([resources.user.tag]) }}
+      description: Resets the password of the {{ resources.user.desc }} with the provided email address. A new password is server-side generated, replacing any existing one, and sent by email. For privacy reasons, the response is the same whether the email address is registered or not.
+      operationId: ResetPassword
+      security: []
+{{ oas.Payload(resources.user_email.schema) }}
+      responses:
+{{ oas.ResponseOk('The password reset request has been processed') }}
+{{ oas.ErrorsWrongParams() }}
+{{ oas.ErrorsServer() }}
 
   /user:
 {{ oas.LC(resources.user, [resources.user.tag]) }}
@@ -49,4 +77,4 @@ paths:
 
   /user/{{ '{' + resources.user.paramId + '}' }}/token:
 {{ oas.Parameters([resources.user.paramSchema, 'OptionalQueryExpire', 'OptionalQueryExpirationDate']) }}
-{{ oas.Patch('Set' + resources.user.schema + resources.token.schema, resources.user.desc, 'setting of API token (will replace any existing one)', [resources.user.tag, resources.token.tag]) }}
+{{ oas.Patch('Set' + resources.user.schema + resources.token.schema, resources.user.desc, 'setting of API token (will replace any existing one; the generated API key is only sent once, by email, to the user)', [resources.user.tag, resources.token.tag], resources.token.schema, resources.token.desc) }}

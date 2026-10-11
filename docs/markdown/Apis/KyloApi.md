@@ -7,8 +7,8 @@ All URIs are relative to */api/v1*
 | [**createProjectRegionKylo**](KyloApi.md#createProjectRegionKylo) | **POST** /project/{projectId}/region/{regionId}/kylo |  |
 | [**deleteKylo**](KyloApi.md#deleteKylo) | **DELETE** /kylo/{kyloId} |  |
 | [**listKylos**](KyloApi.md#listKylos) | **GET** /kylo |  |
-| [**listProjectRegionKylos**](KyloApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylo |  |
-| [**listStorageNFSKylos**](KyloApi.md#listStorageNFSKylos) | **GET** /nfs/{nfsId}/kylo |  |
+| [**listProjectRegionKylos**](KyloApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylos |  |
+| [**listStorageNFSKylos**](KyloApi.md#listStorageNFSKylos) | **GET** /nfs/{nfsId}/kylos |  |
 | [**readKylo**](KyloApi.md#readKylo) | **GET** /kylo/{kyloId} |  |
 | [**updateKylo**](KyloApi.md#updateKylo) | **PUT** /kylo/{kyloId} |  |
 
@@ -179,7 +179,7 @@ This endpoint does not need any parameter.
 
 <a name="updateKylo"></a>
 # **updateKylo**
-> Kylo updateKylo(kyloId, Kylo)
+> Kylo updateKylo(kyloId, KyloUpdate)
 
 
 
@@ -190,7 +190,7 @@ This endpoint does not need any parameter.
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **kyloId** | **String**| The ID of the Kylo. | [default to null] |
-| **Kylo** | [**Kylo**](../Models/Kylo.md)| Kylo payload. | |
+| **KyloUpdate** | [**KyloUpdate**](../Models/KyloUpdate.md)| KyloUpdate payload. | |
 
 ### Return type
 

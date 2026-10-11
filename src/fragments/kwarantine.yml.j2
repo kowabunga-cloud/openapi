@@ -7,10 +7,11 @@
 
 components:
   schemas:
-{{ oas.SchemaBaseResource(resources.kwarantine, ['name']) }}
+{% call oas.Resource(resources.kwarantine, ['name']) %}
 {{ oas.StringProperty('policy', 'The anti-affinity enforcement policy. Use "host" to guarantee no two group members are ever scheduled on the same Kaktus computing node, or "zone" to guarantee no two group members are ever scheduled within the same availability zone', ['host', 'zone'], 'host') }}
-{{ oas.StringArrayProperty('instances', 'A list of existing virtual machine instance IDs that are part of the Kwarantine group. Members are guaranteed to never be co-scheduled according to the group policy, regardless of Kaktus host scheduling score') }}
-{{ oas.StringArrayProperty('komputes', 'A list of existing Kompute IDs that are part of the Kwarantine group. Members are guaranteed to never be co-scheduled according to the group policy, regardless of Kaktus host scheduling score') }}
+{{ oas.StringArrayProperty('instances', 'A list of existing virtual machine instance IDs that are part of the Kwarantine group. Members are guaranteed to never be co-scheduled according to the group policy, regardless of Kaktus host scheduling score. Managed through the dedicated add/remove operations', readOnly=True) }}
+{{ oas.StringArrayProperty('komputes', 'A list of existing Kompute IDs that are part of the Kwarantine group. Members are guaranteed to never be co-scheduled according to the group policy, regardless of Kaktus host scheduling score. Managed through the dedicated add/remove operations', readOnly=True) }}
+{% endcall %}
 
   parameters:
 {{ oas.PathParamID(resources.kwarantine) }}

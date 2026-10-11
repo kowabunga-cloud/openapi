@@ -7,19 +7,20 @@
 
 components:
   schemas:
-{{ oas.SchemaBaseResource(resources.kompute, ['name', 'memory', 'vcpus', 'disk']) }}
-{{ oas.IntProperty('memory', 'The ' + resources.kompute.desc + ' memory size (in bytes)') }}
-{{ oas.IntProperty('vcpus', 'The ' + resources.kompute.desc + ' number of vCPUs') }}
-{{ oas.IntProperty('disk', 'The ' + resources.kompute.desc + ' OS disk size (in bytes)') }}
-{{ oas.IntProperty('data_disk', 'The ' + resources.kompute.desc + ' extra data disk size (in bytes). If unspecified, no extra data disk will be assigned', default=0) }}
-{{ oas.StringProperty('ip', 'The ' + resources.kompute.desc + ' assigned private IPv4 address (read-only)') }}
-{{ oas.StringArrayProperty('kwarantines', 'An optional list of existing Kwarantine anti-affinity group IDs. Only considered at Kompute creation time, to elect an initial host consistent with the referenced groups policies and register the Kompute as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices') }}
-{{ oas.BoolProperty('uefi', 'enable UEFI secure firmware (vs. legacy BIOS)', default=True) }}
+{% call oas.Resource(resources.kompute, ['name', 'memory', 'vcpus', 'disk']) %}
+{{ oas.IntProperty('memory', 'The ' + resources.kompute.desc + ' memory size (in bytes)', minimum=1) }}
+{{ oas.ShortIntProperty('vcpus', 'The ' + resources.kompute.desc + ' number of vCPUs', minimum=1) }}
+{{ oas.IntProperty('disk', 'The ' + resources.kompute.desc + ' OS disk size (in bytes)', minimum=1) }}
+{{ oas.IntProperty('data_disk', 'The ' + resources.kompute.desc + ' extra data disk size (in bytes). If unspecified, no extra data disk will be assigned', default=0, minimum=0) }}
+{{ oas.StringProperty('ip', 'The ' + resources.kompute.desc + ' assigned private IPv4 address', readOnly=True) }}
+{{ oas.StringArrayProperty('kwarantines', 'An optional list of existing Kwarantine anti-affinity group IDs. Only considered at Kompute creation time, to elect an initial host consistent with the referenced groups policies and register the Kompute as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices', immutable=True) }}
+{{ oas.BoolProperty('uefi', 'Enable UEFI secure firmware (vs. legacy BIOS)', default=True, immutable=True) }}
 {{ oas.BoolProperty('kmotion_enabled', 'Whether kMotion (live/cold host migration) is enabled for the ' + resources.kompute.desc + '. When disabled, the instance remains bound to its original hosting node', default=True) }}
+{% endcall %}
 
   parameters:
 {{ oas.PathParamID(resources.kompute) }}
-{{ oas.BoolQueryParam(resources.kompute.paramPublicSchema, resources.kompute.paramPublicId, 'Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false)') }}
+{{ oas.BoolQueryParam(resources.kompute.paramPublicSchema, resources.kompute.paramPublicId, 'Whether the Kompute should be exposed over public Internet (a public IPv4 address will then be auto-assigned)', default='false') }}
 
 paths:
   /kompute:

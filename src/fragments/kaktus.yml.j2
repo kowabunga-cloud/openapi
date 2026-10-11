@@ -7,25 +7,26 @@
 
 components:
   schemas:
-{{ oas.SchemaBaseResource(resources.kaktus, ['name', 'agents']) }}
+{% call oas.Resource(resources.kaktus, ['name', 'agents']) %}
 {{ oas.ObjectProperty('cpu_cost', "Cost associated to the Kaktus node's CPU resources", resources.cost.schema) }}
 {{ oas.ObjectProperty('memory_cost', "Cost associated to the Kaktus node's memory resources", resources.cost.schema) }}
-{{ oas.IntProperty('overcommit_cpu_ratio', 'The Kaktus node CPU resource over-commit ratio. Overcommitting CPU resources for VMs means allocating more virtual CPUs (vCPUs) to the virtual machines (VMs) than the physical cores available on the node. This can help optimize the utilization of the node CPU and increase the density of VMs per node', default=3) }}
-{{ oas.IntProperty('overcommit_memory_ratio', 'The Kaktus node memory resource over-commit ratio. Memory overcommitment is a concept in computing that covers the assignment of more memory to virtual computing devices (or processes) than the physical machine they are hosted, or running on, actually has', default=2) }}
+{{ oas.IntProperty('overcommit_cpu_ratio', 'The Kaktus node CPU resource over-commit ratio. Overcommitting CPU resources for VMs means allocating more virtual CPUs (vCPUs) to the virtual machines (VMs) than the physical cores available on the node. This can help optimize the utilization of the node CPU and increase the density of VMs per node', default=3, minimum=1) }}
+{{ oas.IntProperty('overcommit_memory_ratio', 'The Kaktus node memory resource over-commit ratio. Memory overcommitment is a concept in computing that covers the assignment of more memory to virtual computing devices (or processes) than the physical machine they are hosted, or running on, actually has', default=2, minimum=1) }}
 {{ oas.StringArrayProperty('agents', 'a list of existing remote agents managing the Kaktus node') }}
-{{ oas.BoolProperty('maintenance', 'Whether the Kaktus node is under maintenance. A node under maintenance keeps running its existing instances but is excluded from scheduling of newly created workloads', default=False) }}
+{{ oas.BoolProperty('maintenance', 'Whether the Kaktus node is under maintenance. A node under maintenance keeps running its existing instances but is excluded from scheduling of newly created workloads. Use the maintenance enable/disable operations to change it', readOnly=True) }}
+{% endcall %}
 
 {{ oas.Schema(resources.kaktus_caps, ['cpu', 'memory']) }}
 {{ oas.ObjectProperty('cpu', 'The ' + resources.kaktus.desc + ' CPU characteristics', resources.kaktus_cpu.schema) }}
-{{ oas.IntProperty('memory', 'The ' + resources.kaktus.desc + ' memory size (bytes)') }}
+{{ oas.IntProperty('memory', 'The ' + resources.kaktus.desc + ' memory size (bytes)', minimum=0) }}
 
 {{ oas.Schema(resources.kaktus_cpu, ['arch', 'model', 'vendor', 'sockets', 'cores', 'threads']) }}
 {{ oas.StringProperty('arch', 'The ' + resources.kaktus.desc + ' CPU architecture') }}
 {{ oas.StringProperty('model', 'The ' + resources.kaktus.desc + ' CPU model') }}
 {{ oas.StringProperty('vendor', 'The ' + resources.kaktus.desc + ' CPU vendor') }}
-{{ oas.IntProperty('sockets', 'The ' + resources.kaktus.desc + ' CPU number of sockets') }}
-{{ oas.IntProperty('cores', 'The ' + resources.kaktus.desc + ' CPU number of cores') }}
-{{ oas.IntProperty('threads', 'The ' + resources.kaktus.desc + ' CPU number of threads') }}
+{{ oas.ShortIntProperty('sockets', 'The ' + resources.kaktus.desc + ' CPU number of sockets') }}
+{{ oas.ShortIntProperty('cores', 'The ' + resources.kaktus.desc + ' CPU number of cores') }}
+{{ oas.ShortIntProperty('threads', 'The ' + resources.kaktus.desc + ' CPU number of threads') }}
 
   parameters:
 {{ oas.PathParamID(resources.kaktus) }}
@@ -51,4 +52,4 @@ paths:
 
   /kaktus/{{ '{' + resources.kaktus.paramId + '}' }}/instances:
 {{ oas.Parameters([resources.kaktus.paramSchema]) }}
-{{ oas.GetAll('List' + resources.kaktus.schema + resources.instance.schema + 's', resources.instance.desc, [resources.kaktus.tag, resources.instance.tag], True) }}
+{{ oas.GetAll('List' + resources.kaktus.schema + oas.Plural(resources.instance), resources.instance.desc, [resources.kaktus.tag, resources.instance.tag], True) }}

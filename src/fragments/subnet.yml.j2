@@ -7,14 +7,15 @@
 
 components:
   schemas:
-{{ oas.SchemaBaseResource(resources.subnet, ['name', 'cidr', 'gateway']) }}
-{{ oas.StringProperty('cidr', 'The ' + resources.subnet.desc + ' CIDR (e.g. 192.168.0.0/24)') }}
+{% call oas.Resource(resources.subnet, ['name', 'cidr', 'gateway']) %}
+{{ oas.StringProperty('cidr', 'The ' + resources.subnet.desc + ' CIDR (e.g. 192.168.0.0/24)', immutable=True) }}
 {{ oas.StringProperty('gateway', 'The ' + resources.subnet.desc + ' router/gateway IP address (e.g. 192.168.0.254)') }}
 {{ oas.StringProperty('dns', 'The ' + resources.subnet.desc + ' DNS server IP address (gateway value if unspecified)') }}
-{{ oas.StringArrayProperty('extra_routes', 'The list of extra routes to be access through designated gateway (format is 10.0.0.0/8)') }}
+{{ oas.StringArrayProperty('extra_routes', 'The list of extra routes to be accessed through designated gateway (format is 10.0.0.0/8)') }}
 {{ oas.ObjectArrayProperty('reserved', 'The ' + resources.subnet.desc + ' reserved IPv4 ranges (i.e. no IP address can be assigned from there)', resources.ip_range.schema) }}
 {{ oas.ObjectArrayProperty('gw_pool', 'The ' + resources.subnet.desc + ' IPv4 ranges reserved for per-zone local network gateways (range size must be at least equal to region number of zones)', resources.ip_range.schema) }}
 {{ oas.StringProperty('application', 'Optional application service type', values=['ceph', 'user'], default='user') }}
+{% endcall %}
 
 {{ oas.Schema(resources.ip_range, ['first', 'last']) }}
 {{ oas.StringProperty('first', "The range's first IP address") }}
@@ -26,8 +27,8 @@ components:
 
   parameters:
 {{ oas.PathParamID(resources.subnet) }}
-{{ oas.BoolQueryParam(resources.subnet.paramAssignIpSchema, resources.subnet.paramAssignIpId, 'Whether Kowabunga should pick and assign an IP address to this adapter') }}
-{{ oas.IntQueryParam(resources.subnet.paramSubnetSizeSchema, resources.subnet.paramSubnetSizeId, 'The minimum VPC subnet size to be affected to the project. WARNING, this cannot be changed later') }}
+{{ oas.BoolQueryParam(resources.subnet.paramAssignIpSchema, resources.subnet.paramAssignIpId, 'Whether Kowabunga should pick and assign an IP address to this adapter', default='false') }}
+{{ oas.IntQueryParam(resources.subnet.paramSubnetSizeSchema, resources.subnet.paramSubnetSizeId, 'The minimum VPC subnet size (CIDR prefix length) to be assigned to the project. WARNING, this cannot be changed later', default=26, minimum=8, maximum=30) }}
 
 paths:
   /subnet:
@@ -37,9 +38,9 @@ paths:
 {{ oas.RUD(resources.subnet, [resources.subnet.tag], [resources.subnet.paramSchema]) }}
 
   /subnet/{{ '{' + resources.subnet.paramId + '}' }}/adapter:
-{{ oas.Parameters([resources.subnet.paramSchema, 'OptionalQuery' + resources.subnet.paramAssignIpSchema]) }}
-{{ oas.Create('Create' + resources.adapter.schema, resources.adapter.schema, resources.adapter.desc, [resources.subnet.tag, resources.adapter.tag]) }}
+{{ oas.Parameters([resources.subnet.paramSchema]) }}
+{{ oas.Create('Create' + resources.subnet.schema + resources.adapter.schema, resources.adapter.schema, resources.adapter.desc, [resources.subnet.tag, resources.adapter.tag], params=['OptionalQuery' + resources.subnet.paramAssignIpSchema]) }}
 
   /subnet/{{ '{' + resources.subnet.paramId + '}' }}/adapters:
 {{ oas.Parameters([resources.subnet.paramSchema]) }}
-{{ oas.GetAll('List' + resources.subnet.schema + resources.adapter.schema + 's', resources.adapter.desc, [resources.subnet.tag, resources.adapter.tag], True) }}
+{{ oas.GetAll('List' + resources.subnet.schema + oas.Plural(resources.adapter), resources.adapter.desc, [resources.subnet.tag, resources.adapter.tag], True) }}

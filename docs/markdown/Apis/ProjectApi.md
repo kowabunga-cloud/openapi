@@ -23,7 +23,7 @@ All URIs are relative to */api/v1*
 | [**listProjectRegionKawaiis**](ProjectApi.md#listProjectRegionKawaiis) | **GET** /project/{projectId}/region/{regionId}/kawaiis |  |
 | [**listProjectRegionKomputes**](ProjectApi.md#listProjectRegionKomputes) | **GET** /project/{projectId}/region/{regionId}/komputes |  |
 | [**listProjectRegionKonveys**](ProjectApi.md#listProjectRegionKonveys) | **GET** /project/{projectId}/region/{regionId}/konveys |  |
-| [**listProjectRegionKylos**](ProjectApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylo |  |
+| [**listProjectRegionKylos**](ProjectApi.md#listProjectRegionKylos) | **GET** /project/{projectId}/region/{regionId}/kylos |  |
 | [**listProjectRegionVolumes**](ProjectApi.md#listProjectRegionVolumes) | **GET** /project/{projectId}/region/{regionId}/volumes |  |
 | [**listProjectZoneInstances**](ProjectApi.md#listProjectZoneInstances) | **GET** /project/{projectId}/zone/{zoneId}/instances |  |
 | [**listProjectZoneKomputes**](ProjectApi.md#listProjectZoneKomputes) | **GET** /project/{projectId}/zone/{zoneId}/komputes |  |
@@ -48,7 +48,7 @@ All URIs are relative to */api/v1*
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **Project** | [**Project**](../Models/Project.md)| Project payload. | |
-| **subnetSize** | **Integer**| The minimum VPC subnet size to be affected to the project. WARNING, this cannot be changed later. | [optional] [default to null] |
+| **subnetSize** | **Integer**| The minimum VPC subnet size (CIDR prefix length) to be assigned to the project. WARNING, this cannot be changed later. | [optional] [default to 26] |
 
 ### Return type
 
@@ -194,7 +194,7 @@ All URIs are relative to */api/v1*
 | **Kompute** | [**Kompute**](../Models/Kompute.md)| Kompute payload. | |
 | **poolId** | **String**| Storage pool ID (optional, region&#39;s default if unspecified). | [optional] [default to null] |
 | **templateId** | **String**| Template to clone the storage volume from (optional, region&#39;s default if unspecified). | [optional] [default to null] |
-| **public** | **Boolean**| Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). | [optional] [default to null] |
+| **public** | **Boolean**| Whether the Kompute should be exposed over public Internet (a public IPv4 address will then be auto-assigned). | [optional] [default to false] |
 
 ### Return type
 
@@ -345,7 +345,7 @@ All URIs are relative to */api/v1*
 | **Kompute** | [**Kompute**](../Models/Kompute.md)| Kompute payload. | |
 | **poolId** | **String**| Storage pool ID (optional, region&#39;s default if unspecified). | [optional] [default to null] |
 | **templateId** | **String**| Template to clone the storage volume from (optional, region&#39;s default if unspecified). | [optional] [default to null] |
-| **public** | **Boolean**| Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). | [optional] [default to null] |
+| **public** | **Boolean**| Whether the Kompute should be exposed over public Internet (a public IPv4 address will then be auto-assigned). | [optional] [default to false] |
 
 ### Return type
 
@@ -725,17 +725,14 @@ null (empty response body)
 
 <a name="listProjects"></a>
 # **listProjects**
-> List listProjects(subnetSize)
+> List listProjects()
 
 
 
     Returns the IDs of project objects.
 
 ### Parameters
-
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **subnetSize** | **Integer**| The minimum VPC subnet size to be affected to the project. WARNING, this cannot be changed later. | [optional] [default to null] |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -833,7 +830,7 @@ null (empty response body)
 
 <a name="updateProject"></a>
 # **updateProject**
-> Project updateProject(projectId, Project)
+> Project updateProject(projectId, ProjectUpdate)
 
 
 
@@ -844,7 +841,7 @@ null (empty response body)
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | **String**| The ID of the project. | [default to null] |
-| **Project** | [**Project**](../Models/Project.md)| Project payload. | |
+| **ProjectUpdate** | [**ProjectUpdate**](../Models/ProjectUpdate.md)| ProjectUpdate payload. | |
 
 ### Return type
 

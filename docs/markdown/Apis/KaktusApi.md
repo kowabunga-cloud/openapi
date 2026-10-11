@@ -4,21 +4,21 @@ All URIs are relative to */api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createKaktus**](KaktusApi.md#createKaktus) | **POST** /zone/{zoneId}/kaktus |  |
+| [**createZoneKaktus**](KaktusApi.md#createZoneKaktus) | **POST** /zone/{zoneId}/kaktus |  |
 | [**deleteKaktus**](KaktusApi.md#deleteKaktus) | **DELETE** /kaktus/{kaktusId} |  |
 | [**disableKaktusMaintenance**](KaktusApi.md#disableKaktusMaintenance) | **PATCH** /kaktus/{kaktusId}/maintenance/disable |  |
 | [**enableKaktusMaintenance**](KaktusApi.md#enableKaktusMaintenance) | **PATCH** /kaktus/{kaktusId}/maintenance/enable |  |
 | [**listKaktusInstances**](KaktusApi.md#listKaktusInstances) | **GET** /kaktus/{kaktusId}/instances |  |
-| [**listKaktuss**](KaktusApi.md#listKaktuss) | **GET** /kaktus |  |
+| [**listKaktuses**](KaktusApi.md#listKaktuses) | **GET** /kaktus |  |
 | [**listZoneKaktuses**](KaktusApi.md#listZoneKaktuses) | **GET** /zone/{zoneId}/kaktuses |  |
 | [**readKaktus**](KaktusApi.md#readKaktus) | **GET** /kaktus/{kaktusId} |  |
 | [**readKaktusCaps**](KaktusApi.md#readKaktusCaps) | **GET** /kaktus/{kaktusId}/caps |  |
 | [**updateKaktus**](KaktusApi.md#updateKaktus) | **PUT** /kaktus/{kaktusId} |  |
 
 
-<a name="createKaktus"></a>
-# **createKaktus**
-> Kaktus createKaktus(zoneId, Kaktus)
+<a name="createZoneKaktus"></a>
+# **createZoneKaktus**
+> Kaktus createZoneKaktus(zoneId, Kaktus)
 
 
 
@@ -152,9 +152,9 @@ null (empty response body)
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-<a name="listKaktuss"></a>
-# **listKaktuss**
-> List listKaktuss()
+<a name="listKaktuses"></a>
+# **listKaktuses**
+> List listKaktuses()
 
 
 
@@ -259,7 +259,7 @@ This endpoint does not need any parameter.
 
 <a name="updateKaktus"></a>
 # **updateKaktus**
-> Kaktus updateKaktus(kaktusId, Kaktus)
+> Kaktus updateKaktus(kaktusId, KaktusUpdate)
 
 
 
@@ -270,7 +270,7 @@ This endpoint does not need any parameter.
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **kaktusId** | **String**| The ID of the Kaktus computing node. | [default to null] |
-| **Kaktus** | [**Kaktus**](../Models/Kaktus.md)| Kaktus payload. | |
+| **KaktusUpdate** | [**KaktusUpdate**](../Models/KaktusUpdate.md)| KaktusUpdate payload. | |
 
 ### Return type
 

@@ -179,7 +179,7 @@ This endpoint does not need any parameter.
 
 <a name="updateVolume"></a>
 # **updateVolume**
-> Volume updateVolume(volumeId, Volume)
+> Volume updateVolume(volumeId, VolumeUpdate)
 
 
 
@@ -190,7 +190,7 @@ This endpoint does not need any parameter.
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **volumeId** | **String**| The ID of the storage volume. | [default to null] |
-| **Volume** | [**Volume**](../Models/Volume.md)| Volume payload. | |
+| **VolumeUpdate** | [**VolumeUpdate**](../Models/VolumeUpdate.md)| VolumeUpdate payload. | |
 
 ### Return type
 
