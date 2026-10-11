@@ -13,5 +13,5 @@ permissions:
 
 jobs:
   release:
-    uses: kowabunga-cloud/workflows/.github/workflows/openapi-release.yml@master
+    uses: kowabunga-cloud/workflows/.github/workflows/openapi-release.yml@v1
     secrets: inherit
