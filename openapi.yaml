@@ -9,7 +9,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.txt
   title: Kowabunga API
-  version: 0.57.1
+  version: 0.58.0
 servers:
 - url: /api/v1
 security:
@@ -5409,20 +5409,20 @@ components:
       schema:
         type: string
       style: simple
-    KawaiiIpSecID:
-      description: The ID of the Kawaii IPsec connection.
-      explode: false
-      in: path
-      name: kawaiiIpSecId
-      required: true
-      schema:
-        type: string
-      style: simple
     KawaiiID:
       description: The ID of the Kawaii.
       explode: false
       in: path
       name: kawaiiId
+      required: true
+      schema:
+        type: string
+      style: simple
+    KawaiiIpSecID:
+      description: The ID of the Kawaii IPsec connection.
+      explode: false
+      in: path
+      name: kawaiiIpSecId
       required: true
       schema:
         type: string
@@ -6329,6 +6329,247 @@ components:
       - sockets
       - threads
       - vendor
+    Kawaii:
+      description: A Kawaii (Kowabunga Adapative WAn Intelligent Interface) is a network
+        gateway used for your Internet inbound and outbound traffic.
+      properties:
+        id:
+          description: The Kawaii ID (auto-generated) (read-only).
+          readOnly: true
+          type: string
+        name:
+          description: "The Kawaii name, auto-generated from the project name."
+          type: string
+        description:
+          description: The Kawaii description.
+          type: string
+        netip:
+          allOf:
+          - $ref: "#/components/schemas/KawaiiNetIp"
+          description: The Kawaii list of assigned virtual IPs per-zone addresses
+            (read-only).
+          readOnly: true
+        firewall:
+          allOf:
+          - $ref: "#/components/schemas/KawaiiFirewall"
+          description: The Kawaii firewall settings from/to public Internet.
+        dnat:
+          description: The Kawaii list of NAT forwarding entries. Kawaii will forward
+            public Internet traffic from all public virtual IPs to requested private
+            subnet IP addresses.
+          items:
+            $ref: "#/components/schemas/KawaiiDNatRule"
+          type: array
+        vpc_peerings:
+          description: "The Kawaii list of Kowabunga private VPC subnet peering entries.\
+            \ Can only be set at creation time, ignored on updates."
+          items:
+            $ref: "#/components/schemas/KawaiiVpcPeering"
+          type: array
+          x-immutable: true
+    KawaiiUpdate:
+      description: A Kawaii update (unspecified properties are left unchanged).
+      properties:
+        name:
+          description: "The Kawaii name, auto-generated from the project name."
+          type: string
+        description:
+          description: The Kawaii description.
+          type: string
+        firewall:
+          allOf:
+          - $ref: "#/components/schemas/KawaiiFirewall"
+          description: The Kawaii firewall settings from/to public Internet.
+        dnat:
+          description: The Kawaii list of NAT forwarding entries. Kawaii will forward
+            public Internet traffic from all public virtual IPs to requested private
+            subnet IP addresses.
+          items:
+            $ref: "#/components/schemas/KawaiiDNatRule"
+          type: array
+    KawaiiNetIp:
+      description: A Kawaii Network IP settings.
+      properties:
+        public:
+          description: The Kawaii global public gateways virtual IP addresses (read-only).
+          items:
+            type: string
+          readOnly: true
+          type: array
+        private:
+          description: The Kawaii global private gateways virtual IP addresses (read-only).
+          items:
+            type: string
+          readOnly: true
+          type: array
+        zones:
+          description: The Kawaii per-zone list of Kowabunga virtual IP addresses
+            (read-only).
+          items:
+            $ref: "#/components/schemas/KawaiiNetIpZone"
+          readOnly: true
+          type: array
+      required:
+      - private
+      - public
+      - zones
+    KawaiiNetIpZone:
+      description: A Kawaii Network IP zone settings.
+      properties:
+        zone:
+          description: The Kawaii zone name (read-only).
+          readOnly: true
+          type: string
+        public:
+          description: The Kawaii zone gateway public virtual IP (unset for VPC peered
+            subnets) (read-only).
+          readOnly: true
+          type: string
+        private:
+          description: The Kawaii zone gateway private virtual IP (read-only).
+          readOnly: true
+          type: string
+      required:
+      - private
+      - zone
+    KawaiiFirewall:
+      description: A Kawaii public firewall settings.
+      properties:
+        ingress:
+          description: "The Kawaii public firewall list of ingress rules. Kawaii default\
+            \ policy is to drop all incoming traffic, including ICMP. Specified ruleset\
+            \ will be explicitly accepted."
+          items:
+            $ref: "#/components/schemas/KawaiiFirewallIngressRule"
+          type: array
+        egress_policy:
+          default: accept
+          description: The default public traffic egress policy.
+          enum:
+          - accept
+          - drop
+          type: string
+        egress:
+          description: "The Kawaii public firewall list of egress rules. Kawaii default\
+            \ policy is to accept all outgoing traffic, including ICMP. Specified\
+            \ ruleset will be explicitly dropped if egress_policy is set to accept,\
+            \ and explicitly accepted if egress policy is set to drop."
+          items:
+            $ref: "#/components/schemas/KawaiiFirewallEgressRule"
+          type: array
+    KawaiiFirewallIngressRule:
+      description: A Kawaii public firewall ingress rule.
+      properties:
+        source:
+          default: 0.0.0.0/0
+          description: The source IP or CIDR to accept public traffic from.
+          type: string
+        protocol:
+          default: tcp
+          description: The transport layer protocol to accept public traffic from.
+          enum:
+          - tcp
+          - udp
+          type: string
+        ports:
+          description: "The port (or list of ports) to accept public traffic from.\
+            \ Ranges are accepted. Format is a-b,c-d (e.g. 443; 22,80,443; 80,443,3000-3005)."
+          type: string
+      required:
+      - ports
+    KawaiiFirewallEgressRule:
+      description: A Kawaii public firewall egress rule.
+      properties:
+        destination:
+          default: 0.0.0.0/0
+          description: The destination IP or CIDR to accept/drop public traffic to.
+          type: string
+        protocol:
+          default: tcp
+          description: The transport layer protocol to accept/drop public traffic
+            to.
+          enum:
+          - tcp
+          - udp
+          type: string
+        ports:
+          description: "The port (or list of ports) to accept/drop public traffic\
+            \ from. Ranges are accepted. Format is a-b,c-d (e.g. 443; 22,80,443; 80,443,3000-3005)."
+          type: string
+      required:
+      - ports
+    KawaiiDNatRule:
+      description: A Kawaii public firewall destination NAT rule.
+      properties:
+        destination:
+          description: Target private IP address to forward public traffic to.
+          type: string
+        protocol:
+          default: tcp
+          description: The transport layer protocol to forward public traffic to.
+          enum:
+          - tcp
+          - udp
+          type: string
+        ports:
+          description: "The port (or list of ports) to forward public traffic from.\
+            \ Ranges are accepted. Format is a-b,c-d (e.g. 443; 22,80,443; 80,443,3000-3005)."
+          type: string
+      required:
+      - destination
+      - ports
+    KawaiiVpcPeering:
+      description: A Kawaii internal VPC subnet peering.
+      properties:
+        subnet:
+          description: Kowabunga Subnet ID to be peered with (subnet local IP addresses
+            will be automatically assigned to Kawaii instances).
+          type: string
+        policy:
+          default: drop
+          description: The default VPC traffic forwarding policy.
+          enum:
+          - accept
+          - drop
+          type: string
+        ingress:
+          description: The firewall list of forwarding ingress rules from VPC peered
+            subnet. ICMP traffic is always accepted. The specified ruleset will be
+            explicitly accepted if drop is the default policy (useless otherwise).
+          items:
+            $ref: "#/components/schemas/KawaiiVpcForwardRule"
+          type: array
+        egress:
+          description: The firewall list of forwarding egress rules to VPC peered
+            subnet. ICMP traffic is always accepted. The specified ruleset will be
+            explicitly accepted if drop is the default policy (useless otherwise).
+          items:
+            $ref: "#/components/schemas/KawaiiVpcForwardRule"
+          type: array
+        netip:
+          description: The per-zone auto-assigned private IPs in peered subnet (read-only).
+          items:
+            $ref: "#/components/schemas/KawaiiNetIpZone"
+          readOnly: true
+          type: array
+      required:
+      - subnet
+    KawaiiVpcForwardRule:
+      description: A Kawaii VPC firewall forwarding rule.
+      properties:
+        protocol:
+          default: tcp
+          description: The transport layer protocol to forward VPC traffic to.
+          enum:
+          - tcp
+          - udp
+          type: string
+        ports:
+          description: "The port (or list of ports) to forward VPC traffic from. Ranges\
+            \ are accepted. Format is a-b,c-d (e.g. 443; 22,80,443; 80,443,3000-3005)."
+          type: string
+      required:
+      - ports
     KawaiiIpSec:
       description: A Kawaii IPsec connection.
       properties:
@@ -6603,247 +6844,6 @@ components:
           items:
             $ref: "#/components/schemas/KawaiiFirewallIngressRule"
           type: array
-    Kawaii:
-      description: A Kawaii (Kowabunga Adapative WAn Intelligent Interface) is a network
-        gateway used for your Internet inbound and outbound traffic.
-      properties:
-        id:
-          description: The Kawaii ID (auto-generated) (read-only).
-          readOnly: true
-          type: string
-        name:
-          description: "The Kawaii name, auto-generated from the project name."
-          type: string
-        description:
-          description: The Kawaii description.
-          type: string
-        netip:
-          allOf:
-          - $ref: "#/components/schemas/KawaiiNetIp"
-          description: The Kawaii list of assigned virtual IPs per-zone addresses
-            (read-only).
-          readOnly: true
-        firewall:
-          allOf:
-          - $ref: "#/components/schemas/KawaiiFirewall"
-          description: The Kawaii firewall settings from/to public Internet.
-        dnat:
-          description: The Kawaii list of NAT forwarding entries. Kawaii will forward
-            public Internet traffic from all public virtual IPs to requested private
-            subnet IP addresses.
-          items:
-            $ref: "#/components/schemas/KawaiiDNatRule"
-          type: array
-        vpc_peerings:
-          description: "The Kawaii list of Kowabunga private VPC subnet peering entries.\
-            \ Can only be set at creation time, ignored on updates."
-          items:
-            $ref: "#/components/schemas/KawaiiVpcPeering"
-          type: array
-          x-immutable: true
-    KawaiiUpdate:
-      description: A Kawaii update (unspecified properties are left unchanged).
-      properties:
-        name:
-          description: "The Kawaii name, auto-generated from the project name."
-          type: string
-        description:
-          description: The Kawaii description.
-          type: string
-        firewall:
-          allOf:
-          - $ref: "#/components/schemas/KawaiiFirewall"
-          description: The Kawaii firewall settings from/to public Internet.
-        dnat:
-          description: The Kawaii list of NAT forwarding entries. Kawaii will forward
-            public Internet traffic from all public virtual IPs to requested private
-            subnet IP addresses.
-          items:
-            $ref: "#/components/schemas/KawaiiDNatRule"
-          type: array
-    KawaiiNetIp:
-      description: A Kawaii Network IP settings.
-      properties:
-        public:
-          description: The Kawaii global public gateways virtual IP addresses (read-only).
-          items:
-            type: string
-          readOnly: true
-          type: array
-        private:
-          description: The Kawaii global private gateways virtual IP addresses (read-only).
-          items:
-            type: string
-          readOnly: true
-          type: array
-        zones:
-          description: The Kawaii per-zone list of Kowabunga virtual IP addresses
-            (read-only).
-          items:
-            $ref: "#/components/schemas/KawaiiNetIpZone"
-          readOnly: true
-          type: array
-      required:
-      - private
-      - public
-      - zones
-    KawaiiNetIpZone:
-      description: A Kawaii Network IP zone settings.
-      properties:
-        zone:
-          description: The Kawaii zone name (read-only).
-          readOnly: true
-          type: string
-        public:
-          description: The Kawaii zone gateway public virtual IP (unset for VPC peered
-            subnets) (read-only).
-          readOnly: true
-          type: string
-        private:
-          description: The Kawaii zone gateway private virtual IP (read-only).
-          readOnly: true
-          type: string
-      required:
-      - private
-      - zone
-    KawaiiFirewall:
-      description: A Kawaii public firewall settings.
-      properties:
-        ingress:
-          description: "The Kawaii public firewall list of ingress rules. Kawaii default\
-            \ policy is to drop all incoming traffic, including ICMP. Specified ruleset\
-            \ will be explicitly accepted."
-          items:
-            $ref: "#/components/schemas/KawaiiFirewallIngressRule"
-          type: array
-        egress_policy:
-          default: accept
-          description: The default public traffic egress policy.
-          enum:
-          - accept
-          - drop
-          type: string
-        egress:
-          description: "The Kawaii public firewall list of egress rules. Kawaii default\
-            \ policy is to accept all outgoing traffic, including ICMP. Specified\
-            \ ruleset will be explicitly dropped if egress_policy is set to accept,\
-            \ and explicitly accepted if egress policy is set to drop."
-          items:
-            $ref: "#/components/schemas/KawaiiFirewallEgressRule"
-          type: array
-    KawaiiFirewallIngressRule:
-      description: A Kawaii public firewall ingress rule.
-      properties:
-        source:
-          default: 0.0.0.0/0
-          description: The source IP or CIDR to accept public traffic from.
-          type: string
-        protocol:
-          default: tcp
-          description: The transport layer protocol to accept public traffic from.
-          enum:
-          - tcp
-          - udp
-          type: string
-        ports:
-          description: "The port (or list of ports) to accept public traffic from.\
-            \ Ranges are accepted. Format is a-b,c-d (e.g. 443; 22,80,443; 80,443,3000-3005)."
-          type: string
-      required:
-      - ports
-    KawaiiFirewallEgressRule:
-      description: A Kawaii public firewall egress rule.
-      properties:
-        destination:
-          default: 0.0.0.0/0
-          description: The destination IP or CIDR to accept/drop public traffic to.
-          type: string
-        protocol:
-          default: tcp
-          description: The transport layer protocol to accept/drop public traffic
-            to.
-          enum:
-          - tcp
-          - udp
-          type: string
-        ports:
-          description: "The port (or list of ports) to accept/drop public traffic\
-            \ from. Ranges are accepted. Format is a-b,c-d (e.g. 443; 22,80,443; 80,443,3000-3005)."
-          type: string
-      required:
-      - ports
-    KawaiiDNatRule:
-      description: A Kawaii public firewall destination NAT rule.
-      properties:
-        destination:
-          description: Target private IP address to forward public traffic to.
-          type: string
-        protocol:
-          default: tcp
-          description: The transport layer protocol to forward public traffic to.
-          enum:
-          - tcp
-          - udp
-          type: string
-        ports:
-          description: "The port (or list of ports) to forward public traffic from.\
-            \ Ranges are accepted. Format is a-b,c-d (e.g. 443; 22,80,443; 80,443,3000-3005)."
-          type: string
-      required:
-      - destination
-      - ports
-    KawaiiVpcPeering:
-      description: A Kawaii internal VPC subnet peering.
-      properties:
-        subnet:
-          description: Kowabunga Subnet ID to be peered with (subnet local IP addresses
-            will be automatically assigned to Kawaii instances).
-          type: string
-        policy:
-          default: drop
-          description: The default VPC traffic forwarding policy.
-          enum:
-          - accept
-          - drop
-          type: string
-        ingress:
-          description: The firewall list of forwarding ingress rules from VPC peered
-            subnet. ICMP traffic is always accepted. The specified ruleset will be
-            explicitly accepted if drop is the default policy (useless otherwise).
-          items:
-            $ref: "#/components/schemas/KawaiiVpcForwardRule"
-          type: array
-        egress:
-          description: The firewall list of forwarding egress rules to VPC peered
-            subnet. ICMP traffic is always accepted. The specified ruleset will be
-            explicitly accepted if drop is the default policy (useless otherwise).
-          items:
-            $ref: "#/components/schemas/KawaiiVpcForwardRule"
-          type: array
-        netip:
-          description: The per-zone auto-assigned private IPs in peered subnet (read-only).
-          items:
-            $ref: "#/components/schemas/KawaiiNetIpZone"
-          readOnly: true
-          type: array
-      required:
-      - subnet
-    KawaiiVpcForwardRule:
-      description: A Kawaii VPC firewall forwarding rule.
-      properties:
-        protocol:
-          default: tcp
-          description: The transport layer protocol to forward VPC traffic to.
-          enum:
-          - tcp
-          - udp
-          type: string
-        ports:
-          description: "The port (or list of ports) to forward VPC traffic from. Ranges\
-            \ are accepted. Format is a-b,c-d (e.g. 443; 22,80,443; 80,443,3000-3005)."
-          type: string
-      required:
-      - ports
     Kiwi:
       description: A Kiwi (Kowabunga Inner Wan Interface) provides edge-network services..
       properties:

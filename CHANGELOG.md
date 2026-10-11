@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.58.0](https://github.com/kowabunga-cloud/openapi/compare/v0.57.1...v0.58.0) (2026-10-11)
+
+### Features
+
+* harmonize API definitions ([d0e41d1](https://github.com/kowabunga-cloud/openapi/commit/d0e41d174bf182ee1484b5e55f2ff578197cd98c))
+
 ## [0.57.1](https://github.com/kowabunga-cloud/openapi/compare/v0.57.0...v0.57.1) (2026-10-10)
 
 ### Bug Fixes

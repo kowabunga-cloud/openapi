@@ -1402,8 +1402,8 @@ ul.nav-tabs {
     "destination" : {
       "type" : "string",
       "description" : "How the destination Kaktus computing node must be elected. Use \"manual\" to explicitly target a given node (see kaktus), \"zone\" to automatically elect the least busy node within the instance own availability zone, \"region\" to automatically elect the least busy node anywhere within the instance region, or \"auto\" to let Kowabunga fully decide the best possible destination across the region, regardless of the number of availability zones it contains.",
-      "enum" : [ "manual", "zone", "region", "auto" ],
-      "default" : "auto"
+      "default" : "auto",
+      "enum" : [ "manual", "zone", "region", "auto" ]
     },
     "kaktus" : {
       "type" : "string",
@@ -1629,8 +1629,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to forward public traffic to.",
-      "enum" : [ "tcp", "udp" ],
-      "default" : "tcp"
+      "default" : "tcp",
+      "enum" : [ "tcp", "udp" ]
     },
     "ports" : {
       "type" : "string",
@@ -1652,8 +1652,8 @@ ul.nav-tabs {
     "egress_policy" : {
       "type" : "string",
       "description" : "The default public traffic egress policy.",
-      "enum" : [ "accept", "drop" ],
-      "default" : "accept"
+      "default" : "accept",
+      "enum" : [ "accept", "drop" ]
     },
     "egress" : {
       "type" : "array",
@@ -1677,8 +1677,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to accept/drop public traffic to.",
-      "enum" : [ "tcp", "udp" ],
-      "default" : "tcp"
+      "default" : "tcp",
+      "enum" : [ "tcp", "udp" ]
     },
     "ports" : {
       "type" : "string",
@@ -1698,8 +1698,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to accept public traffic from.",
-      "enum" : [ "tcp", "udp" ],
-      "default" : "tcp"
+      "default" : "tcp",
+      "enum" : [ "tcp", "udp" ]
     },
     "ports" : {
       "type" : "string",
@@ -1745,8 +1745,8 @@ ul.nav-tabs {
     "dpd_timeout_action" : {
       "type" : "string",
       "description" : "The Kawaii IPsec connection Dead Peer Detection (DPD) timeout action.",
-      "enum" : [ "clear", "trap", "restart" ],
-      "default" : "restart"
+      "default" : "restart",
+      "enum" : [ "clear", "trap", "restart" ]
     },
     "dpd_timeout" : {
       "type" : "string",
@@ -1756,8 +1756,8 @@ ul.nav-tabs {
     "start_action" : {
       "type" : "string",
       "description" : "The Kawaii IPsec connection start action.",
-      "enum" : [ "none", "start", "trap" ],
-      "default" : "start"
+      "default" : "start",
+      "enum" : [ "none", "start", "trap" ]
     },
     "rekey_time" : {
       "type" : "string",
@@ -2005,8 +2005,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to forward VPC traffic to.",
-      "enum" : [ "tcp", "udp" ],
-      "default" : "tcp"
+      "default" : "tcp",
+      "enum" : [ "tcp", "udp" ]
     },
     "ports" : {
       "type" : "string",
@@ -2025,8 +2025,8 @@ ul.nav-tabs {
     "policy" : {
       "type" : "string",
       "description" : "The default VPC traffic forwarding policy.",
-      "enum" : [ "accept", "drop" ],
-      "default" : "drop"
+      "default" : "drop",
+      "enum" : [ "accept", "drop" ]
     },
     "ingress" : {
       "type" : "array",
@@ -2290,8 +2290,8 @@ ul.nav-tabs {
     "protocol" : {
       "type" : "string",
       "description" : "The transport layer protocol to be exposed.",
-      "enum" : [ "tcp", "udp" ],
-      "default" : "tcp"
+      "default" : "tcp",
+      "enum" : [ "tcp", "udp" ]
     },
     "backends" : {
       "description" : "The Konvey (Kowabunga Network Load-Balancer) list of load-balanced backends.",
@@ -2342,8 +2342,8 @@ ul.nav-tabs {
     "policy" : {
       "type" : "string",
       "description" : "The anti-affinity enforcement policy. Use \"host\" to guarantee no two group members are ever scheduled on the same Kaktus computing node, or \"zone\" to guarantee no two group members are ever scheduled within the same availability zone.",
-      "enum" : [ "host", "zone" ],
-      "default" : "host"
+      "default" : "host",
+      "enum" : [ "host", "zone" ]
     },
     "instances" : {
       "type" : "array",
@@ -2403,8 +2403,8 @@ ul.nav-tabs {
     "access" : {
       "type" : "string",
       "description" : "The Kylo volume access type.",
-      "enum" : [ "RO", "RW" ],
-      "default" : "RW"
+      "default" : "RW",
+      "enum" : [ "RO", "RW" ]
     },
     "protocols" : {
       "type" : "array",
@@ -2959,8 +2959,8 @@ ul.nav-tabs {
     "application" : {
       "type" : "string",
       "description" : "Optional application service type.",
-      "enum" : [ "ceph", "user" ],
-      "default" : "user"
+      "default" : "user",
+      "enum" : [ "ceph", "user" ]
     }
   },
   "description" : "A network subnet."
@@ -3082,8 +3082,8 @@ ul.nav-tabs {
     "os" : {
       "type" : "string",
       "description" : "Type of operating system (useful to determine cloud-init parameters for instance). Can only be set at creation time, ignored on updates.",
-      "enum" : [ "linux", "windows" ],
       "default" : "linux",
+      "enum" : [ "linux", "windows" ],
       "x-immutable" : true
     },
     "source" : {
@@ -4189,7 +4189,7 @@ ul.nav-tabs {
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 0.57.1</div>
+              <div class="app-desc">Version: 0.58.0</div>
             <hr>
             <div id="app-description" class="app-desc">
                 Kvm Orchestrator With A BUNch of Goods Added
